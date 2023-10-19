@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "react/prop-types": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "camelcase": "off",
+    "prettier/prettier": "error",
+    "react/no-unescaped-entities": 0
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:react/jsx-runtime"
+  ],
+  "plugins": ["prettier", "@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  }
+}
