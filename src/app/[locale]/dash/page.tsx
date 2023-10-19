@@ -1,25 +1,28 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { api } from "@/utils/api";
 
-export default function Dashboard() {
+export default function Dashboard({
+  params: { locale },
+}: {
+  params: {
+    locale: string;
+  };
+}) {
   const router = useRouter();
 
-  const { user } = useUser();
-
   const { data, error, isLoading } = api.greeting.getGreeting.useQuery({
-    name: user?.firstName || "",
+    name: "User",
   });
 
-  if (!user) return null;
-
   return (
-    <main className="flex min-h-screen items-center justify-center p-24 gap-4">
-      <div className="flex flex-col items-center justify-center m-auto w-full max-w-screen-xl gap-4">
-        <h1 className="text-4xl text-center font-semibold">
+    <main className="flex items-center justify-center min-h-screen gap-4 p-24">
+      <div className="flex flex-col items-center justify-center w-full max-w-screen-xl gap-4 m-auto">
+        <h1 className="text-4xl font-semibold text-center">locale: {locale}</h1>
+        <h1 className="text-4xl font-semibold text-center">
           {isLoading ? "Loading..." : error ? "Error" : data.greeting}
         </h1>
         <Button variant="destructive">
