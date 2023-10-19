@@ -1,34 +1,30 @@
 "use client";
 
+import { Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { SignOutButton } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
-import { api } from "@/utils/api";
+import PageContentHeader from "./_components/page-content-header";
 
-export default function Dashboard({
-  params: { locale },
-}: {
-  params: {
-    locale: string;
-  };
-}) {
-  const router = useRouter();
-
-  const { data, error, isLoading } = api.greeting.getGreeting.useQuery({
-    name: "User",
-  });
+export default function Home() {
+  const t = useTranslations("Dashboard.Home");
 
   return (
-    <main className="flex items-center justify-center min-h-screen gap-4 p-24">
-      <div className="flex flex-col items-center justify-center w-full max-w-screen-xl gap-4 m-auto">
-        <h1 className="text-4xl font-semibold text-center">locale: {locale}</h1>
-        <h1 className="text-4xl font-semibold text-center">
-          {isLoading ? "Loading..." : error ? "Error" : data.greeting}
-        </h1>
-        <Button variant="destructive">
-          <SignOutButton signOutCallback={() => router.push("/")} />
-        </Button>
+    <main>
+      <PageContentHeader title={t("title")}>
+        <div className="flex items-center">
+          <Button>
+            <Plus size={18} />
+            <span className="hidden ml-2 lg:block">{t("button")}</span>
+          </Button>
+        </div>
+      </PageContentHeader>
+
+      <div className="w-full">
+        <p>{t("content")}</p>
       </div>
+
+      {/* for scroll */}
+      <div className="flex min-h-[500vh]" />
     </main>
   );
 }
