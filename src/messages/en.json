@@ -1,1 +1,30 @@
-{}
+{
+  "Landing": {
+    "title": "Landing Page here",
+    "subtitle": "Click anywhere to continue to dashboard"
+  },
+  "Dashboard": {
+    "Header": {
+      "help": "Need help?"
+    },
+    "UserNav": {
+      "profile": "Profile",
+      "billing": "Billing",
+      "settings": "Settings",
+      "logout": "Log out",
+      "admin": "Admin",
+      "studient": "Student",
+      "unknown": "Unknown"
+    },
+    "Home": {
+      "title": "Dashboard",
+      "content": "Hello world, content here.",
+      "button": "New customer"
+    },
+    "Error": {
+      "sorry": "Whoops, sorry!",
+      "description": "You are either not logged in, or not part of any organization...",
+      "logout": "Log out"
+    }
+  }
+}

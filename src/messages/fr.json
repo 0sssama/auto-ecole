@@ -1,1 +1,30 @@
-{}
+{
+  "Landing": {
+    "title": "Page d'acceuil ici",
+    "subtitle": "Cliquez n'importe où pour continuer vers le tableau de bord"
+  },
+  "Dashboard": {
+    "Header": {
+      "help": "Besoin d'aide?"
+    },
+    "UserNav": {
+      "profile": "Profil",
+      "billing": "Facturation",
+      "settings": "Paramètres",
+      "logout": "Déconnexion",
+      "admin": "Administrateur",
+      "studient": "Étudiant",
+      "unknown": "Inconnu"
+    },
+    "Home": {
+      "title": "Tableau de bord",
+      "content": "Bonjour, voila le contenu!",
+      "button": "Nouveau client"
+    },
+    "Error": {
+      "sorry": "Oups, désolé !",
+      "description": "Vous n'êtes pas connecté, ou vous ne faites partie d'aucune organisation...",
+      "logout": "Déconnexion"
+    }
+  }
+}
