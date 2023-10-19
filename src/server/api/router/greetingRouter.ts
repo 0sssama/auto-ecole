@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { createTRPCRouter, privateProcedure } from "@/server/api/trpc";
 
 export const greetingRouter = createTRPCRouter({
-  getGreeting: publicProcedure
+  getGreeting: privateProcedure
     .input(
       z.object({
         name: z.string(),

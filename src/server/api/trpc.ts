@@ -6,13 +6,13 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-// import { getAuth } from "@clerk/nextjs/server";
-import { initTRPC } from "@trpc/server";
+import { getAuth } from "@clerk/nextjs/server";
+import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 import { prisma } from "@/server/db";
-// import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-// import { RequestLike } from "@clerk/nextjs/dist/types/server/types";
+import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
+import { RequestLike } from "@clerk/nextjs/dist/types/server/types";
 
 /**
  * 1. CONTEXT
@@ -28,16 +28,15 @@ import { prisma } from "@/server/db";
  *
  * @see https://trpc.io/docs/context
  */
-// export const createTRPCContext = (opts: FetchCreateContextFnOptions) => {
-export const createTRPCContext = () => {
-  //   const { req } = opts;
-  //   const sesh = getAuth(req as RequestLike);
+export const createTRPCContext = (opts: FetchCreateContextFnOptions) => {
+  const { req } = opts;
+  const sesh = getAuth(req as RequestLike);
 
-  //   const userId = sesh.userId;
+  const userId = sesh.userId;
 
   return {
     prisma,
-    // userId,
+    userId,
   };
 };
 
@@ -89,18 +88,18 @@ export const publicProcedure = t.procedure;
 /**
  * Private (authenticated) procedure
  */
-// const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
-//   if (!ctx.userId) {
-//     throw new TRPCError({
-//       code: "UNAUTHORIZED",
-//     });
-//   }
+const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
+  if (!ctx.userId) {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+    });
+  }
 
-//   return next({
-//     ctx: {
-//       userId: ctx.userId,
-//     },
-//   });
-// });
+  return next({
+    ctx: {
+      userId: ctx.userId,
+    },
+  });
+});
 
-// export const privateProcedure = t.procedure.use(enforceUserAuthentication);
+export const privateProcedure = t.procedure.use(enforceUserAuthentication);
