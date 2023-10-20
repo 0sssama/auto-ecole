@@ -4,6 +4,7 @@
     "subtitle": "Click anywhere to continue to dashboard"
   },
   "Dashboard": {
+    "redirecting": "Redirecting...",
     "Header": {
       "help": "Need help?"
     },
@@ -16,8 +17,22 @@
       "studient": "Student",
       "unknown": "Unknown"
     },
+    "Sidebar": {
+      "users": "People",
+      "clients": "Customers",
+      "monitors": "Monitors",
+      "editors": "Editors",
+
+      "entities": "Entities",
+      "cars": "Cars",
+
+      "account": "Account",
+      "folder": "My Folder",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
     "Home": {
-      "title": "Dashboard",
+      "title": "Customers",
       "content": "Hello world, content here.",
       "button": "New customer"
     },

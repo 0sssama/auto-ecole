@@ -4,6 +4,7 @@
     "subtitle": "Cliquez n'importe où pour continuer vers le tableau de bord"
   },
   "Dashboard": {
+    "redirecting": "Redirection...",
     "Header": {
       "help": "Besoin d'aide?"
     },
@@ -16,8 +17,22 @@
       "studient": "Étudiant",
       "unknown": "Inconnu"
     },
+    "Sidebar": {
+      "users": "Personnes",
+      "clients": "Clients",
+      "monitors": "Moniteurs",
+      "editors": "Editeurs",
+
+      "entities": "Entités",
+      "cars": "Voitures",
+
+      "account": "Compte",
+      "folder": "Mon Dossier",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    },
     "Home": {
-      "title": "Tableau de bord",
+      "title": "Clients",
       "content": "Bonjour, voila le contenu!",
       "button": "Nouveau client"
     },

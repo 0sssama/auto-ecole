@@ -1,5 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { SignOutButton, useUser } from "@clerk/nextjs";
+import { OrganizationMembershipRole } from "@clerk/nextjs/dist/types/server";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,13 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SignOutButton, useUser } from "@clerk/nextjs";
-import { OrganizationMembershipRole } from "@clerk/nextjs/dist/types/server";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-
-type TranslationFunction = (key: string) => typeof key;
+import type { TranslationFunction } from "@/types";
 
 const UserNavLinks = (t: TranslationFunction) => [
   {
@@ -48,7 +48,7 @@ export const parseRoleToClient = (
   }
 };
 
-export function UserNav() {
+export default function UserNav() {
   const t = useTranslations("Dashboard.UserNav");
 
   const router = useRouter();
