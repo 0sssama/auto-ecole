@@ -54,7 +54,7 @@ export default function Sidebar({ className }: SidebarProps) {
     >
       <div
         className={cn(
-          "sticky top-6 pt-[var(--header-height)] transition-all",
+          "sticky top-6 pt-[var(--header-height)] transition-all mt-10",
           scrolled && "top-0",
           isOpen && "fixed w-full h-full overflow-scroll pb-12",
         )}
@@ -101,8 +101,6 @@ type SidebarLinkProps = {
 
 function SidebarLink({ name, href, icon }: SidebarLinkProps) {
   const pathname = usePathname();
-
-  console.log(cleanPathname(pathname));
 
   if (cleanPathname(pathname).startsWith(href))
     return (

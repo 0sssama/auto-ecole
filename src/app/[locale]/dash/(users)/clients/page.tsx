@@ -32,6 +32,7 @@ export default function Home() {
         close={addClientModal.close}
       />
       <div className="w-full">Hello world</div>
+      <div className="w-full h-[5000vh]"></div>
     </main>
   );
 }
