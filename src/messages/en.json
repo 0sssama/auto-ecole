@@ -31,10 +31,17 @@
       "settings": "Settings",
       "logout": "Logout"
     },
-    "Home": {
-      "title": "Customers",
-      "content": "Hello world, content here.",
-      "button": "New customer"
+    "Users": {
+      "Header": {
+        "title": "Customers",
+        "button": "New Customer"
+      },
+      "AddNewClientModal": {
+        "title": "Add new client",
+        "subtitle": "Fill in the form below to add a new client.",
+        "button-cancel": "Cancel",
+        "button-submit": "Add Client"
+      }
     },
     "Error": {
       "sorry": "Whoops, sorry!",

@@ -31,10 +31,17 @@
       "settings": "Paramètres",
       "logout": "Déconnexion"
     },
-    "Home": {
-      "title": "Clients",
-      "content": "Bonjour, voila le contenu!",
-      "button": "Nouveau client"
+    "Users": {
+      "Header": {
+        "title": "Clients",
+        "button": "Nouveau client"
+      },
+      "AddNewClientModal": {
+        "title": "Ajouter un Nouveau Client",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau client",
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter Client"
+      }
     },
     "Error": {
       "sorry": "Oups, désolé !",

@@ -17,8 +17,7 @@ const intlMiddleware = createMiddleware({
 export default authMiddleware({
   beforeAuth: (req) => {
     // ignore trpc routes (intl should not intervene with trpc routes)
-    if (req.nextUrl.pathname.startsWith("/api/trpc"))
-      return NextResponse.next();
+    if (req.nextUrl.pathname.startsWith("/api")) return NextResponse.next();
 
     // Execute next-intl middleware before Clerk's auth middleware
     return intlMiddleware(req);

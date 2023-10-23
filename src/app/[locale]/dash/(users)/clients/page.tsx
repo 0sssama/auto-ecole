@@ -3,28 +3,35 @@
 import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PageContentHeader } from "@/components/molecules";
+import { AddClientModal, PageContentHeader } from "@/components/molecules";
+import { useModal } from "@/lib/hooks/useModal";
+
+const PageHeader = ({ openModal }: { openModal: () => void }) => {
+  const t = useTranslations("Dashboard.Users.Header");
+
+  return (
+    <PageContentHeader title={t("title")}>
+      <div className="flex items-center">
+        <Button onClick={openModal}>
+          <Plus size={18} />
+          <span className="hidden ml-2 lg:block">{t("button")}</span>
+        </Button>
+      </div>
+    </PageContentHeader>
+  );
+};
 
 export default function Home() {
-  const t = useTranslations("Dashboard.Home");
+  const addClientModal = useModal();
 
   return (
     <main>
-      <PageContentHeader title={t("title")}>
-        <div className="flex items-center">
-          <Button>
-            <Plus size={18} />
-            <span className="hidden ml-2 lg:block">{t("button")}</span>
-          </Button>
-        </div>
-      </PageContentHeader>
-
-      <div className="w-full">
-        <p>{t("content")}</p>
-      </div>
-
-      {/* for scroll */}
-      <div className="flex min-h-[500vh]" />
+      <PageHeader openModal={addClientModal.open} />
+      <AddClientModal
+        isOpen={addClientModal.isOpen}
+        close={addClientModal.close}
+      />
+      <div className="w-full">Hello world</div>
     </main>
   );
 }

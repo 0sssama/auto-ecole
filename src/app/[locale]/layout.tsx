@@ -11,6 +11,7 @@ import {
   NprogressProvider,
   ToastProvider,
   TRPCProvider,
+  NextUIProvider,
 } from "@/providers";
 
 import "@/styles/globals.css";
@@ -49,18 +50,20 @@ export default async function RootLayout({
         <TRPCProvider>
           <html lang={locale} suppressHydrationWarning>
             <body className={plusJakarta.className}>
-              <RecoilProvider>
-                <ThemeProvider
-                  attribute="class"
-                  defaultTheme="light"
-                  enableSystem
-                  disableTransitionOnChange
-                >
-                  <NprogressProvider>
-                    <ToastProvider>{children}</ToastProvider>
-                  </NprogressProvider>
-                </ThemeProvider>
-              </RecoilProvider>
+              <NextUIProvider>
+                <RecoilProvider>
+                  <ThemeProvider
+                    attribute="class"
+                    defaultTheme="light"
+                    enableSystem
+                    disableTransitionOnChange
+                  >
+                    <NprogressProvider>
+                      <ToastProvider>{children}</ToastProvider>
+                    </NprogressProvider>
+                  </ThemeProvider>
+                </RecoilProvider>
+              </NextUIProvider>
             </body>
           </html>
         </TRPCProvider>
