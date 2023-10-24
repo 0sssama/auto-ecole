@@ -24,10 +24,22 @@ function AddClientModal({
 }) {
   const form = useForm<z.infer<typeof ClientFormSchema>>({
     resolver: zodResolver(ClientFormSchema),
+    defaultValues: {
+      firstNameAr: "",
+      firstNameFr: "",
+      lastNameAr: "",
+      lastNameFr: "",
+      addressAr: "",
+      addressFr: "",
+      phone: "",
+      cin: "",
+      email: "",
+      birthdate: new Date("08-02-2002"),
+    },
   });
 
   const onSubmit = (values: z.infer<typeof ClientFormSchema>) => {
-    console.log(`adding ${values.firstName}`);
+    console.log(`adding ${values.firstNameFr}`);
   };
 
   const t = useTranslations("Dashboard.Users.AddNewClientModal");

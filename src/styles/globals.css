@@ -70,8 +70,15 @@
 
 @layer base {
   * {
+    font-family: var(--font-plus-jakarta), "Helvetica Neue", Helvetica, Arial,
+      sans-serif;
     @apply border-border;
     @apply box-border p-0 m-0;
+  }
+
+  *[dir="rtl"] {
+    font-family: var(--font-vazirmatn);
+    @apply text-right;
   }
   body {
     @apply bg-background text-foreground;

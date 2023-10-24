@@ -1,9 +1,10 @@
 import * as React from "react";
 import type { Metadata } from "next";
 
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Vazirmatn } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { ClerkProvider } from "@clerk/nextjs";
+import { notFound } from "next/navigation";
 
 import {
   ThemeProvider,
@@ -15,11 +16,19 @@ import {
 } from "@/providers";
 
 import "@/styles/globals.css";
-import { notFound } from "next/navigation";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-vazirmatn",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -49,7 +58,7 @@ export default async function RootLayout({
       <ClerkProvider>
         <TRPCProvider>
           <html lang={locale} suppressHydrationWarning>
-            <body className={plusJakarta.className}>
+            <body className={`${plusJakarta.variable} ${vazirmatn.variable}`}>
               <NextUIProvider>
                 <RecoilProvider>
                   <ThemeProvider

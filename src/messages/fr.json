@@ -40,7 +40,16 @@
         "title": "Ajouter un Nouveau Client",
         "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau client",
         "button-cancel": "Annuler",
-        "button-submit": "Ajouter Client"
+        "button-submit": "Ajouter Client",
+        "AddNewClientForm": {
+          "firstName": "Prénom:",
+          "lastName": "Nom:",
+          "address": "Addresse:",
+          "phone": "Téléphone:",
+          "cin": "N° CIN:",
+          "email": "E-mail:",
+          "birthdate": "Date de naissance:"
+        }
       }
     },
     "Error": {

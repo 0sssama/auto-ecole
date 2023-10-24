@@ -1,40 +1,96 @@
 import { z } from "zod";
 import validator from "validator";
+import { arabicCharsPattern } from "@/utils/arabicCharsPattern";
 
 export const ClientFormSchema = z.object({
-  firstName: z
+  firstNameFr: z
     .string()
     .min(2, {
-      message: "First name must be at least 2 characters.",
+      message: "Le prénom doit comporter au moins 2 caractères.",
     })
     .max(255, {
-      message: "First name must be at most 255 characters.",
+      message: "Le prénom doit comporter au maximum 255 caractères.",
     }),
-  lastName: z
+  firstNameAr: z
     .string()
     .min(2, {
-      message: "Last name must be at least 2 characters.",
+      message: "يجب أن يتكون الاسم الشخصي من حرفين على الأقل.",
     })
     .max(255, {
-      message: "Last name must be at most 255 characters.",
+      message: "يجب أن يكون الاسم الشخصي 255 حرفًا على الأكثر.",
+    })
+    .regex(arabicCharsPattern, {
+      message: "يجب أن يحتوي الاسم الشخصي على أحرف عربية فقط.",
+    }),
+  lastNameFr: z
+    .string()
+    .min(2, {
+      message: "Le nom de famille doit comporter au moins 2 caractères.",
+    })
+    .max(255, {
+      message: "Le nom de famille doit comporter au maximum 255 caractères.",
+    }),
+  lastNameAr: z
+    .string()
+    .min(2, {
+      message: "يجب أن يتكون الاسم العائلي من حرفين على الأقل.",
+    })
+    .max(255, {
+      message: "يجب أن يكون الاسم العائلي 255 حرفًا على الأكثر.",
+    })
+    .regex(arabicCharsPattern, {
+      message: "يجب أن يحتوي الاسم العائلي على أحرف عربية فقط.",
+    }),
+  addressFr: z
+    .string()
+    .min(2, {
+      message: "L'adresse doit comporter au moins 8 caractères.",
+    })
+    .max(255, {
+      message: "L'adresse doit comporter au maximum 255 caractères.",
+    }),
+  addressAr: z
+    .string()
+    .min(2, {
+      message: "يجب أن يتكون العنوان من 8 أحرف على الأقل.",
+    })
+    .max(255, {
+      message: "يجب أن يكون العنوان 255 حرفًا على الأكثر.",
+    })
+    .regex(arabicCharsPattern, {
+      message: "يجب أن يحتوي العنوان على أحرف عربية فقط.",
     }),
   phone: z
     .string()
     .min(10, {
-      message: "Phone number must be at least 10 characters.",
+      message: "Le numéro de téléphone doit comporter au moins 10 caractères.",
     })
     .max(255, {
-      message: "Phone number must be at most 255 characters.",
+      message: "Le numéro de téléphone ne doit pas dépasser 255 caractères.",
     })
     .refine(validator.isMobilePhone, {
-      message: "Phone number is invalid.",
+      message: "Le numéro de téléphone n'est pas valide.",
     }),
   cin: z
     .string()
     .min(8, {
-      message: "CIN must be at least 8 characters.",
+      message: "La CIN doit comporter au moins 8 caractères.",
     })
     .max(10, {
-      message: "CIN must be at most 10 characters.",
+      message: "Le CIN doit comporter au maximum 10 caractères.",
     }),
+  email: z.string().email({
+    message: "L'adresse électronique n'est pas valide.",
+  }),
+  birthdate: z.date().refine(
+    (value) => {
+      const userAge =
+        new Date(Date.now() - value.getTime()).getUTCFullYear() - 1970;
+
+      return userAge >= 18;
+    },
+    {
+      message: "Le client doit être âgé d'au moins 18 ans.",
+    },
+  ),
 });
