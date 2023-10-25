@@ -100,11 +100,16 @@ type SidebarLinkProps = {
 };
 
 function SidebarLink({ name, href, icon }: SidebarLinkProps) {
+  const { closeMenu } = useMenu();
   const pathname = usePathname();
 
   if (cleanPathname(pathname).startsWith(href))
     return (
-      <Button variant={"default"} className="justify-start w-full">
+      <Button
+        variant={"default"}
+        className="justify-start w-full"
+        onClick={closeMenu}
+      >
         {icon}
         {name}
       </Button>
@@ -112,7 +117,11 @@ function SidebarLink({ name, href, icon }: SidebarLinkProps) {
 
   return (
     <Link href={href}>
-      <Button variant={"ghost"} className="justify-start w-full">
+      <Button
+        variant={"ghost"}
+        className="justify-start w-full"
+        onClick={closeMenu}
+      >
         {icon}
         {name}
       </Button>
