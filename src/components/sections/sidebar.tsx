@@ -41,7 +41,7 @@ export default function Sidebar({ className }: SidebarProps) {
 
   const { scrolled } = useScroll({ threshold: 50 });
 
-  const sidebarLinks = getSidebarLinks(t, membership?.role);
+  const { [membership!.role]: sidebarLinks } = getSidebarLinks(t);
 
   if ((!isOpen && !isDesktop) || !membership || !isLoaded) return null;
 
@@ -130,98 +130,97 @@ function SidebarLink({ name, href, icon }: SidebarLinkProps) {
 }
 
 const sidebarIconProps = {
-  size: 16,
-  className: "mr-2",
+  size: 18,
+  className: "mr-3",
 };
 
 export const getSidebarLinks = (
   t: TranslationFunction,
-  role: MembershipRole | undefined,
-): SidebarLinkGroupProps[] => {
-  switch (role) {
-    // add check to see if user is super admin (check admin in planetscale database)
-    case "admin": // admin
-      return sidebarLinks_admin(t);
-    case "basic_member": // student
-      return sidebarLinks_student(t);
-    default:
-      return [];
-  }
-};
-
-const sidebarLinks_admin = (
-  t: TranslationFunction,
-): SidebarLinkGroupProps[] => [
-  {
-    title: t("users"),
-    links: [
-      {
-        name: t("clients"),
-        href: "/dash/clients",
-        icon: <User2 {...sidebarIconProps} />,
-      },
-      {
-        name: t("monitors"),
-        href: "/dash/monitors",
-        icon: <Users2 {...sidebarIconProps} />,
-      },
-      {
-        name: t("editors"),
-        href: "/dash/editors",
-        icon: <Building {...sidebarIconProps} />,
-      },
-    ],
-  },
-  {
-    title: t("entities"),
-    links: [
-      {
-        name: t("cars"),
-        href: "/dash/cars",
-        icon: <CarFront {...sidebarIconProps} />,
-      },
-    ],
-  },
-  {
-    title: t("account"),
-    links: [
-      {
-        name: t("settings"),
-        href: "/dash/settings",
-        icon: <Settings {...sidebarIconProps} />,
-      },
-      {
-        name: t("logout"),
-        href: "/dash/logout",
-        icon: <LogOut {...sidebarIconProps} />,
-        isSignOut: true,
-      },
-    ],
-  },
-];
-
-const sidebarLinks_student = (
-  t: TranslationFunction,
-): SidebarLinkGroupProps[] => [
-  {
-    title: t("account"),
-    links: [
-      {
-        name: t("folder"),
-        href: "/dash/folder",
-        icon: <Folder {...sidebarIconProps} />,
-      },
-      {
-        name: t("settings"),
-        href: "/dash/settings",
-        icon: <Settings {...sidebarIconProps} />,
-      },
-      {
-        name: t("logout"),
-        href: "/dash/logout",
-        icon: <LogOut {...sidebarIconProps} />,
-        isSignOut: true,
-      },
-    ],
-  },
-];
+): {
+  [_ in MembershipRole]: SidebarLinkGroupProps[];
+} => ({
+  admin: [
+    {
+      title: t("users"),
+      links: [
+        {
+          name: t("clients"),
+          href: "/dash/admin/clients",
+          icon: <User2 {...sidebarIconProps} />,
+        },
+        {
+          name: t("monitors"),
+          href: "/dash/admin/monitors",
+          icon: <Users2 {...sidebarIconProps} />,
+        },
+        {
+          name: t("editors"),
+          href: "/dash/admin/editors",
+          icon: <Building {...sidebarIconProps} />,
+        },
+      ],
+    },
+    {
+      title: t("entities"),
+      links: [
+        {
+          name: t("cars"),
+          href: "/dash/admin/cars",
+          icon: <CarFront {...sidebarIconProps} />,
+        },
+      ],
+    },
+    {
+      title: t("account"),
+      links: [
+        {
+          name: t("settings"),
+          href: "/dash/settings",
+          icon: <Settings {...sidebarIconProps} />,
+        },
+        {
+          name: t("logout"),
+          href: "/dash/logout",
+          icon: <LogOut {...sidebarIconProps} />,
+          isSignOut: true,
+        },
+      ],
+    },
+  ],
+  basic_member: [
+    {
+      title: t("account"),
+      links: [
+        {
+          name: t("folder"),
+          href: "/dash/member/folder",
+          icon: <Folder {...sidebarIconProps} />,
+        },
+        {
+          name: t("settings"),
+          href: "/dash/settings",
+          icon: <Settings {...sidebarIconProps} />,
+        },
+        {
+          name: t("logout"),
+          href: "/dash/logout",
+          icon: <LogOut {...sidebarIconProps} />,
+          isSignOut: true,
+        },
+      ],
+    },
+  ],
+  guest_member: [
+    {
+      title: t("account"),
+      links: [
+        {
+          name: t("logout"),
+          href: "/dash/logout",
+          icon: <LogOut {...sidebarIconProps} />,
+          isSignOut: true,
+        },
+      ],
+    },
+  ],
+});

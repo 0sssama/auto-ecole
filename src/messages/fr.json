@@ -31,6 +31,11 @@
       "settings": "Paramètres",
       "logout": "Déconnexion"
     },
+    "Student": {
+      "Folder": {
+        "title": "Dossier"
+      }
+    },
     "Users": {
       "Header": {
         "title": "Clients",
