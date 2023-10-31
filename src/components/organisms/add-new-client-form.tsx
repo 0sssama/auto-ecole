@@ -41,7 +41,7 @@ const fields = (t: TranslationFunction) => [
     placeholder: "محمد",
   },
   {
-    name: "addressFR",
+    name: "addressFr",
     label: t("address"),
     placeholder: "Rue 123, Ville, Pays",
   },

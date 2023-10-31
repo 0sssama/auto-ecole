@@ -21,10 +21,11 @@ model Admin {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    LicenseFile LicenseFile[]
-    Payment     Payment[]
+    licenseFilesCreated LicenseFile[]
+    paymentsCreated     Payment[]
+    lessonsCreated      Lesson[]
 
-    monitors Monitor[]
+    monitors Monitor[] // Monitors have accounts that need to be linked to an Admin account
 }
 
 model Customer {
@@ -96,6 +97,8 @@ model LicenseFile {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@index([customerId, monitorId, createdById])
 }
 
 model Exam {
@@ -121,6 +124,9 @@ model Lesson {
     comment  String
     grade    Int
 
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
     payment   Payment @relation(fields: [paymentId], references: [id])
     paymentId Int
 
@@ -130,10 +136,11 @@ model Lesson {
     moniteur   Monitor @relation(fields: [moniteurId], references: [id])
     moniteurId Int
 
-    createdAt     DateTime     @default(now())
-    updatedAt     DateTime     @updatedAt
     LicenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Payment {
@@ -143,14 +150,16 @@ model Payment {
     sum     Int
     comment String
 
+    LicenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
+    licenseFileId Int?
+
+    lessons Lesson[]
+
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int
 
-    createdAt     DateTime     @default(now())
-    updatedAt     DateTime     @updatedAt
-    LicenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
-    licenseFileId Int?
-    Lesson        Lesson[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 enum AdminRank {

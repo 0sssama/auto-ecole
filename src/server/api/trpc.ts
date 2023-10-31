@@ -7,6 +7,7 @@
  * need to use are documented accordingly near the end.
  */
 import { getAuth } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs";
 import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
@@ -33,10 +34,12 @@ export const createTRPCContext = (opts: FetchCreateContextFnOptions) => {
   const sesh = getAuth(req as RequestLike);
 
   const userId = sesh.userId;
+  const orgId = sesh.orgId;
 
   return {
     prisma,
     userId,
+    orgId,
   };
 };
 
@@ -89,7 +92,7 @@ export const publicProcedure = t.procedure;
  * Private (authenticated) procedure
  */
 const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
-  if (!ctx.userId) {
+  if (!ctx.userId || !ctx.orgId) {
     throw new TRPCError({
       code: "UNAUTHORIZED",
     });
@@ -98,8 +101,61 @@ const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
   return next({
     ctx: {
       userId: ctx.userId,
+      orgId: ctx.orgId,
+    },
+  });
+});
+
+/**
+ * Organization member only procedure (user must be part of an org)
+ */
+const enforceOrgMember = t.middleware(async ({ ctx, next }) => {
+  const { orgId } = ctx;
+
+  const org = await clerkClient.organizations.getOrganization({
+    organizationId: orgId!,
+  });
+
+  if (!org) throw new TRPCError({ code: "UNAUTHORIZED" });
+
+  return next({
+    ctx: {
+      userId: ctx.userId,
+      orgId: ctx.orgId,
+    },
+  });
+});
+
+/**
+ * Organization admin only procedure
+ */
+const enforceOrgAdminOnly = t.middleware(async ({ ctx, next }) => {
+  const { userId, orgId } = ctx;
+
+  const memberships =
+    await clerkClient.organizations.getOrganizationMembershipList({
+      organizationId: orgId!, // we know this is defined because of enforceOrgMember
+    });
+
+  const membership = memberships.find(
+    (m) => m.publicUserData?.userId === userId,
+  );
+
+  if (!membership || membership.role !== "admin")
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+
+  return next({
+    ctx: {
+      userId: ctx.userId,
+      orgId: ctx.orgId,
+      membership,
     },
   });
 });
 
 export const privateProcedure = t.procedure.use(enforceUserAuthentication);
+export const orgMembersProcedure = privateProcedure.use(enforceOrgMember);
+export const orgAdminOnlyPrecedure =
+  orgMembersProcedure.use(enforceOrgAdminOnly);
+//   export const orgSuperAdminOnlyPrecedure =
+//   orgMembersProcedure.use(enforceOrgSuperAdminOnly);
