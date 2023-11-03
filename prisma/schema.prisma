@@ -29,7 +29,8 @@ model Admin {
 }
 
 model Customer {
-    id Int @id @default(autoincrement())
+    id      Int    @id @default(autoincrement())
+    clerkId String @unique
 
     firstNameFr String
     firstNameAr String

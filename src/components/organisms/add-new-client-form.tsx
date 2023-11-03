@@ -51,6 +51,16 @@ const fields = (t: TranslationFunction) => [
     placeholder: "شارع 123، المدينة، البلد",
   },
   {
+    name: "professionFr",
+    label: t("profession"),
+    placeholder: "Professeur",
+  },
+  {
+    name: "professionAr",
+    label: "المهنة :",
+    placeholder: "أستاذ",
+  },
+  {
     name: "cin",
     label: t("cin"),
     placeholder: "CDXXXXXX",

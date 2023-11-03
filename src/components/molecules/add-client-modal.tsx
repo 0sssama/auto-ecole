@@ -17,6 +17,8 @@ import { Spinner } from "@/components/atoms";
 import { ClientFormSchema } from "@/schemas/client-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
+import { toast } from "sonner";
+import { useState } from "react";
 
 function AddClientModal({
   isOpen,
@@ -25,15 +27,12 @@ function AddClientModal({
   isOpen: boolean;
   close: () => void;
 }) {
-  //   const { organization } = useOrganization();
+  const t = useTranslations("Dashboard.Users.AddNewClientModal");
 
-  const { mutate, isLoading, error } = api.clerk.users.add.useMutation({
-    onSuccess: () => {
-      console.log();
-      //   void ctx.users.getPage.invalidate();
-      close();
-    },
-  });
+  const closeModal = () => {
+    form.reset();
+    close();
+  };
 
   const form = useForm<z.infer<typeof ClientFormSchema>>({
     resolver: zodResolver(ClientFormSchema),
@@ -44,6 +43,8 @@ function AddClientModal({
       lastNameFr: "",
       addressAr: "",
       addressFr: "",
+      professionAr: "",
+      professionFr: "",
       phone: "",
       cin: "",
       email: "",
@@ -51,40 +52,83 @@ function AddClientModal({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof ClientFormSchema>) => {
-    // add client to clerk clients
-    console.log(`adding ${values.firstNameFr}`);
-    mutate();
-  };
+  const { mutate: deleteUserFromClerk } = api.clerk.users.delete.useMutation();
+  const [userClerkId, setUserClerkId] = useState<string | null>(null);
 
-  const t = useTranslations("Dashboard.Users.AddNewClientModal");
+  const {
+    mutate: addCustomerToDb,
+    isLoading: dbOperationLoading,
+    error: dbOperationError,
+  } = api.db.users.mutation.add.useMutation({
+    onSuccess: () => {
+      //   void ctx.users.getPage.invalidate();
+      toast.success(t("success"));
+      closeModal();
+    },
+    onError: (error) => {
+      console.log("CLEANING UP USER FROM CLERK, FAILURE TO ADD TO DB");
+      console.error(error);
 
-  const closeModal = () => {
-    form.reset();
-    close();
-  };
+      if (!userClerkId) return;
+
+      deleteUserFromClerk({
+        clerkId: userClerkId,
+      });
+    },
+  });
+
+  const {
+    mutate: addCustomerToClerk,
+    isLoading: clerkOperationLoading,
+    error: clerkOperationError,
+  } = api.clerk.users.add.useMutation({
+    onSuccess: (data) => {
+      //   void ctx.users.getPage.invalidate();
+      setUserClerkId(data.clerkId);
+
+      addCustomerToDb({
+        ...form.getValues(),
+        clerkId: data.clerkId,
+      });
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof ClientFormSchema>) =>
+    addCustomerToClerk({
+      emailAddress: values.email,
+      firstName: values.firstNameFr,
+      lastName: values.lastNameFr,
+      phoneNumber: values.phone,
+      cin: values.cin,
+    });
 
   if (!isOpen) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={closeModal} size="2xl">
+    <Modal
+      isOpen={isOpen}
+      onClose={closeModal}
+      size="2xl"
+      className="max-h-[80vh] overflow-auto md:max-h-full"
+      scrollBehavior="inside"
+    >
       <ModalContent>
         <ModalHeader className="flex flex-col items-center gap-1 text-center">
           <h1 className="text-2xl font-semibold">{t("title")}</h1>
           <p className="text-xs opacity-70">{t("subtitle")}</p>
         </ModalHeader>
         <ModalBody>
-          {error && (
+          {(dbOperationError || clerkOperationError) && (
             <div className="w-full px-2 py-4 text-center bg-red-100 rounded">
               <p className="text-sm font-bold text-center text-danger">
-                {error.message}
+                {clerkOperationError ? t("user-exists") : t("error")}
               </p>
             </div>
           )}
           <AddNewClientForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-y-2 gap-x-6"
+            className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6"
           />
         </ModalBody>
         <ModalFooter className="flex items-center justify-end gap-1">
@@ -94,9 +138,9 @@ function AddClientModal({
           <Button
             variant="default"
             onClick={form.handleSubmit(onSubmit)}
-            disabled={isLoading}
+            disabled={clerkOperationLoading || dbOperationLoading}
           >
-            {isLoading ? (
+            {clerkOperationLoading || dbOperationLoading ? (
               <Spinner size="xs" color="#fff" />
             ) : (
               t("button-submit")

@@ -60,13 +60,32 @@ export const ClientFormSchema = z.object({
     .regex(arabicCharsPattern, {
       message: "يجب أن يحتوي العنوان على أحرف عربية فقط.",
     }),
+  professionFr: z
+    .string()
+    .min(2, {
+      message: "La profession doit comporter au moins 8 caractères.",
+    })
+    .max(255, {
+      message: "La profession doit comporter au maximum 255 caractères.",
+    }),
+  professionAr: z
+    .string()
+    .min(2, {
+      message: "يجب أن تتكون المهنة من 8 أحرف على الأقل.",
+    })
+    .max(255, {
+      message: "يجب أن تكون المهنة 255 حرفًا على الأكثر.",
+    })
+    .regex(arabicCharsPattern, {
+      message: "يجب أن تحتوي المهنة على أحرف عربية فقط.",
+    }),
   phone: z
     .string()
     .min(10, {
       message: "Le numéro de téléphone doit comporter au moins 10 caractères.",
     })
-    .max(255, {
-      message: "Le numéro de téléphone ne doit pas dépasser 255 caractères.",
+    .max(10, {
+      message: "Le numéro de téléphone ne doit pas dépasser 10 caractères.",
     })
     .refine(validator.isMobilePhone, {
       message: "Le numéro de téléphone n'est pas valide.",

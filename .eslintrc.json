@@ -28,5 +28,8 @@
   "parserOptions": {
     "ecmaVersion": 13,
     "sourceType": "module"
+  },
+  "globals": {
+    "globalThis": false
   }
 }
