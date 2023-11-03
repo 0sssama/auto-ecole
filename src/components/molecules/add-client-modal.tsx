@@ -52,14 +52,15 @@ function AddClientModal({
     },
   });
 
-  const { mutate: deleteUserFromClerk } = api.clerk.users.delete.useMutation();
+  const { mutate: deleteUserFromClerk } =
+    api.clerk.users.mutation.delete.useMutation();
   const [userClerkId, setUserClerkId] = useState<string | null>(null);
 
   const {
     mutate: addCustomerToDb,
     isLoading: dbOperationLoading,
     error: dbOperationError,
-  } = api.db.users.mutation.add.useMutation({
+  } = api.db.customers.mutation.add.useMutation({
     onSuccess: () => {
       //   void ctx.users.getPage.invalidate();
       toast.success(t("success"));
@@ -81,7 +82,7 @@ function AddClientModal({
     mutate: addCustomerToClerk,
     isLoading: clerkOperationLoading,
     error: clerkOperationError,
-  } = api.clerk.users.add.useMutation({
+  } = api.clerk.users.mutation.add.useMutation({
     onSuccess: (data) => {
       //   void ctx.users.getPage.invalidate();
       setUserClerkId(data.clerkId);

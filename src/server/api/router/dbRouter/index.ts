@@ -1,6 +1,6 @@
 import { createTRPCRouter } from "@/server/api/trpc";
-import { usersRouter } from "./users";
+import { customersRoute } from "./customers";
 
 export const dbRouter = createTRPCRouter({
-  users: usersRouter,
+  customers: customersRoute,
 });

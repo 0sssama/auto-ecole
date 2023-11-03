@@ -5,7 +5,7 @@ import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { ClientFormSchema } from "@/schemas/client-form-schema";
 
-export const usersRouter = createTRPCRouter({
+const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
     .input(
       z.object({
@@ -65,4 +65,29 @@ export const usersRouter = createTRPCRouter({
         clerkId: input.clerkId,
       };
     }),
+});
+
+const queryRouter = createTRPCRouter({
+  list: orgAdminOnlyPrecedure.query(async ({ ctx }) => {
+    if (!ctx.orgId)
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+      });
+
+    const users = await clerkClient.organizations.getOrganizationMembershipList(
+      {
+        organizationId: ctx.orgId,
+      },
+    );
+
+    return users.map((user) => ({
+      firstName: user.publicUserData?.firstName || "N/A",
+      lastName: user.publicUserData?.lastName || "N/A",
+    }));
+  }),
+});
+
+export const usersRouter = createTRPCRouter({
+  mutation: mutationRouter,
+  query: queryRouter,
 });

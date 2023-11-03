@@ -3,6 +3,7 @@ import { z } from "zod";
 import { ClientFormSchema } from "@/schemas/client-form-schema";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { prisma } from "@/server/db";
+import { TRPCError } from "@trpc/server";
 
 const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
@@ -12,10 +13,16 @@ const mutationRouter = createTRPCRouter({
         ...ClientFormSchema.shape,
       }),
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
       const user = await prisma.customer.create({
         data: {
-          clerkId: input.clerkId,
+          clerkUserId: input.clerkId,
+          clerkOrgId: ctx.orgId,
 
           firstNameFr: input.firstNameFr,
           firstNameAr: input.firstNameAr,
@@ -40,14 +47,42 @@ const mutationRouter = createTRPCRouter({
 
       return {
         newUserId: user.id,
-        newUserClerkId: user.clerkId,
+        newUserClerkId: user.clerkUserId,
       };
     }),
 });
 
-const queryRouter = createTRPCRouter({});
+const queryRouter = createTRPCRouter({
+  list: orgAdminOnlyPrecedure
+    // .input(
+    //   z.object({
+    //     page: z.number().default(1),
+    //     pageSize: z.number().default(10),
+    //   })
+    // )
+    .query(async ({ ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
 
-export const usersRouter = createTRPCRouter({
+      const users = await prisma.customer.findMany({
+        where: {
+          clerkOrgId: ctx.orgId,
+        },
+        select: {
+          firstNameFr: true,
+          firstNameAr: true,
+          lastNameAr: true,
+          lastNameFr: true,
+        },
+      });
+
+      return users;
+    }),
+});
+
+export const customersRoute = createTRPCRouter({
   query: queryRouter,
   mutation: mutationRouter,
 });
