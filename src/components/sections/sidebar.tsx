@@ -20,7 +20,7 @@ import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 import { useScroll } from "@/lib/hooks/useScroll";
 import { useMedia } from "@/lib/hooks/useMedia";
-import { getLgMedia, getMdMedia } from "@/lib/media";
+import { getLgMedia } from "@/lib/media";
 import { useMenu } from "@/lib/hooks/useMenu";
 import type { TranslationFunction } from "@/types";
 import { cleanPathname } from "@/utils/cleanPathname";
@@ -36,7 +36,6 @@ export default function Sidebar({ className }: SidebarProps) {
 
   const { isOpen } = useMenu();
 
-  const isTablet = useMedia(getMdMedia());
   const isDesktop = useMedia(getLgMedia());
 
   const { scrolled } = useScroll({ threshold: 50 });
@@ -49,14 +48,14 @@ export default function Sidebar({ className }: SidebarProps) {
     <div
       className={cn(
         className,
-        isTablet || (isOpen && "absolute inset-0 z-[9] bg-white"),
+        !isDesktop && isOpen && "absolute inset-0 z-[9] bg-white",
       )}
     >
       <div
         className={cn(
           "sticky top-6 pt-[var(--header-height)] transition-all mt-10",
           scrolled && "top-0",
-          isOpen && "fixed w-full h-full overflow-scroll pb-12",
+          !isDesktop && isOpen && "fixed w-full h-full overflow-scroll pb-12",
         )}
       >
         {sidebarLinks.map((group, i) => (
