@@ -58,6 +58,8 @@ model Customer {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@index([clerkOrgId])
 }
 
 model Monitor {

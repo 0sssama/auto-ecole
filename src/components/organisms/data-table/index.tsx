@@ -27,15 +27,16 @@ import {
 
 import type { TableProps } from "./types";
 
-// import { DataTablePagination } from "../components/data-table-pagination"
+import { DataTablePagination } from "./pagination";
 // import { DataTableToolbar } from "../components/data-table-toolbar"
 
 function DataTable<TData, TValue>({
   data,
   columns,
+  pagination,
 }: TableProps<TData, TValue>) {
   const t = useTranslations("Dashboard.Tables");
-  const [rowSelection, setRowSelection] = useState({});
+  //   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -43,14 +44,14 @@ function DataTable<TData, TValue>({
   const table = useReactTable({
     data,
     columns,
+    manualPagination: true,
     state: {
       sorting,
       columnVisibility,
-      rowSelection,
       columnFilters,
+      pagination: pagination.get,
     },
     enableRowSelection: true,
-    onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
@@ -115,7 +116,7 @@ function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {/* <DataTablePagination table={table} /> */}
+      <DataTablePagination pagination={pagination} />
     </div>
   );
 }

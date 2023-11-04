@@ -131,40 +131,54 @@ const mutationRouter = createTRPCRouter({
 
 const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
-    // .input(
-    //   z.object({
-    //     page: z.number().default(1),
-    //     pageSize: z.number().default(10),
-    //   })
-    // )
-    .query(async ({ ctx }) => {
+    .input(
+      z.object({
+        pageIndex: z.number().default(0),
+        pageSize: z.number().default(10),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
       if (!ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
 
-      const users = await ctx.prisma.customer.findMany({
-        where: {
-          clerkOrgId: ctx.orgId,
-        },
-        select: {
-          id: true,
-          firstNameFr: true,
-          lastNameFr: true,
-          createdAt: true,
-          archived: true,
-        },
-        orderBy: {
-          archived: "asc",
-        },
-      });
+      const [users, totalCustomers] = await Promise.all([
+        ctx.prisma.customer.findMany({
+          where: {
+            clerkOrgId: ctx.orgId,
+          },
+          select: {
+            id: true,
+            firstNameFr: true,
+            lastNameFr: true,
+            createdAt: true,
+            archived: true,
+          },
+          orderBy: {
+            archived: "asc",
+          },
+          skip: input.pageIndex * input.pageSize,
+          take: input.pageSize,
+        }),
+        ctx.prisma.customer.count({
+          where: {
+            clerkOrgId: ctx.orgId,
+          },
+        }),
+      ]);
 
-      return users.map((user) => ({
+      const formattedCustomers = users.map((user) => ({
         id: user.id,
         name: `${user.firstNameFr} ${user.lastNameFr}`,
         createdAt: user.createdAt,
         archived: user.archived,
       }));
+
+      return {
+        data: formattedCustomers,
+        pageCount: Math.ceil(totalCustomers / input.pageSize),
+      };
     }),
 });
 
