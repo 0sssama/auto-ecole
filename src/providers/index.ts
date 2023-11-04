@@ -4,3 +4,4 @@ export { default as NprogressProvider } from "@/providers/nprogress-provider";
 export { default as ToastProvider } from "@/providers/sonner-provider";
 export { default as TRPCProvider } from "@/providers/trpc-provider";
 export { default as NextUIProvider } from "@/providers/nextui-provider";
+export { default as MomentProvider } from "@/providers/moment-provider";

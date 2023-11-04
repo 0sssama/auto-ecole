@@ -13,7 +13,10 @@ import {
   ToastProvider,
   TRPCProvider,
   NextUIProvider,
+  MomentProvider,
 } from "@/providers";
+
+import type { Locale } from "@/lib/locales";
 
 import "@/styles/globals.css";
 
@@ -42,7 +45,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
   params: {
-    locale: string;
+    locale: Locale;
   };
 }) {
   let messages;
@@ -68,7 +71,11 @@ export default async function RootLayout({
                     disableTransitionOnChange
                   >
                     <NprogressProvider>
-                      <ToastProvider>{children}</ToastProvider>
+                      <ToastProvider>
+                        <MomentProvider locale={locale}>
+                          {children}
+                        </MomentProvider>
+                      </ToastProvider>
                     </NprogressProvider>
                   </ThemeProvider>
                 </RecoilProvider>

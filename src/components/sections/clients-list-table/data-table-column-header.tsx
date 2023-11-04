@@ -52,14 +52,14 @@ export function DataTableColumnHeader<TData, TValue>({
         <DropdownMenuContent align="start">
           <DropdownMenuItem
             onClick={() => column.toggleSorting(false)}
-            className="text-sm font-medium text-muted-foreground/70"
+            className="text-sm font-medium text-muted-foreground/90"
           >
             <ArrowUpZA className="mr-2 h-3.5 w-3.5" />
             {t("asc")}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => column.toggleSorting(true)}
-            className="text-sm font-medium text-muted-foreground/70"
+            className="text-sm font-medium text-muted-foreground/90"
           >
             <ArrowDownAZ className="mr-2 h-3.5 w-3.5" />
             {t("desc")}
@@ -67,7 +67,7 @@ export function DataTableColumnHeader<TData, TValue>({
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => column.toggleVisibility(false)}
-            className="text-sm font-medium text-muted-foreground/70"
+            className="text-sm font-medium text-muted-foreground/90"
           >
             <EyeOff className="mr-2 h-3.5 w-3.5" />
             {t("hide")}
