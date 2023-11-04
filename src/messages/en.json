@@ -37,7 +37,16 @@
       }
     },
     "Tables": {
-      "no-data": "No results found"
+      "no-data": "No results found",
+      "Pagination": {
+        "rows-per-page": "Rows per page:",
+        "page": "Page",
+        "of": "of",
+        "go-to-first-page": "Go to first page",
+        "go-to-previous-page": "Go to previous page",
+        "go-t-next-page": "Go to next page",
+        "go-to-last-page": "Go to last page"
+      }
     },
     "Users": {
       "Header": {

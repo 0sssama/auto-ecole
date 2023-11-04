@@ -4,6 +4,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,11 +17,13 @@ import {
 import type { DataTablePaginationProps } from "./types";
 
 export function DataTablePagination({ pagination }: DataTablePaginationProps) {
+  const t = useTranslations("Dashboard.Tables.Pagination");
+
   return (
     <div className="flex items-center justify-end px-2">
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Rows per page</p>
+          <p className="text-sm font-medium">{t("rows-per-page")}</p>
           <Select
             value={`${pagination.get.pageSize}`}
             onValueChange={(value) => {
@@ -40,7 +43,9 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {pagination.get.pageIndex + 1} of {pagination.get.pageCount}
+          {`${t("page")} ${pagination.get.pageIndex + 1} ${t("of")} ${
+            pagination.get.pageCount
+          }`}
         </div>
         <div className="flex items-center space-x-2">
           <Button
@@ -49,7 +54,7 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
             onClick={() => pagination.set.pageIndex(0)}
             disabled={!pagination.helpers.canGetPreviousPage()}
           >
-            <span className="sr-only">Go to first page</span>
+            <span className="sr-only">{t("go-to-first-page")}</span>
             <ChevronsLeft className="w-4 h-4" />
           </Button>
           <Button
@@ -58,7 +63,7 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
             onClick={() => pagination.helpers.previousPage()}
             disabled={!pagination.helpers.canGetPreviousPage()}
           >
-            <span className="sr-only">Go to previous page</span>
+            <span className="sr-only">{t("go-to-previous-page")}</span>
             <ChevronLeftIcon className="w-4 h-4" />
           </Button>
           <Button
@@ -67,7 +72,7 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
             onClick={() => pagination.helpers.nextPage()}
             disabled={!pagination.helpers.canGetNextPage()}
           >
-            <span className="sr-only">Go to next page</span>
+            <span className="sr-only">{t("go-to-next-page")}</span>
             <ChevronRightIcon className="w-4 h-4" />
           </Button>
           <Button
@@ -78,7 +83,7 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
             }
             disabled={!pagination.helpers.canGetNextPage()}
           >
-            <span className="sr-only">Go to last page</span>
+            <span className="sr-only">{t("go-to-last-page")}</span>
             <ChevronsRight className="w-4 h-4" />
           </Button>
         </div>

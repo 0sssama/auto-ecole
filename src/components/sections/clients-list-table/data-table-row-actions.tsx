@@ -66,10 +66,17 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
           <Eye className="mr-2 h-3.5 w-3.5" />
           {t("view")}
         </DropdownMenuItem>
+        <DropdownMenuItem
+          className="text-sm font-medium cursor-pointer text-muted-foreground/90"
+          onClick={() => console.log("editing", client.name)}
+        >
+          <Pencil className="mr-2 h-3.5 w-3.5" />
+          {t("edit")}
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className={cn(
-            "text-sm font-medium cursor-pointer text-muted-foreground/90",
+            "text-sm font-medium cursor-pointer text-danger/90 bg-danger/10 hover:!text-danger/100 hover:!bg-danger/20",
             loading && "opacity-50 !cursor-not-allowed",
           )}
           onClick={() => {
@@ -91,13 +98,6 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
               {t("archive")}
             </>
           )}
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          className="text-sm font-medium cursor-pointer text-muted-foreground/90"
-          onClick={() => console.log("editing", client.name)}
-        >
-          <Pencil className="mr-2 h-3.5 w-3.5" />
-          {t("edit")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -37,7 +37,16 @@
       }
     },
     "Tables": {
-      "no-data": "Nous avons rien trouvé ! :/"
+      "no-data": "Nous avons rien trouvé ! :/",
+      "Pagination": {
+        "rows-per-page": "Lignes par page:",
+        "page": "Page",
+        "of": "de",
+        "go-to-first-page": "Aller à la première page",
+        "go-to-previous-page": "Aller à la page précédente",
+        "go-to-next-page": "Aller à la page suivante",
+        "go-to-last-page": "Aller à la dernière page"
+      }
     },
     "Users": {
       "Header": {
