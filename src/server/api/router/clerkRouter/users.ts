@@ -25,8 +25,12 @@ const mutationRouter = createTRPCRouter({
       const user = await clerkClient.users.createUser({
         firstName: input.firstName,
         lastName: input.lastName,
-        username: `${input.lastName.toLowerCase()}_${input.phoneNumber.toLowerCase()}`,
-        password: `${input.lastName.toLowerCase()}@${input.cin.toLowerCase()}`,
+        username: `${input.lastName
+          .toLowerCase()
+          .replaceAll(" ", "_")}_${input.phoneNumber.toLowerCase()}`,
+        password: `${input.lastName
+          .toLowerCase()
+          .replaceAll(" ", "_")}@${input.cin.toLowerCase()}`,
         skipPasswordChecks: true,
         skipPasswordRequirement: true,
       });

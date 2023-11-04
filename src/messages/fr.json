@@ -63,7 +63,7 @@
       "ListClientsTable": {
         "no-data": "Aucun client trouvé",
         "archived": "Archivé",
-        "error": "Erreur lors de l'ajout du client. Veuillez réessayer plus tard.",
+        "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
         "Header": {
           "id": "ID",
           "name": "Nom complet",

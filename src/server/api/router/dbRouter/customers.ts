@@ -154,6 +154,9 @@ const queryRouter = createTRPCRouter({
           createdAt: true,
           archived: true,
         },
+        orderBy: {
+          archived: "asc",
+        },
       });
 
       return users.map((user) => ({
