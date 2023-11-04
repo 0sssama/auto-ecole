@@ -76,7 +76,13 @@
           "open-menu": "Open menu",
           "view": "View details",
           "edit": "Edit",
-          "delete": "Delete"
+          "archive": "Archive",
+          "archive-success": "Client archived successfully !",
+          "archive-error": "Error while archiving client. Please try again later.",
+          "unarchive": "Unarchive",
+          "unarchive-success": "Client unarchived successfully !",
+          "unarchive-error": "Error while unarchiving client. Please try again later.",
+          "loading": "Loading..."
         }
       }
     },

@@ -76,7 +76,13 @@
           "open-menu": "Ouvrir le menu",
           "view": "Voir dossier",
           "edit": "Modifier",
-          "delete": "Supprimer"
+          "archive": "Archiver",
+          "archive-success": "Client archivé avec succès !",
+          "archive-error": "Erreur lors de l'archivage du client. Veuillez réessayer plus tard.",
+          "unarchive": "Désarchiver",
+          "unarchive-success": "Client désarchivé avec succès !",
+          "unarchive-error": "Erreur lors du désarchivage du client. Veuillez réessayer plus tard.",
+          "loading": "Chargement..."
         }
       }
     },

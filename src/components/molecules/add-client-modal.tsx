@@ -73,7 +73,7 @@ function AddClientModal({
       if (!userClerkId) return;
 
       deleteUserFromClerk({
-        clerkId: userClerkId,
+        clerkUserId: userClerkId,
       });
     },
   });

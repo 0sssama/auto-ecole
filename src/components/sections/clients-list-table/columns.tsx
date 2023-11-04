@@ -35,7 +35,7 @@ export const columns: ColumnDef<Client>[] = [
           className="flex space-x-2"
           href={`/dash/admin/clients/folder?clientId=${client.id}`}
         >
-          {client.archived && <Badge variant="outline">{t("archived")}</Badge>}
+          {client.archived && <Badge variant="default">{t("archived")}</Badge>}
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("name")}
           </span>
@@ -63,6 +63,10 @@ export const columns: ColumnDef<Client>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => (
+      <div className="flex items-center justify-end">
+        <DataTableRowActions row={row} />
+      </div>
+    ),
   },
 ];

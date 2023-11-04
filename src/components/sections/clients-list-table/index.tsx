@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   ColumnFiltersState,
   SortingState,
@@ -23,9 +24,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ClientsListTableProps } from "./types";
 import { columns } from "./columns";
-import { useTranslations } from "next-intl";
+
+import type { ClientsListTableProps } from "./types";
 
 // import { DataTablePagination } from "../components/data-table-pagination"
 // import { DataTableToolbar } from "../components/data-table-toolbar"

@@ -55,14 +55,14 @@ const mutationRouter = createTRPCRouter({
   delete: orgAdminOnlyPrecedure
     .input(
       z.object({
-        clerkId: z.string(),
+        clerkUserId: z.string(),
       }),
     )
     .mutation(async ({ input }) => {
-      await clerkClient.users.deleteUser(input.clerkId);
+      await clerkClient.users.deleteUser(input.clerkUserId);
 
       return {
-        clerkId: input.clerkId,
+        clerkId: input.clerkUserId,
       };
     }),
 });

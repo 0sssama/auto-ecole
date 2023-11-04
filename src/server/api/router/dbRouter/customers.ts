@@ -47,6 +47,86 @@ const mutationRouter = createTRPCRouter({
         newUserClerkId: user.clerkUserId,
       };
     }),
+  dearchive: orgAdminOnlyPrecedure
+    .input(z.object({ clientId: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      try {
+        await ctx.prisma.customer.update({
+          where: {
+            id: input.clientId,
+          },
+          data: {
+            archived: false,
+          },
+        });
+
+        return true;
+      } catch (error) {
+        console.error(error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+    }),
+  archive: orgAdminOnlyPrecedure
+    .input(z.object({ clientId: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      try {
+        await ctx.prisma.customer.update({
+          where: {
+            id: input.clientId,
+          },
+          data: {
+            archived: true,
+          },
+        });
+
+        return true;
+      } catch (error) {
+        console.error(error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+    }),
+  delete: orgAdminOnlyPrecedure
+    .input(z.object({ clientId: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      try {
+        const result = await ctx.prisma.customer.delete({
+          where: {
+            id: input.clientId,
+          },
+          select: {
+            clerkUserId: true,
+          },
+        });
+
+        return {
+          clerkUserId: result.clerkUserId,
+        };
+      } catch (error) {
+        console.error(error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+    }),
 });
 
 const queryRouter = createTRPCRouter({
