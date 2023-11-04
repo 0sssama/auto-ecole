@@ -2,10 +2,14 @@
 
 import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { AddClientModal, PageContentHeader } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
 import { api } from "@/utils/api";
+import { ClientsListTable } from "@/components/sections";
+import { Spinner } from "@/components/atoms";
+import { Client } from "@/components/sections/clients-list-table/types";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
   const t = useTranslations("Dashboard.Users.Header");
@@ -22,58 +26,13 @@ const PageHeader = ({ openModal }: { openModal: () => void }) => {
   );
 };
 
-const DbClientList = () => {
-  const { data, isLoading, error } = api.db.customers.query.list.useQuery();
-
-  if (error) return <div>Error loading DB Clients: {error.message}</div>;
-
-  if (isLoading) return <div>Loading DB Clients...</div>;
-
-  return (
-    <div className="w-full border-r-1 border-r-gray-200">
-      <h3 className="mb-2 text-2xl font-bold">All users in Database:</h3>
-      {data && (
-        <ul>
-          {data.map((user, key) => (
-            <li key={key}>
-              {user.firstNameFr} {user.lastNameFr}{" "}
-              <span dir="rtl">
-                ({user.firstNameAr} {user.lastNameAr})
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
-const ClerkClientList = () => {
-  const { data, isLoading, error } = api.clerk.users.query.list.useQuery();
-
-  if (error) return <div>Error loading DB Clients: {error.message}</div>;
-
-  if (isLoading) return <div>Loading DB Clients...</div>;
-
-  return (
-    <div className="w-full">
-      <h3 className="mb-2 text-2xl font-bold">All users in Clerk:</h3>
-      {data && (
-        <ul>
-          {data.map((user, key) => (
-            <li key={key}>
-              {user.firstName} {user.lastName}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
 export default function Home() {
-  const addClientModal = useModal();
+  const t = useTranslations("Dashboard.Users.ListClientsTable");
 
+  const { data, isLoading, error } =
+    api.db.customers.query.list.useQuery<Client[]>();
+
+  const addClientModal = useModal();
   return (
     <main>
       <PageHeader openModal={addClientModal.open} />
@@ -81,11 +40,15 @@ export default function Home() {
         isOpen={addClientModal.isOpen}
         close={addClientModal.close}
       />
-      <div className="grid w-full grid-cols-2 gap-8">
-        <DbClientList />
-        <ClerkClientList />
+      <div className="w-full">
+        {(error || isLoading) && (
+          <div className="w-full min-h-[300px] flex items-center justify-center">
+            {error && t("error")}
+            {isLoading && <Spinner size="md" />}
+          </div>
+        )}
+        {data && <ClientsListTable data={data} />}
       </div>
-      <div className="w-full h-[5000vh]"></div>
     </main>
   );
 }

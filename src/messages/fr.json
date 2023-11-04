@@ -59,6 +59,25 @@
           "email": "E-mail:",
           "birthdate": "Date de naissance:"
         }
+      },
+      "ListClientsTable": {
+        "no-data": "Aucun client trouvé",
+        "archived": "Archivé",
+        "error": "Erreur lors de l'ajout du client. Veuillez réessayer plus tard.",
+        "Header": {
+          "id": "ID",
+          "name": "Nom complet",
+          "created-at": "Date ajouté",
+          "asc": "Croissant",
+          "desc": "Décroissant",
+          "hide": "Masquer"
+        },
+        "Actions": {
+          "open-menu": "Ouvrir le menu",
+          "view": "Voir dossier",
+          "edit": "Modifier",
+          "delete": "Supprimer"
+        }
       }
     },
     "Error": {

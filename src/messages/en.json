@@ -59,6 +59,25 @@
           "email": "Email:",
           "birthdate": "Birthdate:"
         }
+      },
+      "ListClientsTable": {
+        "no-data": "No results found",
+        "archived": "Archived",
+        "error": "An error has occurred. Please try again later.",
+        "Header": {
+          "id": "ID",
+          "name": "Name",
+          "created-at": "Date added",
+          "asc": "Asc",
+          "desc": "Desc",
+          "hide": "Hide"
+        },
+        "Actions": {
+          "open-menu": "Open menu",
+          "view": "View details",
+          "edit": "Edit",
+          "delete": "Delete"
+        }
       }
     },
     "Error": {

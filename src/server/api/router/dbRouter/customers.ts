@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import { ClientFormSchema } from "@/schemas/client-form-schema";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { prisma } from "@/server/db";
 import { TRPCError } from "@trpc/server";
 
 const mutationRouter = createTRPCRouter({
@@ -19,7 +18,7 @@ const mutationRouter = createTRPCRouter({
           code: "UNAUTHORIZED",
         });
 
-      const user = await prisma.customer.create({
+      const user = await ctx.prisma.customer.create({
         data: {
           clerkUserId: input.clerkId,
           clerkOrgId: ctx.orgId,
@@ -43,8 +42,6 @@ const mutationRouter = createTRPCRouter({
         },
       });
 
-      console.log(user);
-
       return {
         newUserId: user.id,
         newUserClerkId: user.clerkUserId,
@@ -66,19 +63,25 @@ const queryRouter = createTRPCRouter({
           code: "UNAUTHORIZED",
         });
 
-      const users = await prisma.customer.findMany({
+      const users = await ctx.prisma.customer.findMany({
         where: {
           clerkOrgId: ctx.orgId,
         },
         select: {
+          id: true,
           firstNameFr: true,
-          firstNameAr: true,
-          lastNameAr: true,
           lastNameFr: true,
+          createdAt: true,
+          archived: true,
         },
       });
 
-      return users;
+      return users.map((user) => ({
+        id: user.id,
+        name: `${user.firstNameFr} ${user.lastNameFr}`,
+        createdAt: user.createdAt,
+        archived: user.archived,
+      }));
     }),
 });
 
