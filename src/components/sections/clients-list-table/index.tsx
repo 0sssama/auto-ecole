@@ -27,6 +27,8 @@ import {
 import { columns } from "./columns";
 
 import type { ClientsListTableProps } from "./types";
+import { cn } from "@/lib/cn";
+import { clientSchema } from "./schema";
 
 // import { DataTablePagination } from "../components/data-table-pagination"
 // import { DataTableToolbar } from "../components/data-table-toolbar"
@@ -85,21 +87,25 @@ function ClientsListTable({ data }: ClientsListTableProps) {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              table.getRowModel().rows.map((row) => {
+                const client = clientSchema.parse(row.original);
+                return (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                    className={cn(client.archived && "!bg-gray-200")}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                );
+              })
             ) : (
               <TableRow>
                 <TableCell

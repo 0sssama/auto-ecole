@@ -35,10 +35,10 @@ export const columns: ColumnDef<Client>[] = [
           className="flex space-x-2"
           href={`/dash/admin/clients/folder?clientId=${client.id}`}
         >
-          {client.archived && <Badge variant="default">{t("archived")}</Badge>}
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("name")}
           </span>
+          {client.archived && <Badge variant="default">{t("archived")}</Badge>}
         </Link>
       );
     },
