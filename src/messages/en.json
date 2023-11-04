@@ -36,6 +36,9 @@
         "title": "Folder"
       }
     },
+    "Tables": {
+      "no-data": "No results found"
+    },
     "Users": {
       "Header": {
         "title": "Customers",

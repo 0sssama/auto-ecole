@@ -36,6 +36,9 @@
         "title": "Dossier"
       }
     },
+    "Tables": {
+      "no-data": "Nous avons rien trouvé ! :/"
+    },
     "Users": {
       "Header": {
         "title": "Clients",

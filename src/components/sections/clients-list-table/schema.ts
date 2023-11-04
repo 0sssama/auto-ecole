@@ -6,3 +6,5 @@ export const clientSchema = z.object({
   archived: z.boolean(),
   createdAt: z.date(),
 });
+
+export type Client = z.infer<typeof clientSchema>;

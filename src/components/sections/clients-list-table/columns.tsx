@@ -4,8 +4,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 
 import { Badge } from "@/components/ui/badge";
-import { Client } from "./types";
-import { DataTableColumnHeader } from "./data-table-column-header";
+import { Client } from "./schema";
+import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 import { clientSchema } from "./schema";
 import moment from "moment";

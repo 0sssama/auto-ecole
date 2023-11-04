@@ -8,6 +8,7 @@ import {
   Pencil,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,14 +18,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { clientSchema } from "./schema";
-import { DataTableRowActionsProps } from "./types";
-import { toast } from "sonner";
 import {
   useArchiveClient,
   useUnarchiveClient,
 } from "@/lib/hooks/useArchiveClient";
 import { cn } from "@/lib/cn";
+import { clientSchema } from "./schema";
+
+import type { DataTableRowActionsProps } from "./types";
 
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const t = useTranslations("Dashboard.Users.ListClientsTable.Actions");
