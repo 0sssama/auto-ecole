@@ -3,6 +3,7 @@ import { z } from "zod";
 import { ClientFormSchema } from "@/schemas/client-form-schema";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
+import { getWhereObjFromFilters } from "@/utils/getWhereObjFromFilters";
 
 const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
@@ -135,6 +136,9 @@ const queryRouter = createTRPCRouter({
       z.object({
         pageIndex: z.number().default(0),
         pageSize: z.number().default(10),
+        filters: z.object({
+          search: z.string(),
+        }),
       }),
     )
     .query(async ({ input, ctx }) => {
@@ -143,10 +147,13 @@ const queryRouter = createTRPCRouter({
           code: "UNAUTHORIZED",
         });
 
+      const filtersObj = getWhereObjFromFilters(input.filters);
+
       const [users, totalCustomers] = await Promise.all([
         ctx.prisma.customer.findMany({
           where: {
             clerkOrgId: ctx.orgId,
+            ...filtersObj,
           },
           select: {
             id: true,
@@ -164,6 +171,7 @@ const queryRouter = createTRPCRouter({
         ctx.prisma.customer.count({
           where: {
             clerkOrgId: ctx.orgId,
+            ...filtersObj,
           },
         }),
       ]);

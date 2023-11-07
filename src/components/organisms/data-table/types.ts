@@ -20,15 +20,31 @@ export type TablePagination = {
   };
 };
 
+export type TableFilters = {
+  get: {
+    search: string;
+  };
+  set: {
+    search: (search: string) => void;
+  };
+  helpers: {
+    resetSearch: () => void;
+    resetAll: () => void;
+  };
+};
+
 export type Paginated<TData> = {
   data: TData[];
   pageCount: number;
 };
 
 export type TableProps<TData, TValue> = {
-  data: TData[];
+  data: Paginated<TData> | undefined;
   columns: ColumnDef<TData, TValue>[];
+  error: string | undefined;
+  isLoading: boolean;
   pagination: TablePagination;
+  filters: TableFilters;
 };
 
 export type DataTableRowActionsProps<TData> = {
@@ -37,4 +53,8 @@ export type DataTableRowActionsProps<TData> = {
 
 export type DataTablePaginationProps = {
   pagination: TablePagination;
+};
+
+export type DataTableToolbarProps = {
+  filters: TableFilters;
 };

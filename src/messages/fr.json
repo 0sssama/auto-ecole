@@ -38,6 +38,8 @@
     },
     "Tables": {
       "no-data": "Nous avons rien trouvé ! :/",
+      "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+      "search": "Rechercher...",
       "Pagination": {
         "rows-per-page": "Lignes par page:",
         "page": "Page",
@@ -75,7 +77,6 @@
       "ListClientsTable": {
         "no-data": "Aucun client trouvé",
         "archived": "Archivé",
-        "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
         "Header": {
           "id": "ID",
           "name": "Nom complet",

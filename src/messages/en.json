@@ -19,12 +19,12 @@
     },
     "Sidebar": {
       "users": "People",
-      "clients": "Customers",
-      "monitors": "Monitors",
+      "clients": "Students",
+      "monitors": "Instructors",
       "editors": "Editors",
 
       "entities": "Entities",
-      "cars": "Cars",
+      "cars": "Vehicles",
 
       "account": "Account",
       "folder": "My Folder",
@@ -37,21 +37,23 @@
       }
     },
     "Tables": {
+      "error": "An error has occurred. Please try again later.",
       "no-data": "No results found",
+      "search": "Search...",
       "Pagination": {
         "rows-per-page": "Rows per page:",
         "page": "Page",
         "of": "of",
         "go-to-first-page": "Go to first page",
         "go-to-previous-page": "Go to previous page",
-        "go-t-next-page": "Go to next page",
+        "go-to-next-page": "Go to next page",
         "go-to-last-page": "Go to last page"
       }
     },
     "Users": {
       "Header": {
-        "title": "Customers",
-        "button": "New Customer"
+        "title": "Students",
+        "button": "New student"
       },
       "AddNewClientModal": {
         "title": "Add new client",
@@ -75,7 +77,6 @@
       "ListClientsTable": {
         "no-data": "No results found",
         "archived": "Archived",
-        "error": "An error has occurred. Please try again later.",
         "Header": {
           "id": "ID",
           "name": "Name",
