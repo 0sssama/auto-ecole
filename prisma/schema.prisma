@@ -175,8 +175,8 @@ enum AdminRank {
 
 enum LicenseFileStatus {
     ONGOING
-    CANCELLED
-    ARCHIVED
+    REJECTED
+    VALIDATED
 }
 
 enum LessonStatus {

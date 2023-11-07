@@ -4,6 +4,8 @@ import { ClientFormSchema } from "@/schemas/client-form-schema";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 import { getWhereObjFromFilters } from "@/utils/getWhereObjFromFilters";
+import { joinedInLastWeek } from "@/utils/joinedInLastWeek";
+import { getUserStatusFromLicenseFiles } from "@/utils/getUserStatusFromLicenseFiles";
 
 const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
@@ -161,6 +163,11 @@ const queryRouter = createTRPCRouter({
             lastNameFr: true,
             createdAt: true,
             archived: true,
+            licenseFiles: {
+              select: {
+                status: true,
+              },
+            },
           },
           orderBy: {
             archived: "asc",
@@ -181,6 +188,11 @@ const queryRouter = createTRPCRouter({
         name: `${user.firstNameFr} ${user.lastNameFr}`,
         createdAt: user.createdAt,
         archived: user.archived,
+        isNew: joinedInLastWeek(user.createdAt),
+        status:
+          user.licenseFiles.length === 0
+            ? "not-started"
+            : getUserStatusFromLicenseFiles(user.licenseFiles),
       }));
 
       return {

@@ -77,13 +77,21 @@
       "ListClientsTable": {
         "no-data": "Aucun client trouvé",
         "archived": "Archivé",
+        "new": "Nouveau",
+        "Status": {
+          "active": "Actif",
+          "rejected": "Rejeté",
+          "finished": "Terminé",
+          "not-started": "Non commencé"
+        },
         "Header": {
           "id": "ID",
           "name": "Nom complet",
           "created-at": "Date ajouté",
           "asc": "Croissant",
           "desc": "Décroissant",
-          "hide": "Masquer"
+          "hide": "Masquer",
+          "status": "Statut"
         },
         "Actions": {
           "open-menu": "Ouvrir le menu",

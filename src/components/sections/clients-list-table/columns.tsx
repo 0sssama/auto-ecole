@@ -38,7 +38,16 @@ export const columns: ColumnDef<Client>[] = [
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("name")}
           </span>
-          {client.archived && <Badge variant="default">{t("archived")}</Badge>}
+          {client.archived && (
+            <Badge variant="default" className="text-xs">
+              {t("archived")}
+            </Badge>
+          )}
+          {client.isNew && (
+            <Badge variant="destructive" className="text-xs">
+              {t("new")}
+            </Badge>
+          )}
         </Link>
       );
     },
@@ -59,6 +68,44 @@ export const columns: ColumnDef<Client>[] = [
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
+    },
+  },
+  {
+    id: "status",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="status" />
+    ),
+    cell: function Cell({ row }) {
+      const t = useTranslations("Dashboard.Users.ListClientsTable.Status");
+      const client = clientSchema.parse(row.original);
+
+      const getVariant = ():
+        | "default"
+        | "secondary"
+        | "destructive"
+        | "outline"
+        | "success" => {
+        switch (client.status) {
+          case "active":
+            return "default";
+          case "finished":
+            return "success";
+          case "not-started":
+            return "outline";
+          case "rejected":
+            return "destructive";
+          default:
+            return "default";
+        }
+      };
+
+      return (
+        <span>
+          <Badge variant={getVariant()}>
+            {t(client.status)?.toUpperCase()}
+          </Badge>
+        </span>
+      );
     },
   },
   {
