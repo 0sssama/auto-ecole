@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { X } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,12 +29,15 @@ export function DataTableToolbar({ filters }: DataTableToolbarProps) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center flex-1 space-x-2">
-        <Input
-          placeholder={t("search")}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="h-8 w-[150px] lg:w-[250px]"
-        />
+        <div className="relative">
+          <Search className="w-4 h-4 text-gray-400 absolute left-3 top-[50%] translate-y-[-50%]" />
+          <Input
+            placeholder={t("search")}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="h-10 w-[180px] lg:w-[300px] pl-10"
+          />
+        </div>
         {isFiltered && (
           <Button
             variant="ghost"
@@ -42,7 +45,7 @@ export function DataTableToolbar({ filters }: DataTableToolbarProps) {
               setSearch("");
               filters.helpers.resetAll();
             }}
-            className="h-8 px-2 lg:px-3"
+            className="h-10 px-3 lg:px-6"
           >
             Reset
             <X className="w-4 h-4 ml-2" />
