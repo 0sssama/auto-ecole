@@ -1,15 +1,14 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { ColumnDef } from "@tanstack/react-table";
+import moment from "moment";
 import { Chip, ChipProps } from "@nextui-org/chip";
 
-import { Client } from "./schema";
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { clientSchema } from "./schema";
-import moment from "moment";
-import Link from "next/link";
+import { Client, clientSchema } from "./schema";
 
 export const columns: ColumnDef<Client>[] = [
   {
