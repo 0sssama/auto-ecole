@@ -2,8 +2,8 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
+import { Chip, ChipProps } from "@nextui-org/chip";
 
-import { Badge } from "@/components/ui/badge";
 import { Client } from "./schema";
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
@@ -39,14 +39,11 @@ export const columns: ColumnDef<Client>[] = [
             {row.getValue("name")}
           </span>
           {client.archived && (
-            <Badge variant="default" className="text-xs">
-              {t("archived")}
-            </Badge>
-          )}
-          {client.isNew && (
-            <Badge variant="destructive" className="text-xs">
-              {t("new")}
-            </Badge>
+            <Chip color="default" size="sm" className="!py-0">
+              <span className="font-bold !text-[10px] md:text-sm">
+                {t("archived")?.toUpperCase()}
+              </span>
+            </Chip>
           )}
         </Link>
       );
@@ -79,32 +76,27 @@ export const columns: ColumnDef<Client>[] = [
       const t = useTranslations("Dashboard.Users.ListClientsTable.Status");
       const client = clientSchema.parse(row.original);
 
-      const getVariant = ():
-        | "default"
-        | "secondary"
-        | "destructive"
-        | "outline"
-        | "success" => {
+      const getChipColor = (): ChipProps["color"] => {
         switch (client.status) {
           case "active":
-            return "default";
+            return "secondary";
           case "finished":
             return "success";
           case "not-started":
-            return "outline";
+            return "primary";
           case "rejected":
-            return "destructive";
+            return "danger";
           default:
-            return "default";
+            return "primary";
         }
       };
 
       return (
-        <span>
-          <Badge variant={getVariant()}>
+        <Chip color={getChipColor()} size="sm">
+          <span className="font-bold !text-[10px] md:text-sm">
             {t(client.status)?.toUpperCase()}
-          </Badge>
-        </span>
+          </span>
+        </Chip>
       );
     },
   },

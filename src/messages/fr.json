@@ -91,7 +91,7 @@
           "asc": "Croissant",
           "desc": "Décroissant",
           "hide": "Masquer",
-          "status": "Statut"
+          "status": "Statut du dossier"
         },
         "Actions": {
           "open-menu": "Ouvrir le menu",
