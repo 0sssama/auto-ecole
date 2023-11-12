@@ -50,6 +50,12 @@
         "go-to-last-page": "Aller à la dernière page"
       }
     },
+    "Dossier": {
+      "Labels": {
+        "id": "Identifiant:",
+        "name": "Nom complet:"
+      }
+    },
     "Users": {
       "Header": {
         "title": "Clients",

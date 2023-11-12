@@ -50,6 +50,12 @@
         "go-to-last-page": "Go to last page"
       }
     },
+    "Dossier": {
+      "Labels": {
+        "id": "Student ID: ",
+        "name": "Full name: "
+      }
+    },
     "Users": {
       "Header": {
         "title": "Students",
