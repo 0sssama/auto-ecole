@@ -52,8 +52,21 @@
     },
     "Dossier": {
       "Labels": {
-        "id": "Identifiant:",
-        "name": "Nom complet:"
+        "id": "Identifiant de l'étudiant: ",
+
+        "nameFr": "Nom complet:",
+        "nameAr": "Nom complet (Arabe): ",
+
+        "addressFr": "Addresse: ",
+        "addressAr": "Addresse (Arabe): ",
+
+        "professionFr": "Métier: ",
+        "professionAr": "Métier (Arabic): ",
+
+        "phone": "Téléphone: ",
+        "email": "Addresse E-mail: ",
+        "cin": "N° CIN:",
+        "birthdate": "Date de naissance: "
       }
     },
     "Users": {

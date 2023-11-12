@@ -3,6 +3,8 @@
 import moment from "moment";
 import { useTranslations } from "next-intl";
 
+import { cn } from "@/lib/cn";
+
 import type { DossierInfoProps, InfoTypes } from "./types";
 
 function InfoData<InfoT extends InfoTypes>({
@@ -18,7 +20,19 @@ function InfoData<InfoT extends InfoTypes>({
     case "string":
       return (
         <div>
-          {editing ? <></> : <p className="font-semibold text-md">{value}</p>}
+          {editing ? (
+            <></>
+          ) : (
+            <p
+              className={cn(
+                "font-semibold text-md w-full",
+                labelId.endsWith("Ar") && "text-left",
+              )}
+              dir={labelId.endsWith("Ar") ? "rtl" : "ltr"}
+            >
+              {value}
+            </p>
+          )}
         </div>
       );
 

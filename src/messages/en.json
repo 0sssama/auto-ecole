@@ -53,7 +53,20 @@
     "Dossier": {
       "Labels": {
         "id": "Student ID: ",
-        "name": "Full name: "
+
+        "nameFr": "Full name: ",
+        "nameAr": "Full name (arabic): ",
+
+        "addressFr": "Address: ",
+        "addressAr": "Address (arabic): ",
+
+        "professionFr": "Profession: ",
+        "professionAr": "Profession (arabic): ",
+
+        "phone": "Phone Number: ",
+        "email": "Email: ",
+        "cin": "National ID Number: ",
+        "birthdate": "Birthdate: "
       }
     },
     "Users": {

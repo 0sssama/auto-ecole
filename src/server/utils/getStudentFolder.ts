@@ -14,8 +14,23 @@ export const getStudentFolder = async (studentId: number) => {
     },
     select: {
       id: true,
+
       firstNameFr: true,
       lastNameFr: true,
+
+      firstNameAr: true,
+      lastNameAr: true,
+
+      addressAr: true,
+      addressFr: true,
+
+      professionAr: true,
+      professionFr: true,
+
+      phone: true,
+      email: true,
+      cin: true,
+      birthdate: true,
     },
   });
 
@@ -23,6 +38,19 @@ export const getStudentFolder = async (studentId: number) => {
 
   return {
     id: student.id,
-    name: `${student.firstNameFr} ${student.lastNameFr}`,
+
+    nameFr: `${student.firstNameFr} ${student.lastNameFr}`,
+    nameAr: `${student.firstNameAr} ${student.lastNameAr}`,
+
+    addressFr: student.addressFr,
+    addressAr: student.addressAr,
+
+    professionFr: student.professionFr,
+    professionAr: student.professionAr,
+
+    phone: student.phone,
+    email: student.email,
+    cin: student.cin,
+    birthdate: student.birthdate,
   };
 };
