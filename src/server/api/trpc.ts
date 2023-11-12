@@ -13,7 +13,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 import { prisma } from "@/server/db";
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-import { RequestLike } from "@clerk/nextjs/dist/types/server/types";
+import type { RequestLike } from "@clerk/nextjs/dist/types/server/types";
 
 /**
  * 1. CONTEXT

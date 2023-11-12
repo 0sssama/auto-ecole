@@ -105,6 +105,12 @@
           "unarchive-error": "Erreur lors du désarchivage du client. Veuillez réessayer plus tard.",
           "loading": "Chargement..."
         }
+      },
+      "Folder": {
+        "NotFound": {
+          "title": "Dossier introuvable",
+          "subtitle": "Le dossier que vous cherchez n'existe pas ou a été supprimé."
+        }
       }
     },
     "Error": {

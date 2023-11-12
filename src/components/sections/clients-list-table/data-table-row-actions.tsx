@@ -26,6 +26,7 @@ import { cn } from "@/lib/cn";
 import { clientSchema } from "./schema";
 
 import type { DataTableRowActionsProps } from "./types";
+import Link from "next/link";
 
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const t = useTranslations("Dashboard.Users.ListClientsTable.Actions");
@@ -59,12 +60,14 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-[160px]">
-        <DropdownMenuItem
-          className="text-sm font-medium cursor-pointer text-muted-foreground/90"
-          onClick={() => console.log("viewing", client.id)}
-        >
-          <Eye className="mr-2 h-3.5 w-3.5" />
-          {t("view")}
+        <DropdownMenuItem className="text-sm font-medium cursor-pointer text-muted-foreground/90">
+          <Link
+            className="flex items-center w-full h-full"
+            href={`/dash/admin/clients/folder?clientId=${client.id}`}
+          >
+            <Eye className="mr-2 h-3.5 w-3.5" />
+            {t("view")}
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-sm font-medium cursor-pointer text-muted-foreground/90"

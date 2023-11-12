@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
-import { env } from "@/env.mjs";
 
 const prismaClientSingleton = () =>
   new PrismaClient({
     log:
-      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+      process.env.NODE_ENV === "production"
+        ? ["error"]
+        : ["query", "error", "warn"],
   });
 
 type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;

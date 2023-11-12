@@ -14,8 +14,8 @@ export default function MomentProvider({
   children: React.ReactNode;
   locale: Locale;
 }) {
-  if (locale === "fr") moment.locale("fr", frLocaleData);
-  else moment.locale("en");
+  if (locale === "fr") moment.updateLocale("fr", frLocaleData);
+  else moment.locale(locale);
 
   return <>{children}</>;
 }

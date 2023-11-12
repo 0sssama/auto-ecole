@@ -105,6 +105,12 @@
           "unarchive-error": "Error while unarchiving client. Please try again later.",
           "loading": "Loading..."
         }
+      },
+      "Folder": {
+        "NotFound": {
+          "title": "Folder not found",
+          "subtitle": "The folder you are looking for does not exist."
+        }
       }
     },
     "Error": {

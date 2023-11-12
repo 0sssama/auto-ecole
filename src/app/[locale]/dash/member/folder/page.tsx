@@ -1,7 +1,8 @@
 "use client";
 
-import { PageContentHeader } from "@/components/molecules";
 import { useTranslations } from "next-intl";
+
+import { PageContentHeader } from "@/components/molecules";
 
 export default function StudentFolder() {
   const t = useTranslations("Dashboard.Student.Folder");
@@ -9,7 +10,7 @@ export default function StudentFolder() {
   return (
     <main>
       <PageContentHeader title={t("title")} />
-      <div className="w-full">Hello world</div>
+      <div className="w-full"></div>
     </main>
   );
 }
