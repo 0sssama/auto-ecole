@@ -23,6 +23,13 @@
       "monitors": "Instructors",
       "editors": "Editors",
 
+      "folders": "Files",
+      "license-files": "License Files",
+      "lessons": "Lessons",
+
+      "payment": "Payment",
+      "financial-overview": "Financial Overview",
+
       "entities": "Entities",
       "cars": "Vehicles",
 

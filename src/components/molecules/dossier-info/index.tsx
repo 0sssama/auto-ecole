@@ -26,7 +26,7 @@ function InfoData<InfoT extends InfoTypes>({
             <p
               className={cn(
                 "font-semibold text-md w-full",
-                labelId.endsWith("Ar") && "text-left",
+                labelId.endsWith("Ar") && "text-left", // we want arabic text to keep left alignment
               )}
               dir={labelId.endsWith("Ar") ? "rtl" : "ltr"}
             >

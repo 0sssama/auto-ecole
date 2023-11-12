@@ -7,9 +7,12 @@ import { useTranslations } from "next-intl";
 import { useOrganization } from "@clerk/nextjs";
 import { MembershipRole } from "@clerk/types";
 import {
+  BookOpenCheck,
   Building,
   CarFront,
+  CircleDollarSign,
   Folder,
+  Folders,
   LogOut,
   Settings,
   User2,
@@ -144,6 +147,31 @@ export const getSidebarLinks = (
           name: t("editors"),
           href: "/dash/admin/editors",
           icon: <Building {...sidebarIconProps} />,
+        },
+      ],
+    },
+    {
+      title: t("folders"),
+      links: [
+        {
+          name: t("license-files"),
+          href: "/dash/admin/licence-files",
+          icon: <Folders {...sidebarIconProps} />,
+        },
+        {
+          name: t("lessons"),
+          href: "/dash/admin/lessons",
+          icon: <BookOpenCheck {...sidebarIconProps} />,
+        },
+      ],
+    },
+    {
+      title: t("payment"),
+      links: [
+        {
+          name: t("financial-overview"),
+          href: "/dash/admin/financial-overview",
+          icon: <CircleDollarSign {...sidebarIconProps} />,
         },
       ],
     },
