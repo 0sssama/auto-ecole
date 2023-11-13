@@ -105,7 +105,7 @@
       },
       "Tables": {
         "LicenseFiles": {
-          "title": "Dossiers de permis de l'étudiant",
+          "title": "Dossiers de permis",
           "Status": {
             "ONGOING": "En cours",
             "REJECTED": "Rejeté",
@@ -124,7 +124,7 @@
           }
         },
         "StudentLessons": {
-          "title": "Leçons de l'étudiant",
+          "title": "Leçons",
           "Actions": {
             "open-menu": "Ouvrir le menu",
             "view": "Voir dossier",

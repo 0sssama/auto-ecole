@@ -105,7 +105,7 @@
       },
       "Tables": {
         "LicenseFiles": {
-          "title": "Student License Files",
+          "title": "License Files",
           "Status": {
             "ONGOING": "Ongoing",
             "REJECTED": "Rejected",
@@ -124,7 +124,7 @@
           }
         },
         "StudentLessons": {
-          "title": "Student Lessons",
+          "title": "Lessons",
           "Actions": {
             "open-menu": "Open menu",
             "view": "View details",
