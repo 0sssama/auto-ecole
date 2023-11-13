@@ -1,8 +1,11 @@
 import { prisma } from "@/server/db";
 import { checkAdminStudentHierarchy } from "./checkAdminStudentHierarchy";
 import { clerkClient } from "@clerk/nextjs";
+import { StudentFolder } from "@/components/sections/dossier/types";
 
-export const getStudentFolder = async (studentId: number) => {
+export const getStudentFolder = async (
+  studentId: number,
+): Promise<StudentFolder | null> => {
   if (studentId <= 0) return null;
 
   const hasPermission = await checkAdminStudentHierarchy(studentId);
