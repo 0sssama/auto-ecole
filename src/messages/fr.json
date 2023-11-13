@@ -103,6 +103,11 @@
         "cin": "N° CIN:",
         "birthdate": "Date de naissance: "
       },
+      "ImageColumn": {
+        "student": "Étudiant",
+        "student-file": "Dossier Complet",
+        "student-cin": "Copie CIN"
+      },
       "Tables": {
         "LicenseFiles": {
           "title": "Dossiers de permis",

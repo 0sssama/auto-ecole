@@ -103,6 +103,11 @@
         "cin": "National ID Number: ",
         "birthdate": "Birthdate: "
       },
+      "ImageColumn": {
+        "student": "Student",
+        "student-file": "Student File",
+        "student-cin": "Student CIN"
+      },
       "Tables": {
         "LicenseFiles": {
           "title": "License Files",
