@@ -126,7 +126,7 @@ model Lesson {
     duration Int // HOURS
     price    Int
     comment  String
-    grade    Int
+    grade    Int          @default(-1) // out of 100
 
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int

@@ -72,6 +72,16 @@
           "price": "Price agreed",
           "status": "Status",
           "created-at": "Date created"
+        },
+        "StudentLessons": {
+          "id": "ID",
+          "monitor-name": "Instructor",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
         }
       }
     },
@@ -113,8 +123,18 @@
             "D": "Buses"
           }
         },
-        "Lessons": {
-          "title": "Student Lessons"
+        "StudentLessons": {
+          "title": "Student Lessons",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Status": {
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
+          }
         }
       }
     },
