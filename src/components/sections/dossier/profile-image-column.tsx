@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { UploadCloud, UserCircle2 } from "lucide-react";
+import { FolderDown, ImageDown, UploadCloud, UserCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -18,10 +18,20 @@ export default function ProfileImageColumn({
           <UserCircle2 className="text-gray-400" size={32} fontWeight={200} />
         )}
       </div>
-      <Button className="w-full" variant="outline">
-        <UploadCloud size={16} className="mr-2" />
-        Upload New Picture
-      </Button>
+      <div className="flex flex-col w-full gap-2">
+        <Button className="w-full text-sm" variant="outline" size="sm">
+          <UploadCloud size={16} className="mr-2" />
+          Upload New Picture
+        </Button>
+        <Button className="w-full text-sm" variant="default" size="sm">
+          <FolderDown size={16} className="mr-2" />
+          Student File
+        </Button>
+        <Button className="w-full text-sm" variant="default" size="sm">
+          <ImageDown size={16} className="mr-2" />
+          Student CIN
+        </Button>
+      </div>
     </div>
   );
 }

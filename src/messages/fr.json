@@ -69,6 +69,7 @@
         "StudentLicenseFiles": {
           "id": "ID",
           "category": "Type de permis",
+          "price": "Prix agréé",
           "status": "Status",
           "created-at": "Date créé"
         }

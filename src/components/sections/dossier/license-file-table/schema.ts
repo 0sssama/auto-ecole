@@ -3,14 +3,16 @@ import { Category, LicenseFileStatus } from "@prisma/client";
 
 export type LicenseFile = {
   id: number;
-  status: LicenseFileStatus;
   category: Category;
+  price: number;
+  status: LicenseFileStatus;
   createdAt: Date;
 };
 
 export const licenseFileSchema: z.ZodType<LicenseFile> = z.object({
   id: z.number(),
-  status: z.nativeEnum(LicenseFileStatus),
   category: z.nativeEnum(Category),
+  price: z.number(),
+  status: z.nativeEnum(LicenseFileStatus),
   createdAt: z.date(),
 });

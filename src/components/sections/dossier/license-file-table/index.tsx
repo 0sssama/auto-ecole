@@ -36,7 +36,7 @@ export default function StudentLicenseFilesTable({
 
   return (
     <div className="w-full">
-      <h1 className="w-full mb-4 text-3xl font-bold">{t("title")}</h1>
+      <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
       <DataTable
         data={data}
         error={error?.message}

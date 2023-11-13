@@ -37,6 +37,7 @@ export const queryRouter = createTRPCRouter({
               status: true,
               createdAt: true,
               category: true,
+              price: true,
             },
             skip: input.pageIndex * input.pageSize,
             take: input.pageSize,

@@ -1,7 +1,7 @@
 import { FolderNotFound } from "@/components/pages";
 import { getStudentFolder } from "@/server/utils/getStudentFolder";
 import InfoImageRow from "./info-image-row";
-import StudentLicenseFilesTable from "./license-file-table/student-license-files-table";
+import StudentLicenseFilesTable from "./license-file-table";
 import { Separator } from "@/components/ui/separator";
 
 export default async function Dossier({ studentId }: { studentId: number }) {

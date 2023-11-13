@@ -41,6 +41,20 @@ export const columns: ColumnDef<LicenseFile>[] = [
     },
   },
   {
+    accessorKey: "price",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="StudentLicenseFiles.price"
+      />
+    ),
+    cell: ({ row }) => (
+      <div className="flex w-[100px] items-center">
+        {row.getValue("price")} DH
+      </div>
+    ),
+  },
+  {
     accessorKey: "status",
     header: ({ column }) => (
       <DataTableColumnHeader

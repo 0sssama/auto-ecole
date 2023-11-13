@@ -69,6 +69,7 @@
         "StudentLicenseFiles": {
           "id": "ID",
           "category": "License Category",
+          "price": "Price agreed",
           "status": "Status",
           "created-at": "Date created"
         }
@@ -111,6 +112,9 @@
             "C": "Trucks",
             "D": "Buses"
           }
+        },
+        "Lessons": {
+          "title": "Student Lessons"
         }
       }
     },

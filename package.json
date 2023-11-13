@@ -48,7 +48,7 @@
     "eslint": "^8.0.1",
     "eslint-config-next": "13.5.2",
     "framer-motion": "^10.16.4",
-    "lucide-react": "^0.279.0",
+    "lucide-react": "^0.292.0",
     "moment": "^2.29.4",
     "next": "latest",
     "next-intl": "^2.21.0",
