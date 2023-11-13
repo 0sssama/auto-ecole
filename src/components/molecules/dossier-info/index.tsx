@@ -60,6 +60,8 @@ function InfoData<InfoT extends InfoTypes>({
   }
 }
 
+const forbiddenInfoXD = ["profilePictureUrl"];
+
 function DossierInfo<InfoT extends InfoTypes>({
   labelId,
   value,
@@ -67,8 +69,13 @@ function DossierInfo<InfoT extends InfoTypes>({
   editing,
 }: DossierInfoProps<InfoT>) {
   const t = useTranslations("Dashboard.Dossier.Labels");
+
+  if (forbiddenInfoXD.includes(labelId)) return null;
+
   return (
-    <div className="flex flex-col gap-1">
+    <div
+      className={cn("flex flex-col gap-1", labelId === "id" && "col-span-2")}
+    >
       <label className="text-xs font-bold text-gray-500 uppercase">
         {t(labelId)}
       </label>

@@ -1,5 +1,6 @@
 import { prisma } from "@/server/db";
 import { checkAdminStudentHierarchy } from "./checkAdminStudentHierarchy";
+import { clerkClient } from "@clerk/nextjs";
 
 export const getStudentFolder = async (studentId: number) => {
   if (studentId <= 0) return null;
@@ -14,6 +15,7 @@ export const getStudentFolder = async (studentId: number) => {
     },
     select: {
       id: true,
+      clerkUserId: true,
 
       firstNameFr: true,
       lastNameFr: true,
@@ -36,21 +38,29 @@ export const getStudentFolder = async (studentId: number) => {
 
   if (!student) return null;
 
+  const studentClerk = await clerkClient.users.getUser(student.clerkUserId);
+
+  if (!studentClerk) return null;
+
   return {
     id: student.id,
 
-    nameFr: `${student.firstNameFr} ${student.lastNameFr}`,
-    nameAr: `${student.firstNameAr} ${student.lastNameAr}`,
+    profilePictureUrl: studentClerk.hasImage ? studentClerk.imageUrl : null,
 
-    addressFr: student.addressFr,
-    addressAr: student.addressAr,
+    info: {
+      nameFr: `${student.firstNameFr} ${student.lastNameFr}`,
+      nameAr: `${student.lastNameAr} ${student.firstNameAr}`,
 
-    professionFr: student.professionFr,
-    professionAr: student.professionAr,
+      addressFr: student.addressFr,
+      addressAr: student.addressAr,
 
-    phone: student.phone,
-    email: student.email,
-    cin: student.cin,
-    birthdate: student.birthdate,
+      professionFr: student.professionFr,
+      professionAr: student.professionAr,
+
+      phone: student.phone,
+      email: student.email,
+      cin: student.cin,
+      birthdate: student.birthdate,
+    },
   };
 };
