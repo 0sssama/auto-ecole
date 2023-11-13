@@ -55,6 +55,23 @@
         "go-to-previous-page": "Go to previous page",
         "go-to-next-page": "Go to next page",
         "go-to-last-page": "Go to last page"
+      },
+      "Header": {
+        "asc": "Asc",
+        "desc": "Desc",
+        "hide": "Hide",
+        "Students": {
+          "id": "ID",
+          "name": "Name",
+          "status": "Status",
+          "created-at": "Date added"
+        },
+        "StudentLicenseFiles": {
+          "id": "ID",
+          "category": "License Category",
+          "status": "Status",
+          "created-at": "Date created"
+        }
       }
     },
     "Dossier": {
@@ -74,6 +91,27 @@
         "email": "Email: ",
         "cin": "National ID Number: ",
         "birthdate": "Birthdate: "
+      },
+      "Tables": {
+        "LicenseFiles": {
+          "title": "Student License Files",
+          "Status": {
+            "ONGOING": "Ongoing",
+            "REJECTED": "Rejected",
+            "VALIDATED": "Validated"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Category": {
+            "A": "Motorcycles",
+            "B": "Cars",
+            "C": "Trucks",
+            "D": "Buses"
+          }
+        }
       }
     },
     "Users": {
@@ -109,15 +147,6 @@
           "rejected": "Rejected",
           "finished": "Finished",
           "not-started": "Not started"
-        },
-        "Header": {
-          "id": "ID",
-          "name": "Name",
-          "created-at": "Date added",
-          "asc": "Asc",
-          "desc": "Desc",
-          "hide": "Hide",
-          "status": "Status"
         },
         "Actions": {
           "open-menu": "Open menu",

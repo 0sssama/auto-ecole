@@ -44,7 +44,11 @@ export type TableProps<TData, TValue> = {
   error: string | undefined;
   isLoading: boolean;
   pagination: TablePagination;
+
   filters: TableFilters;
+  filtersAllowed?: {
+    [filterName in keyof TableFilters["get"]]?: boolean;
+  };
 };
 
 export type DataTableRowActionsProps<TData> = {
@@ -57,4 +61,7 @@ export type DataTablePaginationProps = {
 
 export type DataTableToolbarProps = {
   filters: TableFilters;
+  filtersAllowed?: {
+    [filterName in keyof TableFilters["get"]]?: boolean;
+  };
 };

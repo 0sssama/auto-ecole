@@ -1,5 +1,6 @@
+import { Prisma, LicenseFileStatus } from "@prisma/client";
+
 import { TableFilters } from "@/components/organisms/data-table/types";
-import { Prisma } from "@prisma/client";
 
 const searchFilters = (
   search: TableFilters["get"]["search"],
@@ -33,4 +34,18 @@ export const getWhereObjFromFilters = (
   if (output.length === 0) return {};
 
   return { OR: output };
+};
+
+export const getUserStatusFromLicenseFiles = (
+  licenseFiles: { status: LicenseFileStatus }[],
+): "active" | "rejected" | "finished" | "not-started" => {
+  const statuses = licenseFiles.map((licenseFile) => licenseFile.status);
+
+  if (statuses.includes("ONGOING")) return "active";
+
+  if (statuses.includes("VALIDATED")) return "finished";
+
+  if (statuses.includes("REJECTED")) return "rejected";
+
+  return "not-started";
 };

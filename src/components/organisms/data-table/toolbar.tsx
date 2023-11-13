@@ -9,7 +9,10 @@ import { Input } from "@/components/ui/input";
 
 import type { DataTableToolbarProps } from "./types";
 
-export function DataTableToolbar({ filters }: DataTableToolbarProps) {
+export function DataTableToolbar({
+  filters,
+  filtersAllowed,
+}: DataTableToolbarProps) {
   const t = useTranslations("Dashboard.Tables");
   const [search, setSearch] = useState("");
 
@@ -26,18 +29,22 @@ export function DataTableToolbar({ filters }: DataTableToolbarProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
+  if (!filtersAllowed) return null;
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center flex-1 space-x-2">
-        <div className="relative">
-          <Search className="w-4 h-4 text-gray-400 absolute left-3 top-[50%] translate-y-[-50%]" />
-          <Input
-            placeholder={t("search")}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="h-10 w-[180px] lg:w-[300px] pl-10"
-          />
-        </div>
+        {filtersAllowed.search && (
+          <div className="relative">
+            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-[50%] translate-y-[-50%]" />
+            <Input
+              placeholder={t("search")}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="h-10 w-[180px] lg:w-[300px] pl-10"
+            />
+          </div>
+        )}
         {isFiltered && (
           <Button
             variant="ghost"

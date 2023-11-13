@@ -14,7 +14,7 @@ export const columns: ColumnDef<Client>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="id" />
+      <DataTableColumnHeader column={column} title="Students.id" />
     ),
     cell: ({ row }) => <div>{row.getValue("id")}</div>,
     enableSorting: false,
@@ -23,7 +23,7 @@ export const columns: ColumnDef<Client>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="name" />
+      <DataTableColumnHeader column={column} title="Students.name" />
     ),
     cell: function Cell({ row }) {
       const t = useTranslations("Dashboard.Users.ListClientsTable");
@@ -49,27 +49,9 @@ export const columns: ColumnDef<Client>[] = [
     },
   },
   {
-    accessorKey: "createdAt",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="created-at" />
-    ),
-    cell: ({ row }) => {
-      const client = clientSchema.parse(row.original);
-
-      return (
-        <div className="flex w-[100px] items-center">
-          {moment(client.createdAt).fromNow()}
-        </div>
-      );
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
-  },
-  {
     id: "status",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="status" />
+      <DataTableColumnHeader column={column} title="Students.status" />
     ),
     cell: function Cell({ row }) {
       const t = useTranslations("Dashboard.Users.ListClientsTable.Status");
@@ -97,6 +79,24 @@ export const columns: ColumnDef<Client>[] = [
           </span>
         </Chip>
       );
+    },
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Students.created-at" />
+    ),
+    cell: ({ row }) => {
+      const client = clientSchema.parse(row.original);
+
+      return (
+        <div className="flex w-[100px] items-center">
+          {moment(client.createdAt).fromNow()}
+        </div>
+      );
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
     },
   },
   {

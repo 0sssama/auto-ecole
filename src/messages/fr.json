@@ -55,6 +55,23 @@
         "go-to-previous-page": "Aller à la page précédente",
         "go-to-next-page": "Aller à la page suivante",
         "go-to-last-page": "Aller à la dernière page"
+      },
+      "Header": {
+        "Students": {
+          "id": "ID",
+          "name": "Nom complet",
+          "created-at": "Date ajouté",
+          "asc": "Croissant",
+          "desc": "Décroissant",
+          "hide": "Masquer",
+          "status": "Statut du dossier"
+        },
+        "StudentLicenseFiles": {
+          "id": "ID",
+          "category": "Type de permis",
+          "status": "Status",
+          "created-at": "Date créé"
+        }
       }
     },
     "Dossier": {
@@ -74,6 +91,27 @@
         "email": "Addresse E-mail: ",
         "cin": "N° CIN:",
         "birthdate": "Date de naissance: "
+      },
+      "Tables": {
+        "LicenseFiles": {
+          "title": "Dossiers de permis de l'étudiant",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
+          }
+        }
       }
     },
     "Users": {
@@ -109,15 +147,6 @@
           "rejected": "Rejeté",
           "finished": "Terminé",
           "not-started": "Non commencé"
-        },
-        "Header": {
-          "id": "ID",
-          "name": "Nom complet",
-          "created-at": "Date ajouté",
-          "asc": "Croissant",
-          "desc": "Décroissant",
-          "hide": "Masquer",
-          "status": "Statut du dossier"
         },
         "Actions": {
           "open-menu": "Ouvrir le menu",

@@ -1,13 +1,10 @@
 import { z } from "zod";
 
-import { ClientFormSchema } from "@/schemas/client-form-schema";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { getWhereObjFromFilters } from "@/utils/getWhereObjFromFilters";
-import { joinedInLastWeek } from "@/utils/joinedInLastWeek";
-import { getUserStatusFromLicenseFiles } from "@/utils/getUserStatusFromLicenseFiles";
+import { ClientFormSchema } from "@/schemas/client-form-schema";
 
-const mutationRouter = createTRPCRouter({
+export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
     .input(
       z.object({
@@ -130,79 +127,4 @@ const mutationRouter = createTRPCRouter({
         });
       }
     }),
-});
-
-const queryRouter = createTRPCRouter({
-  list: orgAdminOnlyPrecedure
-    .input(
-      z.object({
-        pageIndex: z.number().default(0),
-        pageSize: z.number().default(10),
-        filters: z.object({
-          search: z.string(),
-        }),
-      }),
-    )
-    .query(async ({ input, ctx }) => {
-      if (!ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
-      const filtersObj = getWhereObjFromFilters(input.filters);
-
-      const [users, totalCustomers] = await Promise.all([
-        ctx.prisma.customer.findMany({
-          where: {
-            clerkOrgId: ctx.orgId,
-            ...filtersObj,
-          },
-          select: {
-            id: true,
-            firstNameFr: true,
-            lastNameFr: true,
-            createdAt: true,
-            archived: true,
-            licenseFiles: {
-              select: {
-                status: true,
-              },
-            },
-          },
-          orderBy: {
-            archived: "asc",
-          },
-          skip: input.pageIndex * input.pageSize,
-          take: input.pageSize,
-        }),
-        ctx.prisma.customer.count({
-          where: {
-            clerkOrgId: ctx.orgId,
-            ...filtersObj,
-          },
-        }),
-      ]);
-
-      const formattedCustomers = users.map((user) => ({
-        id: user.id,
-        name: `${user.firstNameFr} ${user.lastNameFr}`,
-        createdAt: user.createdAt,
-        archived: user.archived,
-        isNew: joinedInLastWeek(user.createdAt),
-        status:
-          user.licenseFiles.length === 0
-            ? "not-started"
-            : getUserStatusFromLicenseFiles(user.licenseFiles),
-      }));
-
-      return {
-        data: formattedCustomers,
-        pageCount: Math.ceil(totalCustomers / input.pageSize),
-      };
-    }),
-});
-
-export const customersRoute = createTRPCRouter({
-  query: queryRouter,
-  mutation: mutationRouter,
 });

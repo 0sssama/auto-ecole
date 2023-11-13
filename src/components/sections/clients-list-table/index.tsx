@@ -29,6 +29,9 @@ function ClientsListTable() {
         columns={columns}
         pagination={pagination}
         filters={filters}
+        filtersAllowed={{
+          search: true,
+        }}
       />
     </div>
   );

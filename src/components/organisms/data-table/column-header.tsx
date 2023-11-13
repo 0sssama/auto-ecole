@@ -24,7 +24,7 @@ export function DataTableColumnHeader<TData, TValue>({
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
-  const t = useTranslations("Dashboard.Users.ListClientsTable.Header");
+  const t = useTranslations("Dashboard.Tables.Header");
 
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{t(title)}</div>;
