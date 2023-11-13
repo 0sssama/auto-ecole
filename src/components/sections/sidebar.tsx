@@ -51,7 +51,7 @@ export default function Sidebar({ className }: SidebarProps) {
     <div
       className={cn(
         className,
-        !isDesktop && isOpen && "absolute inset-0 z-[9] bg-white",
+        !isDesktop && isOpen && "fixed inset-0 z-[9] bg-white",
       )}
     >
       <div
