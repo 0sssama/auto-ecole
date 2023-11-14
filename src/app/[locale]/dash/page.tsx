@@ -1,30 +1,15 @@
 "use client";
 
-import { Plus } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import PageContentHeader from "./_components/page-content-header";
+import { redirect } from "next/navigation";
+import { useOrganization } from "@clerk/nextjs";
+import { getSidebarLinks } from "@/components/sections/sidebar";
 
 export default function Home() {
-  const t = useTranslations("Dashboard.Home");
+  const { membership } = useOrganization();
 
-  return (
-    <main>
-      <PageContentHeader title={t("title")}>
-        <div className="flex items-center">
-          <Button>
-            <Plus size={18} />
-            <span className="hidden ml-2 lg:block">{t("button")}</span>
-          </Button>
-        </div>
-      </PageContentHeader>
+  const { [membership!.role]: sidebarLinks } = getSidebarLinks(() => "");
 
-      <div className="w-full">
-        <p>{t("content")}</p>
-      </div>
+  const { href } = sidebarLinks[0].links[0];
 
-      {/* for scroll */}
-      <div className="flex min-h-[500vh]" />
-    </main>
-  );
+  redirect(href);
 }

@@ -1,12 +1,16 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { HelpButton, Logo, UserOrgAvatar } from "@/components/atoms";
+import {
+  HamburgerButton,
+  HelpButton,
+  Logo,
+  UserNav,
+  UserOrgAvatar,
+} from "@/components/atoms";
 import { cn } from "@/lib/cn";
 import { useScroll } from "@/lib/hooks/useScroll";
 import { useMenu } from "@/lib/hooks/useMenu";
-import { UserNav } from "./user-nav";
-import HamburgerButton from "./hamburger-button";
 
 export default function Header() {
   const t = useTranslations("Dashboard.Header");

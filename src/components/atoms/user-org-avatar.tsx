@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+import { useOrganization } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/cn";
 import { useScroll } from "@/lib/hooks/useScroll";
@@ -9,11 +9,9 @@ import { useScroll } from "@/lib/hooks/useScroll";
 export default function UserOrgAvatar() {
   const { scrolled } = useScroll({ threshold: 50 });
 
-  const { user } = useUser();
+  const { organization } = useOrganization();
 
-  const { organization } = user?.organizationMemberships[0] ?? {};
-
-  if (!user || !organization) return null;
+  if (!organization) return null;
 
   return (
     <Link href="/dash" className="inline-flex items-center h-8">

@@ -11,10 +11,10 @@ export default function PageFallback() {
   const router = useRouter();
 
   return (
-    <main className="flex items-center justify-center min-h-screen gap-4 p-24">
+    <main className="flex items-center justify-center min-h-screen gap-4 p-12 md:p-24">
       <div className="flex flex-col items-center justify-center w-full max-w-screen-xl gap-4 m-auto">
         <h1 className="text-4xl font-semibold text-center">{t("sorry")}</h1>
-        <p className="text-sm font-semibold text-slate-500">
+        <p className="text-sm font-semibold text-center text-slate-500">
           {t("description")}
         </p>
 

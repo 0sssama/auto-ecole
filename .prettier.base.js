@@ -10,7 +10,7 @@ exports.sharedConfig = {
   semi: true,
   singleQuote: false,
   tabWidth: 2,
-  trailingComma: "all",
+  trailingComma: "es5",
   useTabs: false,
   // Used by `@trivago/prettier-plugin-sort-imports` prettier plugin
   importOrder: ["^[./]"],

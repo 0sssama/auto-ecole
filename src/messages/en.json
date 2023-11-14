@@ -4,6 +4,7 @@
     "subtitle": "Click anywhere to continue to dashboard"
   },
   "Dashboard": {
+    "redirecting": "Redirecting...",
     "Header": {
       "help": "Need help?"
     },
@@ -13,13 +14,188 @@
       "settings": "Settings",
       "logout": "Log out",
       "admin": "Admin",
-      "studient": "Student",
+      "student": "Student",
       "unknown": "Unknown"
     },
-    "Home": {
-      "title": "Dashboard",
-      "content": "Hello world, content here.",
-      "button": "New customer"
+    "Sidebar": {
+      "users": "People",
+      "clients": "Students",
+      "monitors": "Instructors",
+      "editors": "Editors",
+
+      "folders": "Files",
+      "license-files": "License Files",
+      "lessons": "Lessons",
+
+      "payment": "Payment",
+      "financial-overview": "Financial Overview",
+
+      "entities": "Entities",
+      "cars": "Vehicles",
+
+      "account": "Account",
+      "folder": "My Folder",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "Student": {
+      "Folder": {
+        "title": "Folder"
+      }
+    },
+    "Tables": {
+      "error": "An error has occurred. Please try again later.",
+      "no-data": "No results found",
+      "search": "Search...",
+      "Pagination": {
+        "rows-per-page": "Rows per page:",
+        "page": "Page",
+        "of": "of",
+        "go-to-first-page": "Go to first page",
+        "go-to-previous-page": "Go to previous page",
+        "go-to-next-page": "Go to next page",
+        "go-to-last-page": "Go to last page"
+      },
+      "Header": {
+        "asc": "Asc",
+        "desc": "Desc",
+        "hide": "Hide",
+        "Students": {
+          "id": "ID",
+          "name": "Name",
+          "status": "Status",
+          "created-at": "Date added"
+        },
+        "StudentLicenseFiles": {
+          "id": "ID",
+          "category": "License Category",
+          "price": "Price agreed",
+          "status": "Status",
+          "created-at": "Date created"
+        },
+        "StudentLessons": {
+          "id": "ID",
+          "monitor-name": "Instructor",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
+        }
+      }
+    },
+    "Dossier": {
+      "Labels": {
+        "id": "Student ID: ",
+
+        "nameFr": "Full name: ",
+        "nameAr": "Full name (arabic): ",
+
+        "addressFr": "Address: ",
+        "addressAr": "Address (arabic): ",
+
+        "professionFr": "Profession: ",
+        "professionAr": "Profession (arabic): ",
+
+        "phone": "Phone Number: ",
+        "email": "Email: ",
+        "cin": "National ID Number: ",
+        "birthdate": "Birthdate: "
+      },
+      "ImageColumn": {
+        "student": "Student",
+        "student-file": "Student File",
+        "student-cin": "Student CIN"
+      },
+      "Tables": {
+        "LicenseFiles": {
+          "title": "License Files",
+          "Status": {
+            "ONGOING": "Ongoing",
+            "REJECTED": "Rejected",
+            "VALIDATED": "Validated"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Category": {
+            "A": "Motorcycles",
+            "B": "Cars",
+            "C": "Trucks",
+            "D": "Buses"
+          }
+        },
+        "StudentLessons": {
+          "title": "Lessons",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Status": {
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
+          }
+        }
+      }
+    },
+    "Users": {
+      "Header": {
+        "title": "Students",
+        "button": "New student"
+      },
+      "AddNewClientModal": {
+        "title": "Add new client",
+        "subtitle": "Fill in the form below to add a new client.",
+        "button-cancel": "Cancel",
+        "button-submit": "Add Client",
+        "success": "Customer added successfully!",
+        "user-exists": "User already exists!",
+        "error": "An error has occurred. Please try again later.",
+        "AddNewClientForm": {
+          "firstName": "First Name:",
+          "lastName": "Last Name:",
+          "address": "Address:",
+          "profession": "Profession:",
+          "phone": "Phone Number:",
+          "cin": "National ID Number:",
+          "email": "Email:",
+          "birthdate": "Birthdate:"
+        }
+      },
+      "ListClientsTable": {
+        "no-data": "No results found",
+        "archived": "Archived",
+        "new": "New",
+        "Status": {
+          "active": "Active",
+          "rejected": "Rejected",
+          "finished": "Finished",
+          "not-started": "Not started"
+        },
+        "Actions": {
+          "open-menu": "Open menu",
+          "view": "View details",
+          "edit": "Edit",
+          "archive": "Archive",
+          "archive-success": "Client archived successfully !",
+          "archive-error": "Error while archiving client. Please try again later.",
+          "unarchive": "Unarchive",
+          "unarchive-success": "Client unarchived successfully !",
+          "unarchive-error": "Error while unarchiving client. Please try again later.",
+          "loading": "Loading..."
+        }
+      },
+      "Folder": {
+        "NotFound": {
+          "title": "Folder not found",
+          "subtitle": "The folder you are looking for does not exist."
+        }
+      }
     },
     "Error": {
       "sorry": "Whoops, sorry!",

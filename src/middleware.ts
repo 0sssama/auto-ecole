@@ -1,7 +1,7 @@
 import { authMiddleware } from "@clerk/nextjs";
 import createMiddleware from "next-intl/middleware";
-import { DEFAULT_LOCALE, locales } from "@/lib/locales";
 import { NextResponse } from "next/server";
+import { DEFAULT_LOCALE, locales } from "@/lib/locales";
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
@@ -17,10 +17,10 @@ const intlMiddleware = createMiddleware({
 export default authMiddleware({
   beforeAuth: (req) => {
     // ignore trpc routes (intl should not intervene with trpc routes)
-    if (req.nextUrl.pathname.startsWith("/api/trpc"))
-      return NextResponse.next();
+    if (req.nextUrl.pathname.startsWith("/api")) return NextResponse.next();
 
     // Execute next-intl middleware before Clerk's auth middleware
+    // @ts-ignore
     return intlMiddleware(req);
   },
   publicRoutes: ["/", "/en"],

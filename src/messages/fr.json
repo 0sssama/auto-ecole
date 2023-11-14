@@ -4,6 +4,7 @@
     "subtitle": "Cliquez n'importe où pour continuer vers le tableau de bord"
   },
   "Dashboard": {
+    "redirecting": "Redirection...",
     "Header": {
       "help": "Besoin d'aide?"
     },
@@ -13,13 +14,203 @@
       "settings": "Paramètres",
       "logout": "Déconnexion",
       "admin": "Administrateur",
-      "studient": "Étudiant",
+      "student": "Étudiant",
       "unknown": "Inconnu"
     },
-    "Home": {
-      "title": "Tableau de bord",
-      "content": "Bonjour, voila le contenu!",
-      "button": "Nouveau client"
+    "Sidebar": {
+      "users": "Personnes",
+      "clients": "Clients",
+      "monitors": "Moniteurs",
+      "editors": "Editeurs",
+
+      "folders": "Dossiers",
+      "license-files": "Dossiers de permis",
+      "lessons": "Leçons",
+
+      "payment": "Payment",
+      "financial-overview": "Financial Overview",
+
+      "entities": "Entités",
+      "cars": "Voitures",
+
+      "account": "Compte",
+      "folder": "Mon Dossier",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    },
+    "Student": {
+      "Folder": {
+        "title": "Dossier"
+      }
+    },
+    "Tables": {
+      "no-data": "Nous avons rien trouvé ! :/",
+      "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+      "search": "Rechercher...",
+      "Pagination": {
+        "rows-per-page": "Lignes par page:",
+        "page": "Page",
+        "of": "de",
+        "go-to-first-page": "Aller à la première page",
+        "go-to-previous-page": "Aller à la page précédente",
+        "go-to-next-page": "Aller à la page suivante",
+        "go-to-last-page": "Aller à la dernière page"
+      },
+      "Header": {
+        "asc": "Croissant",
+        "desc": "Décroissant",
+        "hide": "Masquer",
+        "Students": {
+          "id": "ID",
+          "name": "Nom complet",
+          "created-at": "Date ajouté",
+          "status": "Statut du dossier"
+        },
+        "StudentLicenseFiles": {
+          "id": "ID",
+          "category": "Type de permis",
+          "price": "Prix agréé",
+          "status": "Status",
+          "created-at": "Date créé"
+        },
+        "StudentLessons": {
+          "id": "ID",
+          "monitor-name": "Moniteur",
+          "status": "Status",
+          "comment": "Comment.",
+          "grade": "Note (/100)",
+          "price": "Prix",
+          "duration": "Durée (h)",
+          "scheduled-date": "Date"
+        },
+        "StudentPayments": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
+        }
+      }
+    },
+    "Dossier": {
+      "Labels": {
+        "id": "Identifiant de l'étudiant: ",
+
+        "nameFr": "Nom complet:",
+        "nameAr": "Nom complet (Arabe): ",
+
+        "addressFr": "Addresse: ",
+        "addressAr": "Addresse (Arabe): ",
+
+        "professionFr": "Métier: ",
+        "professionAr": "Métier (Arabic): ",
+
+        "phone": "Téléphone: ",
+        "email": "Addresse E-mail: ",
+        "cin": "N° CIN:",
+        "birthdate": "Date de naissance: "
+      },
+      "ImageColumn": {
+        "student": "Étudiant",
+        "student-file": "Dossier Complet",
+        "student-cin": "Copie CIN"
+      },
+      "Tables": {
+        "LicenseFiles": {
+          "title": "Dossiers de permis",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
+          }
+        },
+        "StudentLessons": {
+          "title": "Leçons",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Status": {
+            "RESERVED": "Reservé",
+            "CANCELLED": "Annulé",
+            "DONE": "Terminé"
+          }
+        },
+        "StudentPayments": {
+          "title": "Paiements",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          }
+        }
+      }
+    },
+    "Users": {
+      "Header": {
+        "title": "Clients",
+        "button": "Nouveau client"
+      },
+      "AddNewClientModal": {
+        "title": "Ajouter un Nouveau Client",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau client",
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter Client",
+        "success": "Client ajouté avec succès !",
+        "user-exists": "Un utilisateur avec le même email existe déjà !",
+        "error": "Erreur lors de l'ajout du client. Veuillez réessayer plus tard.",
+        "AddNewClientForm": {
+          "firstName": "Prénom:",
+          "lastName": "Nom:",
+          "address": "Addresse:",
+          "profession": "Profession:",
+          "phone": "Téléphone:",
+          "cin": "N° CIN:",
+          "email": "E-mail:",
+          "birthdate": "Date de naissance:"
+        }
+      },
+      "ListClientsTable": {
+        "no-data": "Aucun client trouvé",
+        "archived": "Archivé",
+        "new": "Nouveau",
+        "Status": {
+          "active": "Actif",
+          "rejected": "Rejeté",
+          "finished": "Terminé",
+          "not-started": "Non commencé"
+        },
+        "Actions": {
+          "open-menu": "Ouvrir le menu",
+          "view": "Voir dossier",
+          "edit": "Modifier",
+          "archive": "Archiver",
+          "archive-success": "Client archivé avec succès !",
+          "archive-error": "Erreur lors de l'archivage du client. Veuillez réessayer plus tard.",
+          "unarchive": "Désarchiver",
+          "unarchive-success": "Client désarchivé avec succès !",
+          "unarchive-error": "Erreur lors du désarchivage du client. Veuillez réessayer plus tard.",
+          "loading": "Chargement..."
+        }
+      },
+      "Folder": {
+        "NotFound": {
+          "title": "Dossier introuvable",
+          "subtitle": "Le dossier que vous cherchez n'existe pas ou a été supprimé."
+        }
+      }
     },
     "Error": {
       "sorry": "Oups, désolé !",

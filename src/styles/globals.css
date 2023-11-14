@@ -30,6 +30,9 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
+    --success: 146 79% 44%;
+    --success-foreground: 146 100% 97%;
+
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 224 71.4% 4.1%;
@@ -70,8 +73,15 @@
 
 @layer base {
   * {
+    font-family: var(--font-plus-jakarta), "Helvetica Neue", Helvetica, Arial,
+      sans-serif;
     @apply border-border;
     @apply box-border p-0 m-0;
+  }
+
+  *[dir="rtl"] {
+    font-family: var(--font-vazirmatn);
+    @apply text-right;
   }
   body {
     @apply bg-background text-foreground;

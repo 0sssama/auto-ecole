@@ -11,7 +11,222 @@ datasource db {
     relationMode = "prisma"
 }
 
+model Admin {
+    id Int @id @default(autoincrement())
+
+    username   String    @unique
+    clerkId    String    @unique
+    clerkOrgId String
+    fullName   String
+    rank       AdminRank
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    licenseFilesCreated LicenseFile[]
+    paymentsCreated     Payment[]
+    lessonsCreated      Lesson[]
+
+    monitors Monitor[] // Monitors have accounts that need to be linked to an Admin account
+    Customer Customer[]
+}
+
 model Customer {
-    id   Int    @id @default(autoincrement())
-    name String
+    id          Int    @id @default(autoincrement())
+    clerkUserId String @unique
+    clerkOrgId  String
+
+    firstNameFr String
+    firstNameAr String
+
+    lastNameFr String
+    lastNameAr String
+
+    addressFr String
+    addressAr String
+
+    professionFr String
+    professionAr String
+
+    phone     String
+    cin       String
+    email     String
+    birthdate DateTime
+
+    archived     Boolean   @default(false)
+    archivedDate DateTime?
+
+    licenseFiles LicenseFile[]
+    lessons      Lesson[]
+
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([clerkOrgId])
+    @@index([createdById])
+}
+
+model Monitor {
+    id Int @id @default(autoincrement())
+
+    firstName String
+    lastName  String
+
+    phone String
+
+    account   Admin @relation(fields: [accountId], references: [id])
+    accountId Int
+
+    licenseFiles LicenseFile[]
+    lessons      Lesson[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([accountId])
+}
+
+model LicenseFile {
+    id Int @id @default(autoincrement())
+
+    status   LicenseFileStatus @default(ONGOING)
+    category Category          @default(B)
+    price    Int
+
+    lessons  Lesson[]
+    exams    Exam[]
+    payments Payment[]
+
+    customer   Customer @relation(fields: [customerId], references: [id])
+    customerId Int
+
+    monitor   Monitor @relation(fields: [monitorId], references: [id])
+    monitorId Int
+
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([monitorId])
+    @@index([customerId])
+    @@index([createdById])
+}
+
+model Exam {
+    id Int @id @default(autoincrement())
+
+    date   DateTime
+    status ExamStatus
+
+    licenseFile   LicenseFile @relation(fields: [licenseFileId], references: [id])
+    licenseFileId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([licenseFileId])
+}
+
+model Lesson {
+    id Int @id @default(autoincrement())
+
+    date     DateTime
+    status   LessonStatus
+    duration Int // HOURS
+    price    Int
+    comment  String
+    grade    Int          @default(-1) // out of 100
+
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
+    payment   Payment @relation(fields: [paymentId], references: [id])
+    paymentId Int
+
+    customer   Customer @relation(fields: [customerId], references: [id])
+    customerId Int
+
+    moniteur   Monitor @relation(fields: [moniteurId], references: [id])
+    moniteurId Int
+
+    licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
+    licenseFileId Int?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([createdById])
+    @@index([paymentId])
+    @@index([customerId])
+    @@index([moniteurId])
+    @@index([licenseFileId])
+}
+
+model Payment {
+    id Int @id @default(autoincrement())
+
+    date    DateTime
+    sum     Int
+    comment String
+
+    licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
+    licenseFileId Int?
+
+    lessons Lesson[]
+
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([licenseFileId])
+    @@index([createdById])
+}
+
+enum AdminRank {
+    SUPER_ADMIN
+    ADMIN
+    MODERATOR
+    MONITOR
+}
+
+enum LicenseFileStatus {
+    ONGOING
+    REJECTED
+    VALIDATED
+}
+
+enum LessonStatus {
+    RESERVED
+    DONE
+    CANCELLED
+}
+
+enum ExamStatus {
+    PENDING
+    SUCCESS
+    FAILED
+}
+
+enum Grade {
+    TERRIBLE
+    VERY_BAD
+    BAD
+    NO_GRADE
+    OKAY
+    GOOD
+    EXCELLENT
+}
+
+enum Category {
+    A
+    B
+    C
+    D
 }

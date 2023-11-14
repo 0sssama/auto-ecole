@@ -1,19 +1,31 @@
 "use client";
 
-import React from "react";
-import Header from "./_components/header";
-import Sidebar from "./_components/sidebar";
-import { useUser } from "@clerk/nextjs";
-import DashPageError from "./_components/dash-page-error";
-import DashPageLoading from "./_components/dash-page-loading";
+import React, { useEffect } from "react";
+import { useOrganization, useOrganizationList, useUser } from "@clerk/nextjs";
+
+import { DashPageError, DashPageLoading } from "@/components/pages";
+import { Header, Sidebar } from "@/components/sections";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user, isLoaded, isSignedIn } = useUser();
-  const { organization } = user?.organizationMemberships[0] ?? {};
+  const { user, isLoaded: isLoaded1, isSignedIn } = useUser();
+  const { setActive, isLoaded: isLoaded2 } = useOrganizationList();
+  const { organization } = useOrganization();
+
+  const isLoaded = isLoaded1 && isLoaded2;
+
+  useEffect(() => {
+    if (!isLoaded || !isSignedIn || !user || !setActive || organization) return;
+
+    const { organization: userOrg } = user.organizationMemberships[0] ?? {};
+
+    if (!userOrg) return;
+
+    setActive({ organization: userOrg.id });
+  }, [user, isSignedIn, setActive, isLoaded, organization]);
 
   if (!isLoaded || !isSignedIn) return <DashPageLoading />;
 
