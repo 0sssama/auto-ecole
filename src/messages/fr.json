@@ -82,6 +82,13 @@
           "price": "Prix",
           "duration": "Durée (h)",
           "scheduled-date": "Date"
+        },
+        "StudentPayments": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Créé par",
+          "date": "Date"
         }
       }
     },
@@ -139,6 +146,14 @@
             "RESERVED": "Reservé",
             "CANCELLED": "Annulé",
             "DONE": "Terminé"
+          }
+        },
+        "StudentPayments": {
+          "title": "Paiements",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
           }
         }
       }

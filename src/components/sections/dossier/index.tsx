@@ -4,6 +4,7 @@ import InfoImageRow from "./info-image-row";
 import StudentLicenseFilesTable from "./license-file-table";
 import { Separator } from "@/components/ui/separator";
 import StudentLessonsTable from "./lessons-table";
+import StudentPaymentsTable from "./payments-table";
 
 export default async function Dossier({ studentId }: { studentId: number }) {
   const student = await getStudentFolder(studentId);
@@ -17,7 +18,8 @@ export default async function Dossier({ studentId }: { studentId: number }) {
       <StudentLicenseFilesTable studentId={student.id} />
       <Separator className="mb-6 mt-14" />
       <StudentLessonsTable studentId={student.id} />
-      {/* <StudentPaymentsTable /> */}
+      <Separator className="mb-6 mt-14" />
+      <StudentPaymentsTable studentId={student.id} />
     </div>
   );
 }

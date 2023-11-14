@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useOrganization, useOrganizationList, useUser } from "@clerk/nextjs";
+
 import { DashPageError, DashPageLoading } from "@/components/pages";
 import { Header, Sidebar } from "@/components/sections";
 
