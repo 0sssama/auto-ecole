@@ -3,6 +3,7 @@
 import moment from "moment";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import { TooltipConcat } from "@/components/atoms";
 import { ActionsColumn } from "./actions-column";
 import { studentPaymentSchema } from "./schema";
 
@@ -15,7 +16,7 @@ export const columns: ColumnDef<StudentPayment>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentPayments.id" />
     ),
-    cell: ({ row }) => <div>{row.getValue("id")}</div>,
+    cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
   },
@@ -24,37 +25,27 @@ export const columns: ColumnDef<StudentPayment>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentPayments.sum" />
     ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("sum")} DH
-      </div>
-    ),
+    cell: ({ row }) => <>{row.getValue("sum")} DH</>,
   },
   {
     accessorKey: "comment",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentPayments.comment" />
     ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("comment") || "-"}
-      </div>
-    ),
+    cell: ({ row }) => <TooltipConcat text={row.getValue("comment") || "-"} />,
   },
   {
     accessorKey: "admin-name",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentPayment.admin-name"
+        title="StudentPayments.admin-name"
       />
     ),
     cell: ({ row }) => {
-      return (
-        <div className="flex w-[100px] items-center">
-          {row.getValue("adminName")}
-        </div>
-      );
+      const studentPayment = studentPaymentSchema.parse(row.original);
+
+      return <TooltipConcat text={studentPayment.adminName} />;
     },
   },
   {
@@ -65,14 +56,7 @@ export const columns: ColumnDef<StudentPayment>[] = [
     cell: ({ row }) => {
       const studentPayment = studentPaymentSchema.parse(row.original);
 
-      return (
-        <div className="flex w-[100px] items-center">
-          {moment(studentPayment.date).fromNow()}
-        </div>
-      );
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return <>{moment(studentPayment.date).fromNow()}</>;
     },
   },
   {

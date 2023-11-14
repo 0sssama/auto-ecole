@@ -14,9 +14,11 @@ datasource db {
 model Admin {
     id Int @id @default(autoincrement())
 
-    username String    @unique
-    clerkId  String    @unique
-    rank     AdminRank
+    username   String    @unique
+    clerkId    String    @unique
+    clerkOrgId String
+    fullName   String
+    rank       AdminRank
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -26,6 +28,7 @@ model Admin {
     lessonsCreated      Lesson[]
 
     monitors Monitor[] // Monitors have accounts that need to be linked to an Admin account
+    Customer Customer[]
 }
 
 model Customer {
@@ -56,10 +59,14 @@ model Customer {
     licenseFiles LicenseFile[]
     lessons      Lesson[]
 
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@index([clerkOrgId])
+    @@index([createdById])
 }
 
 model Monitor {
@@ -73,16 +80,19 @@ model Monitor {
     account   Admin @relation(fields: [accountId], references: [id])
     accountId Int
 
-    createdAt   DateTime      @default(now())
-    updatedAt   DateTime      @updatedAt
-    LicenseFile LicenseFile[]
-    Lesson      Lesson[]
+    licenseFiles LicenseFile[]
+    lessons      Lesson[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([accountId])
 }
 
 model LicenseFile {
     id Int @id @default(autoincrement())
 
-    status   LicenseFileStatus
+    status   LicenseFileStatus @default(ONGOING)
     category Category          @default(B)
     price    Int
 
@@ -102,7 +112,9 @@ model LicenseFile {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([customerId, monitorId, createdById])
+    @@index([monitorId])
+    @@index([customerId])
+    @@index([createdById])
 }
 
 model Exam {
@@ -116,6 +128,8 @@ model Exam {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@index([licenseFileId])
 }
 
 model Lesson {
@@ -140,11 +154,17 @@ model Lesson {
     moniteur   Monitor @relation(fields: [moniteurId], references: [id])
     moniteurId Int
 
-    LicenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
+    licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@index([createdById])
+    @@index([paymentId])
+    @@index([customerId])
+    @@index([moniteurId])
+    @@index([licenseFileId])
 }
 
 model Payment {
@@ -154,7 +174,7 @@ model Payment {
     sum     Int
     comment String
 
-    LicenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
+    licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
 
     lessons Lesson[]
@@ -164,6 +184,9 @@ model Payment {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@index([licenseFileId])
+    @@index([createdById])
 }
 
 enum AdminRank {

@@ -16,7 +16,7 @@ export const columns: ColumnDef<Client>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Students.id" />
     ),
-    cell: ({ row }) => <div>{row.getValue("id")}</div>,
+    cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
   },
@@ -89,11 +89,7 @@ export const columns: ColumnDef<Client>[] = [
     cell: ({ row }) => {
       const client = clientSchema.parse(row.original);
 
-      return (
-        <div className="flex w-[100px] items-center">
-          {moment(client.createdAt).fromNow()}
-        </div>
-      );
+      return <>{moment(client.createdAt).fromNow()}</>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

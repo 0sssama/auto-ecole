@@ -9,7 +9,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ngrok": "ngrok http 3000"
+    "ngrok": "ngrok http 3000",
+    "db-clear": "prisma migrate reset && prisma db push",
+    "seed": "ts-node -O '{\"module\": \"commonjs\"}' prisma/seed.ts",
+    "reseed": "bun db-clear && bun seed"
   },
   "repository": {
     "type": "git",
@@ -32,6 +35,7 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@t3-oss/env-nextjs": "^0.6.1",
     "@tanstack/react-query": "^4.35.3",
     "@tanstack/react-table": "^8.10.7",
@@ -71,6 +75,7 @@
   },
   "devDependencies": {
     "@eslint/create-config": "^0.4.6",
+    "@faker-js/faker": "^8.3.1",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/validator": "^13.11.5",
     "@typescript-eslint/eslint-plugin": "^6.4.0",

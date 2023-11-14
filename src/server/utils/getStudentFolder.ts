@@ -41,14 +41,38 @@ export const getStudentFolder = async (
 
   if (!student) return null;
 
-  const studentClerk = await clerkClient.users.getUser(student.clerkUserId);
+  if (process.env.NODE_ENV === "production") {
+    const studentClerk = await clerkClient.users.getUser(student.clerkUserId);
 
-  if (!studentClerk) return null;
+    if (!studentClerk) return null;
+
+    return {
+      id: student.id,
+
+      profilePictureUrl: studentClerk.hasImage ? studentClerk.imageUrl : null,
+
+      info: {
+        nameFr: `${student.firstNameFr} ${student.lastNameFr}`,
+        nameAr: `${student.lastNameAr} ${student.firstNameAr}`,
+
+        addressFr: student.addressFr,
+        addressAr: student.addressAr,
+
+        professionFr: student.professionFr,
+        professionAr: student.professionAr,
+
+        phone: student.phone,
+        email: student.email,
+        cin: student.cin,
+        birthdate: student.birthdate,
+      },
+    };
+  }
 
   return {
     id: student.id,
 
-    profilePictureUrl: studentClerk.hasImage ? studentClerk.imageUrl : null,
+    profilePictureUrl: null,
 
     info: {
       nameFr: `${student.firstNameFr} ${student.lastNameFr}`,

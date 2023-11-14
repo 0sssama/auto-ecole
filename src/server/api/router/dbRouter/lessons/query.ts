@@ -43,6 +43,7 @@ export const queryRouter = createTRPCRouter({
             moniteur: {
               select: {
                 firstName: true,
+                lastName: true,
               },
             },
           },
@@ -59,7 +60,7 @@ export const queryRouter = createTRPCRouter({
 
       const formattedLessons = studentLessons.map((lesson) => ({
         id: lesson.id,
-        monitorName: lesson.moniteur.firstName,
+        monitorName: `${lesson.moniteur.firstName} ${lesson.moniteur.lastName}`,
         status: lesson.status,
         comment: lesson.comment,
         grade: lesson.grade,

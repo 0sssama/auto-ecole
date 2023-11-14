@@ -13,7 +13,7 @@ export const mutationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.orgId || !ctx.userId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
@@ -39,6 +39,12 @@ export const mutationRouter = createTRPCRouter({
           phone: input.phone,
           cin: input.cin,
           birthdate: input.birthdate,
+
+          createdBy: {
+            connect: {
+              clerkId: ctx.userId,
+            },
+          },
         },
       });
 

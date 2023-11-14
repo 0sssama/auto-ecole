@@ -57,13 +57,13 @@
         "go-to-last-page": "Aller à la dernière page"
       },
       "Header": {
+        "asc": "Croissant",
+        "desc": "Décroissant",
+        "hide": "Masquer",
         "Students": {
           "id": "ID",
           "name": "Nom complet",
           "created-at": "Date ajouté",
-          "asc": "Croissant",
-          "desc": "Décroissant",
-          "hide": "Masquer",
           "status": "Statut du dossier"
         },
         "StudentLicenseFiles": {
@@ -87,7 +87,7 @@
           "id": "ID",
           "sum": "Somme",
           "comment": "Comment.",
-          "admin-name": "Créé par",
+          "admin-name": "Accordé à.",
           "date": "Date"
         }
       }

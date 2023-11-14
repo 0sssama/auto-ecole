@@ -11,6 +11,7 @@ import { studentLessonSchema } from "./schema";
 
 import type { ColumnDef } from "@tanstack/react-table";
 import type { StudentLesson } from "./schema";
+import { TooltipConcat } from "@/components/atoms";
 
 export const columns: ColumnDef<StudentLesson>[] = [
   {
@@ -18,7 +19,7 @@ export const columns: ColumnDef<StudentLesson>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentLessons.id" />
     ),
-    cell: ({ row }) => <div>{row.getValue("id")}</div>,
+    cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
   },
@@ -31,11 +32,9 @@ export const columns: ColumnDef<StudentLesson>[] = [
       />
     ),
     cell: ({ row }) => {
-      return (
-        <div className="flex w-[100px] items-center">
-          {row.getValue("monitorName")}
-        </div>
-      );
+      const studentLesson = studentLessonSchema.parse(row.original);
+
+      return <TooltipConcat text={studentLesson.monitorName} />;
     },
   },
   {
@@ -79,11 +78,7 @@ export const columns: ColumnDef<StudentLesson>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentLessons.comment" />
     ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("comment") || "-"}
-      </div>
-    ),
+    cell: ({ row }) => <TooltipConcat text={row.getValue("comment") || "-"} />,
   },
   {
     accessorKey: "grade",
@@ -122,22 +117,14 @@ export const columns: ColumnDef<StudentLesson>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentLessons.price" />
     ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("price")} DH
-      </div>
-    ),
+    cell: ({ row }) => <>{row.getValue("price")} DH</>,
   },
   {
     accessorKey: "duration",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentLessons.duration" />
     ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("duration")}h
-      </div>
-    ),
+    cell: ({ row }) => <>{row.getValue("duration")}h</>,
   },
   {
     accessorKey: "scheduledDate",
@@ -150,11 +137,7 @@ export const columns: ColumnDef<StudentLesson>[] = [
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
 
-      return (
-        <div className="flex w-[100px] items-center">
-          {moment(studentLesson.scheduledDate).fromNow()}
-        </div>
-      );
+      return <>{moment(studentLesson.scheduledDate).fromNow()}</>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

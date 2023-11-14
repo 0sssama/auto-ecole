@@ -15,7 +15,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="StudentLicenseFiles.id" />
     ),
-    cell: ({ row }) => <div>{row.getValue("id")}</div>,
+    cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
   },
@@ -34,9 +34,9 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <div className="flex w-[100px] items-center">
+        <>
           {t(licenseFile.category)} ({licenseFile.category})
-        </div>
+        </>
       );
     },
   },
@@ -48,11 +48,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
         title="StudentLicenseFiles.price"
       />
     ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("price")} DH
-      </div>
-    ),
+    cell: ({ row }) => <>{row.getValue("price")} DH</>,
   },
   {
     accessorKey: "status",
@@ -99,11 +95,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
     cell: ({ row }) => {
       const licenseFile = licenseFileSchema.parse(row.original);
 
-      return (
-        <div className="flex w-[100px] items-center">
-          {moment(licenseFile.createdAt).fromNow()}
-        </div>
-      );
+      return <>{moment(licenseFile.createdAt).fromNow()}</>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

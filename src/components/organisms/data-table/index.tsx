@@ -35,6 +35,7 @@ function DataTable<TData, TValue>({
   filters,
   error,
   isLoading,
+  filtersAllowed,
 }: TableProps<TData, TValue>) {
   const t = useTranslations("Dashboard.Tables");
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -75,7 +76,7 @@ function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar filters={filters} />
+      <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
       {isLoading && (
         <div className="w-full min-h-[300px] flex items-center justify-center">
           {isLoading && <Spinner size="md" />}
