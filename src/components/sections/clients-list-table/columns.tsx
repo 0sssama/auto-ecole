@@ -26,7 +26,7 @@ export const columns: ColumnDef<Client>[] = [
       <DataTableColumnHeader column={column} title="Students.name" />
     ),
     cell: function Cell({ row }) {
-      const t = useTranslations("Dashboard.Users.ListClientsTable");
+      const t = useTranslations("Dashboard.Users.Students.ListClientsTable");
       const client = clientSchema.parse(row.original);
 
       return (
@@ -54,7 +54,9 @@ export const columns: ColumnDef<Client>[] = [
       <DataTableColumnHeader column={column} title="Students.status" />
     ),
     cell: function Cell({ row }) {
-      const t = useTranslations("Dashboard.Users.ListClientsTable.Status");
+      const t = useTranslations(
+        "Dashboard.Users.Students.ListClientsTable.Status",
+      );
       const client = clientSchema.parse(row.original);
 
       const getChipColor = (): ChipProps["color"] => {

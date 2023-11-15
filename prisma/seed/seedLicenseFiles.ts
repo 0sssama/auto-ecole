@@ -9,14 +9,15 @@ import {
 
 export const seedLicenseFiles = async (
   prisma: PrismaClient,
-  monitorIds: number[],
+  instructorIds: number[],
   studentIds: number[],
   superAdminId: number,
 ) =>
   prisma.$transaction(
     faker.helpers.multiple(
       () => {
-        const monitorId = monitorIds[faker.number.int(monitorIds.length - 1)];
+        const instructorId =
+          instructorIds[faker.number.int(instructorIds.length - 1)];
         const studentId = studentIds[faker.number.int(studentIds.length - 1)];
 
         return prisma.licenseFile.create({
@@ -64,9 +65,9 @@ export const seedLicenseFiles = async (
                     id: studentId,
                   },
                 },
-                moniteur: {
+                instructor: {
                   connect: {
-                    id: monitorId,
+                    id: instructorId,
                   },
                 },
               },
@@ -93,9 +94,9 @@ export const seedLicenseFiles = async (
                 id: studentId,
               },
             },
-            monitor: {
+            instructor: {
               connect: {
-                id: monitorId,
+                id: instructorId,
               },
             },
             createdBy: {

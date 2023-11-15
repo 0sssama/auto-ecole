@@ -10,6 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "ngrok": "ngrok http 3000",
+    "db-push": "prisma db push",
     "db-clear": "prisma migrate reset && prisma db push",
     "seed": "ts-node -O '{\"module\": \"commonjs\"}' prisma/seed.ts",
     "reseed": "bun db-clear && bun seed"

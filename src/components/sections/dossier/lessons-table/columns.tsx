@@ -24,17 +24,17 @@ export const columns: ColumnDef<StudentLesson>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "monitor-name",
+    accessorKey: "instructor-name",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLessons.monitor-name"
+        title="StudentLessons.instructor-name"
       />
     ),
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
 
-      return <TooltipConcat text={studentLesson.monitorName} />;
+      return <TooltipConcat text={studentLesson.instructorName} />;
     },
   },
   {

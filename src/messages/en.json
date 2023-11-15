@@ -40,7 +40,7 @@
     },
     "Student": {
       "Folder": {
-        "title": "Folder"
+        "title": "Student File"
       }
     },
     "Tables": {
@@ -75,13 +75,28 @@
         },
         "StudentLessons": {
           "id": "ID",
-          "monitor-name": "Instructor",
+          "instructor-name": "Instructor",
           "status": "Status",
           "comment": "Comment",
           "grade": "Grade (/100)",
           "price": "Price",
           "duration": "Duration (h)",
           "scheduled-date": "Date"
+        },
+        "StudentPayments": {
+          "id": "ID",
+          "sum": "Payment Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
+        },
+        "Instructors": {
+          "id": "ID",
+          "full-name": "Full Name",
+          "phone": "Phone Number",
+          "license-files-count": "License Files",
+          "lessons-count": "Lessons Done",
+          "date": "Date added"
         }
       }
     },
@@ -140,60 +155,98 @@
             "CANCELLED": "Cancelled",
             "DONE": "Done"
           }
+        },
+        "StudentPayments": {
+          "title": "Payments",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          }
         }
       }
     },
     "Users": {
-      "Header": {
-        "title": "Students",
-        "button": "New student"
-      },
-      "AddNewClientModal": {
-        "title": "Add new client",
-        "subtitle": "Fill in the form below to add a new client.",
-        "button-cancel": "Cancel",
-        "button-submit": "Add Client",
-        "success": "Customer added successfully!",
-        "user-exists": "User already exists!",
-        "error": "An error has occurred. Please try again later.",
-        "AddNewClientForm": {
-          "firstName": "First Name:",
-          "lastName": "Last Name:",
-          "address": "Address:",
-          "profession": "Profession:",
-          "phone": "Phone Number:",
-          "cin": "National ID Number:",
-          "email": "Email:",
-          "birthdate": "Birthdate:"
-        }
-      },
-      "ListClientsTable": {
-        "no-data": "No results found",
-        "archived": "Archived",
-        "new": "New",
-        "Status": {
-          "active": "Active",
-          "rejected": "Rejected",
-          "finished": "Finished",
-          "not-started": "Not started"
+      "Students": {
+        "Header": {
+          "title": "Students",
+          "button": "New student"
         },
-        "Actions": {
-          "open-menu": "Open menu",
-          "view": "View details",
-          "edit": "Edit",
-          "archive": "Archive",
-          "archive-success": "Client archived successfully !",
-          "archive-error": "Error while archiving client. Please try again later.",
-          "unarchive": "Unarchive",
-          "unarchive-success": "Client unarchived successfully !",
-          "unarchive-error": "Error while unarchiving client. Please try again later.",
-          "loading": "Loading..."
+        "AddNewClientModal": {
+          "title": "Add new client",
+          "subtitle": "Fill in the form below to add a new client.",
+          "button-cancel": "Cancel",
+          "button-submit": "Add Client",
+          "success": "Customer added successfully!",
+          "user-exists": "User already exists!",
+          "error": "An error has occurred. Please try again later.",
+          "AddNewClientForm": {
+            "firstName": "First Name:",
+            "lastName": "Last Name:",
+            "address": "Address:",
+            "profession": "Profession:",
+            "phone": "Phone Number:",
+            "cin": "National ID Number:",
+            "email": "Email:",
+            "birthdate": "Birthdate:"
+          }
+        },
+        "ListClientsTable": {
+          "no-data": "No results found",
+          "archived": "Archived",
+          "new": "New",
+          "Status": {
+            "active": "Active",
+            "rejected": "Rejected",
+            "finished": "Finished",
+            "not-started": "Not started"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit",
+            "archive": "Archive",
+            "archive-success": "Client archived successfully !",
+            "archive-error": "Error while archiving client. Please try again later.",
+            "unarchive": "Unarchive",
+            "unarchive-success": "Client unarchived successfully !",
+            "unarchive-error": "Error while unarchiving client. Please try again later.",
+            "loading": "Loading..."
+          }
+        },
+        "Folder": {
+          "NotFound": {
+            "title": "Folder not found",
+            "subtitle": "The folder you are looking for does not exist."
+          }
         }
       },
-      "Folder": {
-        "NotFound": {
-          "title": "Folder not found",
-          "subtitle": "The folder you are looking for does not exist."
+      "Instructors": {
+        "Header": {
+          "title": "Instructors",
+          "button": "New Instructor"
+        },
+        "AddNewInstructorModal": {
+          "title": "Add new instructor",
+          "subtitle": "Fill in the form below to add a new instructor.",
+          "button-cancel": "Cancel",
+          "button-submit": "Add Instructor",
+          "success": "Instructor added successfully!",
+          "user-exists": "User already exists!",
+          "error": "An error has occurred. Please try again later.",
+          "AddNewInstructorForm": {
+            "firstName": "First Name:",
+            "lastName": "Last Name:",
+            "phone": "Phone Number:"
+          }
+        },
+        "ListIntructorsTable": {
+          "no-data": "No results found",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "loading": "Loading..."
+          }
         }
       }
     },

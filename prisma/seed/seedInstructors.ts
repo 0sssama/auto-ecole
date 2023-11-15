@@ -2,17 +2,17 @@ import { faker } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
 import { clerkOrgId } from "../seed";
 
-export const seedMonitors = async (prisma: PrismaClient) =>
+export const seedInstructors = async (prisma: PrismaClient) =>
   prisma.$transaction(
     faker.helpers.multiple(
       () => {
-        const monitorFirstName = faker.person.firstName();
-        const monitorLastName = faker.person.lastName();
+        const instructorFirstName = faker.person.firstName();
+        const instructorLastName = faker.person.lastName();
 
-        return prisma.monitor.create({
+        return prisma.instructor.create({
           data: {
-            firstName: monitorFirstName,
-            lastName: monitorLastName,
+            firstName: instructorFirstName,
+            lastName: instructorLastName,
 
             phone: faker.phone.number(),
 
@@ -21,8 +21,8 @@ export const seedMonitors = async (prisma: PrismaClient) =>
                 username: faker.internet.userName(),
                 clerkId: faker.string.uuid(),
                 clerkOrgId,
-                fullName: `${monitorFirstName} ${monitorLastName}`,
-                rank: "MONITOR",
+                fullName: `${instructorFirstName} ${instructorLastName}`,
+                rank: "INSTRUCTOR",
               },
             },
           },

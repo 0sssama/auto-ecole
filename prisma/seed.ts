@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 import { seedSuperAdmin } from "./seed/seedSuperAdmin";
 import { seedStudents } from "./seed/seedStudents";
-import { seedMonitors } from "./seed/seedMonitors";
+import { seedInstructors } from "./seed/seedInstructors";
 import { seedLicenseFiles } from "./seed/seedLicenseFiles";
 
 export const clerkOrgId = "org_2Vr89LWYt1FRrhR7ALcBq5HqYhC";
@@ -33,13 +33,13 @@ async function main() {
     console.timeEnd("Seeding Students");
 
     console.time("Seeding Instructors");
-    const monitors = await seedMonitors(prisma);
+    const instructors = await seedInstructors(prisma);
     console.timeEnd("Seeding Instructors");
 
     console.time("Seeding LicenseFiles");
     await seedLicenseFiles(
       prisma,
-      monitors.map((monitor) => monitor.id),
+      instructors.map((instructor) => instructor.id),
       students.map((student) => student.id),
       superAdmin.id,
     );

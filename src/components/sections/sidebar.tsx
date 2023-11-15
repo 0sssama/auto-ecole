@@ -140,7 +140,7 @@ export const getSidebarLinks = (
         },
         {
           name: t("monitors"),
-          href: "/dash/admin/monitors",
+          href: "/dash/admin/instructors",
           icon: <Users2 {...sidebarIconProps} />,
         },
         {

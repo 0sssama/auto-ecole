@@ -40,6 +40,6 @@ export const seedStudents = async (
             },
           },
         }),
-      { count: 100 },
+      { count: 80 },
     ),
   );

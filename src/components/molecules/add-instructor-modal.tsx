@@ -8,47 +8,39 @@ import {
 } from "@nextui-org/modal";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-// import { useOrganization } from "@clerk/nextjs";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { AddNewClientForm } from "@/components/organisms";
+import { AddNewInstructorForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { ClientFormSchema } from "@/schemas/client-form-schema";
+import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
 import { toast } from "sonner";
 import { useState } from "react";
 
-function AddClientModal({
+function AddInstructorModal({
   isOpen,
   close,
 }: {
   isOpen: boolean;
   close: () => void;
 }) {
-  const t = useTranslations("Dashboard.Users.Students.AddNewClientModal");
+  const t = useTranslations(
+    "Dashboard.Users.Instructors.AddNewInstructorModal",
+  );
 
   const closeModal = () => {
     form.reset();
     close();
   };
 
-  const form = useForm<z.infer<typeof ClientFormSchema>>({
-    resolver: zodResolver(ClientFormSchema),
+  const form = useForm<z.infer<typeof InstructorFormSchema>>({
+    resolver: zodResolver(InstructorFormSchema),
     defaultValues: {
-      firstNameAr: "",
-      firstNameFr: "",
-      lastNameAr: "",
-      lastNameFr: "",
-      addressAr: "",
-      addressFr: "",
-      professionAr: "",
-      professionFr: "",
+      firstName: "",
+      lastName: "",
       phone: "",
-      cin: "",
-      email: "",
-      birthdate: new Date("08-02-2002"),
     },
   });
 
@@ -57,17 +49,17 @@ function AddClientModal({
   const [userClerkId, setUserClerkId] = useState<string | null>(null);
 
   const {
-    mutate: addCustomerToDb,
+    mutate: addInstructorToDb,
     isLoading: dbOperationLoading,
     error: dbOperationError,
-  } = api.db.customers.mutation.add.useMutation({
+  } = api.db.instructors.mutation.add.useMutation({
     onSuccess: () => {
       //   void ctx.users.getPage.invalidate();
       toast.success(t("success"));
       closeModal();
     },
     onError: (error) => {
-      console.log("CLEANING UP USER FROM CLERK, FAILURE TO ADD TO DB");
+      console.log("CLEANING UP INSTRUCTOR FROM CLERK, FAILURE TO ADD TO DB");
       console.error(error);
 
       if (!userClerkId) return;
@@ -79,28 +71,26 @@ function AddClientModal({
   });
 
   const {
-    mutate: addCustomerToClerk,
+    mutate: addInstructorToClerk,
     isLoading: clerkOperationLoading,
     error: clerkOperationError,
-  } = api.clerk.users.mutation.add.useMutation({
+  } = api.clerk.users.mutation.addInstructor.useMutation({
     onSuccess: (data) => {
       //   void ctx.users.getPage.invalidate();
       setUserClerkId(data.clerkId);
 
-      addCustomerToDb({
+      addInstructorToDb({
         ...form.getValues(),
         clerkId: data.clerkId,
       });
     },
   });
 
-  const onSubmit = (values: z.infer<typeof ClientFormSchema>) =>
-    addCustomerToClerk({
-      emailAddress: values.email,
-      firstName: values.firstNameFr,
-      lastName: values.lastNameFr,
+  const onSubmit = (values: z.infer<typeof InstructorFormSchema>) =>
+    addInstructorToClerk({
+      firstName: values.firstName,
+      lastName: values.lastName,
       phoneNumber: values.phone,
-      cin: values.cin,
     });
 
   if (!isOpen) return null;
@@ -126,7 +116,7 @@ function AddClientModal({
               </p>
             </div>
           )}
-          <AddNewClientForm
+          <AddNewInstructorForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
             className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6"
@@ -153,4 +143,4 @@ function AddClientModal({
   );
 }
 
-export default AddClientModal;
+export default AddInstructorModal;

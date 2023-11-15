@@ -92,7 +92,7 @@ export default function AddNewClientForm({
   className?: string;
 }) {
   const t = useTranslations(
-    "Dashboard.Users.AddNewClientModal.AddNewClientForm",
+    "Dashboard.Users.Students.AddNewClientModal.AddNewClientForm",
   );
 
   return (
