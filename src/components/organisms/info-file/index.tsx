@@ -22,7 +22,12 @@ export default function InfoFile({ data, type }: InfoFileProps) {
         fullName={data.info.fullName}
         type={type}
       />
-      <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+      <div
+        className="grid w-full grid-cols-1 gap-4 md:grid-cols-2"
+        style={{
+          gridTemplateRows: "auto 1fr",
+        }}
+      >
         {Object.keys(data.info).map((key) => (
           <DossierInfo
             key={key}

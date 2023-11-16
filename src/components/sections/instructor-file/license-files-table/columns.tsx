@@ -1,37 +1,60 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { LicenseFile, licenseFileSchema } from "./schema";
+import { InstructorLicenseFile, instructorLicenseFileSchema } from "./schema";
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { useTranslations } from "next-intl";
 import { Chip, ChipProps } from "@nextui-org/chip";
 import { LicenseFileStatus } from "@prisma/client";
 import { ActionsColumn } from "./actions-column";
 import moment from "moment";
+import { TooltipConcat } from "@/components/atoms";
+import Link from "next/link";
 
-export const columns: ColumnDef<LicenseFile>[] = [
+export const columns: ColumnDef<InstructorLicenseFile>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLicenseFiles.id" />
+      <DataTableColumnHeader
+        column={column}
+        title="InstructorLicenseFiles.id"
+      />
     ),
     cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
   },
   {
+    accessorKey: "student-name",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="InstructorLicenseFiles.student-name"
+      />
+    ),
+    cell: ({ row }) => {
+      const licenseFile = instructorLicenseFileSchema.parse(row.original);
+
+      return (
+        <Link href={`/dash/admin/students?studentId=${licenseFile.studentId}`}>
+          <TooltipConcat text={licenseFile.studentName} />
+        </Link>
+      );
+    },
+  },
+  {
     accessorKey: "category",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLicenseFiles.category"
+        title="InstructorLicenseFiles.category"
       />
     ),
     cell: function Cell({ row }) {
       const t = useTranslations(
-        "Dashboard.Dossier.Tables.StudentLicenseFiles.Category",
+        "Dashboard.Dossier.Tables.InstructorLicenseFiles.Category",
       );
-      const licenseFile = licenseFileSchema.parse(row.original);
+      const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
         <>
@@ -45,7 +68,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLicenseFiles.price"
+        title="InstructorLicenseFiles.price"
       />
     ),
     cell: ({ row }) => <>{row.getValue("price")} DH</>,
@@ -55,14 +78,14 @@ export const columns: ColumnDef<LicenseFile>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLicenseFiles.status"
+        title="InstructorLicenseFiles.status"
       />
     ),
     cell: function Cell({ row }) {
       const t = useTranslations(
-        "Dashboard.Dossier.Tables.StudentLicenseFiles.Status",
+        "Dashboard.Dossier.Tables.InstructorLicenseFiles.Status",
       );
-      const licenseFile = licenseFileSchema.parse(row.original);
+      const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       const getChipColor = (): ChipProps["color"] => {
         switch (licenseFile.status) {
@@ -91,11 +114,11 @@ export const columns: ColumnDef<LicenseFile>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLicenseFiles.created-at"
+        title="InstructorLicenseFiles.created-at"
       />
     ),
     cell: ({ row }) => {
-      const licenseFile = licenseFileSchema.parse(row.original);
+      const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return <>{moment(licenseFile.createdAt).fromNow()}</>;
     },

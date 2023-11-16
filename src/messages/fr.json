@@ -97,6 +97,14 @@
           "license-files-count": "Dossiers de permis",
           "lessons-count": "Leçons",
           "date": "Date ajouté"
+        },
+        "InstructorLicenseFiles": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "category": "Type de permis",
+          "price": "Prix agréé",
+          "status": "Status",
+          "created-at": "Date créé"
         }
       }
     },
@@ -137,7 +145,7 @@
         "instructor-cin": "Copie CIN"
       },
       "Tables": {
-        "LicenseFiles": {
+        "StudentLicenseFiles": {
           "title": "Dossiers de permis",
           "Status": {
             "ONGOING": "En cours",
@@ -175,6 +183,25 @@
             "open-menu": "Ouvrir le menu",
             "view": "Voir dossier",
             "edit": "Modifier"
+          }
+        },
+        "InstructorLicenseFiles": {
+          "title": "Dossiers de permis",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
           }
         }
       }

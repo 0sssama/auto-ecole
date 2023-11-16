@@ -10,17 +10,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { licenseFileSchema } from "./schema";
+import { instructorLicenseFileSchema } from "./schema";
 
 import type { ActionsColumnProps } from "./types";
 import Link from "next/link";
 
 export function ActionsColumn({ row }: ActionsColumnProps) {
   const t = useTranslations(
-    "Dashboard.Dossier.Tables.StudentLicenseFiles.Actions",
+    "Dashboard.Dossier.Tables.InstructorLicenseFiles.Actions",
   );
 
-  const licenseFile = licenseFileSchema.parse(row.original);
+  const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
   return (
     <DropdownMenu>

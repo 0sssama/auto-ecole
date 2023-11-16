@@ -7,15 +7,15 @@ import { Paginated } from "@/components/organisms/data-table/types";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { LicenseFile } from "./schema";
+import { InstructorLicenseFile } from "./schema";
 import { columns } from "./columns";
 
-import type { StudentLicenseFilesTableProps } from "./types";
+import type { InstructorLicenseFilesTableProps } from "./types";
 
-export default function StudentLicenseFilesTable({
-  studentId,
-}: StudentLicenseFilesTableProps) {
-  const t = useTranslations("Dashboard.Dossier.Tables.StudentLicenseFiles");
+export default function InstructorLicenseFilesTable({
+  instructorId,
+}: InstructorLicenseFilesTableProps) {
+  const t = useTranslations("Dashboard.Dossier.Tables.InstructorLicenseFiles");
 
   const pagination = usePagination({
     pageIndex: 0,
@@ -26,8 +26,11 @@ export default function StudentLicenseFilesTable({
   const filters = useTableFilters();
 
   const { data, isLoading, error } =
-    api.db.licenseFiles.query.listByStudentId.useQuery<Paginated<LicenseFile>>({
-      studentId,
+    api.db.licenseFiles.query.listByInstructorId.useQuery<
+      Paginated<InstructorLicenseFile>
+    >({
+      instructorId,
+
       pageIndex: pagination.get.pageIndex,
       pageSize: pagination.get.pageSize,
       filters: filters.get,

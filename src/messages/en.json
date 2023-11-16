@@ -97,6 +97,14 @@
           "license-files-count": "License Files",
           "lessons-count": "Lessons Done",
           "date": "Date added"
+        },
+        "InstructorLicenseFiles": {
+          "id": "ID",
+          "student-name": "Student Name",
+          "category": "License Category",
+          "price": "Price agreed",
+          "status": "Status",
+          "created-at": "Date created"
         }
       }
     },
@@ -137,7 +145,7 @@
         "instructor-cin": "Instructor CIN"
       },
       "Tables": {
-        "LicenseFiles": {
+        "StudentLicenseFiles": {
           "title": "License Files",
           "Status": {
             "ONGOING": "Ongoing",
@@ -175,6 +183,25 @@
             "open-menu": "Open menu",
             "view": "View details",
             "edit": "Edit"
+          }
+        },
+        "InstructorLicenseFiles": {
+          "title": "License Files",
+          "Status": {
+            "ONGOING": "Ongoing",
+            "REJECTED": "Rejected",
+            "VALIDATED": "Validated"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Category": {
+            "A": "Motorcycles",
+            "B": "Cars",
+            "C": "Trucks",
+            "D": "Buses"
           }
         }
       }
