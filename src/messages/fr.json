@@ -19,16 +19,16 @@
     },
     "Sidebar": {
       "users": "Personnes",
-      "clients": "Clients",
+      "clients": "Étudiants",
       "monitors": "Moniteurs",
-      "editors": "Editeurs",
+      "editors": "Modérateurs",
 
       "folders": "Dossiers",
       "license-files": "Dossiers de permis",
-      "lessons": "Leçons",
+      "lessons": "Leçons et examens",
 
-      "payment": "Payment",
-      "financial-overview": "Financial Overview",
+      "payment": "Paiements",
+      "financial-overview": "Finance",
 
       "entities": "Entités",
       "cars": "Voitures",
@@ -75,7 +75,7 @@
         },
         "StudentLessons": {
           "id": "ID",
-          "monitor-name": "Moniteur",
+          "instructor-name": "Moniteur",
           "status": "Status",
           "comment": "Comment.",
           "grade": "Note (/100)",
@@ -89,6 +89,14 @@
           "comment": "Comment.",
           "admin-name": "Accordé à.",
           "date": "Date"
+        },
+        "Instructors": {
+          "id": "ID",
+          "full-name": "Nom Complet",
+          "phone": "Téléphone",
+          "license-files-count": "Dossiers de permis",
+          "lessons-count": "Leçons",
+          "date": "Date ajouté"
         }
       }
     },
@@ -159,50 +167,81 @@
       }
     },
     "Users": {
-      "Header": {
-        "title": "Clients",
-        "button": "Nouveau client"
-      },
-      "AddNewClientModal": {
-        "title": "Ajouter un Nouveau Client",
-        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau client",
-        "button-cancel": "Annuler",
-        "button-submit": "Ajouter Client",
-        "success": "Client ajouté avec succès !",
-        "user-exists": "Un utilisateur avec le même email existe déjà !",
-        "error": "Erreur lors de l'ajout du client. Veuillez réessayer plus tard.",
-        "AddNewClientForm": {
-          "firstName": "Prénom:",
-          "lastName": "Nom:",
-          "address": "Addresse:",
-          "profession": "Profession:",
-          "phone": "Téléphone:",
-          "cin": "N° CIN:",
-          "email": "E-mail:",
-          "birthdate": "Date de naissance:"
+      "Students": {
+        "Header": {
+          "title": "Clients",
+          "button": "Nouveau client"
+        },
+        "AddNewClientModal": {
+          "title": "Ajouter un Nouveau Client",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau client",
+          "button-cancel": "Annuler",
+          "button-submit": "Ajouter Client",
+          "success": "Client ajouté avec succès !",
+          "user-exists": "Un utilisateur avec le même email existe déjà !",
+          "error": "Erreur lors de l'ajout du client. Veuillez réessayer plus tard.",
+          "AddNewClientForm": {
+            "firstName": "Prénom:",
+            "lastName": "Nom:",
+            "address": "Addresse:",
+            "profession": "Profession:",
+            "phone": "Téléphone:",
+            "cin": "N° CIN:",
+            "email": "E-mail:",
+            "birthdate": "Date de naissance:"
+          }
+        },
+        "ListClientsTable": {
+          "no-data": "Aucun client trouvé",
+          "archived": "Archivé",
+          "new": "Nouveau",
+          "Status": {
+            "active": "Actif",
+            "rejected": "Rejeté",
+            "finished": "Terminé",
+            "not-started": "Non commencé"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier",
+            "archive": "Archiver",
+            "archive-success": "Client archivé avec succès !",
+            "archive-error": "Erreur lors de l'archivage du client. Veuillez réessayer plus tard.",
+            "unarchive": "Désarchiver",
+            "unarchive-success": "Client désarchivé avec succès !",
+            "unarchive-error": "Erreur lors du désarchivage du client. Veuillez réessayer plus tard.",
+            "loading": "Chargement..."
+          }
         }
       },
-      "ListClientsTable": {
-        "no-data": "Aucun client trouvé",
-        "archived": "Archivé",
-        "new": "Nouveau",
-        "Status": {
-          "active": "Actif",
-          "rejected": "Rejeté",
-          "finished": "Terminé",
-          "not-started": "Non commencé"
+      "Instructors": {
+        "Header": {
+          "title": "Moniteurs",
+          "button": "Nouveau moniteur"
         },
-        "Actions": {
-          "open-menu": "Ouvrir le menu",
-          "view": "Voir dossier",
-          "edit": "Modifier",
-          "archive": "Archiver",
-          "archive-success": "Client archivé avec succès !",
-          "archive-error": "Erreur lors de l'archivage du client. Veuillez réessayer plus tard.",
-          "unarchive": "Désarchiver",
-          "unarchive-success": "Client désarchivé avec succès !",
-          "unarchive-error": "Erreur lors du désarchivage du client. Veuillez réessayer plus tard.",
-          "loading": "Chargement..."
+        "AddNewInstructorModal": {
+          "title": "Ajouter un Nouveau Moniteur",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau moniteur",
+          "button-cancel": "Annuler",
+          "button-submit": "Ajouter Moniteur",
+          "success": "Moniteur ajouté avec succès !",
+          "user-exists": "Un utilisateur avec le même email existe déjà !",
+          "error": "Erreur lors de l'ajout du moniteur. Veuillez réessayer plus tard.",
+          "AddNewInstructorForm": {
+            "firstName": "Prénom:",
+            "lastName": "Nom:",
+            "phone": "Téléphone:"
+          }
+        },
+        "ListIntructorsTable": {
+          "no-data": "Aucun moniteur trouvé",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier",
+            "loading": "Chargement..."
+          }
         }
       },
       "Folder": {

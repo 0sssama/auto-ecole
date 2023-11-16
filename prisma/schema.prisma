@@ -27,8 +27,8 @@ model Admin {
     paymentsCreated     Payment[]
     lessonsCreated      Lesson[]
 
-    monitors Monitor[] // Monitors have accounts that need to be linked to an Admin account
-    Customer Customer[]
+    instructors Instructor[] // Instructors have accounts that need to be linked to an Admin account
+    customer    Customer[]
 }
 
 model Customer {
@@ -69,7 +69,7 @@ model Customer {
     @@index([createdById])
 }
 
-model Monitor {
+model Instructor {
     id Int @id @default(autoincrement())
 
     firstName String
@@ -103,8 +103,8 @@ model LicenseFile {
     customer   Customer @relation(fields: [customerId], references: [id])
     customerId Int
 
-    monitor   Monitor @relation(fields: [monitorId], references: [id])
-    monitorId Int
+    instructor   Instructor @relation(fields: [instructorId], references: [id])
+    instructorId Int
 
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int
@@ -112,7 +112,7 @@ model LicenseFile {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([monitorId])
+    @@index([instructorId])
     @@index([customerId])
     @@index([createdById])
 }
@@ -151,8 +151,8 @@ model Lesson {
     customer   Customer @relation(fields: [customerId], references: [id])
     customerId Int
 
-    moniteur   Monitor @relation(fields: [moniteurId], references: [id])
-    moniteurId Int
+    instructor   Instructor @relation(fields: [instructorId], references: [id])
+    instructorId Int
 
     licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
@@ -163,7 +163,7 @@ model Lesson {
     @@index([createdById])
     @@index([paymentId])
     @@index([customerId])
-    @@index([moniteurId])
+    @@index([instructorId])
     @@index([licenseFileId])
 }
 
@@ -193,7 +193,7 @@ enum AdminRank {
     SUPER_ADMIN
     ADMIN
     MODERATOR
-    MONITOR
+    INSTRUCTOR
 }
 
 enum LicenseFileStatus {

@@ -3,7 +3,7 @@ import { LessonStatus } from "@prisma/client";
 
 export type StudentLesson = {
   id: number;
-  monitorName: string;
+  instructorName: string;
   status: LessonStatus;
   comment: string;
   grade: number;
@@ -14,7 +14,7 @@ export type StudentLesson = {
 
 export const studentLessonSchema: z.ZodType<StudentLesson> = z.object({
   id: z.number(),
-  monitorName: z.string(),
+  instructorName: z.string(),
   status: z.nativeEnum(LessonStatus),
   comment: z.string(),
   grade: z.number(),
