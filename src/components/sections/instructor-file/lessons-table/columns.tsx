@@ -8,38 +8,38 @@ import { useTranslations } from "next-intl";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { ActionsColumn } from "./actions-column";
-import { studentLessonSchema } from "./schema";
+import { instructorLessonSchema } from "./schema";
 import { TooltipConcat } from "@/components/atoms";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import type { StudentLesson } from "./schema";
+import type { InstructorLesson } from "./schema";
 
-export const columns: ColumnDef<StudentLesson>[] = [
+export const columns: ColumnDef<InstructorLesson>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.id" />
+      <DataTableColumnHeader column={column} title="InstructorLessons.id" />
     ),
     cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "instructor-name",
+    accessorKey: "student-name",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLessons.instructor-name"
+        title="InstructorLessons.student-name"
       />
     ),
     cell: ({ row }) => {
-      const studentLesson = studentLessonSchema.parse(row.original);
+      const instructorLesson = instructorLessonSchema.parse(row.original);
 
       return (
         <Link
-          href={`/dash/admin/instructors?instructorId=${studentLesson.instructorId}`}
+          href={`/dash/admin/students?studentId=${instructorLesson.studentId}`}
         >
-          <TooltipConcat text={studentLesson.instructorName} />
+          <TooltipConcat text={instructorLesson.studentName} />
         </Link>
       );
     },
@@ -47,16 +47,16 @@ export const columns: ColumnDef<StudentLesson>[] = [
   {
     accessorKey: "status",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.status" />
+      <DataTableColumnHeader column={column} title="InstructorLessons.status" />
     ),
     cell: function Cell({ row }) {
       const t = useTranslations(
-        "Dashboard.Dossier.Tables.StudentLessons.Status",
+        "Dashboard.Dossier.Tables.InstructorLessons.Status",
       );
-      const studentLesson = studentLessonSchema.parse(row.original);
+      const instructorLesson = instructorLessonSchema.parse(row.original);
 
       const getChipColor = (): ChipProps["color"] => {
-        switch (studentLesson.status) {
+        switch (instructorLesson.status) {
           case LessonStatus.RESERVED:
             return "secondary";
           case LessonStatus.CANCELLED:
@@ -71,7 +71,7 @@ export const columns: ColumnDef<StudentLesson>[] = [
       return (
         <Chip color={getChipColor()} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
-            {t(studentLesson.status)?.toUpperCase()}
+            {t(instructorLesson.status)?.toUpperCase()}
           </span>
         </Chip>
       );
@@ -80,37 +80,40 @@ export const columns: ColumnDef<StudentLesson>[] = [
   {
     accessorKey: "comment",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.comment" />
+      <DataTableColumnHeader
+        column={column}
+        title="InstructorLessons.comment"
+      />
     ),
     cell: ({ row }) => <TooltipConcat text={row.getValue("comment") || "-"} />,
   },
   {
     accessorKey: "grade",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.grade" />
+      <DataTableColumnHeader column={column} title="InstructorLessons.grade" />
     ),
     cell: ({ row }) => {
-      const studentLesson = studentLessonSchema.parse(row.original);
+      const instructorLesson = instructorLessonSchema.parse(row.original);
 
       const getChipColor = (): ChipProps["color"] => {
         switch (true) {
-          case studentLesson.grade < 30:
+          case instructorLesson.grade < 30:
             return "danger";
-          case studentLesson.grade >= 30 && studentLesson.grade < 60:
+          case instructorLesson.grade >= 30 && instructorLesson.grade < 60:
             return "primary";
-          case studentLesson.grade >= 60:
+          case instructorLesson.grade >= 60:
             return "success";
           default:
             return "primary";
         }
       };
 
-      if (studentLesson.grade === -1) return <>-</>;
+      if (instructorLesson.grade === -1) return <>-</>;
 
       return (
         <Chip color={getChipColor()} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
-            {studentLesson.grade}
+            {instructorLesson.grade}
           </span>
         </Chip>
       );
@@ -119,14 +122,17 @@ export const columns: ColumnDef<StudentLesson>[] = [
   {
     accessorKey: "price",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.price" />
+      <DataTableColumnHeader column={column} title="InstructorLessons.price" />
     ),
     cell: ({ row }) => <>{row.getValue("price")} DH</>,
   },
   {
     accessorKey: "duration",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.duration" />
+      <DataTableColumnHeader
+        column={column}
+        title="InstructorLessons.duration"
+      />
     ),
     cell: ({ row }) => <>{row.getValue("duration")}h</>,
   },
@@ -135,13 +141,13 @@ export const columns: ColumnDef<StudentLesson>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLessons.scheduled-date"
+        title="InstructorLessons.scheduled-date"
       />
     ),
     cell: ({ row }) => {
-      const studentLesson = studentLessonSchema.parse(row.original);
+      const instructorLesson = instructorLessonSchema.parse(row.original);
 
-      return <>{moment(studentLesson.scheduledDate).fromNow()}</>;
+      return <>{moment(instructorLesson.scheduledDate).fromNow()}</>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

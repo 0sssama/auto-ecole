@@ -7,9 +7,9 @@ import { Paginated } from "@/components/organisms/data-table/types";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { LicenseFile } from "./schema";
 import { columns } from "./columns";
 
+import type { StudentLicenseFile } from "./schema";
 import type { StudentLicenseFilesTableProps } from "./types";
 
 export default function StudentLicenseFilesTable({
@@ -26,7 +26,9 @@ export default function StudentLicenseFilesTable({
   const filters = useTableFilters();
 
   const { data, isLoading, error } =
-    api.db.licenseFiles.query.listByStudentId.useQuery<Paginated<LicenseFile>>({
+    api.db.licenseFiles.query.listByStudentId.useQuery<
+      Paginated<StudentLicenseFile>
+    >({
       studentId,
       pageIndex: pagination.get.pageIndex,
       pageSize: pagination.get.pageSize,

@@ -1,15 +1,20 @@
 "use client";
 
+import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import { LicenseFile, licenseFileSchema } from "./schema";
-import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import moment from "moment";
 import { useTranslations } from "next-intl";
 import { Chip, ChipProps } from "@nextui-org/chip";
 import { LicenseFileStatus } from "@prisma/client";
-import { ActionsColumn } from "./actions-column";
-import moment from "moment";
 
-export const columns: ColumnDef<LicenseFile>[] = [
+import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import { ActionsColumn } from "./actions-column";
+import { TooltipConcat } from "@/components/atoms";
+import { licenseFileSchema } from "./schema";
+
+import type { StudentLicenseFile } from "./schema";
+
+export const columns: ColumnDef<StudentLicenseFile>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
@@ -18,6 +23,26 @@ export const columns: ColumnDef<LicenseFile>[] = [
     cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
+  },
+  {
+    accessorKey: "instructor-name",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="StudentLessons.instructor-name"
+      />
+    ),
+    cell: ({ row }) => {
+      const studentLesson = licenseFileSchema.parse(row.original);
+
+      return (
+        <Link
+          href={`/dash/admin/instructors?instructorId=${studentLesson.instructorId}`}
+        >
+          <TooltipConcat text={studentLesson.instructorName} />
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "category",

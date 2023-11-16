@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { LessonStatus } from "@prisma/client";
 
-export type StudentLesson = {
+export type InstructorLesson = {
   id: number;
-  instructorName: string;
-  instructorId: number;
+  studentId: number;
+  studentName: string;
   status: LessonStatus;
   comment: string;
   grade: number;
@@ -13,10 +13,10 @@ export type StudentLesson = {
   scheduledDate: Date;
 };
 
-export const studentLessonSchema: z.ZodType<StudentLesson> = z.object({
+export const instructorLessonSchema: z.ZodType<InstructorLesson> = z.object({
   id: z.number(),
-  instructorName: z.string(),
-  instructorId: z.number(),
+  studentId: z.number(),
+  studentName: z.string(),
   status: z.nativeEnum(LessonStatus),
   comment: z.string(),
   grade: z.number(),

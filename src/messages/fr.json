@@ -105,6 +105,16 @@
           "price": "Prix agréé",
           "status": "Status",
           "created-at": "Date créé"
+        },
+        "InstructorLessons": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "status": "Status",
+          "comment": "Comment.",
+          "grade": "Note (/100)",
+          "price": "Prix",
+          "duration": "Durée (h)",
+          "scheduled-date": "Date"
         }
       }
     },
@@ -202,6 +212,19 @@
             "B": "Voitures",
             "C": "Camions",
             "D": "Bus"
+          }
+        },
+        "InstructorLessons": {
+          "title": "Leçons",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Status": {
+            "RESERVED": "Reservé",
+            "CANCELLED": "Annulé",
+            "DONE": "Terminé"
           }
         }
       }

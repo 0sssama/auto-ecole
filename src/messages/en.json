@@ -105,6 +105,16 @@
           "price": "Price agreed",
           "status": "Status",
           "created-at": "Date created"
+        },
+        "InstructorLessons": {
+          "id": "ID",
+          "student-name": "Student",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
         }
       }
     },
@@ -202,6 +212,19 @@
             "B": "Cars",
             "C": "Trucks",
             "D": "Buses"
+          }
+        },
+        "InstructorLessons": {
+          "title": "Lessons",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Status": {
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
           }
         }
       }

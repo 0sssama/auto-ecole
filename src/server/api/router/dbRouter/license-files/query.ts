@@ -5,6 +5,7 @@ import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
 import { InstructorLicenseFile } from "@/components/sections/instructor-file/license-files-table/schema";
+import { StudentLicenseFile } from "@/components/sections/student-file/license-file-table/schema";
 
 export const queryRouter = createTRPCRouter({
   listByStudentId: orgAdminOnlyPrecedure
@@ -40,6 +41,13 @@ export const queryRouter = createTRPCRouter({
               createdAt: true,
               category: true,
               price: true,
+              instructor: {
+                select: {
+                  id: true,
+                  firstName: true,
+                  lastName: true,
+                },
+              },
             },
             skip: input.pageIndex * input.pageSize,
             take: input.pageSize,
@@ -53,8 +61,19 @@ export const queryRouter = createTRPCRouter({
         ],
       );
 
+      const formattedStudentLicenseFiles: StudentLicenseFile[] =
+        studentLicenseFiles.map((licenseFile) => ({
+          id: licenseFile.id,
+          instructorId: licenseFile.instructor.id,
+          instructorName: `${licenseFile.instructor.firstName} ${licenseFile.instructor.lastName}`,
+          category: licenseFile.category,
+          price: licenseFile.price,
+          status: licenseFile.status,
+          createdAt: licenseFile.createdAt,
+        }));
+
       return {
-        data: studentLicenseFiles,
+        data: formattedStudentLicenseFiles,
         pageCount: countPages(totalStudentLicenseFiles, input.pageSize),
       };
     }),

@@ -10,15 +10,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { studentLessonSchema } from "./schema";
+import { instructorLessonSchema } from "./schema";
 
 import type { ActionsColumnProps } from "./types";
 import Link from "next/link";
 
 export function ActionsColumn({ row }: ActionsColumnProps) {
-  const t = useTranslations("Dashboard.Dossier.Tables.StudentLessons.Actions");
+  const t = useTranslations(
+    "Dashboard.Dossier.Tables.InstructorLessons.Actions",
+  );
 
-  const studentLesson = studentLessonSchema.parse(row.original);
+  const instructorLesson = instructorLessonSchema.parse(row.original);
 
   return (
     <DropdownMenu>
@@ -35,7 +37,7 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
         <DropdownMenuItem className="text-sm font-medium cursor-pointer text-muted-foreground/90">
           <Link
             className="flex items-center w-full h-full"
-            href={`/dash/admin/lessons?lessonId=${studentLesson.id}`}
+            href={`/dash/admin/lessons?lessonId=${instructorLesson.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t("view")}
@@ -43,7 +45,7 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-sm font-medium cursor-pointer text-muted-foreground/90"
-          onClick={() => console.log("editing", studentLesson.id)}
+          onClick={() => console.log("editing", instructorLesson.id)}
         >
           <Pencil className="mr-2 h-3.5 w-3.5" />
           {t("edit")}

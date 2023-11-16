@@ -7,15 +7,15 @@ import { Paginated } from "@/components/organisms/data-table/types";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { StudentLesson } from "./schema";
+import { InstructorLesson } from "./schema";
 import { columns } from "./columns";
 
-import type { StudentLessonsTableProps } from "./types";
+import type { InstructorLessonsTableProps } from "./types";
 
-export default function StudentLessonsTable({
-  studentId,
-}: StudentLessonsTableProps) {
-  const t = useTranslations("Dashboard.Dossier.Tables.StudentLessons");
+export default function InstructorLessonsTable({
+  instructorId,
+}: InstructorLessonsTableProps) {
+  const t = useTranslations("Dashboard.Dossier.Tables.InstructorLessons");
 
   const pagination = usePagination({
     pageIndex: 0,
@@ -26,8 +26,10 @@ export default function StudentLessonsTable({
   const filters = useTableFilters();
 
   const { data, isLoading, error } =
-    api.db.lessons.query.listByStudentId.useQuery<Paginated<StudentLesson>>({
-      studentId,
+    api.db.lessons.query.listByInstructorId.useQuery<
+      Paginated<InstructorLesson>
+    >({
+      instructorId,
       pageIndex: pagination.get.pageIndex,
       pageSize: pagination.get.pageSize,
       filters: filters.get,

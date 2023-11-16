@@ -1,8 +1,9 @@
 import { Row } from "@tanstack/react-table";
-import { LicenseFile } from "./schema";
+
+import type { StudentLicenseFile } from "./schema";
 
 export type ActionsColumnProps = {
-  row: Row<LicenseFile>;
+  row: Row<StudentLicenseFile>;
 };
 
 export type StudentLicenseFilesTableProps = {

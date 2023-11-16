@@ -21,20 +21,6 @@ export const columns: ColumnDef<StudentPayment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "sum",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentPayments.sum" />
-    ),
-    cell: ({ row }) => <>{row.getValue("sum")} DH</>,
-  },
-  {
-    accessorKey: "comment",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentPayments.comment" />
-    ),
-    cell: ({ row }) => <TooltipConcat text={row.getValue("comment") || "-"} />,
-  },
-  {
     accessorKey: "admin-name",
     header: ({ column }) => (
       <DataTableColumnHeader
@@ -47,6 +33,20 @@ export const columns: ColumnDef<StudentPayment>[] = [
 
       return <TooltipConcat text={studentPayment.adminName} />;
     },
+  },
+  {
+    accessorKey: "sum",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="StudentPayments.sum" />
+    ),
+    cell: ({ row }) => <>{row.getValue("sum")} DH</>,
+  },
+  {
+    accessorKey: "comment",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="StudentPayments.comment" />
+    ),
+    cell: ({ row }) => <TooltipConcat text={row.getValue("comment") || "-"} />,
   },
   {
     accessorKey: "date",

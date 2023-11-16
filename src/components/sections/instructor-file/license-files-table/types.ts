@@ -1,5 +1,6 @@
 import { Row } from "@tanstack/react-table";
-import { InstructorLicenseFile } from "./schema";
+
+import type { InstructorLicenseFile } from "./schema";
 
 export type ActionsColumnProps = {
   row: Row<InstructorLicenseFile>;
