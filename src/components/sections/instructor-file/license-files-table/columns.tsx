@@ -1,15 +1,18 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
-import { InstructorLicenseFile, instructorLicenseFileSchema } from "./schema";
-import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import Link from "next/link";
+import moment from "moment";
 import { useTranslations } from "next-intl";
 import { Chip, ChipProps } from "@nextui-org/chip";
 import { LicenseFileStatus } from "@prisma/client";
+import type { ColumnDef } from "@tanstack/react-table";
+
+import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { ActionsColumn } from "./actions-column";
-import moment from "moment";
-import { TooltipConcat } from "@/components/atoms";
-import Link from "next/link";
+import { Tooltip, TooltipConcat } from "@/components/atoms";
+import { instructorLicenseFileSchema } from "./schema";
+
+import type { InstructorLicenseFile } from "./schema";
 
 export const columns: ColumnDef<InstructorLicenseFile>[] = [
   {
@@ -120,7 +123,9 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
     cell: ({ row }) => {
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
-      return <>{moment(licenseFile.createdAt).fromNow()}</>;
+      const date = moment(licenseFile.createdAt);
+
+      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

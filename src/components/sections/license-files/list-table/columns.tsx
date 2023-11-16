@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import moment from "moment";
-import { useTranslations } from "next-intl";
 import { Chip, ChipProps } from "@nextui-org/chip";
+import { useTranslations } from "next-intl";
 import { LicenseFileStatus } from "@prisma/client";
 import type { ColumnDef } from "@tanstack/react-table";
 
@@ -12,34 +12,52 @@ import { Tooltip, TooltipConcat } from "@/components/atoms";
 import { ActionsColumn } from "./actions-column";
 import { licenseFileSchema } from "./schema";
 
-import type { StudentLicenseFile } from "./schema";
+import type { LicenseFile } from "./schema";
 
-export const columns: ColumnDef<StudentLicenseFile>[] = [
+export const columns: ColumnDef<LicenseFile>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLicenseFiles.id" />
+      <DataTableColumnHeader column={column} title="LicenseFiles.id" />
     ),
     cell: ({ row }) => <>{row.getValue("id")}</>,
     enableSorting: false,
     enableHiding: false,
   },
   {
+    accessorKey: "student-name",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="LicenseFiles.student-name"
+      />
+    ),
+    cell: ({ row }) => {
+      const licenseFile = licenseFileSchema.parse(row.original);
+
+      return (
+        <Link href={`/dash/admin/students?studentId=${licenseFile.student.id}`}>
+          <TooltipConcat text={licenseFile.student.name} />
+        </Link>
+      );
+    },
+  },
+  {
     accessorKey: "instructor-name",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="StudentLessons.instructor-name"
+        title="LicenseFiles.instructor-name"
       />
     ),
     cell: ({ row }) => {
-      const studentLicenseFile = licenseFileSchema.parse(row.original);
+      const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
         <Link
-          href={`/dash/admin/instructors?instructorId=${studentLicenseFile.instructorId}`}
+          href={`/dash/admin/instructors?instructorId=${licenseFile.instructor.id}`}
         >
-          <TooltipConcat text={studentLicenseFile.instructorName} />
+          <TooltipConcat text={licenseFile.instructor.name} />
         </Link>
       );
     },
@@ -47,15 +65,13 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
   {
     accessorKey: "category",
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="StudentLicenseFiles.category"
-      />
+      <DataTableColumnHeader column={column} title="LicenseFiles.category" />
     ),
     cell: function Cell({ row }) {
       const t = useTranslations(
-        "Dashboard.Dossier.Tables.StudentLicenseFiles.Category",
+        "Dashboard.Files.LicenseFiles.ListTable.Category",
       );
+
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
@@ -68,25 +84,20 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
   {
     accessorKey: "price",
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="StudentLicenseFiles.price"
-      />
+      <DataTableColumnHeader column={column} title="LicenseFiles.price" />
     ),
     cell: ({ row }) => <>{row.getValue("price")} DH</>,
   },
   {
     accessorKey: "status",
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="StudentLicenseFiles.status"
-      />
+      <DataTableColumnHeader column={column} title="LicenseFiles.status" />
     ),
     cell: function Cell({ row }) {
       const t = useTranslations(
-        "Dashboard.Dossier.Tables.StudentLicenseFiles.Status",
+        "Dashboard.Files.LicenseFiles.ListTable.Status",
       );
+
       const licenseFile = licenseFileSchema.parse(row.original);
 
       const getChipColor = (): ChipProps["color"] => {
@@ -114,10 +125,7 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
   {
     accessorKey: "createdAt",
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="StudentLicenseFiles.created-at"
-      />
+      <DataTableColumnHeader column={column} title="LicenseFiles.created-at" />
     ),
     cell: ({ row }) => {
       const licenseFile = licenseFileSchema.parse(row.original);

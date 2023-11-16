@@ -4,12 +4,15 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { PageContentHeader, AddStudentModal } from "@/components/molecules";
+import {
+  PageContentHeader,
+  // AddLicenseFileModal
+} from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-import { StudentsListTable } from "@/components/sections";
+import { LicenseFilesListTable } from "@/components/sections/license-files";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
-  const t = useTranslations("Dashboard.Users.Students.Header");
+  const t = useTranslations("Dashboard.Files.LicenseFiles.Header");
 
   return (
     <PageContentHeader title={t("title")}>
@@ -23,18 +26,18 @@ const PageHeader = ({ openModal }: { openModal: () => void }) => {
   );
 };
 
-export default function StudentsPage() {
-  const addStudentModal = useModal();
+export default function LicenseFilesPage() {
+  const addLicenseFileModal = useModal();
 
   return (
     <main>
-      <PageHeader openModal={addStudentModal.open} />
-      <AddStudentModal
-        isOpen={addStudentModal.isOpen}
-        close={addStudentModal.close}
-      />
+      <PageHeader openModal={addLicenseFileModal.open} />
+      {/* <AddLicenseFileModal
+        isOpen={addLicenseFileModal.isOpen}
+        close={addLicenseFileModal.close}
+      /> */}
       <div className="w-full">
-        <StudentsListTable />
+        <LicenseFilesListTable />
       </div>
     </main>
   );

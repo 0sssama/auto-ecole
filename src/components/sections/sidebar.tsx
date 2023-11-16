@@ -155,7 +155,7 @@ export const getSidebarLinks = (
       links: [
         {
           name: t("license-files"),
-          href: "/dash/admin/licence-files",
+          href: "/dash/admin/license-files",
           icon: <Folders {...sidebarIconProps} />,
         },
         {

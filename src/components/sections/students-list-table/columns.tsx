@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { ColumnDef } from "@tanstack/react-table";
 import moment from "moment";
+import { useTranslations } from "next-intl";
 import { Chip, ChipProps } from "@nextui-org/chip";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import { Tooltip } from "@/components/atoms";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { Student, studentSchema } from "./schema";
+import { studentSchema } from "./schema";
+
+import type { Student } from "./schema";
 
 export const columns: ColumnDef<Student>[] = [
   {
@@ -91,7 +94,9 @@ export const columns: ColumnDef<Student>[] = [
     cell: ({ row }) => {
       const student = studentSchema.parse(row.original);
 
-      return <>{moment(student.createdAt).fromNow()}</>;
+      const date = moment(student.createdAt);
+
+      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

@@ -1,12 +1,13 @@
 "use client";
 
 import { DataTable } from "@/components/organisms";
-import { Student } from "./schema";
 import { api } from "@/utils/api";
 import { columns } from "./columns";
 import { usePagination } from "@/lib/hooks/usePagination";
-import { Paginated } from "@/components/organisms/data-table/types";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
+
+import type { Student } from "./schema";
+import type { Paginated } from "@/components/organisms/data-table/types";
 
 function StudentsListTable() {
   const pagination = usePagination();

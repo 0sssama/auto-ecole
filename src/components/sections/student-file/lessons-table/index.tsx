@@ -3,13 +3,13 @@
 import { useTranslations } from "next-intl";
 
 import { DataTable } from "@/components/organisms";
-import { Paginated } from "@/components/organisms/data-table/types";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { StudentLesson } from "./schema";
 import { columns } from "./columns";
 
+import type { Paginated } from "@/components/organisms/data-table/types";
+import type { StudentLesson } from "./schema";
 import type { StudentLessonsTableProps } from "./types";
 
 export default function StudentLessonsTable({

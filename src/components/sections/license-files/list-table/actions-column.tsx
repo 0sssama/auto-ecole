@@ -16,9 +16,7 @@ import { licenseFileSchema } from "./schema";
 import type { ActionsColumnProps } from "./types";
 
 export function ActionsColumn({ row }: ActionsColumnProps) {
-  const t = useTranslations(
-    "Dashboard.Dossier.Tables.StudentLicenseFiles.Actions",
-  );
+  const t = useTranslations("Dashboard.Files.LicenseFiles.ListTable.Actions");
 
   const licenseFile = licenseFileSchema.parse(row.original);
 

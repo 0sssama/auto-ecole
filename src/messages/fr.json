@@ -6,16 +6,16 @@
   "Dashboard": {
     "redirecting": "Redirection...",
     "Header": {
-      "help": "Besoin d'aide?"
-    },
-    "UserNav": {
-      "profile": "Profil",
-      "billing": "Facturation",
-      "settings": "Paramètres",
-      "logout": "Déconnexion",
-      "admin": "Administrateur",
-      "student": "Étudiant",
-      "unknown": "Inconnu"
+      "help": "Besoin d'aide?",
+      "UserNav": {
+        "profile": "Profil",
+        "billing": "Facturation",
+        "settings": "Paramètres",
+        "logout": "Déconnexion",
+        "admin": "Administrateur",
+        "student": "Étudiant",
+        "unknown": "Inconnu"
+      }
     },
     "Sidebar": {
       "users": "Personnes",
@@ -115,6 +115,15 @@
           "price": "Prix",
           "duration": "Durée (h)",
           "scheduled-date": "Date"
+        },
+        "LicenseFiles": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "instructor-name": "Moniteur",
+          "category": "Type de permis",
+          "price": "Prix agréé",
+          "status": "Status",
+          "created-at": "Date créé"
         }
       }
     },
@@ -315,6 +324,50 @@
         "NotFound": {
           "title": "Dossier introuvable",
           "subtitle": "Le dossier que vous cherchez n'existe pas ou a été supprimé."
+        }
+      }
+    },
+    "Files": {
+      "LicenseFiles": {
+        "Header": {
+          "title": "Dossiers de permis",
+          "button": "Nouveau dossier"
+        },
+        "AddNewModal": {
+          "title": "Ajouter un nouveau dossier",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau dossier",
+          "button-cancel": "Annuler",
+          "button-submit": "Ajouter Dossier",
+          "success": "Dossier ajouté avec succès !",
+          "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+          "AddNewForm": {
+            "student": "Étudiant",
+            "category": "Type de permis",
+            "price": "Prix agréé"
+          }
+        },
+        "ListTable": {
+          "no-data": "Nous avons rien trouvé ! :/",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
+          }
+        },
+        "NotFound": {
+          "title": "Aucun dossier de permis trouvé",
+          "subtitle": "Aucun dossier de permis n'a été trouvé avec l'ID spécifié."
         }
       }
     },
