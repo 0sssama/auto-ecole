@@ -9,7 +9,7 @@ import StudentPaymentsTable from "./payments-table";
 
 import type { StudentFolder } from "./types";
 
-export default function Dossier({ student }: { student: StudentFolder }) {
+export default function StudentFile({ student }: { student: StudentFolder }) {
   return (
     <div className="flex flex-col">
       <InfoFile data={student} type="student" />
