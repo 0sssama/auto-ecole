@@ -135,7 +135,7 @@ export const getSidebarLinks = (
       links: [
         {
           name: t("clients"),
-          href: "/dash/admin/clients",
+          href: "/dash/admin/students",
           icon: <User2 {...sidebarIconProps} />,
         },
         {

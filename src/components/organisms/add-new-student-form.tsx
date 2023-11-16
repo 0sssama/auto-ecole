@@ -14,10 +14,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/ui/date-picker";
-import { ClientFormSchema } from "@/schemas/client-form-schema";
+import { StudentFormSchema } from "@/schemas/student-form-schema";
 import { TranslationFunction } from "@/types";
 
-type FormType = z.infer<typeof ClientFormSchema>;
+type FormType = z.infer<typeof StudentFormSchema>;
 
 const fields = (t: TranslationFunction) => [
   {
@@ -82,7 +82,7 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-export default function AddNewClientForm({
+export default function AddNewStudentForm({
   form,
   onSubmit,
   className,
@@ -92,7 +92,7 @@ export default function AddNewClientForm({
   className?: string;
 }) {
   const t = useTranslations(
-    "Dashboard.Users.Students.AddNewClientModal.AddNewClientForm",
+    "Dashboard.Users.Students.AddNewStudentModal.AddNewStudentForm",
   );
 
   return (

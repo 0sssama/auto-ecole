@@ -1,41 +1,24 @@
-"use client";
+import { getInstructor } from "@/server/utils/getInstructor";
+import InstructorsPage from "./_components/instructors";
+import InstructorNotFound from "./_components/not-found";
+import Instructor from "@/components/sections/instructor-file";
 
-import { useTranslations } from "next-intl";
-import { Plus } from "lucide-react";
+export default async function Instructors({
+  searchParams: { instructorId },
+}: {
+  searchParams: {
+    instructorId: string | undefined;
+  };
+}) {
+  if (instructorId === undefined) return <InstructorsPage />;
 
-import { Button } from "@/components/ui/button";
-import { PageContentHeader, AddInstructorModal } from "@/components/molecules";
-import { useModal } from "@/lib/hooks/useModal";
-import { InstructorsListTable } from "@/components/sections";
+  const id = Number(instructorId);
 
-const PageHeader = ({ openModal }: { openModal: () => void }) => {
-  const t = useTranslations("Dashboard.Users.Instructors.Header");
+  if (isNaN(id) || id <= 0) return <InstructorNotFound />;
 
-  return (
-    <PageContentHeader title={t("title")}>
-      <div className="flex items-center">
-        <Button onClick={openModal}>
-          <Plus size={18} />
-          <span className="hidden ml-2 lg:block">{t("button")}</span>
-        </Button>
-      </div>
-    </PageContentHeader>
-  );
-};
+  const instructor = await getInstructor(id);
 
-export default function InstructorsPage() {
-  const addInstructorModal = useModal();
+  if (!instructor) return <InstructorNotFound />;
 
-  return (
-    <main>
-      <PageHeader openModal={addInstructorModal.open} />
-      <AddInstructorModal
-        isOpen={addInstructorModal.isOpen}
-        close={addInstructorModal.close}
-      />
-      <div className="w-full">
-        <InstructorsListTable />
-      </div>
-    </main>
-  );
+  return <Instructor instructor={instructor} />;
 }

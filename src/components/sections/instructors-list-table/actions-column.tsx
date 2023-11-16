@@ -16,7 +16,9 @@ import type { ActionsColumnProps } from "./types";
 import Link from "next/link";
 
 export function ActionsColumn({ row }: ActionsColumnProps) {
-  const t = useTranslations("Dashboard.Instructors.Table.Actions");
+  const t = useTranslations(
+    "Dashboard.Users.Instructors.ListIntructorsTable.Actions",
+  );
 
   const instructor = instructorSchema.parse(row.original);
 

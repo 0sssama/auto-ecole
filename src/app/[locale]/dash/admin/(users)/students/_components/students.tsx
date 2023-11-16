@@ -4,9 +4,9 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { AddClientModal, PageContentHeader } from "@/components/molecules";
+import { PageContentHeader, AddStudentModal } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-import { ClientsListTable } from "@/components/sections";
+import { StudentsListTable } from "@/components/sections";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
   const t = useTranslations("Dashboard.Users.Students.Header");
@@ -28,12 +28,12 @@ export default function StudentsPage() {
   return (
     <main>
       <PageHeader openModal={addStudentModal.open} />
-      <AddClientModal
+      <AddStudentModal
         isOpen={addStudentModal.isOpen}
         close={addStudentModal.close}
       />
       <div className="w-full">
-        <ClientsListTable />
+        <StudentsListTable />
       </div>
     </main>
   );

@@ -19,34 +19,34 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  useArchiveClient,
-  useUnarchiveClient,
-} from "@/lib/hooks/useArchiveClient";
+  useArchiveStudent,
+  useUnarchiveStudent,
+} from "@/lib/hooks/useArchiveStudent";
 import { cn } from "@/lib/cn";
-import { clientSchema } from "./schema";
+import { studentSchema } from "./schema";
 
 import type { DataTableRowActionsProps } from "./types";
 import Link from "next/link";
 
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
-  const t = useTranslations("Dashboard.Users.ListClientsTable.Actions");
+  const t = useTranslations("Dashboard.Users.ListStudentsTable.Actions");
 
-  const client = clientSchema.parse(row.original);
+  const student = studentSchema.parse(row.original);
 
-  const { unarchiveClient, isUnarchivingClient } = useUnarchiveClient(
-    client.id,
+  const { unarchiveStudent, isUnarchivingStudent } = useUnarchiveStudent(
+    student.id,
     {
       onSuccess: () => toast.success(t("unarchive-success")),
       onError: () => toast.error(t("unarchive-error")),
     },
   );
 
-  const { archiveClient, isArchivingClient } = useArchiveClient(client.id, {
+  const { archiveStudent, isArchivingStudent } = useArchiveStudent(student.id, {
     onSuccess: () => toast.success(t("archive-success")),
     onError: () => toast.error(t("archive-error")),
   });
 
-  const loading = isArchivingClient || isUnarchivingClient;
+  const loading = isArchivingStudent || isUnarchivingStudent;
 
   return (
     <DropdownMenu>
@@ -63,7 +63,7 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
         <DropdownMenuItem className="text-sm font-medium cursor-pointer text-muted-foreground/90">
           <Link
             className="flex items-center w-full h-full"
-            href={`/dash/admin/clients/folder?clientId=${client.id}`}
+            href={`/dash/admin/students?student=${student.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t("view")}
@@ -71,7 +71,7 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-sm font-medium cursor-pointer text-muted-foreground/90"
-          onClick={() => console.log("editing", client.name)}
+          onClick={() => console.log("editing", student.name)}
         >
           <Pencil className="mr-2 h-3.5 w-3.5" />
           {t("edit")}
@@ -86,11 +86,11 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
             if (loading) return;
 
             toast.loading(t("loading"));
-            if (client.archived) unarchiveClient();
-            else archiveClient();
+            if (student.archived) unarchiveStudent();
+            else archiveStudent();
           }}
         >
-          {client.archived ? (
+          {student.archived ? (
             <>
               <ArchiveRestore className="mr-2 h-3.5 w-3.5" />
               {t("unarchive")}

@@ -5,14 +5,14 @@ import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/cn";
 
-import type { DossierInfoProps, InfoTypes } from "./types";
+import type { DossierInfoProps, InfoDataProps, InfoTypes } from "./types";
 
 function InfoData<InfoT extends InfoTypes>({
   labelId,
   value,
   //   setValue,
   editing,
-}: DossierInfoProps<InfoT>) {
+}: InfoDataProps<InfoT>) {
   if (labelId === "id") return <p>{value as number}</p>;
 
   switch (typeof value) {
@@ -50,6 +50,7 @@ function DossierInfo<InfoT extends InfoTypes>({
   value,
   setValue,
   editing,
+  translatePrefix,
 }: DossierInfoProps<InfoT>) {
   const t = useTranslations("Dashboard.Dossier.Labels");
 
@@ -60,7 +61,7 @@ function DossierInfo<InfoT extends InfoTypes>({
       className={cn("flex flex-col gap-1", labelId === "id" && "col-span-2")}
     >
       <label className="text-xs font-bold text-gray-500 uppercase">
-        {t(labelId)}
+        {t(`${translatePrefix}.${labelId}`)}
       </label>
       <InfoData {...{ labelId, value, setValue, editing }} />
     </div>

@@ -1,7 +1,7 @@
 import { prisma } from "@/server/db";
 import { checkAdminStudentHierarchy } from "./checkAdminStudentHierarchy";
 import { clerkClient } from "@clerk/nextjs";
-import { StudentFolder } from "@/components/sections/dossier/types";
+import { StudentFolder } from "@/components/sections/student-file/types";
 
 export const getStudentFolder = async (
   studentId: number,
@@ -52,7 +52,7 @@ export const getStudentFolder = async (
       profilePictureUrl: studentClerk.hasImage ? studentClerk.imageUrl : null,
 
       info: {
-        nameFr: `${student.firstNameFr} ${student.lastNameFr}`,
+        fullName: `${student.firstNameFr} ${student.lastNameFr}`,
         nameAr: `${student.lastNameAr} ${student.firstNameAr}`,
 
         addressFr: student.addressFr,
@@ -75,7 +75,7 @@ export const getStudentFolder = async (
     profilePictureUrl: null,
 
     info: {
-      nameFr: `${student.firstNameFr} ${student.lastNameFr}`,
+      fullName: `${student.firstNameFr} ${student.lastNameFr}`,
       nameAr: `${student.lastNameAr} ${student.firstNameAr}`,
 
       addressFr: student.addressFr,

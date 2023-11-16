@@ -1,19 +1,19 @@
 "use client";
 
 import { DataTable } from "@/components/organisms";
-import { Client } from "./schema";
+import { Student } from "./schema";
 import { api } from "@/utils/api";
 import { columns } from "./columns";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { Paginated } from "@/components/organisms/data-table/types";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 
-function ClientsListTable() {
+function StudentsListTable() {
   const pagination = usePagination();
   const filters = useTableFilters();
 
-  const { data, isLoading, error } = api.db.customers.query.list.useQuery<
-    Paginated<Client>
+  const { data, isLoading, error } = api.db.students.query.list.useQuery<
+    Paginated<Student>
   >({
     pageIndex: pagination.get.pageIndex,
     pageSize: pagination.get.pageSize,
@@ -37,4 +37,4 @@ function ClientsListTable() {
   );
 }
 
-export default ClientsListTable;
+export default StudentsListTable;

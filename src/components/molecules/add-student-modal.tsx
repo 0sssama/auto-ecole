@@ -12,30 +12,30 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { AddNewClientForm } from "@/components/organisms";
+import { AddNewStudentForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { ClientFormSchema } from "@/schemas/client-form-schema";
+import { StudentFormSchema } from "@/schemas/student-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
 import { toast } from "sonner";
 import { useState } from "react";
 
-function AddClientModal({
+function AddStudentModal({
   isOpen,
   close,
 }: {
   isOpen: boolean;
   close: () => void;
 }) {
-  const t = useTranslations("Dashboard.Users.Students.AddNewClientModal");
+  const t = useTranslations("Dashboard.Users.Students.AddNewStudentModal");
 
   const closeModal = () => {
     form.reset();
     close();
   };
 
-  const form = useForm<z.infer<typeof ClientFormSchema>>({
-    resolver: zodResolver(ClientFormSchema),
+  const form = useForm<z.infer<typeof StudentFormSchema>>({
+    resolver: zodResolver(StudentFormSchema),
     defaultValues: {
       firstNameAr: "",
       firstNameFr: "",
@@ -57,10 +57,10 @@ function AddClientModal({
   const [userClerkId, setUserClerkId] = useState<string | null>(null);
 
   const {
-    mutate: addCustomerToDb,
+    mutate: addStudentToDb,
     isLoading: dbOperationLoading,
     error: dbOperationError,
-  } = api.db.customers.mutation.add.useMutation({
+  } = api.db.students.mutation.add.useMutation({
     onSuccess: () => {
       //   void ctx.users.getPage.invalidate();
       toast.success(t("success"));
@@ -79,7 +79,7 @@ function AddClientModal({
   });
 
   const {
-    mutate: addCustomerToClerk,
+    mutate: addStudentToClerk,
     isLoading: clerkOperationLoading,
     error: clerkOperationError,
   } = api.clerk.users.mutation.add.useMutation({
@@ -87,15 +87,15 @@ function AddClientModal({
       //   void ctx.users.getPage.invalidate();
       setUserClerkId(data.clerkId);
 
-      addCustomerToDb({
+      addStudentToDb({
         ...form.getValues(),
         clerkId: data.clerkId,
       });
     },
   });
 
-  const onSubmit = (values: z.infer<typeof ClientFormSchema>) =>
-    addCustomerToClerk({
+  const onSubmit = (values: z.infer<typeof StudentFormSchema>) =>
+    addStudentToClerk({
       emailAddress: values.email,
       firstName: values.firstNameFr,
       lastName: values.lastNameFr,
@@ -126,7 +126,7 @@ function AddClientModal({
               </p>
             </div>
           )}
-          <AddNewClientForm
+          <AddNewStudentForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
             className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6"
@@ -153,4 +153,4 @@ function AddClientModal({
   );
 }
 
-export default AddClientModal;
+export default AddStudentModal;

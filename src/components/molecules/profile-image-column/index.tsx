@@ -10,7 +10,8 @@ import type { ProfileImageColumnProps } from "./types";
 
 export default function ProfileImageColumn({
   profilePictureUrl,
-  studentName,
+  fullName,
+  type,
 }: ProfileImageColumnProps) {
   const t = useTranslations("Dashboard.Dossier.ImageColumn");
 
@@ -22,24 +23,24 @@ export default function ProfileImageColumn({
             <UploadCloud className="text-white" size={16} />
           </div>
           {profilePictureUrl ? (
-            <Image src={profilePictureUrl} alt={studentName} />
+            <Image src={profilePictureUrl} alt={fullName} />
           ) : (
             <UserCircle2 className="text-gray-400" size={32} />
           )}
         </div>
         <div className="flex flex-col items-center text-center">
-          <p className="text-lg font-bold">{studentName}</p>
-          <p className="text-xs text-gray-500">{t("student")}</p>
+          <p className="text-lg font-bold">{fullName}</p>
+          <p className="text-xs text-gray-500">{t(type)}</p>
         </div>
       </div>
       <div className="flex flex-col w-full gap-2">
         <Button className="w-full text-sm" variant="default" size="sm">
           <FolderDown size={16} className="mr-2" />
-          {t("student-file")}
+          {t(`${type}-file`)}
         </Button>
         <Button className="w-full text-sm" variant="outline" size="sm">
           <ImageDown size={16} className="mr-2" />
-          {t("student-cin")}
+          {t(`${type}-cin`)}
         </Button>
       </div>
     </div>

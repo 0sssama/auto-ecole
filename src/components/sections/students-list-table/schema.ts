@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const clientSchema = z.object({
+export const studentSchema = z.object({
   id: z.number(),
   name: z.string(),
   archived: z.boolean(),
@@ -9,4 +9,4 @@ export const clientSchema = z.object({
   status: z.enum(["active", "rejected", "finished", "not-started"]),
 });
 
-export type Client = z.infer<typeof clientSchema>;
+export type Student = z.infer<typeof studentSchema>;

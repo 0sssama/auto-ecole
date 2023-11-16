@@ -1,7 +1,7 @@
 import { Row } from "@tanstack/react-table";
 
-import { Client } from "./schema";
+import { Student } from "./schema";
 
 export type DataTableRowActionsProps = {
-  row: Row<Client>;
+  row: Row<Student>;
 };

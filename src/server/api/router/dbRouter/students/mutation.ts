@@ -2,14 +2,14 @@ import { z } from "zod";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { ClientFormSchema } from "@/schemas/client-form-schema";
+import { StudentFormSchema } from "@/schemas/student-form-schema";
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
     .input(
       z.object({
         clerkId: z.string(),
-        ...ClientFormSchema.shape,
+        ...StudentFormSchema.shape,
       }),
     )
     .mutation(async ({ input, ctx }) => {
@@ -54,7 +54,7 @@ export const mutationRouter = createTRPCRouter({
       };
     }),
   dearchive: orgAdminOnlyPrecedure
-    .input(z.object({ clientId: z.number() }))
+    .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
       if (!ctx.orgId)
         throw new TRPCError({
@@ -64,7 +64,7 @@ export const mutationRouter = createTRPCRouter({
       try {
         await ctx.prisma.customer.update({
           where: {
-            id: input.clientId,
+            id: input.studentId,
           },
           data: {
             archived: false,
@@ -80,7 +80,7 @@ export const mutationRouter = createTRPCRouter({
       }
     }),
   archive: orgAdminOnlyPrecedure
-    .input(z.object({ clientId: z.number() }))
+    .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
       if (!ctx.orgId)
         throw new TRPCError({
@@ -90,7 +90,7 @@ export const mutationRouter = createTRPCRouter({
       try {
         await ctx.prisma.customer.update({
           where: {
-            id: input.clientId,
+            id: input.studentId,
           },
           data: {
             archived: true,
@@ -106,7 +106,7 @@ export const mutationRouter = createTRPCRouter({
       }
     }),
   delete: orgAdminOnlyPrecedure
-    .input(z.object({ clientId: z.number() }))
+    .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
       if (!ctx.orgId)
         throw new TRPCError({
@@ -116,7 +116,7 @@ export const mutationRouter = createTRPCRouter({
       try {
         const result = await ctx.prisma.customer.delete({
           where: {
-            id: input.clientId,
+            id: input.studentId,
           },
           select: {
             clerkUserId: true,

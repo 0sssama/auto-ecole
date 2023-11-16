@@ -8,9 +8,9 @@ import { Chip, ChipProps } from "@nextui-org/chip";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { Client, clientSchema } from "./schema";
+import { Student, studentSchema } from "./schema";
 
-export const columns: ColumnDef<Client>[] = [
+export const columns: ColumnDef<Student>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
@@ -26,18 +26,18 @@ export const columns: ColumnDef<Client>[] = [
       <DataTableColumnHeader column={column} title="Students.name" />
     ),
     cell: function Cell({ row }) {
-      const t = useTranslations("Dashboard.Users.Students.ListClientsTable");
-      const client = clientSchema.parse(row.original);
+      const t = useTranslations("Dashboard.Users.Students.ListStudentsTable");
+      const student = studentSchema.parse(row.original);
 
       return (
         <Link
           className="flex space-x-2"
-          href={`/dash/admin/clients/folder?clientId=${client.id}`}
+          href={`/dash/admin/students?studentId=${student.id}`}
         >
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("name")}
           </span>
-          {client.archived && (
+          {student.archived && (
             <Chip color="default" size="sm" className="!py-0">
               <span className="font-bold !text-[10px] md:text-sm">
                 {t("archived")?.toUpperCase()}
@@ -55,12 +55,12 @@ export const columns: ColumnDef<Client>[] = [
     ),
     cell: function Cell({ row }) {
       const t = useTranslations(
-        "Dashboard.Users.Students.ListClientsTable.Status",
+        "Dashboard.Users.Students.ListStudentsTable.Status",
       );
-      const client = clientSchema.parse(row.original);
+      const student = studentSchema.parse(row.original);
 
       const getChipColor = (): ChipProps["color"] => {
-        switch (client.status) {
+        switch (student.status) {
           case "active":
             return "secondary";
           case "finished":
@@ -77,7 +77,7 @@ export const columns: ColumnDef<Client>[] = [
       return (
         <Chip color={getChipColor()} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
-            {t(client.status)?.toUpperCase()}
+            {t(student.status)?.toUpperCase()}
           </span>
         </Chip>
       );
@@ -89,9 +89,9 @@ export const columns: ColumnDef<Client>[] = [
       <DataTableColumnHeader column={column} title="Students.created-at" />
     ),
     cell: ({ row }) => {
-      const client = clientSchema.parse(row.original);
+      const student = studentSchema.parse(row.original);
 
-      return <>{moment(client.createdAt).fromNow()}</>;
+      return <>{moment(student.createdAt).fromNow()}</>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

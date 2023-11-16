@@ -2,7 +2,7 @@ import { z } from "zod";
 import validator from "validator";
 import { arabicCharsPattern } from "@/utils/arabicCharsPattern";
 
-export const ClientFormSchema = z.object({
+export const StudentFormSchema = z.object({
   firstNameFr: z
     .string()
     .min(2, {
@@ -109,7 +109,7 @@ export const ClientFormSchema = z.object({
       return userAge >= 18;
     },
     {
-      message: "Le client doit être âgé d'au moins 18 ans.",
+      message: "L'étudiant doit être âgé d'au moins 18 ans.",
     },
   ),
 });

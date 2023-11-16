@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-export default function PageFallback() {
+export default function StudentNotFound() {
   const t = useTranslations("Dashboard.Users.Folder.NotFound");
 
   return (

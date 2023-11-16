@@ -25,7 +25,7 @@ export const queryRouter = createTRPCRouter({
 
       const filtersObj = getWhereObjFromFilters(input.filters);
 
-      const [users, totalCustomers] = await Promise.all([
+      const [students, totalStudents] = await Promise.all([
         ctx.prisma.customer.findMany({
           where: {
             clerkOrgId: ctx.orgId,
@@ -57,21 +57,21 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedCustomers = users.map((user) => ({
-        id: user.id,
-        name: `${user.firstNameFr} ${user.lastNameFr}`,
-        createdAt: user.createdAt,
-        archived: user.archived,
-        isNew: joinedInLastWeek(user.createdAt),
+      const formattedStudents = students.map((student) => ({
+        id: student.id,
+        name: `${student.firstNameFr} ${student.lastNameFr}`,
+        createdAt: student.createdAt,
+        archived: student.archived,
+        isNew: joinedInLastWeek(student.createdAt),
         status:
-          user.licenseFiles.length === 0
+          student.licenseFiles.length === 0
             ? "not-started"
-            : getUserStatusFromLicenseFiles(user.licenseFiles),
+            : getUserStatusFromLicenseFiles(student.licenseFiles),
       }));
 
       return {
-        data: formattedCustomers,
-        pageCount: countPages(totalCustomers, input.pageSize),
+        data: formattedStudents,
+        pageCount: countPages(totalStudents, input.pageSize),
       };
     }),
 });

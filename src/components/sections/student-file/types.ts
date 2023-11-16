@@ -2,7 +2,7 @@ export type StudentFolder = {
   id: number;
   profilePictureUrl: string | null;
   info: {
-    nameFr: string;
+    fullName: string;
     nameAr: string;
 
     addressFr: string;
@@ -16,13 +16,4 @@ export type StudentFolder = {
     cin: string;
     birthdate: Date;
   };
-};
-
-export type ProfileImageColumnProps = {
-  profilePictureUrl: string | null;
-  studentName: string;
-};
-
-export type InfoImageRowProps = {
-  student: StudentFolder;
 };

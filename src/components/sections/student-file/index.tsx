@@ -1,19 +1,18 @@
-import { FolderNotFound } from "@/components/pages";
-import { getStudentFolder } from "@/server/utils/getStudentFolder";
-import InfoImageRow from "./info-image-row";
-import StudentLicenseFilesTable from "./license-file-table";
+"use client";
+
 import { Separator } from "@/components/ui/separator";
+import { InfoFile } from "@/components/organisms";
+
+import StudentLicenseFilesTable from "./license-file-table";
 import StudentLessonsTable from "./lessons-table";
 import StudentPaymentsTable from "./payments-table";
 
-export default async function Dossier({ studentId }: { studentId: number }) {
-  const student = await getStudentFolder(studentId);
+import type { StudentFolder } from "./types";
 
-  if (!student) return <FolderNotFound />;
-
+export default function Dossier({ student }: { student: StudentFolder }) {
   return (
     <div className="flex flex-col">
-      <InfoImageRow student={student} />
+      <InfoFile data={student} type="student" />
       <Separator className="mb-6 mt-14" />
       <StudentLicenseFilesTable studentId={student.id} />
       <Separator className="mb-6 mt-14" />
