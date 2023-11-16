@@ -97,34 +97,65 @@
           "license-files-count": "Dossiers de permis",
           "lessons-count": "Leçons",
           "date": "Date ajouté"
+        },
+        "InstructorLicenseFiles": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "category": "Type de permis",
+          "price": "Prix agréé",
+          "status": "Status",
+          "created-at": "Date créé"
+        },
+        "InstructorLessons": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "status": "Status",
+          "comment": "Comment.",
+          "grade": "Note (/100)",
+          "price": "Prix",
+          "duration": "Durée (h)",
+          "scheduled-date": "Date"
         }
       }
     },
     "Dossier": {
       "Labels": {
-        "id": "Identifiant de l'étudiant: ",
+        "Student": {
+          "id": "Identifiant de l'étudiant: ",
 
-        "nameFr": "Nom complet:",
-        "nameAr": "Nom complet (Arabe): ",
+          "nameFr": "Nom complet:",
+          "nameAr": "Nom complet (Arabe): ",
 
-        "addressFr": "Addresse: ",
-        "addressAr": "Addresse (Arabe): ",
+          "addressFr": "Addresse: ",
+          "addressAr": "Addresse (Arabe): ",
 
-        "professionFr": "Métier: ",
-        "professionAr": "Métier (Arabic): ",
+          "professionFr": "Métier: ",
+          "professionAr": "Métier (Arabic): ",
 
-        "phone": "Téléphone: ",
-        "email": "Addresse E-mail: ",
-        "cin": "N° CIN:",
-        "birthdate": "Date de naissance: "
+          "phone": "Téléphone: ",
+          "email": "Addresse E-mail: ",
+          "cin": "N° CIN:",
+          "birthdate": "Date de naissance: "
+        },
+        "Instructor": {
+          "id": "Identifiant du moniteur: ",
+
+          "fullName": "Nom complet : ",
+          "username": "Nom d'utilisateur (Login) : ",
+          "phone": "Téléphone : ",
+          "dateJoined": "Date ajouté :"
+        }
       },
       "ImageColumn": {
         "student": "Étudiant",
         "student-file": "Dossier Complet",
-        "student-cin": "Copie CIN"
+        "student-cin": "Copie CIN",
+        "instructor": "Moniteur",
+        "instructor-file": "Dossier Complet",
+        "instructor-cin": "Copie CIN"
       },
       "Tables": {
-        "LicenseFiles": {
+        "StudentLicenseFiles": {
           "title": "Dossiers de permis",
           "Status": {
             "ONGOING": "En cours",
@@ -163,24 +194,56 @@
             "view": "Voir dossier",
             "edit": "Modifier"
           }
+        },
+        "InstructorLicenseFiles": {
+          "title": "Dossiers de permis",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
+          }
+        },
+        "InstructorLessons": {
+          "title": "Leçons",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Status": {
+            "RESERVED": "Reservé",
+            "CANCELLED": "Annulé",
+            "DONE": "Terminé"
+          }
         }
       }
     },
     "Users": {
       "Students": {
         "Header": {
-          "title": "Clients",
-          "button": "Nouveau client"
+          "title": "Étudiants",
+          "button": "Nouveau Étudiant"
         },
-        "AddNewClientModal": {
-          "title": "Ajouter un Nouveau Client",
-          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau client",
+        "AddNewStudentModal": {
+          "title": "Ajouter un Nouveau étudiant",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau étudiant",
           "button-cancel": "Annuler",
-          "button-submit": "Ajouter Client",
-          "success": "Client ajouté avec succès !",
+          "button-submit": "Ajouter Étudiant",
+          "success": "Étudiant ajouté avec succès !",
           "user-exists": "Un utilisateur avec le même email existe déjà !",
-          "error": "Erreur lors de l'ajout du client. Veuillez réessayer plus tard.",
-          "AddNewClientForm": {
+          "error": "Erreur lors de l'ajout du étudiant. Veuillez réessayer plus tard.",
+          "AddNewStudentForm": {
             "firstName": "Prénom:",
             "lastName": "Nom:",
             "address": "Addresse:",
@@ -191,8 +254,8 @@
             "birthdate": "Date de naissance:"
           }
         },
-        "ListClientsTable": {
-          "no-data": "Aucun client trouvé",
+        "ListStudentsTable": {
+          "no-data": "Aucun Étudiant Trouvé",
           "archived": "Archivé",
           "new": "Nouveau",
           "Status": {
@@ -206,16 +269,20 @@
             "view": "Voir dossier",
             "edit": "Modifier",
             "archive": "Archiver",
-            "archive-success": "Client archivé avec succès !",
-            "archive-error": "Erreur lors de l'archivage du client. Veuillez réessayer plus tard.",
+            "archive-success": "Étudiant archivé avec succès !",
+            "archive-error": "Erreur lors de l'archivage du étudiant. Veuillez réessayer plus tard.",
             "unarchive": "Désarchiver",
-            "unarchive-success": "Client désarchivé avec succès !",
-            "unarchive-error": "Erreur lors du désarchivage du client. Veuillez réessayer plus tard.",
+            "unarchive-success": "Étudiant désarchivé avec succès !",
+            "unarchive-error": "Erreur lors du désarchivage du étudiant. Veuillez réessayer plus tard.",
             "loading": "Chargement..."
           }
         }
       },
       "Instructors": {
+        "NotFound": {
+          "title": "Aucun moniteur trouvé",
+          "subtitle": "Aucun moniteur n'a été trouvé avec l'ID spécifié."
+        },
         "Header": {
           "title": "Moniteurs",
           "button": "Nouveau moniteur"

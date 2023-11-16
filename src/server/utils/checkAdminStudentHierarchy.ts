@@ -1,4 +1,5 @@
 import { auth, clerkClient } from "@clerk/nextjs";
+
 import { prisma } from "@/server/db";
 
 export const checkAdminStudentHierarchy = async (studentId: number) => {
@@ -40,13 +41,13 @@ export const checkAdminStudentHierarchy = async (studentId: number) => {
 
   if (membership.role !== "admin") return false;
 
-  if (process.env.NODE_ENV === "production") {
-    const studentMembership = memberships.find(
-      (m) => m.publicUserData?.userId === studentDb.clerkUserId,
-    );
+  // UNCOMMENT BEFORE RELEASE
 
-    if (!studentMembership) return false;
-  }
+  // const studentMembership = memberships.find(
+  //   (m) => m.publicUserData?.userId === studentDb.clerkUserId,
+  // );
+
+  // if (!studentMembership) return false;
 
   return true;
 };

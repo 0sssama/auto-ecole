@@ -97,34 +97,65 @@
           "license-files-count": "License Files",
           "lessons-count": "Lessons Done",
           "date": "Date added"
+        },
+        "InstructorLicenseFiles": {
+          "id": "ID",
+          "student-name": "Student Name",
+          "category": "License Category",
+          "price": "Price agreed",
+          "status": "Status",
+          "created-at": "Date created"
+        },
+        "InstructorLessons": {
+          "id": "ID",
+          "student-name": "Student",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
         }
       }
     },
     "Dossier": {
       "Labels": {
-        "id": "Student ID: ",
+        "Student": {
+          "id": "Student ID: ",
 
-        "nameFr": "Full name: ",
-        "nameAr": "Full name (arabic): ",
+          "fullName": "Full name: ",
+          "nameAr": "Full name (arabic): ",
 
-        "addressFr": "Address: ",
-        "addressAr": "Address (arabic): ",
+          "addressFr": "Address: ",
+          "addressAr": "Address (arabic): ",
 
-        "professionFr": "Profession: ",
-        "professionAr": "Profession (arabic): ",
+          "professionFr": "Profession: ",
+          "professionAr": "Profession (arabic): ",
 
-        "phone": "Phone Number: ",
-        "email": "Email: ",
-        "cin": "National ID Number: ",
-        "birthdate": "Birthdate: "
+          "phone": "Phone Number: ",
+          "email": "Email: ",
+          "cin": "National ID Number: ",
+          "birthdate": "Birthdate: "
+        },
+        "Instructor": {
+          "id": "Instructor ID: ",
+
+          "fullName": "Full name: ",
+          "username": "Username (Login): ",
+          "phone": "Phone Number: ",
+          "dateJoined": "Date Joined: "
+        }
       },
       "ImageColumn": {
         "student": "Student",
         "student-file": "Student File",
-        "student-cin": "Student CIN"
+        "student-cin": "Student CIN",
+        "instructor": "Instructor",
+        "instructor-file": "Instructor File",
+        "instructor-cin": "Instructor CIN"
       },
       "Tables": {
-        "LicenseFiles": {
+        "StudentLicenseFiles": {
           "title": "License Files",
           "Status": {
             "ONGOING": "Ongoing",
@@ -163,6 +194,38 @@
             "view": "View details",
             "edit": "Edit"
           }
+        },
+        "InstructorLicenseFiles": {
+          "title": "License Files",
+          "Status": {
+            "ONGOING": "Ongoing",
+            "REJECTED": "Rejected",
+            "VALIDATED": "Validated"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Category": {
+            "A": "Motorcycles",
+            "B": "Cars",
+            "C": "Trucks",
+            "D": "Buses"
+          }
+        },
+        "InstructorLessons": {
+          "title": "Lessons",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Status": {
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
+          }
         }
       }
     },
@@ -172,15 +235,15 @@
           "title": "Students",
           "button": "New student"
         },
-        "AddNewClientModal": {
-          "title": "Add new client",
-          "subtitle": "Fill in the form below to add a new client.",
+        "AddNewStudentModal": {
+          "title": "Add new student",
+          "subtitle": "Fill in the form below to add a new student.",
           "button-cancel": "Cancel",
-          "button-submit": "Add Client",
+          "button-submit": "Add Student",
           "success": "Customer added successfully!",
           "user-exists": "User already exists!",
           "error": "An error has occurred. Please try again later.",
-          "AddNewClientForm": {
+          "AddNewStudentForm": {
             "firstName": "First Name:",
             "lastName": "Last Name:",
             "address": "Address:",
@@ -191,7 +254,7 @@
             "birthdate": "Birthdate:"
           }
         },
-        "ListClientsTable": {
+        "ListStudentsTable": {
           "no-data": "No results found",
           "archived": "Archived",
           "new": "New",
@@ -206,11 +269,11 @@
             "view": "View details",
             "edit": "Edit",
             "archive": "Archive",
-            "archive-success": "Client archived successfully !",
-            "archive-error": "Error while archiving client. Please try again later.",
+            "archive-success": "Student archived successfully !",
+            "archive-error": "Error while archiving student. Please try again later.",
             "unarchive": "Unarchive",
-            "unarchive-success": "Client unarchived successfully !",
-            "unarchive-error": "Error while unarchiving client. Please try again later.",
+            "unarchive-success": "Student unarchived successfully !",
+            "unarchive-error": "Error while unarchiving student. Please try again later.",
             "loading": "Loading..."
           }
         },
@@ -222,6 +285,10 @@
         }
       },
       "Instructors": {
+        "NotFound": {
+          "title": "No Instructor Found",
+          "subtitle": "The instructor you are looking for does not exist."
+        },
         "Header": {
           "title": "Instructors",
           "button": "New Instructor"
@@ -245,6 +312,7 @@
           "Actions": {
             "open-menu": "Open menu",
             "view": "View details",
+            "edit": "Edit",
             "loading": "Loading..."
           }
         }
