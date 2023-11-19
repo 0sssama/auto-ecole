@@ -32,8 +32,11 @@ export const queryRouter = createTRPCRouter({
       const [studentLessons, totalStudentLessons] = await Promise.all([
         ctx.prisma.lesson.findMany({
           where: {
-            customerId: input.studentId,
             ...filtersObj,
+            customerId: input.studentId,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
           },
           select: {
             id: true,
@@ -60,8 +63,11 @@ export const queryRouter = createTRPCRouter({
         }),
         ctx.prisma.lesson.count({
           where: {
-            customerId: input.studentId,
             ...filtersObj,
+            customerId: input.studentId,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
           },
         }),
       ]);
@@ -108,8 +114,11 @@ export const queryRouter = createTRPCRouter({
       const [instructorLessons, totalInstructorLessons] = await Promise.all([
         ctx.prisma.lesson.findMany({
           where: {
-            instructorId: input.instructorId,
             ...filtersObj,
+            instructorId: input.instructorId,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
           },
           select: {
             id: true,
@@ -136,8 +145,11 @@ export const queryRouter = createTRPCRouter({
         }),
         ctx.prisma.lesson.count({
           where: {
-            instructorId: input.instructorId,
             ...filtersObj,
+            instructorId: input.instructorId,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
           },
         }),
       ]);
@@ -183,8 +195,11 @@ export const queryRouter = createTRPCRouter({
       const [licenseFileLessons, totalLicenseFileLessons] = await Promise.all([
         ctx.prisma.lesson.findMany({
           where: {
-            licenseFileId: input.licenseFileId,
             ...filtersObj,
+            licenseFileId: input.licenseFileId,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
           },
           select: {
             id: true,
@@ -211,8 +226,11 @@ export const queryRouter = createTRPCRouter({
         }),
         ctx.prisma.lesson.count({
           where: {
-            licenseFileId: input.licenseFileId,
             ...filtersObj,
+            licenseFileId: input.licenseFileId,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
           },
         }),
       ]);

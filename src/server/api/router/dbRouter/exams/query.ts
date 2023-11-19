@@ -29,8 +29,13 @@ export const queryRouter = createTRPCRouter({
       const [exams, examsCount] = await Promise.all([
         ctx.prisma.exam.findMany({
           where: {
-            licenseFileId: input.licenseFileId,
             ...filtersObj,
+            licenseFileId: input.licenseFileId,
+            licenseFile: {
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
+            },
           },
           select: {
             id: true,
@@ -46,8 +51,13 @@ export const queryRouter = createTRPCRouter({
         }),
         ctx.prisma.exam.count({
           where: {
-            licenseFileId: input.licenseFileId,
             ...filtersObj,
+            licenseFileId: input.licenseFileId,
+            licenseFile: {
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
+            },
           },
         }),
       ]);

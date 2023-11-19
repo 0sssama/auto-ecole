@@ -33,6 +33,9 @@ export const queryRouter = createTRPCRouter({
           ctx.prisma.licenseFile.findMany({
             where: {
               ...filtersObj,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
             select: {
               id: true,
@@ -64,6 +67,9 @@ export const queryRouter = createTRPCRouter({
           ctx.prisma.licenseFile.count({
             where: {
               ...filtersObj,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
           }),
         ],
@@ -116,8 +122,11 @@ export const queryRouter = createTRPCRouter({
         [
           ctx.prisma.licenseFile.findMany({
             where: {
-              customerId: input.studentId,
               ...filtersObj,
+              customerId: input.studentId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
             select: {
               id: true,
@@ -141,8 +150,11 @@ export const queryRouter = createTRPCRouter({
           }),
           ctx.prisma.licenseFile.count({
             where: {
-              customerId: input.studentId,
               ...filtersObj,
+              customerId: input.studentId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
           }),
         ],
@@ -189,8 +201,11 @@ export const queryRouter = createTRPCRouter({
         await Promise.all([
           ctx.prisma.licenseFile.findMany({
             where: {
-              instructorId: input.instructorId,
               ...filtersObj,
+              instructorId: input.instructorId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
             select: {
               id: true,
@@ -214,8 +229,11 @@ export const queryRouter = createTRPCRouter({
           }),
           ctx.prisma.licenseFile.count({
             where: {
-              instructorId: input.instructorId,
               ...filtersObj,
+              instructorId: input.instructorId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
           }),
         ]);
