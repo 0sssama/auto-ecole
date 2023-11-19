@@ -37,7 +37,10 @@ export const columns: ColumnDef<LicenseFile>[] = [
 
       return (
         <Link href={`/dash/admin/students?studentId=${licenseFile.student.id}`}>
-          <TooltipConcat text={licenseFile.student.name} />
+          <TooltipConcat
+            className="text-left"
+            text={licenseFile.student.name}
+          />
         </Link>
       );
     },
@@ -57,7 +60,10 @@ export const columns: ColumnDef<LicenseFile>[] = [
         <Link
           href={`/dash/admin/instructors?instructorId=${licenseFile.instructor.id}`}
         >
-          <TooltipConcat text={licenseFile.instructor.name} />
+          <TooltipConcat
+            className="text-left"
+            text={licenseFile.instructor.name}
+          />
         </Link>
       );
     },

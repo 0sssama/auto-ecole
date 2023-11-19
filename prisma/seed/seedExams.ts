@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { ExamStatus, PrismaClient } from "@prisma/client";
+import { ExamStatus, ExamType, PrismaClient } from "@prisma/client";
 
 export const seedExams = async (prisma: PrismaClient, licenseFiles: any[]) =>
   prisma.$transaction(
@@ -9,6 +9,7 @@ export const seedExams = async (prisma: PrismaClient, licenseFiles: any[]) =>
           data: {
             date: faker.date.future(),
             status: faker.helpers.enumValue(ExamStatus),
+            type: faker.helpers.enumValue(ExamType),
 
             licenseFile: {
               connect: {

@@ -340,10 +340,36 @@
           "button-submit": "Add License File",
           "success": "License file added successfully!",
           "error": "An error has occurred. Please try again later.",
+          "no-user-instructor": "No user or instructor were selected.",
           "AddNewLicenseFileForm": {
-            "student": "Student:",
-            "category": "Category:",
-            "price": "Price agreed:"
+            "Student": {
+              "empty": "No students found",
+              "loading": "Loading...",
+              "placeholder": "Student Name",
+              "student": "Student: "
+            },
+            "Instructor": {
+              "empty": "No instructors found",
+              "loading": "Loading...",
+              "placeholder": "Instructor Name",
+              "instructor": "Instructor: "
+            },
+            "price": "Price agreed:",
+            "Status": {
+              "status": "Status:",
+              "empty": "Status not found",
+              "ONGOING": "Ongoing",
+              "REJECTED": "Rejected",
+              "VALIDATED": "Validated"
+            },
+            "Category": {
+              "category": "License Category: ",
+              "empty": "Category not found",
+              "A": "Motorcycles",
+              "B": "Cars",
+              "C": "Trucks",
+              "D": "Buses"
+            }
           }
         },
         "ListTable": {

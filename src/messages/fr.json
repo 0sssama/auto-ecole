@@ -70,13 +70,13 @@
           "id": "ID",
           "category": "Type de permis",
           "price": "Prix agréé",
-          "status": "Status",
+          "status": "Statut",
           "created-at": "Date créé"
         },
         "StudentLessons": {
           "id": "ID",
           "instructor-name": "Moniteur",
-          "status": "Status",
+          "status": "Statut",
           "comment": "Comment.",
           "grade": "Note (/100)",
           "price": "Prix",
@@ -103,13 +103,13 @@
           "student-name": "Étudiant",
           "category": "Type de permis",
           "price": "Prix agréé",
-          "status": "Status",
+          "status": "Statut",
           "created-at": "Date créé"
         },
         "InstructorLessons": {
           "id": "ID",
           "student-name": "Étudiant",
-          "status": "Status",
+          "status": "Statut",
           "comment": "Comment.",
           "grade": "Note (/100)",
           "price": "Prix",
@@ -122,7 +122,7 @@
           "instructor-name": "Moniteur",
           "category": "Type de permis",
           "price": "Prix agréé",
-          "status": "Status",
+          "status": "Statut",
           "created-at": "Date créé"
         }
       }
@@ -340,10 +340,36 @@
           "button-submit": "Ajouter Dossier",
           "success": "Dossier ajouté avec succès !",
           "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
-          "AddNewForm": {
-            "student": "Étudiant",
-            "category": "Type de permis",
-            "price": "Prix agréé"
+          "no-user-instructor": "Aucun moniteur ou étudiant a été selectionné",
+          "AddNewLicenseFileForm": {
+            "Student": {
+              "empty": "Aucun étudiant trouvé",
+              "loading": "Chargement...",
+              "placeholder": "Nom de l'étudiant",
+              "student": "Étudiant :"
+            },
+            "Instructor": {
+              "empty": "Aucun moniteur trouvé",
+              "loading": "Chargement...",
+              "placeholder": "Nom du moniteur",
+              "instructor": "Moniteur :"
+            },
+            "price": "Prix agréé :",
+            "Status": {
+              "status": "Statut :",
+              "empty": "Statut non trouvé",
+              "ONGOING": "En cours",
+              "REJECTED": "Rejeté",
+              "VALIDATED": "Validé"
+            },
+            "Category": {
+              "category": "Type de permis :",
+              "empty": "Type non trouvé",
+              "A": "Motocyclettes",
+              "B": "Voitures",
+              "C": "Camions",
+              "D": "Bus"
+            }
           }
         },
         "ListTable": {

@@ -4,10 +4,7 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  PageContentHeader,
-  // AddLicenseFileModal
-} from "@/components/molecules";
+import { PageContentHeader, AddLicenseFileModal } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
 import { LicenseFilesListTable } from "@/components/sections/license-files";
 
@@ -32,10 +29,10 @@ export default function LicenseFilesPage() {
   return (
     <main>
       <PageHeader openModal={addLicenseFileModal.open} />
-      {/* <AddLicenseFileModal
+      <AddLicenseFileModal
         isOpen={addLicenseFileModal.isOpen}
         close={addLicenseFileModal.close}
-      /> */}
+      />
       <div className="w-full">
         <LicenseFilesListTable />
       </div>

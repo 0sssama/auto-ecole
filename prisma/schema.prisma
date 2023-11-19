@@ -122,6 +122,7 @@ model Exam {
 
     date   DateTime
     status ExamStatus
+    type   ExamType
 
     licenseFile   LicenseFile @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int
@@ -212,6 +213,11 @@ enum ExamStatus {
     PENDING
     SUCCESS
     FAILED
+}
+
+enum ExamType {
+    CODE
+    DRIVING
 }
 
 enum Grade {

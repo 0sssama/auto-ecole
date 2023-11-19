@@ -7,6 +7,44 @@ import { getUserStatusFromLicenseFiles, getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
 
 export const queryRouter = createTRPCRouter({
+  getManyForSelect: orgAdminOnlyPrecedure
+    .input(
+      z.object({
+        searchQuery: z.string().optional(),
+        count: z.number().optional(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.userId || !ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      const filtersObj = input.searchQuery
+        ? getWhereObjFromFilters({
+            search: input.searchQuery,
+          })
+        : {};
+
+      const students = await ctx.prisma.customer.findMany({
+        where: {
+          ...filtersObj,
+          clerkOrgId: ctx.orgId,
+        },
+        select: {
+          id: true,
+          firstNameFr: true,
+          lastNameFr: true,
+        },
+        take: input.count,
+      });
+
+      return students.map((student) => ({
+        value: String(student.id),
+        label: `${student.firstNameFr} ${student.lastNameFr}`,
+      }));
+    }),
+
   list: orgAdminOnlyPrecedure
     .input(
       z.object({
