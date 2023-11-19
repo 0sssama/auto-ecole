@@ -1,11 +1,7 @@
-// import { getStudentFolder } from "@/server/utils/getStudentFolder";
-// import { StudentFile } from "@/components/sections";
-
+import { getLicenseFile } from "@/server/utils/license-files/getLicenseFile";
+import { LicenseFile } from "@/components/sections/license-files";
 import LicenseFilesPage from "./_components/license-files";
 import LicenseFileNotFound from "./_components/not-found";
-
-// import StudentsPage from "./_components/students";
-// import StudentNotFound from "./_components/not-found";
 
 export default async function Students({
   searchParams: { licenseFileId },
@@ -20,9 +16,9 @@ export default async function Students({
 
   if (isNaN(id) || id <= 0) return <LicenseFileNotFound />;
 
-  //   const licenseFile = await getLicenseFile(id);
+  const licenseFile = await getLicenseFile(id);
 
-  //   if (!licenseFile) return <LicenseFileNotFound />;
+  if (!licenseFile) return <LicenseFileNotFound />;
 
-  //   return <LicenseFilePage licenseFile={licenseFile} />;
+  return <LicenseFile licenseFile={licenseFile} />;
 }

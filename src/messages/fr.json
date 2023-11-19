@@ -124,6 +124,12 @@
           "price": "Prix agréé",
           "status": "Statut",
           "created-at": "Date créé"
+        },
+        "LicenseFileExams": {
+          "id": "ID",
+          "status": "Statut",
+          "type": "Type",
+          "date": "Date"
         }
       }
     },
@@ -369,6 +375,25 @@
               "B": "Voitures",
               "C": "Camions",
               "D": "Bus"
+            }
+          }
+        },
+        "FilePage": {
+          "LicenseFileExams": {
+            "title": "Examens",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir détails",
+              "edit": "Modifier"
+            },
+            "Status": {
+              "FAILED": "Échoué",
+              "PENDING": "En attente",
+              "SUCCESS": "Réussi"
+            },
+            "Type": {
+              "CODE": "Code",
+              "DRIVING": "Conduite"
             }
           }
         },

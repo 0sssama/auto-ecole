@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Eye, MoreHorizontal, Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -13,7 +14,6 @@ import {
 import { studentLessonSchema } from "./schema";
 
 import type { ActionsColumnProps } from "./types";
-import Link from "next/link";
 
 export function ActionsColumn({ row }: ActionsColumnProps) {
   const t = useTranslations("Dashboard.Dossier.Tables.StudentLessons.Actions");

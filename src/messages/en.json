@@ -124,6 +124,12 @@
           "price": "Price agreed",
           "status": "Status",
           "created-at": "Date created"
+        },
+        "LicenseFileExams": {
+          "id": "ID",
+          "status": "Status",
+          "type": "Type",
+          "date": "Date"
         }
       }
     },
@@ -369,6 +375,25 @@
               "B": "Cars",
               "C": "Trucks",
               "D": "Buses"
+            }
+          }
+        },
+        "FilePage": {
+          "LicenseFileExams": {
+            "title": "Exams",
+            "Actions": {
+              "open-menu": "Open menu",
+              "view": "View details",
+              "edit": "Edit"
+            },
+            "Status": {
+              "FAILED": "Failed",
+              "PENDING": "Pending",
+              "SUCCESS": "Success"
+            },
+            "Type": {
+              "CODE": "Code",
+              "DRIVING": "Driving"
             }
           }
         },

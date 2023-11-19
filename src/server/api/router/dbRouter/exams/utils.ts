@@ -4,10 +4,10 @@ import { TableFilters } from "@/components/organisms/data-table/types";
 
 export const getWhereObjFromFilters = (
   filters: TableFilters["get"],
-): Prisma.LessonWhereInput => {
+): Prisma.ExamWhereInput => {
   void filters;
 
-  let output: Prisma.LessonWhereInput["OR"] = [];
+  let output: Prisma.ExamWhereInput["OR"] = [];
 
   // if (filters.search) output = [...output, ...searchFilters(filters.search)];
 

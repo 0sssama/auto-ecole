@@ -1,5 +1,6 @@
-import { TableFilters } from "@/components/organisms/data-table/types";
 import { Prisma } from "@prisma/client";
+
+import { TableFilters } from "@/components/organisms/data-table/types";
 
 export const getWhereObjFromFilters = (
   filters: TableFilters["get"],

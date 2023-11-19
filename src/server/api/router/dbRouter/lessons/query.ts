@@ -12,7 +12,7 @@ export const queryRouter = createTRPCRouter({
   listByStudentId: orgAdminOnlyPrecedure
     .input(
       z.object({
-        studentId: z.number(),
+        studentId: z.number().min(1),
         pageIndex: z.number().default(0),
         pageSize: z.number().default(10),
         filters: z.object({
@@ -85,7 +85,7 @@ export const queryRouter = createTRPCRouter({
   listByInstructorId: orgAdminOnlyPrecedure
     .input(
       z.object({
-        instructorId: z.number(),
+        instructorId: z.number().min(1),
         pageIndex: z.number().default(0),
         pageSize: z.number().default(10),
         filters: z.object({

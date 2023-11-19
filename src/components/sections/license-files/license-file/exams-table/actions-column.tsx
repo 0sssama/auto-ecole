@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { Eye, MoreHorizontal, Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,14 +11,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { licenseFileSchema } from "./schema";
+import { licenseFileExamSchema } from "./schema";
 
 import type { ActionsColumnProps } from "./types";
 
 export function ActionsColumn({ row }: ActionsColumnProps) {
-  const t = useTranslations("Dashboard.Files.LicenseFiles.ListTable.Actions");
+  const t = useTranslations(
+    "Dashboard.Files.LicenseFiles.FilePage.LicenseFileExams.Actions",
+  );
 
-  const licenseFile = licenseFileSchema.parse(row.original);
+  const exam = licenseFileExamSchema.parse(row.original);
 
   return (
     <DropdownMenu>
@@ -35,7 +37,7 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
         <DropdownMenuItem className="text-sm font-medium cursor-pointer text-muted-foreground/90">
           <Link
             className="flex items-center w-full h-full"
-            href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+            href={`/dash/admin/exams?examId=${exam.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t("view")}
@@ -43,7 +45,7 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-sm font-medium cursor-pointer text-muted-foreground/90"
-          onClick={() => console.log("editing", licenseFile.id)}
+          onClick={() => console.log("editing", exam.id)}
         >
           <Pencil className="mr-2 h-3.5 w-3.5" />
           {t("edit")}

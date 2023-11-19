@@ -35,7 +35,7 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
         <DropdownMenuItem className="text-sm font-medium cursor-pointer text-muted-foreground/90">
           <Link
             className="flex items-center w-full h-full"
-            href={`/dash/admin/licenseFiles?licenseFileId=${studentPayment.id}`}
+            href={`/dash/admin/license-files?licenseFileId=${studentPayment.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t("view")}
