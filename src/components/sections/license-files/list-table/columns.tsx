@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import moment from "moment";
-import { Chip, ChipProps } from "@nextui-org/chip";
+import { Chip } from "@nextui-org/chip";
 import { useTranslations } from "next-intl";
 import { LicenseFileStatus } from "@prisma/client";
-import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { Tooltip, TooltipConcat } from "@/components/atoms";
@@ -13,6 +12,8 @@ import { ActionsColumn } from "./actions-column";
 import { licenseFileSchema } from "./schema";
 
 import type { LicenseFile } from "./schema";
+import type { ColumnDef } from "@tanstack/react-table";
+import type { ChipProps } from "@nextui-org/chip";
 
 export const columns: ColumnDef<LicenseFile>[] = [
   {

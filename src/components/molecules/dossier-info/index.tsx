@@ -1,15 +1,16 @@
 "use client";
 
 import moment from "moment";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { User } from "@nextui-org/user";
-import { Chip, ChipProps } from "@nextui-org/chip";
+import { Chip } from "@nextui-org/chip";
 import { LicenseFileStatus } from "@prisma/client";
 
 import { cn } from "@/lib/cn";
 
+import type { ChipProps } from "@nextui-org/chip";
 import type { DossierInfoProps, InfoDataProps, InfoTypes } from "./types";
-import Link from "next/link";
 
 const getChipColor = (status: LicenseFileStatus): ChipProps["color"] => {
   switch (status) {
