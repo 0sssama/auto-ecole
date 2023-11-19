@@ -55,6 +55,9 @@ export const queryRouter = createTRPCRouter({
                 },
               },
             },
+            orderBy: {
+              createdAt: "desc",
+            },
             skip: input.pageIndex * input.pageSize,
             take: input.pageSize,
           }),
@@ -130,6 +133,9 @@ export const queryRouter = createTRPCRouter({
                 },
               },
             },
+            orderBy: {
+              createdAt: "desc",
+            },
             skip: input.pageIndex * input.pageSize,
             take: input.pageSize,
           }),
@@ -199,6 +205,9 @@ export const queryRouter = createTRPCRouter({
                   lastNameFr: true,
                 },
               },
+            },
+            orderBy: {
+              createdAt: "desc",
             },
             skip: input.pageIndex * input.pageSize,
             take: input.pageSize,

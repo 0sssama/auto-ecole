@@ -31,6 +31,9 @@ export const queryRouter = createTRPCRouter({
             clerkOrgId: ctx.orgId,
           },
         },
+        orderBy: {
+          createdAt: "desc",
+        },
         select: {
           id: true,
           firstName: true,
@@ -89,7 +92,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            id: "asc",
+            createdAt: "desc",
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
