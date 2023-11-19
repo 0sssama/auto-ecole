@@ -6,16 +6,16 @@
   "Dashboard": {
     "redirecting": "Redirecting...",
     "Header": {
-      "help": "Need help?"
-    },
-    "UserNav": {
-      "profile": "Profile",
-      "billing": "Billing",
-      "settings": "Settings",
-      "logout": "Log out",
-      "admin": "Admin",
-      "student": "Student",
-      "unknown": "Unknown"
+      "help": "Need help?",
+      "UserNav": {
+        "profile": "Profile",
+        "billing": "Billing",
+        "settings": "Settings",
+        "logout": "Log out",
+        "admin": "Admin",
+        "student": "Student",
+        "unknown": "Unknown"
+      }
     },
     "Sidebar": {
       "users": "People",
@@ -26,6 +26,7 @@
       "folders": "Files",
       "license-files": "License Files",
       "lessons": "Lessons",
+      "exams": "Exams",
 
       "payment": "Payment",
       "financial-overview": "Financial Overview",
@@ -115,6 +116,30 @@
           "price": "Price",
           "duration": "Duration (h)",
           "scheduled-date": "Date"
+        },
+        "LicenseFiles": {
+          "id": "ID",
+          "student-name": "Student Name",
+          "instructor-name": "Instructor Name",
+          "category": "License Category",
+          "price": "Price agreed",
+          "status": "Status",
+          "created-at": "Date created"
+        },
+        "LicenseFileExams": {
+          "id": "ID",
+          "status": "Status",
+          "type": "Type",
+          "date": "Date"
+        },
+        "LicenseFileLessons": {
+          "id": "ID",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
         }
       }
     },
@@ -144,6 +169,24 @@
           "username": "Username (Login): ",
           "phone": "Phone Number: ",
           "dateJoined": "Date Joined: "
+        },
+        "LicenseFile": {
+          "licenseFileStatus": "License File Status:",
+          "Status": {
+            "ONGOING": "Ongoing",
+            "REJECTED": "Rejected",
+            "VALIDATED": "Validated"
+          },
+          "price": "Price agreed:",
+          "createdAt": "Date added:",
+          "student": "Student:",
+          "instructor": "Instructor:",
+          "createdBy": "Created by:",
+          "UserDesc": {
+            "instructor": "Instructor",
+            "student": "Student",
+            "admin": "Admin"
+          }
         }
       },
       "ImageColumn": {
@@ -315,6 +358,108 @@
             "edit": "Edit",
             "loading": "Loading..."
           }
+        }
+      }
+    },
+    "Files": {
+      "LicenseFiles": {
+        "Header": {
+          "title": "License Files",
+          "button": "New License File"
+        },
+        "AddNewModal": {
+          "title": "Add new license file",
+          "subtitle": "Fill in the form below to add a new license file.",
+          "button-cancel": "Cancel",
+          "button-submit": "Add License File",
+          "success": "License file added successfully!",
+          "error": "An error has occurred. Please try again later.",
+          "no-user-instructor": "No user or instructor were selected.",
+          "AddNewLicenseFileForm": {
+            "Student": {
+              "empty": "No students found",
+              "loading": "Loading...",
+              "placeholder": "Student Name",
+              "student": "Student: "
+            },
+            "Instructor": {
+              "empty": "No instructors found",
+              "loading": "Loading...",
+              "placeholder": "Instructor Name",
+              "instructor": "Instructor: "
+            },
+            "price": "Price agreed:",
+            "Status": {
+              "status": "Status:",
+              "empty": "Status not found",
+              "ONGOING": "Ongoing",
+              "REJECTED": "Rejected",
+              "VALIDATED": "Validated"
+            },
+            "Category": {
+              "category": "License Category: ",
+              "empty": "Category not found",
+              "A": "Motorcycles",
+              "B": "Cars",
+              "C": "Trucks",
+              "D": "Buses"
+            }
+          }
+        },
+        "FilePage": {
+          "LicenseFileExams": {
+            "title": "Exams",
+            "Actions": {
+              "open-menu": "Open menu",
+              "view": "View details",
+              "edit": "Edit"
+            },
+            "Status": {
+              "FAILED": "Failed",
+              "PENDING": "Pending",
+              "SUCCESS": "Success"
+            },
+            "Type": {
+              "CODE": "Code",
+              "DRIVING": "Driving"
+            }
+          },
+          "LicenseFileLessons": {
+            "title": "Lessons",
+            "Actions": {
+              "open-menu": "Open menu",
+              "view": "View details",
+              "edit": "Edit"
+            },
+            "Status": {
+              "RESERVED": "Reserved",
+              "CANCELLED": "Cancelled",
+              "DONE": "Done"
+            }
+          }
+        },
+        "ListTable": {
+          "no-data": "No results found",
+          "Status": {
+            "ONGOING": "Ongoing",
+            "REJECTED": "Rejected",
+            "VALIDATED": "Validated"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Category": {
+            "A": "Motorcycles",
+            "B": "Cars",
+            "C": "Trucks",
+            "D": "Buses"
+          }
+        },
+        "NotFound": {
+          "title": "No License File Found",
+          "subtitle": "The license file you are looking for does not exist."
         }
       }
     },

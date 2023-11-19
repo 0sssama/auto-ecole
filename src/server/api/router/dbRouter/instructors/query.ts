@@ -5,6 +5,49 @@ import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
 
 export const queryRouter = createTRPCRouter({
+  getManyForSelect: orgAdminOnlyPrecedure
+    .input(
+      z.object({
+        searchQuery: z.string().optional(),
+        count: z.number().optional(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.userId || !ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      const filtersObj = input.searchQuery
+        ? getWhereObjFromFilters({
+            search: input.searchQuery,
+          })
+        : {};
+
+      const instructors = await ctx.prisma.instructor.findMany({
+        where: {
+          ...filtersObj,
+          account: {
+            clerkOrgId: ctx.orgId,
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+        },
+        take: input.count,
+      });
+
+      return instructors.map((instructor) => ({
+        value: String(instructor.id),
+        label: `${instructor.firstName} ${instructor.lastName}`,
+      }));
+    }),
+
   list: orgAdminOnlyPrecedure
     .input(
       z.object({
@@ -49,7 +92,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            id: "asc",
+            createdAt: "desc",
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,

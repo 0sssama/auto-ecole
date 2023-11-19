@@ -4,14 +4,104 @@ import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
-import { InstructorLicenseFile } from "@/components/sections/instructor-file/license-files-table/schema";
-import { StudentLicenseFile } from "@/components/sections/student-file/license-file-table/schema";
+
+import type { InstructorLicenseFile } from "@/components/sections/instructor-file/license-files-table/schema";
+import type { StudentLicenseFile } from "@/components/sections/student-file/license-file-table/schema";
+import type { LicenseFile } from "@/components/sections/license-files/list-table/schema";
 
 export const queryRouter = createTRPCRouter({
+  list: orgAdminOnlyPrecedure
+    .input(
+      z.object({
+        pageIndex: z.number().default(0),
+        pageSize: z.number().default(10),
+        filters: z.object({
+          search: z.string(),
+        }),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      const filtersObj = getWhereObjFromFilters(input.filters);
+
+      const [studentLicenseFiles, totalStudentLicenseFiles] = await Promise.all(
+        [
+          ctx.prisma.licenseFile.findMany({
+            where: {
+              ...filtersObj,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
+            },
+            select: {
+              id: true,
+              status: true,
+              createdAt: true,
+              category: true,
+              price: true,
+              instructor: {
+                select: {
+                  id: true,
+                  firstName: true,
+                  lastName: true,
+                },
+              },
+              customer: {
+                select: {
+                  id: true,
+                  firstNameFr: true,
+                  lastNameFr: true,
+                },
+              },
+            },
+            orderBy: {
+              createdAt: "desc",
+            },
+            skip: input.pageIndex * input.pageSize,
+            take: input.pageSize,
+          }),
+          ctx.prisma.licenseFile.count({
+            where: {
+              ...filtersObj,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
+            },
+          }),
+        ],
+      );
+
+      const formattedStudentLicenseFiles: LicenseFile[] =
+        studentLicenseFiles.map((licenseFile) => ({
+          id: licenseFile.id,
+          instructor: {
+            id: licenseFile.instructor.id,
+            name: `${licenseFile.instructor.firstName} ${licenseFile.instructor.lastName}`,
+          },
+          student: {
+            id: licenseFile.customer.id,
+            name: `${licenseFile.customer.firstNameFr} ${licenseFile.customer.lastNameFr}`,
+          },
+          category: licenseFile.category,
+          price: licenseFile.price,
+          status: licenseFile.status,
+          createdAt: licenseFile.createdAt,
+        }));
+
+      return {
+        data: formattedStudentLicenseFiles,
+        pageCount: countPages(totalStudentLicenseFiles, input.pageSize),
+      };
+    }),
+
   listByStudentId: orgAdminOnlyPrecedure
     .input(
       z.object({
-        studentId: z.number(),
+        studentId: z.number().min(1),
 
         pageIndex: z.number().default(0),
         pageSize: z.number().default(10),
@@ -32,8 +122,11 @@ export const queryRouter = createTRPCRouter({
         [
           ctx.prisma.licenseFile.findMany({
             where: {
-              customerId: input.studentId,
               ...filtersObj,
+              customerId: input.studentId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
             select: {
               id: true,
@@ -49,13 +142,19 @@ export const queryRouter = createTRPCRouter({
                 },
               },
             },
+            orderBy: {
+              createdAt: "desc",
+            },
             skip: input.pageIndex * input.pageSize,
             take: input.pageSize,
           }),
           ctx.prisma.licenseFile.count({
             where: {
-              customerId: input.studentId,
               ...filtersObj,
+              customerId: input.studentId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
           }),
         ],
@@ -81,7 +180,7 @@ export const queryRouter = createTRPCRouter({
   listByInstructorId: orgAdminOnlyPrecedure
     .input(
       z.object({
-        instructorId: z.number(),
+        instructorId: z.number().min(1),
 
         pageIndex: z.number().default(0),
         pageSize: z.number().default(10),
@@ -102,8 +201,11 @@ export const queryRouter = createTRPCRouter({
         await Promise.all([
           ctx.prisma.licenseFile.findMany({
             where: {
-              instructorId: input.instructorId,
               ...filtersObj,
+              instructorId: input.instructorId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
             select: {
               id: true,
@@ -119,13 +221,19 @@ export const queryRouter = createTRPCRouter({
                 },
               },
             },
+            orderBy: {
+              createdAt: "desc",
+            },
             skip: input.pageIndex * input.pageSize,
             take: input.pageSize,
           }),
           ctx.prisma.licenseFile.count({
             where: {
-              instructorId: input.instructorId,
               ...filtersObj,
+              instructorId: input.instructorId,
+              customer: {
+                clerkOrgId: ctx.orgId,
+              },
             },
           }),
         ]);

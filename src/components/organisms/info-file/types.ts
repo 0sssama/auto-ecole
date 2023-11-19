@@ -1,4 +1,4 @@
-export type InfoFileType = "student" | "instructor";
+export type InfoFileType = "student" | "instructor" | "licenseFile";
 
 export type InfoFileProps = {
   data: {

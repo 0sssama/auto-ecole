@@ -5,13 +5,13 @@ import moment from "moment";
 import { LessonStatus } from "@prisma/client";
 import { Chip, ChipProps } from "@nextui-org/chip";
 import { useTranslations } from "next-intl";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import { Tooltip, TooltipConcat } from "@/components/atoms";
 import { ActionsColumn } from "./actions-column";
 import { studentLessonSchema } from "./schema";
-import { TooltipConcat } from "@/components/atoms";
 
-import type { ColumnDef } from "@tanstack/react-table";
 import type { StudentLesson } from "./schema";
 
 export const columns: ColumnDef<StudentLesson>[] = [
@@ -141,7 +141,9 @@ export const columns: ColumnDef<StudentLesson>[] = [
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
 
-      return <>{moment(studentLesson.scheduledDate).fromNow()}</>;
+      const date = moment(studentLesson.scheduledDate);
+
+      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

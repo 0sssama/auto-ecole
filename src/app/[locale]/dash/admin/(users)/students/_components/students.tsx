@@ -25,6 +25,7 @@ const PageHeader = ({ openModal }: { openModal: () => void }) => {
 
 export default function StudentsPage() {
   const addStudentModal = useModal();
+
   return (
     <main>
       <PageHeader openModal={addStudentModal.open} />

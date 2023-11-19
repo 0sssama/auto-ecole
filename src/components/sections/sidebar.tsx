@@ -13,6 +13,7 @@ import {
   CircleDollarSign,
   Folder,
   Folders,
+  GraduationCap,
   LogOut,
   Settings,
   User2,
@@ -155,13 +156,18 @@ export const getSidebarLinks = (
       links: [
         {
           name: t("license-files"),
-          href: "/dash/admin/licence-files",
+          href: "/dash/admin/license-files",
           icon: <Folders {...sidebarIconProps} />,
         },
         {
           name: t("lessons"),
           href: "/dash/admin/lessons",
           icon: <BookOpenCheck {...sidebarIconProps} />,
+        },
+        {
+          name: t("exams"),
+          href: "/dash/admin/exams",
+          icon: <GraduationCap {...sidebarIconProps} />,
         },
       ],
     },

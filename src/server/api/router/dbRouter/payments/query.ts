@@ -28,21 +28,31 @@ export const queryRouter = createTRPCRouter({
       const [studentPayments, totalStudentPayments] = await Promise.all([
         ctx.prisma.payment.findMany({
           where: {
-            ...filtersObj,
-            OR: [
+            AND: [
               {
                 licenseFile: {
-                  customerId: input.studentId,
-                },
-              },
-              {
-                lessons: {
-                  some: {
-                    customerId: input.studentId,
+                  customer: {
+                    clerkOrgId: ctx.orgId,
                   },
                 },
               },
-              ...(filtersObj["OR"] ?? []),
+              {
+                OR: [
+                  {
+                    licenseFile: {
+                      customerId: input.studentId,
+                    },
+                  },
+                  {
+                    lessons: {
+                      some: {
+                        customerId: input.studentId,
+                      },
+                    },
+                  },
+                  ...(filtersObj["OR"] ?? []),
+                ],
+              },
             ],
           },
           select: {
@@ -56,26 +66,39 @@ export const queryRouter = createTRPCRouter({
             },
             createdAt: true,
           },
+          orderBy: {
+            createdAt: "desc",
+          },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
         }),
         ctx.prisma.payment.count({
           where: {
-            ...filtersObj,
-            OR: [
+            AND: [
               {
                 licenseFile: {
-                  customerId: input.studentId,
-                },
-              },
-              {
-                lessons: {
-                  some: {
-                    customerId: input.studentId,
+                  customer: {
+                    clerkOrgId: ctx.orgId,
                   },
                 },
               },
-              ...(filtersObj["OR"] ?? []),
+              {
+                OR: [
+                  {
+                    licenseFile: {
+                      customerId: input.studentId,
+                    },
+                  },
+                  {
+                    lessons: {
+                      some: {
+                        customerId: input.studentId,
+                      },
+                    },
+                  },
+                  ...(filtersObj["OR"] ?? []),
+                ],
+              },
             ],
           },
         }),

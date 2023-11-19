@@ -2,6 +2,7 @@ import { faker } from "@faker-js/faker";
 import {
   Category,
   ExamStatus,
+  ExamType,
   LessonStatus,
   LicenseFileStatus,
   PrismaClient,
@@ -29,6 +30,7 @@ export const seedLicenseFiles = async (
               createMany: {
                 data: faker.helpers.multiple(
                   () => ({
+                    type: faker.helpers.enumValue(ExamType),
                     date: faker.date.future(),
                     status: faker.helpers.enumValue(ExamStatus),
                   }),

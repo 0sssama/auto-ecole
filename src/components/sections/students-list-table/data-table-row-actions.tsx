@@ -29,7 +29,9 @@ import type { DataTableRowActionsProps } from "./types";
 import Link from "next/link";
 
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
-  const t = useTranslations("Dashboard.Users.ListStudentsTable.Actions");
+  const t = useTranslations(
+    "Dashboard.Users.Students.ListStudentsTable.Actions",
+  );
 
   const student = studentSchema.parse(row.original);
 

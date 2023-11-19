@@ -7,6 +7,47 @@ import { getUserStatusFromLicenseFiles, getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
 
 export const queryRouter = createTRPCRouter({
+  getManyForSelect: orgAdminOnlyPrecedure
+    .input(
+      z.object({
+        searchQuery: z.string().optional(),
+        count: z.number().optional(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.userId || !ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      const filtersObj = input.searchQuery
+        ? getWhereObjFromFilters({
+            search: input.searchQuery,
+          })
+        : {};
+
+      const students = await ctx.prisma.customer.findMany({
+        where: {
+          ...filtersObj,
+          clerkOrgId: ctx.orgId,
+        },
+        select: {
+          id: true,
+          firstNameFr: true,
+          lastNameFr: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: input.count,
+      });
+
+      return students.map((student) => ({
+        value: String(student.id),
+        label: `${student.firstNameFr} ${student.lastNameFr}`,
+      }));
+    }),
+
   list: orgAdminOnlyPrecedure
     .input(
       z.object({
@@ -28,8 +69,8 @@ export const queryRouter = createTRPCRouter({
       const [students, totalStudents] = await Promise.all([
         ctx.prisma.customer.findMany({
           where: {
-            clerkOrgId: ctx.orgId,
             ...filtersObj,
+            clerkOrgId: ctx.orgId,
           },
           select: {
             id: true,
@@ -44,15 +85,15 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            archived: "asc",
+            createdAt: "desc",
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
         }),
         ctx.prisma.customer.count({
           where: {
-            clerkOrgId: ctx.orgId,
             ...filtersObj,
+            clerkOrgId: ctx.orgId,
           },
         }),
       ]);

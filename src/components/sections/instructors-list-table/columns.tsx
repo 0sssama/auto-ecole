@@ -1,14 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import moment from "moment";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import { Tooltip } from "@/components/atoms";
 import { ActionsColumn } from "./actions-column";
 import { instructorSchema } from "./schema";
 
-import type { ColumnDef } from "@tanstack/react-table";
 import type { Instructor } from "./schema";
-import Link from "next/link";
 
 export const columns: ColumnDef<Instructor>[] = [
   {
@@ -87,7 +88,9 @@ export const columns: ColumnDef<Instructor>[] = [
     cell: ({ row }) => {
       const studentPayment = instructorSchema.parse(row.original);
 
-      return <>{moment(studentPayment.createdAt).fromNow()}</>;
+      const date = moment(studentPayment.createdAt);
+
+      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
   },
   {

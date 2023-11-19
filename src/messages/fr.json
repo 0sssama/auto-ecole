@@ -6,16 +6,16 @@
   "Dashboard": {
     "redirecting": "Redirection...",
     "Header": {
-      "help": "Besoin d'aide?"
-    },
-    "UserNav": {
-      "profile": "Profil",
-      "billing": "Facturation",
-      "settings": "Paramètres",
-      "logout": "Déconnexion",
-      "admin": "Administrateur",
-      "student": "Étudiant",
-      "unknown": "Inconnu"
+      "help": "Besoin d'aide?",
+      "UserNav": {
+        "profile": "Profil",
+        "billing": "Facturation",
+        "settings": "Paramètres",
+        "logout": "Déconnexion",
+        "admin": "Administrateur",
+        "student": "Étudiant",
+        "unknown": "Inconnu"
+      }
     },
     "Sidebar": {
       "users": "Personnes",
@@ -25,7 +25,8 @@
 
       "folders": "Dossiers",
       "license-files": "Dossiers de permis",
-      "lessons": "Leçons et examens",
+      "lessons": "Leçons",
+      "exams": "Examens",
 
       "payment": "Paiements",
       "financial-overview": "Finance",
@@ -70,13 +71,13 @@
           "id": "ID",
           "category": "Type de permis",
           "price": "Prix agréé",
-          "status": "Status",
+          "status": "Statut",
           "created-at": "Date créé"
         },
         "StudentLessons": {
           "id": "ID",
           "instructor-name": "Moniteur",
-          "status": "Status",
+          "status": "Statut",
           "comment": "Comment.",
           "grade": "Note (/100)",
           "price": "Prix",
@@ -103,13 +104,37 @@
           "student-name": "Étudiant",
           "category": "Type de permis",
           "price": "Prix agréé",
-          "status": "Status",
+          "status": "Statut",
           "created-at": "Date créé"
         },
         "InstructorLessons": {
           "id": "ID",
           "student-name": "Étudiant",
-          "status": "Status",
+          "status": "Statut",
+          "comment": "Comment.",
+          "grade": "Note (/100)",
+          "price": "Prix",
+          "duration": "Durée (h)",
+          "scheduled-date": "Date"
+        },
+        "LicenseFiles": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "instructor-name": "Moniteur",
+          "category": "Type de permis",
+          "price": "Prix agréé",
+          "status": "Statut",
+          "created-at": "Date créé"
+        },
+        "LicenseFileExams": {
+          "id": "ID",
+          "status": "Statut",
+          "type": "Type",
+          "date": "Date"
+        },
+        "LicenseFileLessons": {
+          "id": "ID",
+          "status": "Statut",
           "comment": "Comment.",
           "grade": "Note (/100)",
           "price": "Prix",
@@ -123,7 +148,7 @@
         "Student": {
           "id": "Identifiant de l'étudiant: ",
 
-          "nameFr": "Nom complet:",
+          "fullName": "Nom complet:",
           "nameAr": "Nom complet (Arabe): ",
 
           "addressFr": "Addresse: ",
@@ -144,6 +169,24 @@
           "username": "Nom d'utilisateur (Login) : ",
           "phone": "Téléphone : ",
           "dateJoined": "Date ajouté :"
+        },
+        "LicenseFile": {
+          "licenseFileStatus": "Statut du dossier :",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "price": "Prix agréé :",
+          "createdAt": "Date ajouté :",
+          "student": "Étudiant :",
+          "instructor": "Moniteur :",
+          "createdBy": "Créé par :",
+          "UserDesc": {
+            "instructor": "Moniteur",
+            "student": "Étudiant",
+            "admin": "Administrateur"
+          }
         }
       },
       "ImageColumn": {
@@ -315,6 +358,108 @@
         "NotFound": {
           "title": "Dossier introuvable",
           "subtitle": "Le dossier que vous cherchez n'existe pas ou a été supprimé."
+        }
+      }
+    },
+    "Files": {
+      "LicenseFiles": {
+        "Header": {
+          "title": "Dossiers de permis",
+          "button": "Nouveau dossier"
+        },
+        "AddNewModal": {
+          "title": "Ajouter un nouveau dossier",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau dossier",
+          "button-cancel": "Annuler",
+          "button-submit": "Ajouter Dossier",
+          "success": "Dossier ajouté avec succès !",
+          "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+          "no-user-instructor": "Aucun moniteur ou étudiant a été selectionné",
+          "AddNewLicenseFileForm": {
+            "Student": {
+              "empty": "Aucun étudiant trouvé",
+              "loading": "Chargement...",
+              "placeholder": "Nom de l'étudiant",
+              "student": "Étudiant :"
+            },
+            "Instructor": {
+              "empty": "Aucun moniteur trouvé",
+              "loading": "Chargement...",
+              "placeholder": "Nom du moniteur",
+              "instructor": "Moniteur :"
+            },
+            "price": "Prix agréé :",
+            "Status": {
+              "status": "Statut :",
+              "empty": "Statut non trouvé",
+              "ONGOING": "En cours",
+              "REJECTED": "Rejeté",
+              "VALIDATED": "Validé"
+            },
+            "Category": {
+              "category": "Type de permis :",
+              "empty": "Type non trouvé",
+              "A": "Motocyclettes",
+              "B": "Voitures",
+              "C": "Camions",
+              "D": "Bus"
+            }
+          }
+        },
+        "FilePage": {
+          "LicenseFileExams": {
+            "title": "Examens",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir détails",
+              "edit": "Modifier"
+            },
+            "Status": {
+              "FAILED": "Échoué",
+              "PENDING": "En attente",
+              "SUCCESS": "Réussi"
+            },
+            "Type": {
+              "CODE": "Code",
+              "DRIVING": "Conduite"
+            }
+          },
+          "LicenseFileLessons": {
+            "title": "Leçons",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir dossier",
+              "edit": "Modifier"
+            },
+            "Status": {
+              "RESERVED": "Reservé",
+              "CANCELLED": "Annulé",
+              "DONE": "Terminé"
+            }
+          }
+        },
+        "ListTable": {
+          "no-data": "Nous avons rien trouvé ! :/",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
+          }
+        },
+        "NotFound": {
+          "title": "Aucun dossier de permis trouvé",
+          "subtitle": "Aucun dossier de permis n'a été trouvé avec l'ID spécifié."
         }
       }
     },

@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { ActionsColumn } from "./actions-column";
 import { instructorLessonSchema } from "./schema";
-import { TooltipConcat } from "@/components/atoms";
+import { Tooltip, TooltipConcat } from "@/components/atoms";
 
 import type { ColumnDef } from "@tanstack/react-table";
 import type { InstructorLesson } from "./schema";
@@ -147,7 +147,9 @@ export const columns: ColumnDef<InstructorLesson>[] = [
     cell: ({ row }) => {
       const instructorLesson = instructorLessonSchema.parse(row.original);
 
-      return <>{moment(instructorLesson.scheduledDate).fromNow()}</>;
+      const date = moment(instructorLesson.scheduledDate);
+
+      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));

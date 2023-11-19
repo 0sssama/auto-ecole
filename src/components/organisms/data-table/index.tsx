@@ -75,7 +75,7 @@ function DataTable<TData, TValue>({
   }, [data]);
 
   return (
-    <div className="space-y-4">
+    <div className="w-full space-y-4">
       <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
       {isLoading && (
         <div className="w-full min-h-[300px] flex items-center justify-center">

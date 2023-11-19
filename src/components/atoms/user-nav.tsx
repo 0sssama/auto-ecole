@@ -49,7 +49,7 @@ export const parseRoleToClient = (
 };
 
 export default function UserNav() {
-  const t = useTranslations("Dashboard.UserNav");
+  const t = useTranslations("Dashboard.Header.UserNav");
 
   const router = useRouter();
 
