@@ -25,7 +25,8 @@
 
       "folders": "Dossiers",
       "license-files": "Dossiers de permis",
-      "lessons": "Leçons et examens",
+      "lessons": "Leçons",
+      "exams": "Examens",
 
       "payment": "Paiements",
       "financial-overview": "Finance",
@@ -130,6 +131,15 @@
           "status": "Statut",
           "type": "Type",
           "date": "Date"
+        },
+        "LicenseFileLessons": {
+          "id": "ID",
+          "status": "Statut",
+          "comment": "Comment.",
+          "grade": "Note (/100)",
+          "price": "Prix",
+          "duration": "Durée (h)",
+          "scheduled-date": "Date"
         }
       }
     },
@@ -138,7 +148,7 @@
         "Student": {
           "id": "Identifiant de l'étudiant: ",
 
-          "nameFr": "Nom complet:",
+          "fullName": "Nom complet:",
           "nameAr": "Nom complet (Arabe): ",
 
           "addressFr": "Addresse: ",
@@ -159,6 +169,24 @@
           "username": "Nom d'utilisateur (Login) : ",
           "phone": "Téléphone : ",
           "dateJoined": "Date ajouté :"
+        },
+        "LicenseFile": {
+          "licenseFileStatus": "Statut du dossier :",
+          "Status": {
+            "ONGOING": "En cours",
+            "REJECTED": "Rejeté",
+            "VALIDATED": "Validé"
+          },
+          "price": "Prix agréé :",
+          "createdAt": "Date ajouté :",
+          "student": "Étudiant :",
+          "instructor": "Moniteur :",
+          "createdBy": "Créé par :",
+          "UserDesc": {
+            "instructor": "Moniteur",
+            "student": "Étudiant",
+            "admin": "Administrateur"
+          }
         }
       },
       "ImageColumn": {
@@ -394,6 +422,19 @@
             "Type": {
               "CODE": "Code",
               "DRIVING": "Conduite"
+            }
+          },
+          "LicenseFileLessons": {
+            "title": "Leçons",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir dossier",
+              "edit": "Modifier"
+            },
+            "Status": {
+              "RESERVED": "Reservé",
+              "CANCELLED": "Annulé",
+              "DONE": "Terminé"
             }
           }
         },

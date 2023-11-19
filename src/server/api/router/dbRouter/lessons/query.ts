@@ -7,6 +7,7 @@ import { countPages } from "@/utils/countPages";
 
 import type { InstructorLesson } from "@/components/sections/instructor-file/lessons-table/schema";
 import type { StudentLesson } from "@/components/sections/student-file/lessons-table/schema";
+import type { LicenseFileLesson } from "@/components/sections/license-files/license-file/lessons-table/schema";
 
 export const queryRouter = createTRPCRouter({
   listByStudentId: orgAdminOnlyPrecedure
@@ -151,6 +152,76 @@ export const queryRouter = createTRPCRouter({
       return {
         data: formattedInstructorLessons,
         pageCount: countPages(totalInstructorLessons, input.pageSize),
+      };
+    }),
+
+  listByLicenseFileId: orgAdminOnlyPrecedure
+    .input(
+      z.object({
+        licenseFileId: z.number().min(1),
+        pageIndex: z.number().default(0),
+        pageSize: z.number().default(10),
+        filters: z.object({
+          search: z.string(),
+        }),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      const filtersObj = getWhereObjFromFilters(input.filters);
+
+      const [licenseFileLessons, totalLicenseFileLessons] = await Promise.all([
+        ctx.prisma.lesson.findMany({
+          where: {
+            licenseFileId: input.licenseFileId,
+            ...filtersObj,
+          },
+          select: {
+            id: true,
+            status: true,
+            createdAt: true,
+            price: true,
+            comment: true,
+            duration: true,
+            date: true,
+            grade: true,
+            customer: {
+              select: {
+                id: true,
+                lastNameFr: true,
+                firstNameFr: true,
+              },
+            },
+          },
+          skip: input.pageIndex * input.pageSize,
+          take: input.pageSize,
+        }),
+        ctx.prisma.lesson.count({
+          where: {
+            licenseFileId: input.licenseFileId,
+            ...filtersObj,
+          },
+        }),
+      ]);
+
+      const formattedLicenseFileLessons: LicenseFileLesson[] =
+        licenseFileLessons.map((lesson) => ({
+          id: lesson.id,
+          status: lesson.status,
+          comment: lesson.comment,
+          grade: lesson.grade,
+          price: lesson.price,
+          duration: lesson.duration,
+          scheduledDate: lesson.date,
+        }));
+
+      return {
+        data: formattedLicenseFileLessons,
+        pageCount: countPages(totalLicenseFileLessons, input.pageSize),
       };
     }),
 });

@@ -27,6 +27,7 @@
     "@nextui-org/modal": "latest",
     "@nextui-org/system": "latest",
     "@nextui-org/theme": "latest",
+    "@nextui-org/user": "^2.0.25",
     "@prisma/client": "^5.3.1",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",

@@ -26,6 +26,7 @@
       "folders": "Files",
       "license-files": "License Files",
       "lessons": "Lessons",
+      "exams": "Exams",
 
       "payment": "Payment",
       "financial-overview": "Financial Overview",
@@ -130,6 +131,15 @@
           "status": "Status",
           "type": "Type",
           "date": "Date"
+        },
+        "LicenseFileLessons": {
+          "id": "ID",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
         }
       }
     },
@@ -159,6 +169,24 @@
           "username": "Username (Login): ",
           "phone": "Phone Number: ",
           "dateJoined": "Date Joined: "
+        },
+        "LicenseFile": {
+          "licenseFileStatus": "License File Status:",
+          "Status": {
+            "ONGOING": "Ongoing",
+            "REJECTED": "Rejected",
+            "VALIDATED": "Validated"
+          },
+          "price": "Price agreed:",
+          "createdAt": "Date added:",
+          "student": "Student:",
+          "instructor": "Instructor:",
+          "createdBy": "Created by:",
+          "UserDesc": {
+            "instructor": "Instructor",
+            "student": "Student",
+            "admin": "Admin"
+          }
         }
       },
       "ImageColumn": {
@@ -394,6 +422,19 @@
             "Type": {
               "CODE": "Code",
               "DRIVING": "Driving"
+            }
+          },
+          "LicenseFileLessons": {
+            "title": "Lessons",
+            "Actions": {
+              "open-menu": "Open menu",
+              "view": "View details",
+              "edit": "Edit"
+            },
+            "Status": {
+              "RESERVED": "Reserved",
+              "CANCELLED": "Cancelled",
+              "DONE": "Done"
             }
           }
         },
