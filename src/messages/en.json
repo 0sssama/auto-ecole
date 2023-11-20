@@ -545,7 +545,8 @@
           "Actions": {
             "open-menu": "Open menu",
             "view": "View details",
-            "edit": "Edit"
+            "edit": "Edit",
+            "delete": "Delete"
           },
           "Status": {
             "FAILED": "Failed",

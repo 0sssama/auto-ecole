@@ -539,7 +539,8 @@
           "Actions": {
             "open-menu": "Ouvrir le menu",
             "view": "Voir détails",
-            "edit": "Modifier"
+            "edit": "Modifier",
+            "delete": "Supprimer"
           },
           "Status": {
             "FAILED": "Échoué",

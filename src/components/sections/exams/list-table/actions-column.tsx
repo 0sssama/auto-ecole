@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Eye, MoreHorizontal, Pencil } from "lucide-react";
+import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,12 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DeleteExamConfirmModal } from "@/components/molecules";
+import { useModal } from "@/lib/hooks/useModal";
+import { cn } from "@/lib/cn";
 import { examSchema } from "./schema";
 
 import type { ActionsColumnProps } from "./types";
@@ -18,10 +22,17 @@ import type { ActionsColumnProps } from "./types";
 export function ActionsColumn({ row }: ActionsColumnProps) {
   const t = useTranslations("Dashboard.Files.Exams.ListTable.Actions");
 
+  const deleteExamModal = useModal();
+
   const exam = examSchema.parse(row.original);
 
   return (
     <DropdownMenu>
+      <DeleteExamConfirmModal
+        isOpen={deleteExamModal.isOpen}
+        close={deleteExamModal.close}
+        examId={exam.id}
+      />
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
@@ -47,6 +58,17 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
         >
           <Pencil className="mr-2 h-3.5 w-3.5" />
           {t("edit")}
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          className={cn(
+            "text-sm font-medium cursor-pointer text-danger/90 bg-danger/10 hover:!text-danger/100 hover:!bg-danger/20",
+            deleteExamModal.isOpen && "opacity-50 !cursor-not-allowed",
+          )}
+          onClick={deleteExamModal.open}
+        >
+          <Trash2 className="text-destructive mr-2 h-3.5 w-3.5" />
+          {t("delete")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
