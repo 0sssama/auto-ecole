@@ -2,7 +2,7 @@
 // import { clerkClient } from "@clerk/nextjs";
 
 import { prisma } from "@/server/db";
-import { checkAdminStudentHierarchy } from "./checkAdminStudentHierarchy";
+import { checkAdminStudentHierarchy } from "../checkAdminStudentHierarchy";
 
 import type { StudentFolder } from "@/components/sections/students/student-file/types";
 

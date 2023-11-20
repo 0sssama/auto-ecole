@@ -1,4 +1,4 @@
-import { getInstructor } from "@/server/utils/getInstructor";
+import { getInstructor } from "@/server/utils/instructors/getInstructor";
 import { InstructorFile } from "@/components/sections/instructors";
 import InstructorsPage from "./_components/instructors";
 import InstructorNotFound from "./_components/not-found";
