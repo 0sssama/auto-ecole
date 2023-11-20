@@ -1,3 +1,6 @@
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { toast } from "sonner";
 import {
   Modal,
   ModalHeader,
@@ -6,25 +9,71 @@ import {
   ModalContent,
 } from "@nextui-org/modal";
 import { useTranslations } from "next-intl";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ExamStatus, ExamType } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/atoms";
+import { AddNewExamForm } from "@/components/organisms";
+import { examFormSchema } from "@/schemas/exam-form-schema";
+import { api } from "@/utils/api";
 
 function AddExamModal({
   isOpen,
   close,
+  licenseFileId,
 }: {
   isOpen: boolean;
   close: () => void;
+  licenseFileId: number;
 }) {
-  const t = useTranslations("Dashboard.Files.Exams.AddNewModal");
+  const t = useTranslations(
+    "Dashboard.Files.LicenseFiles.FilePage.LicenseFileExams.AddNewModal",
+  );
+
+  const closeModal = () => {
+    form.reset();
+    close();
+  };
+
+  const form = useForm<z.infer<typeof examFormSchema>>({
+    resolver: zodResolver(examFormSchema),
+    defaultValues: {
+      type: ExamType.CODE,
+      status: ExamStatus.PENDING,
+      date: new Date(),
+    },
+  });
+
+  const {
+    mutate: addExamToLicenseFile,
+    isLoading,
+    error,
+  } = api.db.exams.mutation.addToLicenseFile.useMutation({
+    onSuccess: () => {
+      //   void ctx.users.getPage.invalidate();
+      toast.success(t("success"));
+      closeModal();
+    },
+    onError: (error) => {
+      console.error(error);
+      toast.error(t("error"));
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof examFormSchema>) =>
+    addExamToLicenseFile({
+      ...values,
+      licenseFileId,
+    });
 
   if (!isOpen) return null;
 
   return (
     <Modal
       isOpen={isOpen}
-      onClose={close}
-      size="2xl"
+      onClose={closeModal}
+      size="lg"
       className="max-h-[80vh] overflow-auto md:max-h-full"
       scrollBehavior="inside"
     >
@@ -33,14 +82,34 @@ function AddExamModal({
           <h1 className="text-2xl font-semibold">{t("title")}</h1>
           <p className="text-xs opacity-70">{t("subtitle")}</p>
         </ModalHeader>
-        <ModalBody className="flex flex-col items-center justify-center my-4">
-          <p className="text-sm text-center opacity-70 lg:max-w-[400px]">
-            {t("description")}
-          </p>
+        <ModalBody>
+          {error && (
+            <div className="w-full px-2 py-4 text-center bg-red-100 rounded">
+              <p className="text-sm font-bold text-center text-danger">
+                {error.message}
+              </p>
+            </div>
+          )}
+          <AddNewExamForm
+            form={form}
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="grid grid-cols-1 gap-2"
+          />
         </ModalBody>
         <ModalFooter className="flex items-center justify-end gap-1">
-          <Button variant="ghost" onClick={close}>
+          <Button variant="ghost" onClick={closeModal}>
             {t("button-cancel")}
+          </Button>
+          <Button
+            variant="default"
+            onClick={form.handleSubmit(onSubmit)}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Spinner size="xs" color="#fff" />
+            ) : (
+              t("button-submit")
+            )}
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -3,18 +3,24 @@
 import { useTranslations } from "next-intl";
 
 import { DataTable } from "@/components/organisms";
+import { Button } from "@/components/ui/button";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
+import { useModal } from "@/lib/hooks/useModal";
 import { api } from "@/utils/api";
 import { columns } from "./columns";
 
 import type { Paginated } from "@/components/organisms/data-table/types";
 import type { LicenseFileExam } from "./schema";
 import type { LicenseFileExamsTableProps } from "./types";
+import { AddExamModal } from "@/components/molecules";
+import { Plus } from "lucide-react";
 
 export default function LicenseFileExamsTable({
   licenseFileId,
 }: LicenseFileExamsTableProps) {
+  const addExamModal = useModal();
+
   const t = useTranslations(
     "Dashboard.Files.LicenseFiles.FilePage.LicenseFileExams",
   );
@@ -39,7 +45,22 @@ export default function LicenseFileExamsTable({
 
   return (
     <div className="w-full">
-      <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
+      <div className="flex items-center justify-between w-full mb-4">
+        <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
+        <div>
+          <Button onClick={addExamModal.open}>
+            <Plus size={18} />
+            <span className="hidden ml-2 lg:block whitespace-nowrap">
+              {t("add-button")}
+            </span>
+          </Button>
+        </div>
+      </div>
+      <AddExamModal
+        isOpen={addExamModal.isOpen}
+        close={addExamModal.close}
+        licenseFileId={licenseFileId}
+      />
       <DataTable
         data={data}
         error={error?.message}

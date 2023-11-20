@@ -427,10 +427,36 @@
         "FilePage": {
           "LicenseFileExams": {
             "title": "Examens",
+            "add-button": "Nouveau examen",
+            "AddNewModal": {
+              "title": "Ajouter un nouveau examen",
+              "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouvel examen",
+              "success": "Examen ajouté avec succès !",
+              "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+              "Form": {
+                "Status": {
+                  "label": "Statut :",
+                  "placeholder": "En attente",
+                  "PENDING": "En attente",
+                  "SUCCESS": "Réussi",
+                  "FAILED": "Échoué"
+                },
+                "Type": {
+                  "label": "Type :",
+                  "placeholder": "Code",
+                  "CODE": "Code",
+                  "DRIVING": "Conduite"
+                },
+                "date": "Date :"
+              },
+              "button-cancel": "Annuler",
+              "button-submit": "Ajouter Examen"
+            },
             "Actions": {
               "open-menu": "Ouvrir le menu",
               "view": "Voir détails",
-              "edit": "Modifier"
+              "edit": "Modifier",
+              "delete": "Supprimer"
             },
             "Status": {
               "FAILED": "Échoué",
@@ -535,6 +561,16 @@
           "title": "Aucun examen trouvé",
           "subtitle": "Aucun examen n'a été trouvé avec l'ID spécifié."
         }
+      }
+    },
+    "Modals": {
+      "DeleteExam": {
+        "title": "Est-ce que vous êtes sûr ?",
+        "description": "Vous êtes sur le point de supprimer cet examen. Cette action est irréversible.",
+        "button-cancel": "Annuler",
+        "button-submit": "Supprimer",
+        "exam-delete-success": "Examen supprimé avec succès !",
+        "exam-delete-error": "Erreur lors de la suppression de l'examen. Veuillez réessayer plus tard."
       }
     },
     "Error": {

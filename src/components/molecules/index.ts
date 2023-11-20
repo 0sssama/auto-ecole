@@ -6,3 +6,4 @@ export { default as ProfileImageColumn } from "./profile-image-column";
 export { default as AddLicenseFileModal } from "./modals/add-license-file-modal";
 export { default as AddExamModalSike } from "./modals/add-exam-modal-sike";
 export { default as AddExamModal } from "./modals/add-exam-modal";
+export { default as DeleteExamConfirmModal } from "./modals/delete-exam-confirm";
