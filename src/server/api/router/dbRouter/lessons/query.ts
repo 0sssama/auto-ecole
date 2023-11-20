@@ -5,11 +5,102 @@ import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
 
+import type { Lesson } from "@/components/sections/lessons/list-table/schema";
 import type { InstructorLesson } from "@/components/sections/instructors/instructor-file/lessons-table/schema";
 import type { StudentLesson } from "@/components/sections/students/student-file/lessons-table/schema";
 import type { LicenseFileLesson } from "@/components/sections/license-files/license-file/lessons-table/schema";
 
 export const queryRouter = createTRPCRouter({
+  list: orgAdminOnlyPrecedure
+    .input(
+      z.object({
+        pageIndex: z.number().default(0),
+        pageSize: z.number().default(10),
+        filters: z.object({
+          search: z.string(),
+        }),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      const filtersObj = getWhereObjFromFilters(input.filters);
+
+      const [lessons, totalLessons] = await Promise.all([
+        ctx.prisma.lesson.findMany({
+          where: {
+            ...filtersObj,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
+          },
+          select: {
+            id: true,
+            status: true,
+            createdAt: true,
+            price: true,
+            comment: true,
+            duration: true,
+            date: true,
+            grade: true,
+            instructor: {
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+              },
+            },
+            customer: {
+              select: {
+                id: true,
+                firstNameFr: true,
+                lastNameFr: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+          skip: input.pageIndex * input.pageSize,
+          take: input.pageSize,
+        }),
+        ctx.prisma.lesson.count({
+          where: {
+            ...filtersObj,
+            customer: {
+              clerkOrgId: ctx.orgId,
+            },
+          },
+        }),
+      ]);
+
+      const formattedLessons: Lesson[] = lessons.map((lesson) => ({
+        id: lesson.id,
+        instructor: {
+          id: lesson.instructor.id,
+          fullName: `${lesson.instructor.firstName} ${lesson.instructor.lastName}`,
+        },
+        student: {
+          id: lesson.customer.id,
+          fullName: `${lesson.customer.firstNameFr} ${lesson.customer.lastNameFr}`,
+        },
+        status: lesson.status,
+        comment: lesson.comment,
+        grade: lesson.grade,
+        price: lesson.price,
+        duration: lesson.duration,
+        scheduledDate: lesson.date,
+      }));
+
+      return {
+        data: formattedLessons,
+        pageCount: countPages(totalLessons, input.pageSize),
+      };
+    }),
+
   listByStudentId: orgAdminOnlyPrecedure
     .input(
       z.object({
