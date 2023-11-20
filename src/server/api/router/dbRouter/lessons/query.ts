@@ -5,8 +5,8 @@ import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
 
-import type { InstructorLesson } from "@/components/sections/instructor-file/lessons-table/schema";
-import type { StudentLesson } from "@/components/sections/student-file/lessons-table/schema";
+import type { InstructorLesson } from "@/components/sections/instructors/instructor-file/lessons-table/schema";
+import type { StudentLesson } from "@/components/sections/students/student-file/lessons-table/schema";
 import type { LicenseFileLesson } from "@/components/sections/license-files/license-file/lessons-table/schema";
 
 export const queryRouter = createTRPCRouter({

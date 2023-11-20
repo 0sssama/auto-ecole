@@ -4,12 +4,15 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { PageContentHeader, AddInstructorModal } from "@/components/molecules";
+import {
+  PageContentHeader,
+  // AddExamsModal
+} from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-import { InstructorsListTable } from "@/components/sections/instructors";
+// import { ExamsListTable } from "@/components/sections/exams";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
-  const t = useTranslations("Dashboard.Users.Instructors.Header");
+  const t = useTranslations("Dashboard.Files.Exams.Header");
 
   return (
     <PageContentHeader title={t("title")}>
@@ -23,18 +26,19 @@ const PageHeader = ({ openModal }: { openModal: () => void }) => {
   );
 };
 
-export default function InstructorsPage() {
-  const addInstructorModal = useModal();
+export default function ExamsPage() {
+  const addExamModal = useModal();
 
   return (
     <main>
-      <PageHeader openModal={addInstructorModal.open} />
-      <AddInstructorModal
-        isOpen={addInstructorModal.isOpen}
-        close={addInstructorModal.close}
-      />
+      <PageHeader openModal={addExamModal.open} />
+      {/* <AddExamModal
+        isOpen={addExamModal.isOpen}
+        close={addExamModal.close}
+      /> */}
       <div className="w-full">
-        <InstructorsListTable />
+        {/* <ExamsListTable /> */}
+        Exams here
       </div>
     </main>
   );

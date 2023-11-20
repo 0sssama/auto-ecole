@@ -461,6 +461,26 @@
           "title": "Aucun dossier de permis trouvé",
           "subtitle": "Aucun dossier de permis n'a été trouvé avec l'ID spécifié."
         }
+      },
+      "Lessons": {
+        "Header": {
+          "title": "Leçons",
+          "button": "Nouvelle leçon"
+        },
+        "NotFound": {
+          "title": "Aucune leçon trouvé",
+          "subtitle": "Aucune leçon n'a été trouvé avec l'ID spécifié."
+        }
+      },
+      "Exams": {
+        "Header": {
+          "title": "Examens",
+          "button": "Nouveau examen"
+        },
+        "NotFound": {
+          "title": "Aucun examen trouvé",
+          "subtitle": "Aucun examen n'a été trouvé avec l'ID spécifié."
+        }
       }
     },
     "Error": {

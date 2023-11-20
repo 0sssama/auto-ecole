@@ -1,7 +1,7 @@
 import { getInstructor } from "@/server/utils/getInstructor";
+import { InstructorFile } from "@/components/sections/instructors";
 import InstructorsPage from "./_components/instructors";
 import InstructorNotFound from "./_components/not-found";
-import InstructorFile from "@/components/sections/instructor-file";
 
 export default async function Instructors({
   searchParams: { instructorId },

@@ -1,6 +1,5 @@
 import { getStudentFolder } from "@/server/utils/getStudentFolder";
-import { StudentFile } from "@/components/sections";
-
+import { StudentFile } from "@/components/sections/students";
 import StudentsPage from "./_components/students";
 import StudentNotFound from "./_components/not-found";
 

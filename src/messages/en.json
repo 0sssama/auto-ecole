@@ -461,6 +461,26 @@
           "title": "No License File Found",
           "subtitle": "The license file you are looking for does not exist."
         }
+      },
+      "Lessons": {
+        "Header": {
+          "title": "Lessons",
+          "button": "New Lesson"
+        },
+        "NotFound": {
+          "title": "No Lesson Found",
+          "subtitle": "The lesson you are looking for does not exist."
+        }
+      },
+      "Exams": {
+        "Header": {
+          "title": "Exams",
+          "button": "New Exam"
+        },
+        "NotFound": {
+          "title": "No Exam Found",
+          "subtitle": "The exam you are looking for does not exist."
+        }
       }
     },
     "Error": {

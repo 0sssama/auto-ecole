@@ -3,7 +3,7 @@ import { LicenseFile } from "@/components/sections/license-files";
 import LicenseFilesPage from "./_components/license-files";
 import LicenseFileNotFound from "./_components/not-found";
 
-export default async function Students({
+export default async function LicenseFiles({
   searchParams: { licenseFileId },
 }: {
   searchParams: {
