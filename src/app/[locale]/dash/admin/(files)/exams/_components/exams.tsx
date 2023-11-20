@@ -9,7 +9,7 @@ import {
   // AddExamsModal
 } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-// import { ExamsListTable } from "@/components/sections/exams";
+import { ExamsListTable } from "@/components/sections/exams";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
   const t = useTranslations("Dashboard.Files.Exams.Header");
@@ -37,8 +37,7 @@ export default function ExamsPage() {
         close={addExamModal.close}
       /> */}
       <div className="w-full">
-        {/* <ExamsListTable /> */}
-        Exams here
+        <ExamsListTable />
       </div>
     </main>
   );

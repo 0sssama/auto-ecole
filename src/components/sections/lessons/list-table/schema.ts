@@ -12,8 +12,6 @@ export type Lesson = {
     fullName: string;
   };
   status: LessonStatus;
-  comment: string;
-  grade: number;
   price: number;
   duration: number;
   scheduledDate: Date;
@@ -30,8 +28,6 @@ export const lessonSchema: z.ZodType<Lesson> = z.object({
     fullName: z.string(),
   }),
   status: z.nativeEnum(LessonStatus),
-  comment: z.string(),
-  grade: z.number(),
   price: z.number(),
   duration: z.number(),
   scheduledDate: z.date(),

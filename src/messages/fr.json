@@ -140,6 +140,24 @@
           "price": "Prix",
           "duration": "Durée (h)",
           "scheduled-date": "Date"
+        },
+        "Lessons": {
+          "id": "ID",
+          "instructor-name": "Moniteur",
+          "student-name": "Étudiant",
+          "status": "Statut",
+          "comment": "Comment.",
+          "grade": "Note (/100)",
+          "price": "Prix agréé",
+          "duration": "Durée (h)",
+          "scheduled-date": "Date"
+        },
+        "Exams": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "status": "Statut",
+          "type": "Type",
+          "date": "Date"
         }
       }
     },
@@ -428,7 +446,7 @@
             "title": "Leçons",
             "Actions": {
               "open-menu": "Ouvrir le menu",
-              "view": "Voir dossier",
+              "view": "Voir leçon",
               "edit": "Modifier"
             },
             "Status": {
@@ -467,6 +485,19 @@
           "title": "Leçons",
           "button": "Nouvelle leçon"
         },
+        "ListTable": {
+          "no-data": "Nous avons rien trouvé ! :/",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Status": {
+            "RESERVED": "Reservé",
+            "CANCELLED": "Annulé",
+            "DONE": "Terminé"
+          }
+        },
         "NotFound": {
           "title": "Aucune leçon trouvé",
           "subtitle": "Aucune leçon n'a été trouvé avec l'ID spécifié."
@@ -476,6 +507,23 @@
         "Header": {
           "title": "Examens",
           "button": "Nouveau examen"
+        },
+        "ListTable": {
+          "no-data": "Nous avons rien trouvé ! :/",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier"
+          },
+          "Status": {
+            "FAILED": "Échoué",
+            "PENDING": "En attente",
+            "SUCCESS": "Réussi"
+          },
+          "Type": {
+            "CODE": "Code",
+            "DRIVING": "Conduite"
+          }
         },
         "NotFound": {
           "title": "Aucun examen trouvé",

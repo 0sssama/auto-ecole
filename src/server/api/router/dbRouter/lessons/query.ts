@@ -40,12 +40,9 @@ export const queryRouter = createTRPCRouter({
           select: {
             id: true,
             status: true,
-            createdAt: true,
             price: true,
-            comment: true,
             duration: true,
             date: true,
-            grade: true,
             instructor: {
               select: {
                 id: true,
@@ -88,8 +85,6 @@ export const queryRouter = createTRPCRouter({
           fullName: `${lesson.customer.firstNameFr} ${lesson.customer.lastNameFr}`,
         },
         status: lesson.status,
-        comment: lesson.comment,
-        grade: lesson.grade,
         price: lesson.price,
         duration: lesson.duration,
         scheduledDate: lesson.date,

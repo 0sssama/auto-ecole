@@ -42,6 +42,17 @@ export const queryRouter = createTRPCRouter({
             status: true,
             type: true,
             date: true,
+            licenseFile: {
+              select: {
+                customer: {
+                  select: {
+                    id: true,
+                    firstNameFr: true,
+                    lastNameFr: true,
+                  },
+                },
+              },
+            },
           },
           orderBy: {
             createdAt: "desc",
@@ -61,7 +72,16 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedExams: Exam[] = exams;
+      const formattedExams: Exam[] = exams.map((exam) => ({
+        id: exam.id,
+        status: exam.status,
+        type: exam.type,
+        date: exam.date,
+        student: {
+          id: exam.licenseFile.customer.id,
+          fullName: `${exam.licenseFile.customer.firstNameFr} ${exam.licenseFile.customer.lastNameFr}`,
+        },
+      }));
 
       return {
         data: formattedExams,

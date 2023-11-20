@@ -140,6 +140,24 @@
           "price": "Price",
           "duration": "Duration (h)",
           "scheduled-date": "Date"
+        },
+        "Lessons": {
+          "id": "ID",
+          "instructor-name": "Instructor",
+          "student-name": "Student",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
+        },
+        "Exams": {
+          "id": "ID",
+          "student-name": "Student",
+          "status": "Status",
+          "type": "Type",
+          "date": "Date"
         }
       }
     },
@@ -467,6 +485,19 @@
           "title": "Lessons",
           "button": "New Lesson"
         },
+        "ListTable": {
+          "no-data": "No results found",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Status": {
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
+          }
+        },
         "NotFound": {
           "title": "No Lesson Found",
           "subtitle": "The lesson you are looking for does not exist."
@@ -476,6 +507,23 @@
         "Header": {
           "title": "Exams",
           "button": "New Exam"
+        },
+        "ListTable": {
+          "no-data": "No results found",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Status": {
+            "FAILED": "Failed",
+            "PENDING": "Pending",
+            "SUCCESS": "Success"
+          },
+          "Type": {
+            "CODE": "Code",
+            "DRIVING": "Driving"
+          }
         },
         "NotFound": {
           "title": "No Exam Found",

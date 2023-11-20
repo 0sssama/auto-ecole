@@ -9,7 +9,7 @@ import {
   // AddLessonsModal
 } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-// import { LessonsListTable } from "@/components/sections/lessons";
+import { LessonsListTable } from "@/components/sections/lessons";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
   const t = useTranslations("Dashboard.Files.Lessons.Header");
@@ -37,8 +37,7 @@ export default function LessonsPage() {
         close={addLessonModal.close}
       /> */}
       <div className="w-full">
-        {/* <LessonsListTable /> */}
-        Lessons here
+        <LessonsListTable />
       </div>
     </main>
   );
