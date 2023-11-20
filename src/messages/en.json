@@ -508,6 +508,12 @@
           "title": "Exams",
           "button": "New Exam"
         },
+        "AddNewModal": {
+          "title": "Add new exam",
+          "subtitle": "",
+          "description": "Please visit the license file page of the appropriate student to add a new exam",
+          "button-cancel": "Cancel"
+        },
         "ListTable": {
           "no-data": "No results found",
           "Actions": {

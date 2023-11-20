@@ -525,6 +525,12 @@
             "DRIVING": "Conduite"
           }
         },
+        "AddNewModal": {
+          "title": "Ajouter un nouveau examen",
+          "subtitle": "",
+          "description": "Veuillez visiter la page du dossier de permis de l'étudiant approprié pour ajouter un nouvel examen",
+          "button-cancel": "Annuler"
+        },
         "NotFound": {
           "title": "Aucun examen trouvé",
           "subtitle": "Aucun examen n'a été trouvé avec l'ID spécifié."
