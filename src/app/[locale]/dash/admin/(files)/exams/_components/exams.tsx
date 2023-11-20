@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { PageContentHeader, AddExamModal } from "@/components/molecules";
+import { PageContentHeader, AddExamModalSike } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
 import { ExamsListTable } from "@/components/sections/exams";
 
@@ -24,12 +24,15 @@ const PageHeader = ({ openModal }: { openModal: () => void }) => {
 };
 
 export default function ExamsPage() {
-  const addExamModal = useModal();
+  const addExamModalSike = useModal();
 
   return (
     <main>
-      <PageHeader openModal={addExamModal.open} />
-      <AddExamModal isOpen={addExamModal.isOpen} close={addExamModal.close} />
+      <PageHeader openModal={addExamModalSike.open} />
+      <AddExamModalSike
+        isOpen={addExamModalSike.isOpen}
+        close={addExamModalSike.close}
+      />
       <div className="w-full">
         <ExamsListTable />
       </div>
