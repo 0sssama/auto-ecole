@@ -69,100 +69,110 @@ const fields = (t: TranslationFunction) => [
 export default function AddNewLessonForm({
   form,
   onSubmit,
+  isLicenseFileLesson,
   className,
 }: {
   form: UseFormReturn<FormType, any, undefined>;
   onSubmit: () => any;
+  isLicenseFileLesson?: boolean;
   className?: string;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const t = useTranslations("Dashboard.Modals.AddLesson.Form");
 
-  const students = api.db.students.query.getManyForSelect.useQuery({
-    searchQuery,
-    count: 5,
-  });
+  const students = isLicenseFileLesson
+    ? null
+    : api.db.students.query.getManyForSelect.useQuery({
+        searchQuery,
+        count: 5,
+      });
 
-  const instructors = api.db.instructors.query.getManyForSelect.useQuery({
-    searchQuery,
-    count: 5,
-  });
+  const instructors = isLicenseFileLesson
+    ? null
+    : api.db.instructors.query.getManyForSelect.useQuery({
+        searchQuery,
+        count: 5,
+      });
 
   return (
     <Form {...form}>
       <form onSubmit={onSubmit} className={className}>
-        {fields(t).map((f, key) => (
-          <FormField
-            key={key}
-            control={form.control}
-            name={f.name as keyof FormType}
-            render={({ field }) => (
-              <FormItem className="relative w-full">
-                <FormLabel className="inline-block w-full text-sm">
-                  {f.label}
-                </FormLabel>
-                <FormControl className="relative w-full">
-                  <>
-                    {field.name === "date" && (
-                      <DatePicker
-                        placeholder={f.placeholder}
-                        {...field}
-                        value={field.value as Date}
-                      />
-                    )}
+        {fields(t).map((f, key) =>
+          (f.name === "studentId" && isLicenseFileLesson) ||
+          (f.name === "instructorId" && isLicenseFileLesson) ? null : (
+            <FormField
+              key={key}
+              control={form.control}
+              name={f.name as keyof FormType}
+              render={({ field }) => (
+                <FormItem className="relative w-full">
+                  <FormLabel className="inline-block w-full text-sm">
+                    {f.label}
+                  </FormLabel>
+                  <FormControl className="relative w-full">
+                    <>
+                      {field.name === "date" && (
+                        <DatePicker
+                          placeholder={f.placeholder}
+                          {...field}
+                          value={field.value as Date}
+                        />
+                      )}
 
-                    {(field.name === "price" || field.name === "duration") && (
-                      <Input
-                        placeholder={f.placeholder}
-                        {...field}
-                        value={field.value as string}
-                      />
-                    )}
+                      {(field.name === "price" ||
+                        field.name === "duration") && (
+                        <Input
+                          placeholder={f.placeholder}
+                          {...field}
+                          value={field.value as string}
+                        />
+                      )}
 
-                    {(field.name === "instructorId" ||
-                      field.name === "studentId" ||
-                      field.name === "status") && (
-                      <Combobox
-                        placeholder={f.placeholder}
-                        emptyMessage={f.emptyMessage}
-                        loadingMessage={f.loadingMessage}
-                        {...field}
-                        value={field.value as string | null}
-                        options={
-                          {
-                            instructorId: instructors.data ?? [],
-                            studentId: students.data ?? [],
-                            status: f.options!,
-                          }[field.name]
-                        }
-                        isLoading={
-                          {
-                            instructorId: instructors.isLoading,
-                            studentId: students.isLoading,
-                            status: false,
-                          }[field.name]
-                        }
-                        search={
-                          {
-                            instructorId: { searchQuery, setSearchQuery },
-                            studentId: { searchQuery, setSearchQuery },
-                            status: undefined,
-                          }[field.name]
-                        }
-                        onChange={(newValue) => {
-                          // @ts-ignore
-                          form.setValue(field.name, newValue);
-                        }}
-                      />
-                    )}
-                  </>
-                </FormControl>
-                <FormMessage className="inline-block w-full text-[12px] px-1" />
-              </FormItem>
-            )}
-          />
-        ))}
+                      {(field.name === "instructorId" ||
+                        field.name === "studentId" ||
+                        field.name === "status") && (
+                        <Combobox
+                          placeholder={f.placeholder}
+                          emptyMessage={f.emptyMessage}
+                          loadingMessage={f.loadingMessage}
+                          {...field}
+                          value={field.value as string | null}
+                          options={
+                            {
+                              instructorId: instructors?.data ?? [],
+                              studentId: students?.data ?? [],
+                              status: f.options!,
+                            }[field.name]
+                          }
+                          isLoading={
+                            {
+                              instructorId: instructors?.isLoading,
+                              studentId: students?.isLoading,
+                              status: false,
+                            }[field.name]
+                          }
+                          search={
+                            {
+                              instructorId: { searchQuery, setSearchQuery },
+                              studentId: { searchQuery, setSearchQuery },
+                              status: undefined,
+                            }[field.name]
+                          }
+                          onChange={(newValue) => {
+                            // @ts-ignore
+                            form.setValue(field.name, newValue);
+                          }}
+                        />
+                      )}
+                    </>
+                  </FormControl>
+                  <FormMessage className="inline-block w-full text-[12px] px-1" />
+                </FormItem>
+              )}
+            />
+          ),
+        )}
       </form>
     </Form>
   );

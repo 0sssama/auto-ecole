@@ -20,6 +20,10 @@ export const mutationRouter = createTRPCRouter({
           comment: `No comment`,
           grade: -1,
 
+          ...(input.licenseFileId
+            ? { licenseFile: { connect: { id: input.licenseFileId } } }
+            : {}),
+
           payment: {
             create: {
               sum: input.price,

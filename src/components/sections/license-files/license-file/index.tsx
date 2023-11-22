@@ -29,7 +29,13 @@ export default function LicenseFile({
       <Separator className="mb-6 mt-14" />
       <LicenseFileExamsTable licenseFileId={licenseFile.id} />
       <Separator className="mb-6 mt-14" />
-      <LicenseFileLessonsTable licenseFileId={licenseFile.id} />
+      <LicenseFileLessonsTable
+        context={{
+          licenseFileId: licenseFile.id,
+          studentId: licenseFile.student.id,
+          instructorId: licenseFile.instructor.id,
+        }}
+      />
       {/* <Separator className="mb-6 mt-14" /> */}
       {/* <LicenseFilePaymentsTable licenseFileId={licenseFile.id} /> */}
     </div>

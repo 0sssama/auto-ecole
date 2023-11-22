@@ -446,6 +446,7 @@
           },
           "LicenseFileLessons": {
             "title": "Leçons",
+            "add-button": "Nouvelle leçon",
             "Actions": {
               "open-menu": "Ouvrir le menu",
               "view": "Voir leçon",

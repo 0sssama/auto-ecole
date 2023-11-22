@@ -24,7 +24,7 @@ function AddExamModal({
     <Modal
       isOpen={isOpen}
       onClose={close}
-      size="2xl"
+      size="sm"
       className="max-h-[80vh] overflow-auto md:max-h-full"
       scrollBehavior="inside"
     >
@@ -38,8 +38,8 @@ function AddExamModal({
             {t("description")}
           </p>
         </ModalBody>
-        <ModalFooter className="flex items-center justify-end gap-1">
-          <Button variant="ghost" onClick={close}>
+        <ModalFooter className="w-full">
+          <Button variant="outline" onClick={close} className="w-full">
             {t("button-cancel")}
           </Button>
         </ModalFooter>

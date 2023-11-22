@@ -58,9 +58,7 @@ export default function AddNewInstructorForm({
   onSubmit: () => any;
   className?: string;
 }) {
-  const t = useTranslations(
-    "Dashboard.Files.LicenseFiles.FilePage.LicenseFileExams.AddNewModal.Form",
-  );
+  const t = useTranslations("Dashboard.Modals.AddExam.Form");
 
   return (
     <Form {...form}>

@@ -7,5 +7,9 @@ export type ActionsColumnProps = {
 };
 
 export type LicenseFileLessonsTableProps = {
-  licenseFileId: number;
+  context: {
+    licenseFileId: number;
+    studentId: number;
+    instructorId: number;
+  };
 };

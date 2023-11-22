@@ -1,7 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Plus } from "lucide-react";
 
+import { AddExamModal } from "@/components/molecules";
 import { DataTable } from "@/components/organisms";
 import { Button } from "@/components/ui/button";
 import { usePagination } from "@/lib/hooks/usePagination";
@@ -13,8 +15,6 @@ import { columns } from "./columns";
 import type { Paginated } from "@/components/organisms/data-table/types";
 import type { LicenseFileExam } from "./schema";
 import type { LicenseFileExamsTableProps } from "./types";
-import { AddExamModal } from "@/components/molecules";
-import { Plus } from "lucide-react";
 
 export default function LicenseFileExamsTable({
   licenseFileId,
