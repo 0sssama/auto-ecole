@@ -428,30 +428,6 @@
           "LicenseFileExams": {
             "title": "Exams",
             "add-button": "Add Exam",
-            "AddNewModal": {
-              "title": "Add new exam",
-              "subtitle": "Fill in the form below to add a new exam to this license file",
-              "success": "Exam added successfully",
-              "error": "An error has occurred. Please try again later.",
-              "Form": {
-                "Status": {
-                  "label": "Status:",
-                  "placeholder": "Pending",
-                  "PENDING": "Pending",
-                  "SUCCESS": "Success",
-                  "FAILED": "Failed"
-                },
-                "Type": {
-                  "label": "Type:",
-                  "placeholder": "Code",
-                  "CODE": "Code",
-                  "DRIVING": "Driving"
-                },
-                "date": "Date:"
-              },
-              "button-cancel": "Cancel",
-              "button-submit": "Add Exam"
-            },
             "Actions": {
               "open-menu": "Open menu",
               "view": "View details",
@@ -534,12 +510,6 @@
           "title": "Exams",
           "button": "New Exam"
         },
-        "AddNewModal": {
-          "title": "Add new exam",
-          "subtitle": "",
-          "description": "Please visit the license file page of the appropriate student to add a new exam",
-          "button-cancel": "Cancel"
-        },
         "ListTable": {
           "no-data": "No results found",
           "Actions": {
@@ -565,6 +535,70 @@
       }
     },
     "Modals": {
+      "AddExamSike": {
+        "title": "Add new exam",
+        "subtitle": "",
+        "description": "Please visit the license file page of the appropriate student to add a new exam",
+        "button-cancel": "Cancel"
+      },
+      "AddExam": {
+        "title": "Add new exam",
+        "subtitle": "Fill in the form below to add a new exam to this license file",
+        "success": "Exam added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "Status": {
+            "label": "Status:",
+            "placeholder": "Pending",
+            "PENDING": "Pending",
+            "SUCCESS": "Success",
+            "FAILED": "Failed"
+          },
+          "Type": {
+            "label": "Type:",
+            "placeholder": "Code",
+            "CODE": "Code",
+            "DRIVING": "Driving"
+          },
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add Exam"
+      },
+      "AddLesson": {
+        "title": "Add new lesson",
+        "subtitle": "Fill in the form below to add a new lesson",
+        "success": "Lesson added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "no-user-instructor": "No student or instructor were selected.",
+        "Form": {
+          "external-client": "External Client?",
+          "Status": {
+            "label": "Status:",
+            "placeholder": "En attente",
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
+          },
+          "Student": {
+            "empty": "No students found",
+            "loading": "Loading...",
+            "placeholder": "Student Name",
+            "student": "Student:"
+          },
+          "Instructor": {
+            "empty": "No instructors found",
+            "loading": "Loading...",
+            "placeholder": "Instructor Name",
+            "instructor": "Instructor:"
+          },
+          "price": "Price:",
+          "duration": "Duration (hours):",
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add Lesson"
+      },
       "DeleteExam": {
         "title": "Are you sure you want to delete this exam?",
         "description": "This action cannot be undone.",

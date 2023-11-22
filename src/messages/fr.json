@@ -428,30 +428,6 @@
           "LicenseFileExams": {
             "title": "Examens",
             "add-button": "Nouveau examen",
-            "AddNewModal": {
-              "title": "Ajouter un nouveau examen",
-              "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouvel examen",
-              "success": "Examen ajouté avec succès !",
-              "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
-              "Form": {
-                "Status": {
-                  "label": "Statut :",
-                  "placeholder": "En attente",
-                  "PENDING": "En attente",
-                  "SUCCESS": "Réussi",
-                  "FAILED": "Échoué"
-                },
-                "Type": {
-                  "label": "Type :",
-                  "placeholder": "Code",
-                  "CODE": "Code",
-                  "DRIVING": "Conduite"
-                },
-                "date": "Date :"
-              },
-              "button-cancel": "Annuler",
-              "button-submit": "Ajouter Examen"
-            },
             "Actions": {
               "open-menu": "Ouvrir le menu",
               "view": "Voir détails",
@@ -565,6 +541,71 @@
       }
     },
     "Modals": {
+      "AddExamSike": {
+        "title": "Ajouter un nouveau examen",
+        "subtitle": "",
+        "description": "Veuillez visiter la page du dossier de permis de l'étudiant approprié pour ajouter un nouvel examen",
+        "button-cancel": "Annuler"
+      },
+      "AddExam": {
+        "title": "Ajouter un nouveau examen",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouvel examen",
+        "success": "Examen ajouté avec succès !",
+        "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+        "Form": {
+          "Status": {
+            "label": "Statut :",
+            "placeholder": "En attente",
+            "PENDING": "En attente",
+            "SUCCESS": "Réussi",
+            "FAILED": "Échoué"
+          },
+          "Type": {
+            "label": "Type :",
+            "placeholder": "Code",
+            "CODE": "Code",
+            "DRIVING": "Conduite"
+          },
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter Examen"
+      },
+      "AddLesson": {
+        "title": "Ajouter une nouvelle leçon",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle leçon",
+        "success": "Leçon ajoutée avec succès !",
+        "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+        "no-user-instructor": "Aucun moniteur ou étudiant a été selectionné",
+        "Form": {
+          "external-client": "Client externe?",
+          "Status": {
+            "label": "Statut :",
+            "placeholder": "Reservé",
+            "RESERVED": "Reservé",
+            "CANCELLED": "Annulé",
+            "DONE": "Terminé"
+          },
+          "Student": {
+            "empty": "Aucun étudiant trouvé",
+            "loading": "Chargement...",
+            "placeholder": "Nom de l'étudiant",
+            "student": "Étudiant :"
+          },
+          "Instructor": {
+            "empty": "Aucun moniteur trouvé",
+            "loading": "Chargement...",
+            "placeholder": "Nom du moniteur",
+            "instructor": "Moniteur :"
+          },
+          "price": "Prix agréé :",
+          "status": "Statut :",
+          "duration": "Durée (h): ",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter leçon"
+      },
       "DeleteExam": {
         "title": "Est-ce que vous êtes sûr ?",
         "description": "Vous êtes sur le point de supprimer cet examen. Cette action est irréversible.",

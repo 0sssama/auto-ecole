@@ -16,7 +16,7 @@ function AddExamModal({
   isOpen: boolean;
   close: () => void;
 }) {
-  const t = useTranslations("Dashboard.Files.Exams.AddNewModal");
+  const t = useTranslations("Dashboard.Modals.AddExamSike");
 
   if (!isOpen) return null;
 

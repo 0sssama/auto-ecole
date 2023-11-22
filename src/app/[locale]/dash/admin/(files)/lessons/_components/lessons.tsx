@@ -4,10 +4,7 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  PageContentHeader,
-  // AddLessonsModal
-} from "@/components/molecules";
+import { PageContentHeader, AddLessonModal } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
 import { LessonsListTable } from "@/components/sections/lessons";
 
@@ -32,10 +29,10 @@ export default function LessonsPage() {
   return (
     <main>
       <PageHeader openModal={addLessonModal.open} />
-      {/* <AddLessonModal
+      <AddLessonModal
         isOpen={addLessonModal.isOpen}
         close={addLessonModal.close}
-      /> */}
+      />
       <div className="w-full">
         <LessonsListTable />
       </div>
