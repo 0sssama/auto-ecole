@@ -21,7 +21,7 @@ import {
 import {
   useArchiveStudent,
   useUnarchiveStudent,
-} from "@/lib/hooks/useArchiveStudent";
+} from "@/lib/hooks/students/useArchiveStudent";
 import { cn } from "@/lib/cn";
 import { studentSchema } from "./schema";
 

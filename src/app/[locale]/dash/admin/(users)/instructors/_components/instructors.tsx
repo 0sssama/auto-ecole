@@ -6,7 +6,7 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageContentHeader, AddInstructorModal } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-import { InstructorsListTable } from "@/components/sections";
+import { InstructorsListTable } from "@/components/sections/instructors";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
   const t = useTranslations("Dashboard.Users.Instructors.Header");

@@ -39,7 +39,10 @@ export const columns: ColumnDef<InstructorLesson>[] = [
         <Link
           href={`/dash/admin/students?studentId=${instructorLesson.studentId}`}
         >
-          <TooltipConcat text={instructorLesson.studentName} />
+          <TooltipConcat
+            className="text-left"
+            text={instructorLesson.studentName}
+          />
         </Link>
       );
     },

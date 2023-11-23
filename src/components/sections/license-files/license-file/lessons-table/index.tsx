@@ -1,10 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Plus } from "lucide-react";
 
 import { DataTable } from "@/components/organisms";
+import { AddLicenseFileLessonModal } from "@/components/molecules";
+import { Button } from "@/components/ui/button";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
+import { useModal } from "@/lib/hooks/useModal";
 import { api } from "@/utils/api";
 import { columns } from "./columns";
 
@@ -13,8 +17,10 @@ import type { LicenseFileLesson } from "./schema";
 import type { LicenseFileLessonsTableProps } from "./types";
 
 export default function LicenseFileLessonsTable({
-  licenseFileId,
+  context: { licenseFileId, studentId, instructorId },
 }: LicenseFileLessonsTableProps) {
+  const addLessonModal = useModal();
+
   const t = useTranslations(
     "Dashboard.Files.LicenseFiles.FilePage.LicenseFileLessons",
   );
@@ -39,7 +45,26 @@ export default function LicenseFileLessonsTable({
 
   return (
     <div className="w-full">
-      <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
+      <div className="flex items-center justify-between w-full mb-4">
+        <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
+        <div>
+          <Button onClick={addLessonModal.open}>
+            <Plus size={18} />
+            <span className="hidden ml-2 lg:block whitespace-nowrap">
+              {t("add-button")}
+            </span>
+          </Button>
+        </div>
+      </div>
+      <AddLicenseFileLessonModal
+        isOpen={addLessonModal.isOpen}
+        close={addLessonModal.close}
+        context={{
+          licenseFileId,
+          studentId,
+          instructorId,
+        }}
+      />
       <DataTable
         data={data}
         error={error?.message}

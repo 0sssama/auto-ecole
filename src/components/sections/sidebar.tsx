@@ -1,11 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useOrganization } from "@clerk/nextjs";
-import { MembershipRole } from "@clerk/types";
 import {
   BookOpenCheck,
   Building,
@@ -19,17 +17,19 @@ import {
   User2,
   Users2,
 } from "lucide-react";
+import type { ReactNode } from "react";
+import type { MembershipRole } from "@clerk/types";
 
-import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/cn";
 import { useScroll } from "@/lib/hooks/useScroll";
 import { useMedia } from "@/lib/hooks/useMedia";
 import { getLgMedia } from "@/lib/media";
 import { useMenu } from "@/lib/hooks/useMenu";
-import type { TranslationFunction } from "@/types";
 import { cleanPathname } from "@/utils/cleanPathname";
+import type { TranslationFunction } from "@/types";
 
-export type SidebarProps = {
+type SidebarProps = {
   className?: string;
 };
 
@@ -97,7 +97,7 @@ type SidebarLinkProps = {
   name: string;
   href: string;
   // should be `keyof typeof icons` (icons object from lucide icons)
-  // for more precision. but the object is too big so I avoided it for now
+  // for more type safety. but the object is too big so I avoided it for now
   icon: ReactNode;
   isSignOut?: boolean;
 };

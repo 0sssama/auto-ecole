@@ -6,7 +6,7 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageContentHeader, AddStudentModal } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-import { StudentsListTable } from "@/components/sections";
+import { StudentsListTable } from "@/components/sections/students";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
   const t = useTranslations("Dashboard.Users.Students.Header");

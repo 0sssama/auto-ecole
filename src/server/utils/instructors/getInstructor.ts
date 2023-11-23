@@ -1,5 +1,6 @@
-import { Instructor } from "@/components/sections/instructor-file/types";
 import { prisma } from "@/server/db";
+
+import type { Instructor } from "@/components/sections/instructors/instructor-file/types";
 
 export const getInstructor = async (
   instructorId: number,

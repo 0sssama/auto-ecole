@@ -59,6 +59,8 @@ export const getLicenseFile = async (
     ],
   });
 
+  if (!student || !instructor || !admin) return null;
+
   const formattedLicenseFile: FetchedLicenseFile = {
     id: licenseFile.id,
     licenseFileStatus: licenseFile.status,

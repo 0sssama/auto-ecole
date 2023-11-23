@@ -140,6 +140,24 @@
           "price": "Prix",
           "duration": "Durée (h)",
           "scheduled-date": "Date"
+        },
+        "Lessons": {
+          "id": "ID",
+          "instructor-name": "Moniteur",
+          "student-name": "Étudiant",
+          "status": "Statut",
+          "comment": "Comment.",
+          "grade": "Note (/100)",
+          "price": "Prix agréé",
+          "duration": "Durée (h)",
+          "scheduled-date": "Date"
+        },
+        "Exams": {
+          "id": "ID",
+          "student-name": "Étudiant",
+          "status": "Statut",
+          "type": "Type",
+          "date": "Date"
         }
       }
     },
@@ -409,10 +427,12 @@
         "FilePage": {
           "LicenseFileExams": {
             "title": "Examens",
+            "add-button": "Nouveau examen",
             "Actions": {
               "open-menu": "Ouvrir le menu",
               "view": "Voir détails",
-              "edit": "Modifier"
+              "edit": "Modifier",
+              "delete": "Supprimer"
             },
             "Status": {
               "FAILED": "Échoué",
@@ -426,9 +446,10 @@
           },
           "LicenseFileLessons": {
             "title": "Leçons",
+            "add-button": "Nouvelle leçon",
             "Actions": {
               "open-menu": "Ouvrir le menu",
-              "view": "Voir dossier",
+              "view": "Voir leçon",
               "edit": "Modifier"
             },
             "Status": {
@@ -461,6 +482,138 @@
           "title": "Aucun dossier de permis trouvé",
           "subtitle": "Aucun dossier de permis n'a été trouvé avec l'ID spécifié."
         }
+      },
+      "Lessons": {
+        "Header": {
+          "title": "Leçons",
+          "button": "Nouvelle leçon"
+        },
+        "ListTable": {
+          "no-data": "Nous avons rien trouvé ! :/",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir dossier",
+            "edit": "Modifier"
+          },
+          "Status": {
+            "RESERVED": "Reservé",
+            "CANCELLED": "Annulé",
+            "DONE": "Terminé"
+          }
+        },
+        "NotFound": {
+          "title": "Aucune leçon trouvé",
+          "subtitle": "Aucune leçon n'a été trouvé avec l'ID spécifié."
+        }
+      },
+      "Exams": {
+        "Header": {
+          "title": "Examens",
+          "button": "Nouveau examen"
+        },
+        "ListTable": {
+          "no-data": "Nous avons rien trouvé ! :/",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier",
+            "delete": "Supprimer"
+          },
+          "Status": {
+            "FAILED": "Échoué",
+            "PENDING": "En attente",
+            "SUCCESS": "Réussi"
+          },
+          "Type": {
+            "CODE": "Code",
+            "DRIVING": "Conduite"
+          }
+        },
+        "AddNewModal": {
+          "title": "Ajouter un nouveau examen",
+          "subtitle": "",
+          "description": "Veuillez visiter la page du dossier de permis de l'étudiant approprié pour ajouter un nouvel examen",
+          "button-cancel": "Annuler"
+        },
+        "NotFound": {
+          "title": "Aucun examen trouvé",
+          "subtitle": "Aucun examen n'a été trouvé avec l'ID spécifié."
+        }
+      }
+    },
+    "Modals": {
+      "AddExamSike": {
+        "title": "Ajouter un nouveau examen",
+        "subtitle": "",
+        "description": "Veuillez visiter la page du dossier de permis de l'étudiant approprié pour ajouter un nouvel examen",
+        "button-cancel": "Annuler"
+      },
+      "AddExam": {
+        "title": "Ajouter un nouveau examen",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouvel examen",
+        "success": "Examen ajouté avec succès !",
+        "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+        "Form": {
+          "Status": {
+            "label": "Statut :",
+            "placeholder": "En attente",
+            "PENDING": "En attente",
+            "SUCCESS": "Réussi",
+            "FAILED": "Échoué"
+          },
+          "Type": {
+            "label": "Type :",
+            "placeholder": "Code",
+            "CODE": "Code",
+            "DRIVING": "Conduite"
+          },
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter Examen"
+      },
+      "AddLesson": {
+        "title": "Ajouter une nouvelle leçon",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle leçon",
+        "success": "Leçon ajoutée avec succès !",
+        "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+        "no-user-instructor": "Aucun moniteur ou étudiant a été selectionné",
+        "Form": {
+          "external-client": "Client externe?",
+          "Status": {
+            "label": "Statut :",
+            "placeholder": "Reservé",
+            "RESERVED": "Reservé",
+            "CANCELLED": "Annulé",
+            "DONE": "Terminé"
+          },
+          "Student": {
+            "empty": "Aucun étudiant trouvé",
+            "loading": "Chargement...",
+            "placeholder": "Nom de l'étudiant",
+            "student": "Étudiant :"
+          },
+          "Instructor": {
+            "empty": "Aucun moniteur trouvé",
+            "loading": "Chargement...",
+            "placeholder": "Nom du moniteur",
+            "instructor": "Moniteur :"
+          },
+          "price": "Prix agréé :",
+          "status": "Statut :",
+          "duration": "Durée (h): ",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter leçon"
+      },
+      "DeleteExam": {
+        "title": "Est-ce que vous êtes sûr ?",
+        "description": "Vous êtes sur le point de supprimer cet examen. Cette action est irréversible.",
+        "button-cancel": "Annuler",
+        "button-submit": "Supprimer",
+        "exam-delete-success": "Examen supprimé avec succès !",
+        "exam-delete-error": "Erreur lors de la suppression de l'examen. Veuillez réessayer plus tard."
       }
     },
     "Error": {

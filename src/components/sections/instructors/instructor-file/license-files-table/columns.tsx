@@ -40,7 +40,7 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
 
       return (
         <Link href={`/dash/admin/students?studentId=${licenseFile.studentId}`}>
-          <TooltipConcat text={licenseFile.studentName} />
+          <TooltipConcat className="text-left" text={licenseFile.studentName} />
         </Link>
       );
     },

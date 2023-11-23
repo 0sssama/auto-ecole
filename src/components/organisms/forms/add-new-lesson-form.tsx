@@ -1,0 +1,179 @@
+"use client";
+
+import { useState } from "react";
+import { z } from "zod";
+import { UseFormReturn } from "react-hook-form";
+import { useTranslations } from "next-intl";
+import { LessonStatus } from "@prisma/client";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Combobox } from "@/components/ui/combobox";
+import { lessonFormSchema } from "@/schemas/lesson-form-schema";
+import { api } from "@/utils/api";
+
+import type { TranslationFunction } from "@/types";
+import { DatePicker } from "@/components/ui/date-picker";
+
+type FormType = z.infer<typeof lessonFormSchema>;
+
+const fields = (t: TranslationFunction) => [
+  {
+    name: "studentId",
+    label: t("Student.student"),
+    placeholder: t("Student.placeholder"),
+    emptyMessage: t("Student.empty"),
+    loadingMessage: t("Student.loading"),
+  },
+  {
+    name: "instructorId",
+    label: t("Instructor.instructor"),
+    placeholder: t("Instructor.placeholder"),
+    emptyMessage: t("Instructor.empty"),
+    loadingMessage: t("Instructor.loading"),
+  },
+  {
+    name: "price",
+    label: t("price"),
+    placeholder: "100",
+  },
+  {
+    name: "duration",
+    label: t("duration"),
+    placeholder: "1",
+  },
+  {
+    name: "date",
+    label: t("date"),
+    placeholder: "21-11-2023",
+  },
+  {
+    name: "status",
+    label: t("Status.label"),
+    placeholder: t("Status.RESERVED"),
+    emptyMessage: t("Status.empty"),
+    options: Object.keys(LessonStatus).map((key) => ({
+      value: key,
+      label: t("Status." + key),
+    })),
+  },
+];
+
+export default function AddNewLessonForm({
+  form,
+  onSubmit,
+  isLicenseFileLesson,
+  className,
+}: {
+  form: UseFormReturn<FormType, any, undefined>;
+  onSubmit: () => any;
+  isLicenseFileLesson?: boolean;
+  className?: string;
+}) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const t = useTranslations("Dashboard.Modals.AddLesson.Form");
+
+  const students = isLicenseFileLesson
+    ? null
+    : api.db.students.query.getManyForSelect.useQuery({
+        searchQuery,
+        count: 5,
+      });
+
+  const instructors = isLicenseFileLesson
+    ? null
+    : api.db.instructors.query.getManyForSelect.useQuery({
+        searchQuery,
+        count: 5,
+      });
+
+  return (
+    <Form {...form}>
+      <form onSubmit={onSubmit} className={className}>
+        {fields(t).map((f, key) =>
+          (f.name === "studentId" && isLicenseFileLesson) ||
+          (f.name === "instructorId" && isLicenseFileLesson) ? null : (
+            <FormField
+              key={key}
+              control={form.control}
+              name={f.name as keyof FormType}
+              render={({ field }) => (
+                <FormItem className="relative w-full">
+                  <FormLabel className="inline-block w-full text-sm">
+                    {f.label}
+                  </FormLabel>
+                  <FormControl className="relative w-full">
+                    <>
+                      {field.name === "date" && (
+                        <DatePicker
+                          placeholder={f.placeholder}
+                          {...field}
+                          value={field.value as Date}
+                        />
+                      )}
+
+                      {(field.name === "price" ||
+                        field.name === "duration") && (
+                        <Input
+                          placeholder={f.placeholder}
+                          {...field}
+                          value={field.value as string}
+                        />
+                      )}
+
+                      {(field.name === "instructorId" ||
+                        field.name === "studentId" ||
+                        field.name === "status") && (
+                        <Combobox
+                          placeholder={f.placeholder}
+                          emptyMessage={f.emptyMessage}
+                          loadingMessage={f.loadingMessage}
+                          {...field}
+                          value={field.value as string | null}
+                          options={
+                            {
+                              instructorId: instructors?.data ?? [],
+                              studentId: students?.data ?? [],
+                              status: f.options!,
+                            }[field.name]
+                          }
+                          isLoading={
+                            {
+                              instructorId: instructors?.isLoading,
+                              studentId: students?.isLoading,
+                              status: false,
+                            }[field.name]
+                          }
+                          search={
+                            {
+                              instructorId: { searchQuery, setSearchQuery },
+                              studentId: { searchQuery, setSearchQuery },
+                              status: undefined,
+                            }[field.name]
+                          }
+                          onChange={(newValue) => {
+                            // @ts-ignore
+                            form.setValue(field.name, newValue);
+                          }}
+                        />
+                      )}
+                    </>
+                  </FormControl>
+                  <FormMessage className="inline-block w-full text-[12px] px-1" />
+                </FormItem>
+              )}
+            />
+          ),
+        )}
+      </form>
+    </Form>
+  );
+}

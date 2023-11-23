@@ -140,6 +140,24 @@
           "price": "Price",
           "duration": "Duration (h)",
           "scheduled-date": "Date"
+        },
+        "Lessons": {
+          "id": "ID",
+          "instructor-name": "Instructor",
+          "student-name": "Student",
+          "status": "Status",
+          "comment": "Comment",
+          "grade": "Grade (/100)",
+          "price": "Price",
+          "duration": "Duration (h)",
+          "scheduled-date": "Date"
+        },
+        "Exams": {
+          "id": "ID",
+          "student-name": "Student",
+          "status": "Status",
+          "type": "Type",
+          "date": "Date"
         }
       }
     },
@@ -409,10 +427,12 @@
         "FilePage": {
           "LicenseFileExams": {
             "title": "Exams",
+            "add-button": "Add Exam",
             "Actions": {
               "open-menu": "Open menu",
               "view": "View details",
-              "edit": "Edit"
+              "edit": "Edit",
+              "delete": "Delete"
             },
             "Status": {
               "FAILED": "Failed",
@@ -426,6 +446,7 @@
           },
           "LicenseFileLessons": {
             "title": "Lessons",
+            "add-button": "Add Lesson",
             "Actions": {
               "open-menu": "Open menu",
               "view": "View details",
@@ -461,6 +482,131 @@
           "title": "No License File Found",
           "subtitle": "The license file you are looking for does not exist."
         }
+      },
+      "Lessons": {
+        "Header": {
+          "title": "Lessons",
+          "button": "New Lesson"
+        },
+        "ListTable": {
+          "no-data": "No results found",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          },
+          "Status": {
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
+          }
+        },
+        "NotFound": {
+          "title": "No Lesson Found",
+          "subtitle": "The lesson you are looking for does not exist."
+        }
+      },
+      "Exams": {
+        "Header": {
+          "title": "Exams",
+          "button": "New Exam"
+        },
+        "ListTable": {
+          "no-data": "No results found",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit",
+            "delete": "Delete"
+          },
+          "Status": {
+            "FAILED": "Failed",
+            "PENDING": "Pending",
+            "SUCCESS": "Success"
+          },
+          "Type": {
+            "CODE": "Code",
+            "DRIVING": "Driving"
+          }
+        },
+        "NotFound": {
+          "title": "No Exam Found",
+          "subtitle": "The exam you are looking for does not exist."
+        }
+      }
+    },
+    "Modals": {
+      "AddExamSike": {
+        "title": "Add new exam",
+        "subtitle": "",
+        "description": "Please visit the license file page of the appropriate student to add a new exam",
+        "button-cancel": "Cancel"
+      },
+      "AddExam": {
+        "title": "Add new exam",
+        "subtitle": "Fill in the form below to add a new exam to this license file",
+        "success": "Exam added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "Status": {
+            "label": "Status:",
+            "placeholder": "Pending",
+            "PENDING": "Pending",
+            "SUCCESS": "Success",
+            "FAILED": "Failed"
+          },
+          "Type": {
+            "label": "Type:",
+            "placeholder": "Code",
+            "CODE": "Code",
+            "DRIVING": "Driving"
+          },
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add Exam"
+      },
+      "AddLesson": {
+        "title": "Add new lesson",
+        "subtitle": "Fill in the form below to add a new lesson",
+        "success": "Lesson added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "no-user-instructor": "No student or instructor were selected.",
+        "Form": {
+          "external-client": "External Client?",
+          "Status": {
+            "label": "Status:",
+            "placeholder": "En attente",
+            "RESERVED": "Reserved",
+            "CANCELLED": "Cancelled",
+            "DONE": "Done"
+          },
+          "Student": {
+            "empty": "No students found",
+            "loading": "Loading...",
+            "placeholder": "Student Name",
+            "student": "Student:"
+          },
+          "Instructor": {
+            "empty": "No instructors found",
+            "loading": "Loading...",
+            "placeholder": "Instructor Name",
+            "instructor": "Instructor:"
+          },
+          "price": "Price:",
+          "duration": "Duration (hours):",
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add Lesson"
+      },
+      "DeleteExam": {
+        "title": "Are you sure you want to delete this exam?",
+        "description": "This action cannot be undone.",
+        "button-cancel": "Cancel",
+        "button-submit": "Delete Exam",
+        "exam-delete-success": "Exam deleted successfully!",
+        "exam-delete-error": "An error has occurred. Please try again later."
       }
     },
     "Error": {

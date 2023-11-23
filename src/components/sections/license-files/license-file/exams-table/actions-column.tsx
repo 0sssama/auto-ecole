@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Eye, MoreHorizontal, Pencil } from "lucide-react";
+import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -9,21 +9,33 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { licenseFileExamSchema } from "./schema";
 
+import { cn } from "@/lib/cn";
+import { useModal } from "@/lib/hooks/useModal";
+
 import type { ActionsColumnProps } from "./types";
+import { DeleteExamConfirmModal } from "@/components/molecules";
 
 export function ActionsColumn({ row }: ActionsColumnProps) {
   const t = useTranslations(
     "Dashboard.Files.LicenseFiles.FilePage.LicenseFileExams.Actions",
   );
 
+  const deleteExamModal = useModal();
+
   const exam = licenseFileExamSchema.parse(row.original);
 
   return (
     <DropdownMenu>
+      <DeleteExamConfirmModal
+        isOpen={deleteExamModal.isOpen}
+        close={deleteExamModal.close}
+        examId={exam.id}
+      />
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
@@ -49,6 +61,17 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
         >
           <Pencil className="mr-2 h-3.5 w-3.5" />
           {t("edit")}
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          className={cn(
+            "text-sm font-medium cursor-pointer text-danger/90 bg-danger/10 hover:!text-danger/100 hover:!bg-danger/20",
+            deleteExamModal.isOpen && "opacity-50 !cursor-not-allowed",
+          )}
+          onClick={deleteExamModal.open}
+        >
+          <Trash2 className="text-destructive mr-2 h-3.5 w-3.5" />
+          {t("delete")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
