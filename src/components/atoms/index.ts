@@ -6,3 +6,4 @@ export { default as HamburgerButton } from "./hamburger-button";
 export { default as UserNav } from "./user-nav";
 export { default as Tooltip } from "./tooltip";
 export { default as TooltipConcat } from "./tooltip-concat";
+export { default as FileUpload } from "./file-upload";

@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
-import { TranslationFunction } from "@/types";
+
+import type { TranslationFunction } from "@/types";
 
 type FormType = z.infer<typeof InstructorFormSchema>;
 
