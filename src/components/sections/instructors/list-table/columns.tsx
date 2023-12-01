@@ -4,7 +4,7 @@ import Link from "next/link";
 import moment from "moment";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
 import { Tooltip } from "@/components/atoms";
 
 import { ActionsColumn } from "./actions-column";

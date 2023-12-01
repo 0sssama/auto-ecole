@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import { UseFormReturn } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Category, LicenseFileStatus } from "@prisma/client";
 
@@ -18,10 +17,9 @@ import { Input } from "@/components/ui/input";
 import { Combobox } from "@/components/ui/combobox";
 import { LicenseFileFormSchema } from "@/schemas/license-file-form-schema";
 import { api } from "@/utils/api";
-
 import type { TranslationFunction } from "@/types";
 
-type FormType = z.infer<typeof LicenseFileFormSchema>;
+import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
   {
@@ -65,15 +63,13 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-export default function AddNewStudentForm({
+type TFormValues = z.infer<typeof LicenseFileFormSchema>;
+
+const AddNewStudentForm: FormComponentType<TFormValues> = ({
   form,
   onSubmit,
   className,
-}: {
-  form: UseFormReturn<FormType, any, undefined>;
-  onSubmit: () => any;
-  className?: string;
-}) {
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const t = useTranslations(
@@ -97,7 +93,7 @@ export default function AddNewStudentForm({
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof FormType}
+            name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem className="relative w-full">
                 <FormLabel className="inline-block w-full text-sm">
@@ -160,4 +156,6 @@ export default function AddNewStudentForm({
       </form>
     </Form>
   );
-}
+};
+
+export default AddNewStudentForm;

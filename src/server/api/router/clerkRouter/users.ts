@@ -3,7 +3,7 @@ import { clerkClient } from "@clerk/nextjs";
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { StudentFormSchema } from "@/schemas/student-form-schema";
+import { studentFormSchema } from "@/schemas/student-form-schema";
 import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
 import { createNewCredentials } from "@/utils/createNewCredentials";
 
@@ -11,11 +11,11 @@ const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
     .input(
       z.object({
-        firstName: StudentFormSchema.shape.firstNameFr,
-        lastName: StudentFormSchema.shape.lastNameFr,
-        emailAddress: StudentFormSchema.shape.email,
-        phoneNumber: StudentFormSchema.shape.phone,
-        cin: StudentFormSchema.shape.cin,
+        firstName: studentFormSchema.shape.firstNameFr,
+        lastName: studentFormSchema.shape.lastNameFr,
+        emailAddress: studentFormSchema.shape.email,
+        phoneNumber: studentFormSchema.shape.phone,
+        cin: studentFormSchema.shape.cin,
       }),
     )
     .mutation(async ({ input, ctx }) => {

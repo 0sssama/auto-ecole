@@ -1,9 +1,8 @@
-import { HTMLAttributes } from "react";
-import { ArrowDownAZ, ArrowUpZA, ChevronsDownUp, EyeOff } from "lucide-react";
-import { Column } from "@tanstack/react-table";
+"use client";
 
-import { cn } from "@/lib/cn";
-import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
+import { ArrowDownAZ, ArrowUpZA, ChevronsDownUp, EyeOff } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,15 +10,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/cn";
 
-interface DataTableColumnHeaderProps<TData, TValue>
-  extends HTMLAttributes<HTMLDivElement> {
-  column: Column<TData, TValue>;
-  title: string;
-}
+import type { DataTableColumnHeaderProps } from "./types";
 
-export function DataTableColumnHeader<TData, TValue>({
+export default function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,

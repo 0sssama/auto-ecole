@@ -2,14 +2,14 @@ import { z } from "zod";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { StudentFormSchema } from "@/schemas/student-form-schema";
+import { studentFormSchema } from "@/schemas/student-form-schema";
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
     .input(
       z.object({
         clerkId: z.string(),
-        ...StudentFormSchema.shape,
+        ...studentFormSchema.shape,
       }),
     )
     .mutation(async ({ input, ctx }) => {

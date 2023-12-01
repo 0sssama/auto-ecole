@@ -2,7 +2,7 @@ import { z } from "zod";
 import validator from "validator";
 import { arabicCharsPattern } from "@/utils/arabicCharsPattern";
 
-export const StudentFormSchema = z.object({
+export const studentFormSchema = z.object({
   firstNameFr: z
     .string()
     .min(2, {

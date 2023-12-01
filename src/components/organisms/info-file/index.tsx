@@ -1,10 +1,10 @@
 import DossierInfo from "@/components/molecules/dossier-info";
-
-import type { InfoFileProps } from "./types";
 import { ProfileImageColumn } from "@/components/molecules";
 import { cn } from "@/lib/cn";
 
-const translatePrefix = (type: InfoFileProps["type"]) => {
+import type { InfoFileComponentType, InfoFileType } from "./types";
+
+const translatePrefix = (type: InfoFileType) => {
   switch (type) {
     case "instructor":
       return "Instructor";
@@ -17,7 +17,7 @@ const translatePrefix = (type: InfoFileProps["type"]) => {
   }
 };
 
-export default function InfoFile({ data, type }: InfoFileProps) {
+const InfoFile: InfoFileComponentType = ({ data, type }) => {
   return (
     <div
       className={cn(
@@ -52,4 +52,6 @@ export default function InfoFile({ data, type }: InfoFileProps) {
       </div>
     </div>
   );
-}
+};
+
+export default InfoFile;

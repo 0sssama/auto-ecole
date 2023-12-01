@@ -7,12 +7,12 @@ import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import type { DataTableToolbarProps } from "./types";
+import type { DataTableToolbarComponentType } from "./types";
 
-export function DataTableToolbar({
+const DataTableToolbar: DataTableToolbarComponentType = ({
   filters,
   filtersAllowed,
-}: DataTableToolbarProps) {
+}) => {
   const t = useTranslations("Dashboard.Tables");
   const [search, setSearch] = useState("");
 
@@ -54,11 +54,13 @@ export function DataTableToolbar({
             }}
             className="h-10 px-3 lg:px-6"
           >
-            Reset
+            {t("reset")}
             <X className="w-4 h-4 ml-2" />
           </Button>
         )}
       </div>
     </div>
   );
-}
+};
+
+export default DataTableToolbar;

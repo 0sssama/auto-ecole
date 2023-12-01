@@ -1,4 +1,11 @@
-import { ColumnDef, Row } from "@tanstack/react-table";
+import type { FC, HTMLAttributes } from "react";
+import type { Column, ColumnDef, Row } from "@tanstack/react-table";
+
+export interface DataTableColumnHeaderProps<TData, TValue>
+  extends HTMLAttributes<HTMLDivElement> {
+  column: Column<TData, TValue>;
+  title: string;
+}
 
 export type TablePagination = {
   get: {
@@ -59,9 +66,13 @@ export type DataTablePaginationProps = {
   pagination: TablePagination;
 };
 
+export type DataTablePaginationComponentType = FC<DataTablePaginationProps>;
+
 export type DataTableToolbarProps = {
   filters: TableFilters;
   filtersAllowed?: {
     [filterName in keyof TableFilters["get"]]?: boolean;
   };
 };
+
+export type DataTableToolbarComponentType = FC<DataTableToolbarProps>;

@@ -96,10 +96,10 @@ const AddLessonModal: ModalComponentType<{
             </div>
           )}
           <AddNewLessonForm
-            isLicenseFileLesson
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
             className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6"
+            context={{ isLicenseFileLesson: true }}
           />
         </ModalBody>
         <ModalFooter className="flex items-center justify-end gap-1">

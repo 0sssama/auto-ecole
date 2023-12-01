@@ -1,7 +1,6 @@
 "use client";
 
 import { z } from "zod";
-import { UseFormReturn } from "react-hook-form";
 import { useTranslations } from "next-intl";
 
 import {
@@ -14,10 +13,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/ui/date-picker";
-import { StudentFormSchema } from "@/schemas/student-form-schema";
-import { TranslationFunction } from "@/types";
+import { studentFormSchema } from "@/schemas/student-form-schema";
+import type { TranslationFunction } from "@/types";
 
-type FormType = z.infer<typeof StudentFormSchema>;
+import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
   {
@@ -82,15 +81,13 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-export default function AddNewStudentForm({
+type TFormValues = z.infer<typeof studentFormSchema>;
+
+const AddNewStudentForm: FormComponentType<TFormValues> = ({
   form,
   onSubmit,
   className,
-}: {
-  form: UseFormReturn<FormType, any, undefined>;
-  onSubmit: () => any;
-  className?: string;
-}) {
+}) => {
   const t = useTranslations(
     "Dashboard.Users.Students.AddNewStudentModal.AddNewStudentForm",
   );
@@ -102,7 +99,7 @@ export default function AddNewStudentForm({
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof FormType}
+            name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
                 <FormLabel
@@ -142,4 +139,6 @@ export default function AddNewStudentForm({
       </form>
     </Form>
   );
-}
+};
+
+export default AddNewStudentForm;

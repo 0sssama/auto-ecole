@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -15,9 +17,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import type { DataTablePaginationProps } from "./types";
+import type { DataTablePaginationComponentType } from "./types";
 
-export function DataTablePagination({ pagination }: DataTablePaginationProps) {
+const DataTablePagination: DataTablePaginationComponentType = ({
+  pagination,
+}) => {
   const t = useTranslations("Dashboard.Tables.Pagination");
 
   return (
@@ -91,4 +95,6 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
       </div>
     </div>
   );
-}
+};
+
+export default DataTablePagination;

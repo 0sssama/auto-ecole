@@ -53,6 +53,7 @@
       "error": "An error has occurred. Please try again later.",
       "no-data": "No results found",
       "search": "Search...",
+      "reset": "Reset",
       "Pagination": {
         "rows-per-page": "Rows per page:",
         "page": "Page",

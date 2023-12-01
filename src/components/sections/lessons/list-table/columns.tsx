@@ -6,7 +6,7 @@ import { Chip } from "@nextui-org/chip";
 import { useTranslations } from "next-intl";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
 import { Tooltip, TooltipConcat } from "@/components/atoms";
 import { getLessonStatusChipColor } from "@/lib/getChipColors";
 

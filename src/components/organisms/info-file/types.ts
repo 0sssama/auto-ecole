@@ -1,3 +1,5 @@
+import type { FC } from "react";
+
 export type InfoFileType = "student" | "instructor" | "licenseFile";
 
 export type InfoFileProps = {
@@ -9,3 +11,5 @@ export type InfoFileProps = {
   };
   type: InfoFileType;
 };
+
+export type InfoFileComponentType = FC<InfoFileProps>;

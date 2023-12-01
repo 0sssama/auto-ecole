@@ -17,7 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { AddNewStudentForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { StudentFormSchema } from "@/schemas/student-form-schema";
+import { studentFormSchema } from "@/schemas/student-form-schema";
 import { api } from "@/utils/api";
 
 import type { ModalComponentType } from "./types";
@@ -30,8 +30,8 @@ const AddStudentModal: ModalComponentType = ({ isOpen, close }) => {
     close();
   };
 
-  const form = useForm<z.infer<typeof StudentFormSchema>>({
-    resolver: zodResolver(StudentFormSchema),
+  const form = useForm<z.infer<typeof studentFormSchema>>({
+    resolver: zodResolver(studentFormSchema),
     defaultValues: {
       firstNameAr: "",
       firstNameFr: "",
@@ -90,7 +90,7 @@ const AddStudentModal: ModalComponentType = ({ isOpen, close }) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof StudentFormSchema>) =>
+  const onSubmit = (values: z.infer<typeof studentFormSchema>) =>
     addStudentToClerk({
       emailAddress: values.email,
       firstName: values.firstNameFr,

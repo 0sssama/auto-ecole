@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import { UseFormReturn } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { LessonStatus } from "@prisma/client";
 
@@ -16,13 +15,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Combobox } from "@/components/ui/combobox";
+import { DatePicker } from "@/components/ui/date-picker";
 import { lessonFormSchema } from "@/schemas/lesson-form-schema";
 import { api } from "@/utils/api";
-
 import type { TranslationFunction } from "@/types";
-import { DatePicker } from "@/components/ui/date-picker";
 
-type FormType = z.infer<typeof lessonFormSchema>;
+import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
   {
@@ -66,17 +64,17 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-export default function AddNewLessonForm({
+type TFormValues = z.infer<typeof lessonFormSchema>;
+type TContext = {
+  isLicenseFileLesson?: boolean;
+};
+
+const AddNewLessonForm: FormComponentType<TFormValues, TContext> = ({
   form,
   onSubmit,
-  isLicenseFileLesson,
   className,
-}: {
-  form: UseFormReturn<FormType, any, undefined>;
-  onSubmit: () => any;
-  isLicenseFileLesson?: boolean;
-  className?: string;
-}) {
+  context: { isLicenseFileLesson } = {},
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const t = useTranslations("Dashboard.Modals.AddLesson.Form");
@@ -104,7 +102,7 @@ export default function AddNewLessonForm({
             <FormField
               key={key}
               control={form.control}
-              name={f.name as keyof FormType}
+              name={f.name as keyof TFormValues}
               render={({ field }) => (
                 <FormItem className="relative w-full">
                   <FormLabel className="inline-block w-full text-sm">
@@ -176,4 +174,6 @@ export default function AddNewLessonForm({
       </form>
     </Form>
   );
-}
+};
+
+export default AddNewLessonForm;
