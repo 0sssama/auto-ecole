@@ -1,5 +1,8 @@
-import { TablePagination } from "@/components/organisms/data-table/types";
+"use client";
+
 import { useState } from "react";
+
+import type { TablePagination } from "@/components/organisms/data-table/types";
 
 type StateType = TablePagination["get"];
 

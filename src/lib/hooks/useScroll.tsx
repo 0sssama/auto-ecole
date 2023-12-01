@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-export type UseScrolledOptions = {
+interface UseScrolledOptions {
   threshold?: number;
-};
+}
 
 export const useScroll = (options?: UseScrolledOptions) => {
   const [state, setState] = useState({
