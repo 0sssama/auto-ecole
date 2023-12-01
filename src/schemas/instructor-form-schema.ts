@@ -1,5 +1,6 @@
 import { z } from "zod";
-import validator from "validator";
+
+import { isMobilePhone } from "@/utils/isMobilePhone";
 
 export const InstructorFormSchema = z.object({
   firstName: z
@@ -26,7 +27,7 @@ export const InstructorFormSchema = z.object({
     .max(10, {
       message: "Le numéro de téléphone ne doit pas dépasser 10 caractères.",
     })
-    .refine(validator.isMobilePhone, {
+    .refine(isMobilePhone, {
       message: "Le numéro de téléphone n'est pas valide.",
     }),
 });
