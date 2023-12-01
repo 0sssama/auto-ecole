@@ -4,21 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useOrganization } from "@clerk/nextjs";
-import {
-  BookOpenCheck,
-  Building,
-  CarFront,
-  CircleDollarSign,
-  Folder,
-  Folders,
-  GraduationCap,
-  LogOut,
-  Settings,
-  User2,
-  Users2,
-} from "lucide-react";
-import type { ReactNode } from "react";
-import type { MembershipRole } from "@clerk/types";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
@@ -27,9 +12,13 @@ import { useMedia } from "@/lib/hooks/useMedia";
 import { getLgMedia } from "@/lib/media";
 import { useMenu } from "@/lib/hooks/useMenu";
 import { cleanPathname } from "@/utils/cleanPathname";
-import type { TranslationFunction } from "@/types";
 
-import type { SidebarComponentType } from "./types";
+import { getSidebarLinks } from "./utils";
+import type {
+  SidebarComponentType,
+  SidebarLinkComponentType,
+  SidebarLinkGroupComponentType,
+} from "./types";
 
 const Sidebar: SidebarComponentType = ({ className }) => {
   const t = useTranslations("Dashboard.Sidebar");
@@ -55,9 +44,9 @@ const Sidebar: SidebarComponentType = ({ className }) => {
     >
       <div
         className={cn(
-          "sticky top-6 pt-[var(--header-height)] transition-all mt-10",
+          "sticky top-6 pt-[var(--header-height)] transition-all",
           scrolled && "top-0",
-          !isDesktop && isOpen && "fixed w-full h-full overflow-scroll pb-12",
+          !isDesktop && isOpen && "fixed w-full h-full overflow-scroll pb-20",
         )}
       >
         {sidebarLinks.map((group, i) => (
@@ -68,13 +57,11 @@ const Sidebar: SidebarComponentType = ({ className }) => {
   );
 };
 
-type SidebarLinkGroupProps = {
-  title: string;
-  links: SidebarLinkProps[];
-  className?: string;
-};
-
-function SidebarLinkGroup({ title, links, className }: SidebarLinkGroupProps) {
+const SidebarLinkGroup: SidebarLinkGroupComponentType = ({
+  title,
+  links,
+  className,
+}) => {
   if (!links.length) return null;
 
   return (
@@ -89,18 +76,9 @@ function SidebarLinkGroup({ title, links, className }: SidebarLinkGroupProps) {
       </div>
     </div>
   );
-}
-
-type SidebarLinkProps = {
-  name: string;
-  href: string;
-  // should be `keyof typeof icons` (icons object from lucide icons)
-  // for more type safety. but the object is too big so I avoided it for now
-  icon: ReactNode;
-  isSignOut?: boolean;
 };
 
-function SidebarLink({ name, href, icon }: SidebarLinkProps) {
+const SidebarLink: SidebarLinkComponentType = ({ name, href, icon }) => {
   const { closeMenu } = useMenu();
   const pathname = usePathname();
 
@@ -116,132 +94,6 @@ function SidebarLink({ name, href, icon }: SidebarLinkProps) {
       </Button>
     </Link>
   );
-}
-
-const sidebarIconProps = {
-  size: 18,
-  className: "mr-3",
 };
-
-export const getSidebarLinks = (
-  t: TranslationFunction,
-): {
-  [_ in MembershipRole]: SidebarLinkGroupProps[];
-} => ({
-  admin: [
-    {
-      title: t("users"),
-      links: [
-        {
-          name: t("clients"),
-          href: "/dash/admin/students",
-          icon: <User2 {...sidebarIconProps} />,
-        },
-        {
-          name: t("monitors"),
-          href: "/dash/admin/instructors",
-          icon: <Users2 {...sidebarIconProps} />,
-        },
-        {
-          name: t("editors"),
-          href: "/dash/admin/editors",
-          icon: <Building {...sidebarIconProps} />,
-        },
-      ],
-    },
-    {
-      title: t("folders"),
-      links: [
-        {
-          name: t("license-files"),
-          href: "/dash/admin/license-files",
-          icon: <Folders {...sidebarIconProps} />,
-        },
-        {
-          name: t("lessons"),
-          href: "/dash/admin/lessons",
-          icon: <BookOpenCheck {...sidebarIconProps} />,
-        },
-        {
-          name: t("exams"),
-          href: "/dash/admin/exams",
-          icon: <GraduationCap {...sidebarIconProps} />,
-        },
-      ],
-    },
-    {
-      title: t("payment"),
-      links: [
-        {
-          name: t("financial-overview"),
-          href: "/dash/admin/financial-overview",
-          icon: <CircleDollarSign {...sidebarIconProps} />,
-        },
-      ],
-    },
-    {
-      title: t("entities"),
-      links: [
-        {
-          name: t("cars"),
-          href: "/dash/admin/cars",
-          icon: <CarFront {...sidebarIconProps} />,
-        },
-      ],
-    },
-    {
-      title: t("account"),
-      links: [
-        {
-          name: t("settings"),
-          href: "/dash/settings",
-          icon: <Settings {...sidebarIconProps} />,
-        },
-        {
-          name: t("logout"),
-          href: "/dash/logout",
-          icon: <LogOut {...sidebarIconProps} />,
-          isSignOut: true,
-        },
-      ],
-    },
-  ],
-  basic_member: [
-    {
-      title: t("account"),
-      links: [
-        {
-          name: t("folder"),
-          href: "/dash/member/folder",
-          icon: <Folder {...sidebarIconProps} />,
-        },
-        {
-          name: t("settings"),
-          href: "/dash/settings",
-          icon: <Settings {...sidebarIconProps} />,
-        },
-        {
-          name: t("logout"),
-          href: "/dash/logout",
-          icon: <LogOut {...sidebarIconProps} />,
-          isSignOut: true,
-        },
-      ],
-    },
-  ],
-  guest_member: [
-    {
-      title: t("account"),
-      links: [
-        {
-          name: t("logout"),
-          href: "/dash/logout",
-          icon: <LogOut {...sidebarIconProps} />,
-          isSignOut: true,
-        },
-      ],
-    },
-  ],
-});
 
 export default Sidebar;

@@ -11,21 +11,17 @@ import {
 } from "@/components/atoms";
 import { cn } from "@/lib/cn";
 import { useScroll } from "@/lib/hooks/useScroll";
-import { useMenu } from "@/lib/hooks/useMenu";
 
 const Header = () => {
   const t = useTranslations("Dashboard.Header");
-
-  const { isOpen } = useMenu();
 
   const { scrolled } = useScroll({ threshold: 50 });
 
   return (
     <div
       className={cn(
-        "fixed top-0 left-0 z-[10] w-full flex items-center justify-center backdrop-blur backdrop-saturate-150 transition-all border-b px-8 py-8 bg-white/70",
-        scrolled && "py-5",
-        isOpen && "border-transparent",
+        "fixed top-0 left-0 z-[10] w-full flex items-center justify-center backdrop-blur backdrop-saturate-150 transition-all border-b px-8 py-6 bg-white/70",
+        scrolled && "py-3 lg:py-5",
       )}
     >
       <div className="flex items-center justify-between w-full max-w-screen-xl">
