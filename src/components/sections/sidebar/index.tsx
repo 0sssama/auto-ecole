@@ -29,11 +29,9 @@ import { useMenu } from "@/lib/hooks/useMenu";
 import { cleanPathname } from "@/utils/cleanPathname";
 import type { TranslationFunction } from "@/types";
 
-type SidebarProps = {
-  className?: string;
-};
+import type { SidebarComponentType } from "./types";
 
-export default function Sidebar({ className }: SidebarProps) {
+const Sidebar: SidebarComponentType = ({ className }) => {
   const t = useTranslations("Dashboard.Sidebar");
 
   const { membership, isLoaded } = useOrganization();
@@ -68,7 +66,7 @@ export default function Sidebar({ className }: SidebarProps) {
       </div>
     </div>
   );
-}
+};
 
 type SidebarLinkGroupProps = {
   title: string;
@@ -245,3 +243,5 @@ export const getSidebarLinks = (
     },
   ],
 });
+
+export default Sidebar;

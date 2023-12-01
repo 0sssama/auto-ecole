@@ -1,11 +1,8 @@
-import { Row } from "@tanstack/react-table";
+import type { FC } from "react";
 
-import type { StudentLicenseFile } from "./schema";
-
-export type ActionsColumnProps = {
-  row: Row<StudentLicenseFile>;
-};
-
-export type StudentLicenseFilesTableProps = {
+interface StudentLicenseFilesTableProps {
   studentId: number;
-};
+}
+
+export type StudentLicenseFilesTableComponentType =
+  FC<StudentLicenseFilesTableProps>;

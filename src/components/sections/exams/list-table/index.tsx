@@ -2,12 +2,12 @@
 
 import { DataTable } from "@/components/organisms";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
-
-import type { Exam } from "./schema";
 import type { Paginated } from "@/components/organisms/data-table/types";
+
+import { columns } from "./columns";
+import type { Exam } from "./schema";
 
 function ExamsListTable() {
   const pagination = usePagination();

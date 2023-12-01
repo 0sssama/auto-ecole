@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+
 import {
   HamburgerButton,
   HelpButton,
@@ -12,7 +13,7 @@ import { cn } from "@/lib/cn";
 import { useScroll } from "@/lib/hooks/useScroll";
 import { useMenu } from "@/lib/hooks/useMenu";
 
-export default function Header() {
+const Header = () => {
   const t = useTranslations("Dashboard.Header");
 
   const { isOpen } = useMenu();
@@ -43,4 +44,6 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+
+export default Header;

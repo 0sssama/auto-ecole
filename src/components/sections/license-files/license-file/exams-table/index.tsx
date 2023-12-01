@@ -10,15 +10,15 @@ import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { useModal } from "@/lib/hooks/useModal";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
-
 import type { Paginated } from "@/components/organisms/data-table/types";
-import type { LicenseFileExam } from "./schema";
-import type { LicenseFileExamsTableProps } from "./types";
 
-export default function LicenseFileExamsTable({
+import { columns } from "./columns";
+import type { LicenseFileExam } from "./schema";
+import type { LicenseFileExamsTableComponentType } from "./types";
+
+const LicenseFileExamsTable: LicenseFileExamsTableComponentType = ({
   licenseFileId,
-}: LicenseFileExamsTableProps) {
+}) => {
   const addExamModal = useModal();
 
   const t = useTranslations(
@@ -71,4 +71,6 @@ export default function LicenseFileExamsTable({
       />
     </div>
   );
-}
+};
+
+export default LicenseFileExamsTable;

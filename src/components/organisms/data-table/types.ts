@@ -62,6 +62,10 @@ export type DataTableRowActionsProps<TData> = {
   row: Row<TData>;
 };
 
+export type ActionsColumnComponentType<TData> = FC<
+  DataTableRowActionsProps<TData>
+>;
+
 export type DataTablePaginationProps = {
   pagination: TablePagination;
 };

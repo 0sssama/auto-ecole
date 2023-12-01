@@ -13,7 +13,7 @@ import {
   getLessonStatusChipColor,
 } from "@/lib/getChipColors";
 
-import { ActionsColumn } from "./actions-column";
+import ActionsColumn from "./actions-column";
 import { instructorLessonSchema, type InstructorLesson } from "./schema";
 
 export const columns: ColumnDef<InstructorLesson>[] = [

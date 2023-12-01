@@ -1,4 +1,5 @@
-import { LicenseFileStatus } from "@prisma/client";
+import type { FC } from "react";
+import type { LicenseFileStatus } from "@prisma/client";
 
 export type FetchedLicenseFile = {
   id: number;
@@ -24,3 +25,9 @@ export type FetchedLicenseFile = {
     profilePictureUrl: string;
   };
 };
+
+interface LicenseFileProps {
+  licenseFile: FetchedLicenseFile;
+}
+
+export type LicenseFileComponentType = FC<LicenseFileProps>;

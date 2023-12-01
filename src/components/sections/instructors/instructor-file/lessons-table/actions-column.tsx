@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Eye, MoreHorizontal, Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -10,12 +11,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { instructorLessonSchema } from "./schema";
+import type { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-import type { ActionsColumnProps } from "./types";
-import Link from "next/link";
+import { type InstructorLesson, instructorLessonSchema } from "./schema";
 
-export function ActionsColumn({ row }: ActionsColumnProps) {
+const ActionsColumn: ActionsColumnComponentType<InstructorLesson> = ({
+  row,
+}) => {
   const t = useTranslations(
     "Dashboard.Dossier.Tables.InstructorLessons.Actions",
   );
@@ -53,4 +55,6 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

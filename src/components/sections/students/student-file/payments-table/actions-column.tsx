@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Eye, MoreHorizontal, Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -10,12 +11,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { studentPaymentSchema } from "./schema";
+import type { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-import type { ActionsColumnProps } from "./types";
-import Link from "next/link";
+import { studentPaymentSchema, type StudentPayment } from "./schema";
 
-export function ActionsColumn({ row }: ActionsColumnProps) {
+const ActionsColumn: ActionsColumnComponentType<StudentPayment> = ({ row }) => {
   const t = useTranslations("Dashboard.Dossier.Tables.StudentPayments.Actions");
 
   const studentPayment = studentPaymentSchema.parse(row.original);
@@ -51,4 +51,6 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

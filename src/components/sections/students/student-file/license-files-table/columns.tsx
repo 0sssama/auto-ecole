@@ -10,8 +10,8 @@ import DataTableColumnHeader from "@/components/organisms/data-table/column-head
 import { Tooltip, TooltipConcat } from "@/components/atoms";
 import { getLicenseFileStatusChipColor } from "@/lib/getChipColors";
 
-import { ActionsColumn } from "./actions-column";
-import { licenseFileSchema, type StudentLicenseFile } from "./schema";
+import ActionsColumn from "./actions-column";
+import { studentLicenseFileSchema, type StudentLicenseFile } from "./schema";
 
 export const columns: ColumnDef<StudentLicenseFile>[] = [
   {
@@ -32,7 +32,7 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       />
     ),
     cell: ({ row }) => {
-      const studentLicenseFile = licenseFileSchema.parse(row.original);
+      const studentLicenseFile = studentLicenseFileSchema.parse(row.original);
 
       return (
         <Link
@@ -55,7 +55,7 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       const t = useTranslations(
         "Dashboard.Dossier.Tables.StudentLicenseFiles.Category",
       );
-      const licenseFile = licenseFileSchema.parse(row.original);
+      const licenseFile = studentLicenseFileSchema.parse(row.original);
 
       return (
         <>
@@ -86,7 +86,7 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       const t = useTranslations(
         "Dashboard.Dossier.Tables.StudentLicenseFiles.Status",
       );
-      const licenseFile = licenseFileSchema.parse(row.original);
+      const licenseFile = studentLicenseFileSchema.parse(row.original);
 
       return (
         <Chip
@@ -109,7 +109,7 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       />
     ),
     cell: ({ row }) => {
-      const licenseFile = licenseFileSchema.parse(row.original);
+      const licenseFile = studentLicenseFileSchema.parse(row.original);
       const date = moment(licenseFile.createdAt);
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;

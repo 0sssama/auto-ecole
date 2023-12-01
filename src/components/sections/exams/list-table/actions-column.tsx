@@ -15,11 +15,11 @@ import {
 import { DeleteExamConfirmModal } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
 import { cn } from "@/lib/cn";
-import { examSchema } from "./schema";
+import type { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-import type { ActionsColumnProps } from "./types";
+import { type Exam, examSchema } from "./schema";
 
-export function ActionsColumn({ row }: ActionsColumnProps) {
+const ActionsColumn: ActionsColumnComponentType<Exam> = ({ row }) => {
   const t = useTranslations("Dashboard.Files.Exams.ListTable.Actions");
 
   const deleteExamModal = useModal();
@@ -73,4 +73,6 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

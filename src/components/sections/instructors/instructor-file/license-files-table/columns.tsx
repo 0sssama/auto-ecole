@@ -10,7 +10,7 @@ import DataTableColumnHeader from "@/components/organisms/data-table/column-head
 import { Tooltip, TooltipConcat } from "@/components/atoms";
 import { getLicenseFileStatusChipColor } from "@/lib/getChipColors";
 
-import { ActionsColumn } from "./actions-column";
+import ActionsColumn from "./actions-column";
 import {
   instructorLicenseFileSchema,
   type InstructorLicenseFile,

@@ -6,15 +6,15 @@ import { DataTable } from "@/components/organisms";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
-
 import type { Paginated } from "@/components/organisms/data-table/types";
-import type { StudentPayment } from "./schema";
-import type { StudentPaymentsTableProps } from "./types";
 
-export default function StudentPaymentsTable({
+import { columns } from "./columns";
+import type { StudentPayment } from "./schema";
+import type { StudentPaymentsTableComponentType } from "./types";
+
+const StudentPaymentsTable: StudentPaymentsTableComponentType = ({
   studentId,
-}: StudentPaymentsTableProps) {
+}) => {
   const t = useTranslations("Dashboard.Dossier.Tables.StudentPayments");
 
   const pagination = usePagination({
@@ -47,4 +47,6 @@ export default function StudentPaymentsTable({
       />
     </div>
   );
-}
+};
+
+export default StudentPaymentsTable;

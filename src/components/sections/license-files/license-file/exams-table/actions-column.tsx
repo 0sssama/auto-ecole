@@ -12,15 +12,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { licenseFileExamSchema } from "./schema";
-
 import { cn } from "@/lib/cn";
 import { useModal } from "@/lib/hooks/useModal";
-
-import type { ActionsColumnProps } from "./types";
 import { DeleteExamConfirmModal } from "@/components/molecules";
+import { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-export function ActionsColumn({ row }: ActionsColumnProps) {
+import { type LicenseFileExam, licenseFileExamSchema } from "./schema";
+
+const ActionsColumn: ActionsColumnComponentType<LicenseFileExam> = ({
+  row,
+}) => {
   const t = useTranslations(
     "Dashboard.Files.LicenseFiles.FilePage.LicenseFileExams.Actions",
   );
@@ -76,4 +77,6 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

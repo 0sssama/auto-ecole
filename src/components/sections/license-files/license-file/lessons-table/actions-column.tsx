@@ -11,11 +11,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { licenseFileLessonSchema } from "./schema";
+import type { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-import type { ActionsColumnProps } from "./types";
+import { type LicenseFileLesson, licenseFileLessonSchema } from "./schema";
 
-export function ActionsColumn({ row }: ActionsColumnProps) {
+const ActionsColumn: ActionsColumnComponentType<LicenseFileLesson> = ({
+  row,
+}) => {
   const t = useTranslations(
     "Dashboard.Files.LicenseFiles.FilePage.LicenseFileLessons.Actions",
   );
@@ -53,4 +55,6 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

@@ -1,11 +1,8 @@
-import { Row } from "@tanstack/react-table";
+import type { FC } from "react";
 
-import type { InstructorLesson } from "./schema";
-
-export type ActionsColumnProps = {
-  row: Row<InstructorLesson>;
-};
-
-export type InstructorLessonsTableProps = {
+interface InstructorLessonsTableProps {
   instructorId: number;
-};
+}
+
+export type InstructorLessonsTableComponentType =
+  FC<InstructorLessonsTableProps>;

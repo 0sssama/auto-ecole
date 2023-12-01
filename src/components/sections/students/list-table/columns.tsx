@@ -10,7 +10,7 @@ import DataTableColumnHeader from "@/components/organisms/data-table/column-head
 import { Tooltip } from "@/components/atoms";
 import { getStudentStatusChipColor } from "@/lib/getChipColors";
 
-import { DataTableRowActions } from "./data-table-row-actions";
+import ActionsColumn from "./data-table-row-actions";
 import { studentSchema, type Student } from "./schema";
 
 export const columns: ColumnDef<Student>[] = [
@@ -90,7 +90,7 @@ export const columns: ColumnDef<Student>[] = [
     id: "actions",
     cell: ({ row }) => (
       <div className="flex items-center justify-end">
-        <DataTableRowActions row={row} />
+        <ActionsColumn row={row} />
       </div>
     ),
   },

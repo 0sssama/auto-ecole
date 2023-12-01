@@ -4,12 +4,12 @@ import { DataTable } from "@/components/organisms";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
-
-import type { LicenseFile } from "./schema";
 import type { Paginated } from "@/components/organisms/data-table/types";
 
-export default function LicenseFilesListTable() {
+import { columns } from "./columns";
+import type { LicenseFile } from "./schema";
+
+const LicenseFilesListTable = () => {
   const pagination = usePagination();
   const filters = useTableFilters();
 
@@ -34,4 +34,6 @@ export default function LicenseFilesListTable() {
       }}
     />
   );
-}
+};
+
+export default LicenseFilesListTable;

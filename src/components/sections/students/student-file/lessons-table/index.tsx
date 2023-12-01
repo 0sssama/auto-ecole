@@ -6,15 +6,15 @@ import { DataTable } from "@/components/organisms";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
-
 import type { Paginated } from "@/components/organisms/data-table/types";
-import type { StudentLesson } from "./schema";
-import type { StudentLessonsTableProps } from "./types";
 
-export default function StudentLessonsTable({
+import { columns } from "./columns";
+import type { StudentLesson } from "./schema";
+import type { StudentLessonsTableComponentType } from "./types";
+
+const StudentLessonsTable: StudentLessonsTableComponentType = ({
   studentId,
-}: StudentLessonsTableProps) {
+}) => {
   const t = useTranslations("Dashboard.Dossier.Tables.StudentLessons");
 
   const pagination = usePagination({
@@ -46,4 +46,6 @@ export default function StudentLessonsTable({
       />
     </div>
   );
-}
+};
+
+export default StudentLessonsTable;

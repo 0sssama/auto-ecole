@@ -1,4 +1,4 @@
-import { LessonStatus } from "@prisma/client";
+import type { LessonStatus } from "@prisma/client";
 
 export type FetchedLesson = {
   id: number;

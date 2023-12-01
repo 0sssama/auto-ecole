@@ -9,7 +9,7 @@ import DataTableColumnHeader from "@/components/organisms/data-table/column-head
 import { Tooltip } from "@/components/atoms";
 import { getExamStatusChipColor } from "@/lib/getChipColors";
 
-import { ActionsColumn } from "./actions-column";
+import ActionsColumn from "./actions-column";
 import { licenseFileExamSchema, type LicenseFileExam } from "./schema";
 
 export const columns: ColumnDef<LicenseFileExam>[] = [

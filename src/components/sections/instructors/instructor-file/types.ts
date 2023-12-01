@@ -1,3 +1,5 @@
+import type { FC } from "react";
+
 export type Instructor = {
   id: number;
   profilePictureUrl: string | null;
@@ -10,6 +12,8 @@ export type Instructor = {
   };
 };
 
-export type InstructorProps = {
+interface InstructorProps {
   instructor: Instructor;
-};
+}
+
+export type InstructorComponentType = FC<InstructorProps>;
