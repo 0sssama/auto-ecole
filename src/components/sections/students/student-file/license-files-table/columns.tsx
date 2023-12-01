@@ -3,16 +3,15 @@
 import Link from "next/link";
 import moment from "moment";
 import { useTranslations } from "next-intl";
-import { Chip, ChipProps } from "@nextui-org/chip";
-import { LicenseFileStatus } from "@prisma/client";
+import { Chip } from "@nextui-org/chip";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { Tooltip, TooltipConcat } from "@/components/atoms";
-import { ActionsColumn } from "./actions-column";
-import { licenseFileSchema } from "./schema";
+import { getLicenseFileStatusChipColor } from "@/lib/getChipColors";
 
-import type { StudentLicenseFile } from "./schema";
+import { ActionsColumn } from "./actions-column";
+import { licenseFileSchema, type StudentLicenseFile } from "./schema";
 
 export const columns: ColumnDef<StudentLicenseFile>[] = [
   {
@@ -89,21 +88,11 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       );
       const licenseFile = licenseFileSchema.parse(row.original);
 
-      const getChipColor = (): ChipProps["color"] => {
-        switch (licenseFile.status) {
-          case LicenseFileStatus.ONGOING:
-            return "secondary";
-          case LicenseFileStatus.REJECTED:
-            return "danger";
-          case LicenseFileStatus.VALIDATED:
-            return "success";
-          default:
-            return "primary";
-        }
-      };
-
       return (
-        <Chip color={getChipColor()} size="sm">
+        <Chip
+          color={getLicenseFileStatusChipColor(licenseFile.status)}
+          size="sm"
+        >
           <span className="font-bold !text-[10px] md:text-sm">
             {t(licenseFile.status)?.toUpperCase()}
           </span>
@@ -121,7 +110,6 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
     ),
     cell: ({ row }) => {
       const licenseFile = licenseFileSchema.parse(row.original);
-
       const date = moment(licenseFile.createdAt);
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;

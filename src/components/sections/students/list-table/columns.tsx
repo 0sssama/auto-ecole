@@ -3,15 +3,15 @@
 import Link from "next/link";
 import moment from "moment";
 import { useTranslations } from "next-intl";
-import { Chip, ChipProps } from "@nextui-org/chip";
+import { Chip } from "@nextui-org/chip";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { Tooltip } from "@/components/atoms";
-import { DataTableRowActions } from "./data-table-row-actions";
-import { studentSchema } from "./schema";
+import { getStudentStatusChipColor } from "@/lib/getChipColors";
 
-import type { Student } from "./schema";
+import { DataTableRowActions } from "./data-table-row-actions";
+import { studentSchema, type Student } from "./schema";
 
 export const columns: ColumnDef<Student>[] = [
   {
@@ -62,23 +62,8 @@ export const columns: ColumnDef<Student>[] = [
       );
       const student = studentSchema.parse(row.original);
 
-      const getChipColor = (): ChipProps["color"] => {
-        switch (student.status) {
-          case "active":
-            return "secondary";
-          case "finished":
-            return "success";
-          case "not-started":
-            return "primary";
-          case "rejected":
-            return "danger";
-          default:
-            return "primary";
-        }
-      };
-
       return (
-        <Chip color={getChipColor()} size="sm">
+        <Chip color={getStudentStatusChipColor(student.status)} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
             {t(student.status)?.toUpperCase()}
           </span>
@@ -93,7 +78,6 @@ export const columns: ColumnDef<Student>[] = [
     ),
     cell: ({ row }) => {
       const student = studentSchema.parse(row.original);
-
       const date = moment(student.createdAt);
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;

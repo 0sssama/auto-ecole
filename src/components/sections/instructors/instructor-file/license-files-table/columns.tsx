@@ -3,16 +3,18 @@
 import Link from "next/link";
 import moment from "moment";
 import { useTranslations } from "next-intl";
-import { Chip, ChipProps } from "@nextui-org/chip";
-import { LicenseFileStatus } from "@prisma/client";
+import { Chip } from "@nextui-org/chip";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
-import { ActionsColumn } from "./actions-column";
 import { Tooltip, TooltipConcat } from "@/components/atoms";
-import { instructorLicenseFileSchema } from "./schema";
+import { getLicenseFileStatusChipColor } from "@/lib/getChipColors";
 
-import type { InstructorLicenseFile } from "./schema";
+import { ActionsColumn } from "./actions-column";
+import {
+  instructorLicenseFileSchema,
+  type InstructorLicenseFile,
+} from "./schema";
 
 export const columns: ColumnDef<InstructorLicenseFile>[] = [
   {
@@ -90,21 +92,11 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       );
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
-      const getChipColor = (): ChipProps["color"] => {
-        switch (licenseFile.status) {
-          case LicenseFileStatus.ONGOING:
-            return "secondary";
-          case LicenseFileStatus.REJECTED:
-            return "danger";
-          case LicenseFileStatus.VALIDATED:
-            return "success";
-          default:
-            return "primary";
-        }
-      };
-
       return (
-        <Chip color={getChipColor()} size="sm">
+        <Chip
+          color={getLicenseFileStatusChipColor(licenseFile.status)}
+          size="sm"
+        >
           <span className="font-bold !text-[10px] md:text-sm">
             {t(licenseFile.status)?.toUpperCase()}
           </span>

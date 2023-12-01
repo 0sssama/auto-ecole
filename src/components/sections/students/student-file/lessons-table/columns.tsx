@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import moment from "moment";
-import { LessonStatus } from "@prisma/client";
-import { Chip, ChipProps } from "@nextui-org/chip";
+import { Chip } from "@nextui-org/chip";
 import { useTranslations } from "next-intl";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
 import { Tooltip, TooltipConcat } from "@/components/atoms";
-import { ActionsColumn } from "./actions-column";
-import { studentLessonSchema } from "./schema";
+import {
+  getLessonGradeChipColor,
+  getLessonStatusChipColor,
+} from "@/lib/getChipColors";
 
-import type { StudentLesson } from "./schema";
+import { ActionsColumn } from "./actions-column";
+import { studentLessonSchema, type StudentLesson } from "./schema";
 
 export const columns: ColumnDef<StudentLesson>[] = [
   {
@@ -55,21 +57,8 @@ export const columns: ColumnDef<StudentLesson>[] = [
       );
       const studentLesson = studentLessonSchema.parse(row.original);
 
-      const getChipColor = (): ChipProps["color"] => {
-        switch (studentLesson.status) {
-          case LessonStatus.RESERVED:
-            return "secondary";
-          case LessonStatus.CANCELLED:
-            return "danger";
-          case LessonStatus.DONE:
-            return "success";
-          default:
-            return "primary";
-        }
-      };
-
       return (
-        <Chip color={getChipColor()} size="sm">
+        <Chip color={getLessonStatusChipColor(studentLesson.status)} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
             {t(studentLesson.status)?.toUpperCase()}
           </span>
@@ -92,23 +81,10 @@ export const columns: ColumnDef<StudentLesson>[] = [
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
 
-      const getChipColor = (): ChipProps["color"] => {
-        switch (true) {
-          case studentLesson.grade < 30:
-            return "danger";
-          case studentLesson.grade >= 30 && studentLesson.grade < 60:
-            return "primary";
-          case studentLesson.grade >= 60:
-            return "success";
-          default:
-            return "primary";
-        }
-      };
-
       if (studentLesson.grade === -1) return <>-</>;
 
       return (
-        <Chip color={getChipColor()} size="sm">
+        <Chip color={getLessonGradeChipColor(studentLesson.grade)} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
             {studentLesson.grade}
           </span>
@@ -140,7 +116,6 @@ export const columns: ColumnDef<StudentLesson>[] = [
     ),
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
-
       const date = moment(studentLesson.scheduledDate);
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;

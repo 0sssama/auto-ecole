@@ -5,25 +5,12 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { User } from "@nextui-org/user";
 import { Chip } from "@nextui-org/chip";
-import { LicenseFileStatus } from "@prisma/client";
+import type { LicenseFileStatus } from "@prisma/client";
 
 import { cn } from "@/lib/cn";
+import { getLicenseFileStatusChipColor } from "@/lib/getChipColors";
 
-import type { ChipProps } from "@nextui-org/chip";
 import type { DossierInfoProps, InfoDataProps, InfoTypes } from "./types";
-
-const getChipColor = (status: LicenseFileStatus): ChipProps["color"] => {
-  switch (status) {
-    case LicenseFileStatus.ONGOING:
-      return "secondary";
-    case LicenseFileStatus.REJECTED:
-      return "danger";
-    case LicenseFileStatus.VALIDATED:
-      return "success";
-    default:
-      return "primary";
-  }
-};
 
 function InfoData<InfoT extends InfoTypes>({
   labelId,
@@ -36,7 +23,10 @@ function InfoData<InfoT extends InfoTypes>({
       return <p>{value as number}</p>;
     case "licenseFileStatus":
       return (
-        <Chip color={getChipColor(value as LicenseFileStatus)} size="sm">
+        <Chip
+          color={getLicenseFileStatusChipColor(value as LicenseFileStatus)}
+          size="sm"
+        >
           <span className="font-bold !text-[10px] md:text-sm mt-2">
             {t("LicenseFile.Status." + value).toUpperCase()}
           </span>
