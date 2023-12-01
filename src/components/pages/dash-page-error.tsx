@@ -1,9 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+
 import { SignOutButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
 
 export default function PageFallback() {
   const t = useTranslations("Dashboard.Error");

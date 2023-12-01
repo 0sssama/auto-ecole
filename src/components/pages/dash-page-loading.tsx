@@ -11,6 +11,7 @@ export default function DashboardPageLoading() {
 
     return () => clearTimeout(timeout);
   }, []);
+
   return (
     <main className="relative flex flex-col items-center justify-center w-full h-screen lg:flex-row">
       <Spinner size="md" />

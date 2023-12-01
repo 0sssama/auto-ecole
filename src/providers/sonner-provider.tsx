@@ -1,14 +1,10 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import * as React from "react";
 import { Toaster } from "sonner";
+import type { ReactNode } from "react";
 
-export default function ToastProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ToastProvider({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
 
   return (
