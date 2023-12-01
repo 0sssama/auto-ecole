@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Modal,
   ModalHeader,
@@ -9,13 +11,9 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 
-function AddExamModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+import type { ModalComponentType } from "./types";
+
+const AddExamModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations("Dashboard.Modals.AddExamSike");
 
   if (!isOpen) return null;
@@ -46,6 +44,6 @@ function AddExamModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddExamModal;

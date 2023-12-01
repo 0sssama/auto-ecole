@@ -59,7 +59,7 @@ export default function LicenseFileExamsTable({
       <AddExamModal
         isOpen={addExamModal.isOpen}
         close={addExamModal.close}
-        licenseFileId={licenseFileId}
+        context={{ licenseFileId }}
       />
       <DataTable
         data={data}

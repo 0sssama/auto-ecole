@@ -10,22 +10,17 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Category, LicenseFileStatus } from "@prisma/client";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { AddNewLicenseFileForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
 
 import { LicenseFileFormSchema } from "@/schemas/license-file-form-schema";
+import type { ModalComponentType } from "./types";
 
-function AddInstructorModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations("Dashboard.Files.LicenseFiles.AddNewModal");
 
   const closeModal = () => {
@@ -117,6 +112,6 @@ function AddInstructorModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddInstructorModal;

@@ -1,6 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import {
   Modal,
-  //   ModalContent,
   ModalHeader,
   ModalBody,
   ModalFooter,
@@ -8,24 +10,19 @@ import {
 } from "@nextui-org/modal";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { AddNewInstructorForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
-import { toast } from "sonner";
-import { useState } from "react";
 
-function AddInstructorModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
+import type { ModalComponentType } from "./types";
+
+const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations(
     "Dashboard.Users.Instructors.AddNewInstructorModal",
   );
@@ -141,6 +138,6 @@ function AddInstructorModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddInstructorModal;

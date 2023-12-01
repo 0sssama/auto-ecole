@@ -1,6 +1,7 @@
+import { useState } from "react";
+import { toast } from "sonner";
 import {
   Modal,
-  //   ModalContent,
   ModalHeader,
   ModalBody,
   ModalFooter,
@@ -8,25 +9,18 @@ import {
 } from "@nextui-org/modal";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-// import { useOrganization } from "@clerk/nextjs";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { AddNewStudentForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
 import { StudentFormSchema } from "@/schemas/student-form-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
-import { toast } from "sonner";
-import { useState } from "react";
 
-function AddStudentModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+import type { ModalComponentType } from "./types";
+
+const AddStudentModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations("Dashboard.Users.Students.AddNewStudentModal");
 
   const closeModal = () => {
@@ -151,6 +145,6 @@ function AddStudentModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddStudentModal;

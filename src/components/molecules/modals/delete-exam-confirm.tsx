@@ -9,19 +9,17 @@ import {
   ModalHeader,
 } from "@nextui-org/modal";
 
-import { useDeleteExam } from "@/lib/hooks/exams/useDeleteExam";
 import { Spinner } from "@/components/atoms";
 import { Button } from "@/components/ui/button";
+import { useDeleteExam } from "@/lib/hooks/exams/useDeleteExam";
 
-export default function DeleteExamConfirm({
+import type { ModalComponentType } from "./types";
+
+const DeleteExamConfirm: ModalComponentType<{ examId: number }> = ({
   isOpen,
   close,
-  examId,
-}: {
-  isOpen: boolean;
-  close: () => void;
-  examId: number;
-}) {
+  context: { examId },
+}) => {
   const t = useTranslations("Dashboard.Modals.DeleteExam");
 
   const { deleteExam, isDeletingExam } = useDeleteExam(examId, {
@@ -68,4 +66,6 @@ export default function DeleteExamConfirm({
       </ModalContent>
     </Modal>
   );
-}
+};
+
+export default DeleteExamConfirm;

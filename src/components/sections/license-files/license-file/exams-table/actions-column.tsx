@@ -34,7 +34,7 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       <DeleteExamConfirmModal
         isOpen={deleteExamModal.isOpen}
         close={deleteExamModal.close}
-        examId={exam.id}
+        context={{ examId: exam.id }}
       />
       <DropdownMenuTrigger asChild>
         <Button
