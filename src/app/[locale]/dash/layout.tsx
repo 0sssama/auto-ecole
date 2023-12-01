@@ -1,16 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useOrganization, useOrganizationList, useUser } from "@clerk/nextjs";
 
 import { DashPageError, DashPageLoading } from "@/components/pages";
 import { Header, Sidebar } from "@/components/sections";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { user, isLoaded: isLoaded1, isSignedIn } = useUser();
   const { setActive, isLoaded: isLoaded2 } = useOrganizationList();
   const { organization } = useOrganization();

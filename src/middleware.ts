@@ -1,14 +1,16 @@
-import { authMiddleware } from "@clerk/nextjs";
 import createMiddleware from "next-intl/middleware";
+import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+
 import { DEFAULT_LOCALE, locales } from "@/lib/locales";
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
   locales,
-
   // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
   defaultLocale: DEFAULT_LOCALE,
+  localeDetection: true,
+  localePrefix: "never",
 });
 
 // This example protects all routes including api/trpc routes
@@ -23,11 +25,11 @@ export default authMiddleware({
     // @ts-ignore
     return intlMiddleware(req);
   },
-  publicRoutes: ["/", "/en"],
+  publicRoutes: ["/"],
 });
 
 export const config = {
   // Skip all paths that should not be internationalized. This example skips
   // certain folders and all pathnames with a dot (e.g. favicon.ico)
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

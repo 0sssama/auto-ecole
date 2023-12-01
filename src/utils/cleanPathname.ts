@@ -1,5 +1,13 @@
 import { locales } from "@/lib/locales";
 
+export const cleanLocaleFromPathname = (pathname: string | undefined) => {
+  if (pathname === undefined) {
+    return "";
+  }
+
+  return pathname.replace(new RegExp(`^/(${locales.join("|")})`, "g"), "");
+};
+
 export const cleanPathname = (pathname: string | undefined) => {
   if (pathname === undefined) {
     return "";

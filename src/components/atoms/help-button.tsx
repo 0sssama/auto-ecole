@@ -1,17 +1,18 @@
 "use client";
 
+import { LifeBuoy } from "lucide-react";
+import type { ReactNode } from "react";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import { useMedia } from "@/lib/hooks/useMedia";
 import { getLgMedia } from "@/lib/media";
-import { LifeBuoy } from "lucide-react";
-import React from "react";
 
 export default function HelpButton({
   children,
   className,
 }: {
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
 }) {
   const isDesktop = useMedia(getLgMedia());

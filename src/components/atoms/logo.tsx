@@ -1,26 +1,28 @@
+import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import logo from "@/assets/logo.svg";
 
 const variants = {
   xs: {
-    width: 12,
+    width: 16,
     height: 14,
   },
   sm: {
-    width: 21,
+    width: 29,
     height: 26,
   },
   md: {
-    width: 30,
+    width: 40,
     height: 36,
   },
   lg: {
-    width: 40,
+    width: 54,
     height: 48,
   },
   xl: {
-    width: 53,
+    width: 72,
     height: 64,
   },
 };
@@ -30,7 +32,7 @@ export type LogoProps = {
   className?: string;
 };
 
-export default function Logo({ size = "md", className }: LogoProps) {
+const Logo: FC<LogoProps> = ({ size = "md", className }) => {
   const { width, height } = variants[size];
 
   return (
@@ -46,4 +48,6 @@ export default function Logo({ size = "md", className }: LogoProps) {
       />
     </Link>
   );
-}
+};
+
+export default Logo;

@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import type { DataTablePaginationProps } from "./types";
 
 export function DataTablePagination({ pagination }: DataTablePaginationProps) {
@@ -33,7 +34,7 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
             <SelectTrigger className="h-8 w-[70px]">
               <SelectValue placeholder={pagination.get.pageSize} />
             </SelectTrigger>
-            <SelectContent side="top">
+            <SelectContent>
               {[1, 2, 10, 20, 30, 40, 50].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}

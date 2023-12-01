@@ -1,10 +1,10 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
-import { SignOutButton, useUser } from "@clerk/nextjs";
-import { OrganizationMembershipRole } from "@clerk/nextjs/dist/types/server";
+import Cookie from "js-cookie";
+import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { SignOutButton, useOrganization, useUser } from "@clerk/nextjs";
+import type { MembershipRole } from "@clerk/types";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/cn";
+import { locales, type Locale } from "@/lib/locales";
 import type { TranslationFunction } from "@/types";
+
+import frIcon from "@/assets/fr-icon.png";
+import enIcon from "@/assets/en-icon.png";
 
 const UserNavLinks = (t: TranslationFunction) => [
   {
@@ -35,7 +40,7 @@ const UserNavLinks = (t: TranslationFunction) => [
 ];
 
 export const parseRoleToClient = (
-  role: OrganizationMembershipRole,
+  role: MembershipRole,
   t: TranslationFunction,
 ) => {
   switch (role) {
@@ -54,8 +59,10 @@ export default function UserNav() {
   const router = useRouter();
 
   const { user } = useUser();
+  const { membership } = useOrganization();
+  const currentLocale = useLocale() as Locale;
 
-  if (!user) return null;
+  if (!user || !membership) return null;
 
   return (
     <DropdownMenu>
@@ -76,12 +83,15 @@ export default function UserNav() {
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user.fullName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {parseRoleToClient(user.organizationMemberships?.[0]?.role, t)}
+              {parseRoleToClient(membership.role, t)}
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <p className="mt-2 ml-1 mb-1 text-[10px] text-gray-500 uppercase font-bold">
+            {t("profile")}
+          </p>
           {UserNavLinks(t).map((link, i) => (
             <DropdownMenuItem key={i} className="!p-0">
               <Link href={link.href} className="w-full h-full px-2 py-1.5">
@@ -91,9 +101,55 @@ export default function UserNav() {
           ))}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <p className="mt-2 ml-1 mb-1 text-[10px] text-gray-500 uppercase font-bold">
+            {t("Langs.title")}
+          </p>
+          {locales.map((locale, i) => {
+            const isCurrentLocale = locale === currentLocale;
+
+            const icons = {
+              fr: frIcon,
+              en: enIcon,
+            };
+
+            const visibleName = t(`Langs.${locale}`);
+
+            return (
+              <DropdownMenuItem key={i} className="!p-0 overflow-hidden">
+                <div
+                  className={cn(
+                    "cursor-pointer flex items-center gap-2 w-full h-full px-2 py-1.5",
+                    {
+                      "bg-gray-200": isCurrentLocale,
+                    },
+                  )}
+                  onClick={() => {
+                    if (isCurrentLocale) return;
+
+                    Cookie.set("NEXT_LOCALE", locale);
+                    setTimeout(() => {
+                      router.refresh();
+                    }, 100);
+                  }}
+                >
+                  <Image
+                    src={icons[locale as keyof typeof icons]}
+                    alt={visibleName}
+                    height={18}
+                    width={18}
+                    loading="lazy"
+                  />
+                  {visibleName}
+                </div>
+              </DropdownMenuItem>
+            );
+          })}
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
         <SignOutButton signOutCallback={() => router.push("/")}>
           <DropdownMenuItem className="font-semibold cursor-pointer text-destructive hover:text-destructive hover:bg-destructive/20 focus:text-destructive focus:bg-destructive/20">
-            Log out
+            {t("logout")}
           </DropdownMenuItem>
         </SignOutButton>
       </DropdownMenuContent>

@@ -1,5 +1,7 @@
 "use client";
 
+import type { FC } from "react";
+
 import { cn } from "@/lib/cn";
 import { useMenu } from "@/lib/hooks/useMenu";
 
@@ -7,7 +9,7 @@ export type HambugerButtonProps = {
   className?: string;
 };
 
-export default function HamburgerButton({ className }: HambugerButtonProps) {
+const HamburgerButton: FC<HambugerButtonProps> = ({ className }) => {
   const { isOpen, toggleMenu } = useMenu();
 
   return (
@@ -32,4 +34,6 @@ export default function HamburgerButton({ className }: HambugerButtonProps) {
       />
     </button>
   );
-}
+};
+
+export default HamburgerButton;

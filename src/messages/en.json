@@ -14,7 +14,12 @@
         "logout": "Log out",
         "admin": "Admin",
         "student": "Student",
-        "unknown": "Unknown"
+        "unknown": "Unknown",
+        "Langs": {
+          "title": "Language",
+          "fr": "French",
+          "en": "English"
+        }
       }
     },
     "Sidebar": {

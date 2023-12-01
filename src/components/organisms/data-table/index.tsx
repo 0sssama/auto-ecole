@@ -75,7 +75,7 @@ function DataTable<TData, TValue>({
   }, [data]);
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 max-w-[90vw] overflow-x-auto">
       <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
       <div className="border rounded-md">
         <Table>

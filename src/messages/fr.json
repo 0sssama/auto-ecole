@@ -14,7 +14,12 @@
         "logout": "Déconnexion",
         "admin": "Administrateur",
         "student": "Étudiant",
-        "unknown": "Inconnu"
+        "unknown": "Inconnu",
+        "Langs": {
+          "title": "Langue",
+          "fr": "Français",
+          "en": "Anglais"
+        }
       }
     },
     "Sidebar": {

@@ -1,3 +1,5 @@
+import type { FC } from "react";
+
 import { cn } from "@/lib/cn";
 
 export type LoadingProps = {
@@ -34,11 +36,7 @@ const variants = {
   },
 };
 
-export default function Loading({
-  size = "md",
-  color,
-  className,
-}: LoadingProps) {
+const Loading: FC<LoadingProps> = ({ size = "md", color, className }) => {
   return (
     <div
       aria-label="Spinner"
@@ -52,4 +50,6 @@ export default function Loading({
       )}
     ></div>
   );
-}
+};
+
+export default Loading;
