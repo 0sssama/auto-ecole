@@ -1,6 +1,7 @@
-import { FetchedExam } from "@/components/sections/exams/exam-file/types";
-import { prisma } from "@/server/db";
 import { clerkClient } from "@clerk/nextjs";
+
+import { prisma } from "@/server/db";
+import type { FetchedExam } from "@/components/sections/exams/exam-file/types";
 
 export const getExam = async (id: number): Promise<FetchedExam | null> => {
   if (id <= 0) return null;

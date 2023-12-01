@@ -19,7 +19,7 @@ import { AddNewInstructorForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
 import { api } from "@/utils/api";
 
-import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
+import { instructorFormSchema } from "@/schemas/instructor-form-schema";
 import type { ModalComponentType } from "./types";
 
 const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
@@ -32,8 +32,8 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
     close();
   };
 
-  const form = useForm<z.infer<typeof InstructorFormSchema>>({
-    resolver: zodResolver(InstructorFormSchema),
+  const form = useForm<z.infer<typeof instructorFormSchema>>({
+    resolver: zodResolver(instructorFormSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -83,7 +83,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof InstructorFormSchema>) =>
+  const onSubmit = (values: z.infer<typeof instructorFormSchema>) =>
     addInstructorToClerk({
       firstName: values.firstName,
       lastName: values.lastName,

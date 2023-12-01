@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { isMobilePhone } from "@/utils/isMobilePhone";
 
-export const InstructorFormSchema = z.object({
+export const instructorFormSchema = z.object({
   firstName: z
     .string()
     .min(2, {

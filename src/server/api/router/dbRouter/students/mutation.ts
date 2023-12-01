@@ -1,7 +1,7 @@
 import { z } from "zod";
+import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { TRPCError } from "@trpc/server";
 import { studentFormSchema } from "@/schemas/student-form-schema";
 
 export const mutationRouter = createTRPCRouter({
@@ -56,7 +56,7 @@ export const mutationRouter = createTRPCRouter({
   dearchive: orgAdminOnlyPrecedure
     .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
@@ -108,7 +108,7 @@ export const mutationRouter = createTRPCRouter({
   delete: orgAdminOnlyPrecedure
     .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });

@@ -12,11 +12,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { examFormSchema } from "@/schemas/exam-form-schema";
 import { Combobox } from "@/components/ui/combobox";
 import { DatePicker } from "@/components/ui/date-picker";
 import type { TranslationFunction } from "@/types";
 
+import { examFormSchema } from "@/schemas/exam-form-schema";
 import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [

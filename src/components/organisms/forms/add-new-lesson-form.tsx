@@ -16,10 +16,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Combobox } from "@/components/ui/combobox";
 import { DatePicker } from "@/components/ui/date-picker";
-import { lessonFormSchema } from "@/schemas/lesson-form-schema";
 import { api } from "@/utils/api";
 import type { TranslationFunction } from "@/types";
 
+import { lessonFormSchema } from "@/schemas/lesson-form-schema";
 import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [

@@ -6,14 +6,15 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
+import superjson from "superjson";
 import { getAuth } from "@clerk/nextjs/server";
 import { clerkClient } from "@clerk/nextjs";
 import { TRPCError, initTRPC } from "@trpc/server";
-import superjson from "superjson";
 import { ZodError } from "zod";
-import { prisma } from "@/server/db";
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import type { RequestLike } from "@clerk/nextjs/dist/types/server/types";
+
+import { prisma } from "@/server/db";
 
 /**
  * 1. CONTEXT
@@ -30,16 +31,13 @@ import type { RequestLike } from "@clerk/nextjs/dist/types/server/types";
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = (opts: FetchCreateContextFnOptions) => {
-  const { req } = opts;
-  const sesh = getAuth(req as RequestLike);
-
-  const userId = sesh.userId;
-  const orgId = sesh.orgId;
+  // get current auth session
+  const sesh = getAuth(opts.req as RequestLike);
 
   return {
     prisma,
-    userId,
-    orgId,
+    userId: sesh.userId,
+    orgId: sesh.orgId,
   };
 };
 
@@ -107,26 +105,6 @@ const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
 });
 
 /**
- * Organization member only procedure (user must be part of an org)
- */
-const enforceOrgMember = t.middleware(async ({ ctx, next }) => {
-  const { orgId } = ctx;
-
-  const org = await clerkClient.organizations.getOrganization({
-    organizationId: orgId!,
-  });
-
-  if (!org) throw new TRPCError({ code: "UNAUTHORIZED" });
-
-  return next({
-    ctx: {
-      userId: ctx.userId,
-      orgId: ctx.orgId,
-    },
-  });
-});
-
-/**
  * Organization admin only procedure
  */
 const enforceOrgAdminOnly = t.middleware(async ({ ctx, next }) => {
@@ -134,7 +112,7 @@ const enforceOrgAdminOnly = t.middleware(async ({ ctx, next }) => {
 
   const memberships =
     await clerkClient.organizations.getOrganizationMembershipList({
-      organizationId: orgId!, // we know this is defined because of enforceOrgMember
+      organizationId: orgId!, // we know this is defined because of previous procedure
     });
 
   const membership = memberships.find(
@@ -142,7 +120,7 @@ const enforceOrgAdminOnly = t.middleware(async ({ ctx, next }) => {
   );
 
   if (!membership || membership.role !== "admin")
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Not an admin" });
 
   return next({
     ctx: {
@@ -154,8 +132,6 @@ const enforceOrgAdminOnly = t.middleware(async ({ ctx, next }) => {
 });
 
 export const privateProcedure = t.procedure.use(enforceUserAuthentication);
-export const orgMembersProcedure = privateProcedure.use(enforceOrgMember);
-export const orgAdminOnlyPrecedure =
-  orgMembersProcedure.use(enforceOrgAdminOnly);
+export const orgAdminOnlyPrecedure = privateProcedure.use(enforceOrgAdminOnly);
 //   export const orgSuperAdminOnlyPrecedure =
 //   orgMembersProcedure.use(enforceOrgSuperAdminOnly);

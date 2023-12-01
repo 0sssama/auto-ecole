@@ -17,7 +17,7 @@ import { AddNewLicenseFileForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
 import { api } from "@/utils/api";
 
-import { LicenseFileFormSchema } from "@/schemas/license-file-form-schema";
+import { licenseFileFormSchema } from "@/schemas/license-file-form-schema";
 import type { ModalComponentType } from "./types";
 
 const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
@@ -28,8 +28,8 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
     close();
   };
 
-  const form = useForm<z.infer<typeof LicenseFileFormSchema>>({
-    resolver: zodResolver(LicenseFileFormSchema),
+  const form = useForm<z.infer<typeof licenseFileFormSchema>>({
+    resolver: zodResolver(licenseFileFormSchema),
     defaultValues: {
       studentId: "0",
       instructorId: "0",
@@ -56,7 +56,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof LicenseFileFormSchema>) =>
+  const onSubmit = (values: z.infer<typeof licenseFileFormSchema>) =>
     addLicenseFile({
       ...values,
       studentId: Number(values.studentId),

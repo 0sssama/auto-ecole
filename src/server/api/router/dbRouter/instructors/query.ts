@@ -1,8 +1,10 @@
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { getWhereObjFromFilters } from "./utils";
+import { TRPCError } from "@trpc/server";
+
+import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { countPages } from "@/utils/countPages";
+
+import { getWhereObjFromFilters } from "./utils";
 
 export const queryRouter = createTRPCRouter({
   getManyForSelect: orgAdminOnlyPrecedure
@@ -59,7 +61,7 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.orgId || !ctx.userId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });

@@ -3,8 +3,12 @@ import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { joinedInLastWeek } from "@/utils/joinedInLastWeek";
-import { getUserStatusFromLicenseFiles, getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
+
+import {
+  getStudentStatusFromLicenseFiles,
+  getWhereObjFromFilters,
+} from "./utils";
 
 export const queryRouter = createTRPCRouter({
   getManyForSelect: orgAdminOnlyPrecedure
@@ -59,7 +63,7 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
@@ -107,7 +111,7 @@ export const queryRouter = createTRPCRouter({
         status:
           student.licenseFiles.length === 0
             ? "not-started"
-            : getUserStatusFromLicenseFiles(student.licenseFiles),
+            : getStudentStatusFromLicenseFiles(student.licenseFiles),
       }));
 
       return {

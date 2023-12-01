@@ -12,9 +12,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
 import type { TranslationFunction } from "@/types";
 
+import { instructorFormSchema } from "@/schemas/instructor-form-schema";
 import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
@@ -35,7 +35,7 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-type TFormValues = z.infer<typeof InstructorFormSchema>;
+type TFormValues = z.infer<typeof instructorFormSchema>;
 
 const AddNewInstructorForm: FormComponentType<TFormValues> = ({
   form,

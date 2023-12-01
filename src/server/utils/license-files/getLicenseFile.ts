@@ -1,6 +1,7 @@
-import { FetchedLicenseFile } from "@/components/sections/license-files/license-file/types";
-import { prisma } from "@/server/db";
 import { clerkClient } from "@clerk/nextjs";
+
+import { prisma } from "@/server/db";
+import type { FetchedLicenseFile } from "@/components/sections/license-files/license-file/types";
 
 export const getLicenseFile = async (
   id: number,

@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Combobox } from "@/components/ui/combobox";
-import { LicenseFileFormSchema } from "@/schemas/license-file-form-schema";
 import { api } from "@/utils/api";
 import type { TranslationFunction } from "@/types";
 
+import { licenseFileFormSchema } from "@/schemas/license-file-form-schema";
 import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
@@ -63,7 +63,7 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-type TFormValues = z.infer<typeof LicenseFileFormSchema>;
+type TFormValues = z.infer<typeof licenseFileFormSchema>;
 
 const AddNewStudentForm: FormComponentType<TFormValues> = ({
   form,

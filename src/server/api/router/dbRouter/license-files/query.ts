@@ -2,12 +2,12 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
-
 import type { InstructorLicenseFile } from "@/components/sections/instructors/instructor-file/license-files-table/schema";
 import type { StudentLicenseFile } from "@/components/sections/students/student-file/license-files-table/schema";
 import type { LicenseFile } from "@/components/sections/license-files/list-table/schema";
+
+import { getWhereObjFromFilters } from "./utils";
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -21,7 +21,7 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
@@ -111,7 +111,7 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
@@ -190,7 +190,7 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });

@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/ui/date-picker";
-import { studentFormSchema } from "@/schemas/student-form-schema";
 import type { TranslationFunction } from "@/types";
 
+import { studentFormSchema } from "@/schemas/student-form-schema";
 import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
