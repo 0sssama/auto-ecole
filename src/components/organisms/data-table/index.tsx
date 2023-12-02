@@ -75,9 +75,9 @@ function DataTable<TData, TValue>({
   }, [data]);
 
   return (
-    <div className="w-full space-y-4 max-w-[90vw] overflow-x-auto">
+    <div className="w-full space-y-4">
       <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
-      <div className="border rounded-md">
+      <div className="border rounded-md max-w-[90vw] overflow-x-auto">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

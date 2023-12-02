@@ -40,7 +40,6 @@ export const queryRouter = createTRPCRouter({
             select: {
               id: true,
               status: true,
-              createdAt: true,
               category: true,
               price: true,
               instructor: {
@@ -89,7 +88,6 @@ export const queryRouter = createTRPCRouter({
           category: licenseFile.category,
           price: licenseFile.price,
           status: licenseFile.status,
-          createdAt: licenseFile.createdAt,
         }));
 
       return {

@@ -6,7 +6,6 @@ export const instructorSchema = z.object({
   phone: z.string(),
   licenseFilesCount: z.number(),
   lessonsCount: z.number(),
-  createdAt: z.date(),
 });
 
 export type Instructor = z.infer<typeof instructorSchema>;

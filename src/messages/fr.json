@@ -76,8 +76,8 @@
         "Students": {
           "id": "ID",
           "name": "Nom complet",
-          "created-at": "Date ajouté",
-          "status": "Statut du dossier"
+          "status": "Statut du dossier",
+          "category": "Type de permis"
         },
         "StudentLicenseFiles": {
           "id": "ID",
@@ -108,8 +108,7 @@
           "full-name": "Nom Complet",
           "phone": "Téléphone",
           "license-files-count": "Dossiers de permis",
-          "lessons-count": "Leçons",
-          "date": "Date ajouté"
+          "lessons-count": "Leçons"
         },
         "InstructorLicenseFiles": {
           "id": "ID",
@@ -135,8 +134,7 @@
           "instructor-name": "Moniteur",
           "category": "Type de permis",
           "price": "Prix agréé",
-          "status": "Statut",
-          "created-at": "Date créé"
+          "status": "Statut"
         },
         "LicenseFileExams": {
           "id": "ID",
@@ -362,6 +360,12 @@
             "unarchive-success": "Étudiant désarchivé avec succès !",
             "unarchive-error": "Erreur lors du désarchivage du étudiant. Veuillez réessayer plus tard.",
             "loading": "Chargement..."
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
           }
         }
       },

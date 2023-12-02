@@ -2,10 +2,11 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { joinedInLastWeek } from "@/utils/joinedInLastWeek";
 import { countPages } from "@/utils/countPages";
+import type { Student } from "@/components/sections/students/list-table/schema";
 
 import {
+  getStudentCategoryFromLicenseFiles,
   getStudentStatusFromLicenseFiles,
   getWhereObjFromFilters,
 } from "./utils";
@@ -80,11 +81,11 @@ export const queryRouter = createTRPCRouter({
             id: true,
             firstNameFr: true,
             lastNameFr: true,
-            createdAt: true,
             archived: true,
             licenseFiles: {
               select: {
                 status: true,
+                category: true,
               },
             },
           },
@@ -102,16 +103,12 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedStudents = students.map((student) => ({
+      const formattedStudents: Student[] = students.map((student) => ({
         id: student.id,
         name: `${student.firstNameFr} ${student.lastNameFr}`,
-        createdAt: student.createdAt,
         archived: student.archived,
-        isNew: joinedInLastWeek(student.createdAt),
-        status:
-          student.licenseFiles.length === 0
-            ? "not-started"
-            : getStudentStatusFromLicenseFiles(student.licenseFiles),
+        status: getStudentStatusFromLicenseFiles(student.licenseFiles),
+        category: getStudentCategoryFromLicenseFiles(student.licenseFiles),
       }));
 
       return {

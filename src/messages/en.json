@@ -76,8 +76,8 @@
         "Students": {
           "id": "ID",
           "name": "Name",
-          "status": "Status",
-          "created-at": "Date added"
+          "status": "License File Status",
+          "category": "License File Type"
         },
         "StudentLicenseFiles": {
           "id": "ID",
@@ -108,8 +108,7 @@
           "full-name": "Full Name",
           "phone": "Phone Number",
           "license-files-count": "License Files",
-          "lessons-count": "Lessons Done",
-          "date": "Date added"
+          "lessons-count": "Lessons Done"
         },
         "InstructorLicenseFiles": {
           "id": "ID",
@@ -135,8 +134,7 @@
           "instructor-name": "Instructor Name",
           "category": "License Category",
           "price": "Price agreed",
-          "status": "Status",
-          "created-at": "Date created"
+          "status": "Status"
         },
         "LicenseFileExams": {
           "id": "ID",
@@ -362,6 +360,12 @@
             "unarchive-success": "Student unarchived successfully !",
             "unarchive-error": "Error while unarchiving student. Please try again later.",
             "loading": "Loading..."
+          },
+          "Category": {
+            "A": "Motorcycles",
+            "B": "Cars",
+            "C": "Trucks",
+            "D": "Buses"
           }
         },
         "Folder": {
