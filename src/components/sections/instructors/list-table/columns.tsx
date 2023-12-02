@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import moment from "moment";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
-import { Tooltip } from "@/components/atoms";
 
 import { ActionsColumn } from "./actions-column";
 import { instructorSchema, type Instructor } from "./schema";
@@ -39,6 +37,8 @@ export const columns: ColumnDef<Instructor>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "phone",
@@ -50,6 +50,8 @@ export const columns: ColumnDef<Instructor>[] = [
 
       return <>{instructor.phone}</>;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "license-files-count",
@@ -64,6 +66,8 @@ export const columns: ColumnDef<Instructor>[] = [
 
       return <>{instructor.licenseFilesCount}</>;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "lessons-count",
@@ -78,18 +82,8 @@ export const columns: ColumnDef<Instructor>[] = [
 
       return <>{instructor.lessonsCount}</>;
     },
-  },
-  {
-    accessorKey: "date",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Instructors.date" />
-    ),
-    cell: ({ row }) => {
-      const studentPayment = instructorSchema.parse(row.original);
-      const date = moment(studentPayment.createdAt);
-
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

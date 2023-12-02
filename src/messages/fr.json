@@ -108,8 +108,7 @@
           "full-name": "Nom Complet",
           "phone": "Téléphone",
           "license-files-count": "Dossiers de permis",
-          "lessons-count": "Leçons",
-          "date": "Date ajouté"
+          "lessons-count": "Leçons"
         },
         "InstructorLicenseFiles": {
           "id": "ID",

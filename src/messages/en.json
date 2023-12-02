@@ -108,8 +108,7 @@
           "full-name": "Full Name",
           "phone": "Phone Number",
           "license-files-count": "License Files",
-          "lessons-count": "Lessons Done",
-          "date": "Date added"
+          "lessons-count": "Lessons Done"
         },
         "InstructorLicenseFiles": {
           "id": "ID",

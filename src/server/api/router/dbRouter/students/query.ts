@@ -81,7 +81,6 @@ export const queryRouter = createTRPCRouter({
             id: true,
             firstNameFr: true,
             lastNameFr: true,
-            createdAt: true,
             archived: true,
             licenseFiles: {
               select: {
@@ -107,7 +106,6 @@ export const queryRouter = createTRPCRouter({
       const formattedStudents: Student[] = students.map((student) => ({
         id: student.id,
         name: `${student.firstNameFr} ${student.lastNameFr}`,
-        createdAt: student.createdAt,
         archived: student.archived,
         status: getStudentStatusFromLicenseFiles(student.licenseFiles),
         category: getStudentCategoryFromLicenseFiles(student.licenseFiles),

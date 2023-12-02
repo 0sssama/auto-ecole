@@ -3,6 +3,7 @@ import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { countPages } from "@/utils/countPages";
+import type { Instructor } from "@/components/sections/instructors/list-table/schema";
 
 import { getWhereObjFromFilters } from "./utils";
 
@@ -81,7 +82,6 @@ export const queryRouter = createTRPCRouter({
             firstName: true,
             lastName: true,
             phone: true,
-            createdAt: true,
             licenseFiles: {
               select: {
                 id: true,
@@ -109,17 +109,18 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedCustomers = instructors.map((instructor) => ({
-        id: instructor.id,
-        fullName: `${instructor.firstName} ${instructor.lastName}`,
-        phone: instructor.phone,
-        licenseFilesCount: instructor.licenseFiles.length,
-        lessonsCount: instructor.lessons.length,
-        createdAt: instructor.createdAt,
-      }));
+      const formattedInstructors: Instructor[] = instructors.map(
+        (instructor) => ({
+          id: instructor.id,
+          fullName: `${instructor.firstName} ${instructor.lastName}`,
+          phone: instructor.phone,
+          licenseFilesCount: instructor.licenseFiles.length,
+          lessonsCount: instructor.lessons.length,
+        }),
+      );
 
       return {
-        data: formattedCustomers,
+        data: formattedInstructors,
         pageCount: countPages(totalInstructors, input.pageSize),
       };
     }),
