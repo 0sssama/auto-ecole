@@ -627,6 +627,11 @@
         "exam-delete-error": "Erreur lors de la suppression de l'examen. Veuillez réessayer plus tard."
       }
     },
+    "Common": {
+      "FileUpload": {
+        "idle": "Glissez et déposez un fichier ici ou cliquez pour le sélectionner"
+      }
+    },
     "Error": {
       "sorry": "Oups, désolé !",
       "description": "Vous n'êtes pas connecté, ou vous ne faites partie d'aucune organisation...",

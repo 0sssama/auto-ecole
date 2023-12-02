@@ -620,6 +620,11 @@
         "exam-delete-error": "An error has occurred. Please try again later."
       }
     },
+    "Common": {
+      "FileUpload": {
+        "idle": "Drop or click to upload files"
+      }
+    },
     "Error": {
       "sorry": "Whoops, sorry!",
       "description": "You are either not logged in, or not part of any organization...",

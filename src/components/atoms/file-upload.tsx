@@ -1,3 +1,5 @@
+"use client";
+
 import {
   useCallback,
   type Dispatch,
@@ -5,6 +7,7 @@ import {
   type FC,
   type ReactNode,
 } from "react";
+import { useTranslations } from "next-intl";
 import { generateClientDropzoneAccept } from "uploadthing/client";
 import { useDropzone } from "@uploadthing/react/hooks";
 
@@ -29,6 +32,8 @@ const FileUpload: FileUploadComponentType = ({
   permittedFileInfo,
   children,
 }) => {
+  const t = useTranslations("Dashboard.Common.FileUpload");
+
   const onDrop = useCallback(
     (newFiles: File[]) => files.set(newFiles),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,7 +51,7 @@ const FileUpload: FileUploadComponentType = ({
 
   return (
     <div
-      className="w-full flex flex-col items-center justify-center gap-1 rounded-lg border-dashed min-h-[175px] border-1 cursor-pointer border-gray-400 bg-gray-100"
+      className="w-full flex flex-col items-center justify-center gap-1 rounded-lg border-dashed min-h-[175px] border-1 cursor-pointer border-foreground-300 bg-accent p-4 transition-colors duration-400 hover:bg-background"
       {...getRootProps()}
     >
       <input
@@ -56,10 +61,10 @@ const FileUpload: FileUploadComponentType = ({
         {...getInputProps()}
       />
       <span className="text-sm font-semibold">{children}</span>
-      <span className="text-xs text-gray-400">
+      <span className="text-xs text-foreground-400">
         {files.get.length
           ? files.get.map((file) => concatFileName(file.name, 20)).join(", ")
-          : "Drop or click to upload files"}
+          : t("idle")}
       </span>
     </div>
   );
