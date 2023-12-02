@@ -39,6 +39,7 @@
       "exams": "Examens",
 
       "payment": "Paiements",
+      "payments": "Paiements",
       "financial-overview": "Finance",
 
       "entities": "Entités",
@@ -549,6 +550,18 @@
         "NotFound": {
           "title": "Aucun examen trouvé",
           "subtitle": "Aucun examen n'a été trouvé avec l'ID spécifié."
+        }
+      }
+    },
+    "Payment": {
+      "Payments": {
+        "Header": {
+          "title": "Paiements",
+          "button": "Nouveau paiement"
+        },
+        "NotFound": {
+          "title": "Aucun paiement trouvé",
+          "subtitle": "Aucun paiement n'a été trouvé avec l'ID spécifié."
         }
       }
     },

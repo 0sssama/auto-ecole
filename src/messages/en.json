@@ -39,6 +39,7 @@
       "exams": "Exams",
 
       "payment": "Payment",
+      "payments": "Payments",
       "financial-overview": "Financial Overview",
 
       "entities": "Entities",
@@ -543,6 +544,18 @@
         "NotFound": {
           "title": "No Exam Found",
           "subtitle": "The exam you are looking for does not exist."
+        }
+      }
+    },
+    "Payment": {
+      "Payments": {
+        "Header": {
+          "title": "Payments",
+          "button": "New payment"
+        },
+        "NotFound": {
+          "title": "No Payment Found",
+          "subtitle": "The payment you are looking for does not exist."
         }
       }
     },
