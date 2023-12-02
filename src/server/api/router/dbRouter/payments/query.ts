@@ -7,6 +7,7 @@ import { countPages } from "@/utils/countPages";
 import { getWhereObjFromFilters } from "./utils";
 import type { Payment } from "@/components/sections/payments/list-table/schema";
 import type { StudentPayment } from "@/components/sections/students/student-file/payments-table/schema";
+import { LicenseFilePayment } from "@/components/sections/license-files/license-file/payments-table/schema";
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -76,6 +77,79 @@ export const queryRouter = createTRPCRouter({
       };
     }),
 
+  listByLicenseFileId: orgAdminOnlyPrecedure
+    .input(
+      z.object({
+        licenseFileId: z.number().min(1),
+        pageIndex: z.number().default(0),
+        pageSize: z.number().default(10),
+        filters: z.object({
+          search: z.string(),
+        }),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.userId || !ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
+      const filtersObj = getWhereObjFromFilters(input.filters);
+
+      const [licenseFilePayments, totalLicenseFilePayments] = await Promise.all(
+        [
+          ctx.prisma.payment.findMany({
+            where: {
+              createdBy: {
+                clerkOrgId: ctx.orgId,
+              },
+              licenseFileId: input.licenseFileId,
+              ...filtersObj,
+            },
+            select: {
+              id: true,
+              sum: true,
+              comment: true,
+              createdBy: {
+                select: {
+                  fullName: true,
+                },
+              },
+              createdAt: true,
+            },
+            orderBy: {
+              createdAt: "desc",
+            },
+            skip: input.pageIndex * input.pageSize,
+            take: input.pageSize,
+          }),
+          ctx.prisma.payment.count({
+            where: {
+              createdBy: {
+                clerkOrgId: ctx.orgId,
+              },
+              licenseFileId: input.licenseFileId,
+              ...filtersObj,
+            },
+          }),
+        ],
+      );
+
+      const formattedLicenseFilePayments: LicenseFilePayment[] =
+        licenseFilePayments.map((payment) => ({
+          id: payment.id,
+          sum: payment.sum,
+          comment: payment.comment,
+          adminName: payment.createdBy.fullName,
+          date: payment.createdAt,
+        }));
+
+      return {
+        data: formattedLicenseFilePayments,
+        pageCount: countPages(totalLicenseFilePayments, input.pageSize),
+      };
+    }),
+
   listByStudentId: orgAdminOnlyPrecedure
     .input(
       z.object({
@@ -114,10 +188,8 @@ export const queryRouter = createTRPCRouter({
                     },
                   },
                   {
-                    lessons: {
-                      some: {
-                        customerId: input.studentId,
-                      },
+                    lesson: {
+                      customerId: input.studentId,
                     },
                   },
                   ...(filtersObj["OR"] ?? []),
@@ -160,10 +232,8 @@ export const queryRouter = createTRPCRouter({
                     },
                   },
                   {
-                    lessons: {
-                      some: {
-                        customerId: input.studentId,
-                      },
+                    lesson: {
+                      customerId: input.studentId,
                     },
                   },
                   ...(filtersObj["OR"] ?? []),

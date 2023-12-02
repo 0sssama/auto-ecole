@@ -153,6 +153,13 @@
           "duration": "Durée (h)",
           "scheduled-date": "Date"
         },
+        "LicenseFilePayments": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
+        },
         "Lessons": {
           "id": "ID",
           "instructor-name": "Moniteur",
@@ -476,6 +483,15 @@
               "CANCELLED": "Annulé",
               "DONE": "Terminé"
             }
+          },
+          "LicenseFilePayments": {
+            "title": "Paiements",
+            "add-button": "Nouveau paiement",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir dossier",
+              "edit": "Modifier"
+            }
           }
         },
         "ListTable": {
@@ -651,6 +667,19 @@
         "subtitle": "",
         "description": "Veuillez visiter la page du dossier de permis de l'étudiant approprié pour ajouter un nouvel paiement",
         "button-cancel": "Annuler"
+      },
+      "AddLicenseFilePayment": {
+        "title": "Ajouter un nouveau paiement",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau paiement",
+        "success": "Paiement ajouté avec succès !",
+        "error": "Erreur lors de l'ajout du paiement. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter paiement"
       }
     },
     "Common": {

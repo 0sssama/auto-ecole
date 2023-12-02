@@ -52,7 +52,6 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
       closeModal();
     },
     onError: (error) => {
-      console.log("CLEANING UP INSTRUCTOR FROM CLERK, FAILURE TO ADD TO DB");
       console.error(error);
       toast.error(t("error"));
     },
@@ -83,7 +82,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
         </ModalHeader>
         <ModalBody>
           {error && (
-            <div className="w-full px-2 py-4 text-center bg-red-100 rounded">
+            <div className="w-full px-2 py-4 text-center bg-danger-50 mb-4 rounded">
               <p className="text-sm font-bold text-center text-danger">
                 {error ? t("no-user-instructor") : t("error")}
               </p>

@@ -12,60 +12,56 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
-import { LessonStatus } from "@prisma/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
-import { AddNewLessonForm } from "@/components/organisms";
+import { AddNewLicenseFilePaymentForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
 import { api } from "@/utils/api";
 
-import { lessonFormSchema } from "@/schemas/lesson-form-schema";
+import { licenseFilePaymentFormSchema } from "@/schemas/license-file-payment-form-schema";
 import type { ModalComponentType } from "./types";
 
-const AddLessonModal: ModalComponentType = ({ isOpen, close }) => {
-  const t = useTranslations("Dashboard.Modals.AddLesson");
+const AddLicenseFilePaymentModal: ModalComponentType<{
+  licenseFileId: number;
+}> = ({ isOpen, close, context: { licenseFileId } }) => {
+  const t = useTranslations("Dashboard.Modals.AddLicenseFilePayment");
 
   const closeModal = () => {
     form.reset();
     close();
   };
 
-  const form = useForm<z.infer<typeof lessonFormSchema>>({
-    resolver: zodResolver(lessonFormSchema),
+  const form = useForm<z.infer<typeof licenseFilePaymentFormSchema>>({
+    resolver: zodResolver(licenseFilePaymentFormSchema),
     defaultValues: {
-      studentId: "0",
-      instructorId: "0",
-      price: "100",
-      duration: "1",
-      status: LessonStatus.RESERVED,
+      licenseFileId,
+      sum: "0",
+      comment: "",
+      date: new Date(),
     },
   });
 
   const {
-    mutate: addLesson,
+    mutate: addPayment,
     isLoading,
     error,
-  } = api.db.lessons.mutation.add.useMutation({
+  } = api.db.payments.mutation.addToLicenseFile.useMutation({
     onSuccess: () => {
       //   void ctx.users.getPage.invalidate();
       toast.success(t("success"));
       closeModal();
     },
     onError: (error) => {
-      console.log("CLEANING UP INSTRUCTOR FROM CLERK, FAILURE TO ADD TO DB");
       console.error(error);
       toast.error(t("error"));
     },
   });
 
-  const onSubmit = (values: z.infer<typeof lessonFormSchema>) =>
-    addLesson({
+  const onSubmit = (values: z.infer<typeof licenseFilePaymentFormSchema>) =>
+    addPayment({
       ...values,
-      studentId: Number(values.studentId),
-      instructorId: Number(values.instructorId),
-      price: Number(values.price),
-      duration: Number(values.duration),
+      sum: Number(values.sum),
     });
 
   if (!isOpen) return null;
@@ -90,11 +86,11 @@ const AddLessonModal: ModalComponentType = ({ isOpen, close }) => {
           {error && (
             <div className="w-full px-2 py-4 mb-4 text-center rounded bg-danger-50">
               <p className="text-sm font-bold text-center text-danger">
-                {error ? t("no-user-instructor") : t("error")}
+                {t("error")}
               </p>
             </div>
           )}
-          <AddNewLessonForm
+          <AddNewLicenseFilePaymentForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
             className="grid w-full grid-cols-1 gap-y-2 gap-x-6"
@@ -122,4 +118,4 @@ const AddLessonModal: ModalComponentType = ({ isOpen, close }) => {
   );
 };
 
-export default AddLessonModal;
+export default AddLicenseFilePaymentModal;

@@ -147,7 +147,7 @@ model Lesson {
     createdById Int
 
     payment   Payment @relation(fields: [paymentId], references: [id])
-    paymentId Int
+    paymentId Int     @unique
 
     customer   Customer @relation(fields: [customerId], references: [id])
     customerId Int
@@ -171,14 +171,15 @@ model Lesson {
 model Payment {
     id Int @id @default(autoincrement())
 
-    date    DateTime
+    date    DateTime @default(now())
     sum     Int
     comment String
 
     licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
 
-    lessons Lesson[]
+    lesson   Lesson?
+    lessonId Int?
 
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int
@@ -187,6 +188,7 @@ model Payment {
     updatedAt DateTime @updatedAt
 
     @@index([licenseFileId])
+    @@index([lessonId])
     @@index([createdById])
 }
 
