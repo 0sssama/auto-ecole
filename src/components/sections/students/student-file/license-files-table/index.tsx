@@ -6,15 +6,15 @@ import { DataTable } from "@/components/organisms";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
-
-import type { StudentLicenseFile } from "./schema";
-import type { StudentLicenseFilesTableProps } from "./types";
 import type { Paginated } from "@/components/organisms/data-table/types";
 
-export default function StudentLicenseFilesTable({
+import { columns } from "./columns";
+import type { StudentLicenseFile } from "./schema";
+import type { StudentLicenseFilesTableComponentType } from "./types";
+
+const StudentLicenseFilesTable: StudentLicenseFilesTableComponentType = ({
   studentId,
-}: StudentLicenseFilesTableProps) {
+}) => {
   const t = useTranslations("Dashboard.Dossier.Tables.StudentLicenseFiles");
 
   const pagination = usePagination({
@@ -48,4 +48,6 @@ export default function StudentLicenseFilesTable({
       />
     </div>
   );
-}
+};
+
+export default StudentLicenseFilesTable;

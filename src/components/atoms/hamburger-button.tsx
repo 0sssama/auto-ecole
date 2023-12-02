@@ -1,5 +1,7 @@
 "use client";
 
+import type { FC } from "react";
+
 import { cn } from "@/lib/cn";
 import { useMenu } from "@/lib/hooks/useMenu";
 
@@ -7,7 +9,7 @@ export type HambugerButtonProps = {
   className?: string;
 };
 
-export default function HamburgerButton({ className }: HambugerButtonProps) {
+const HamburgerButton: FC<HambugerButtonProps> = ({ className }) => {
   const { isOpen, toggleMenu } = useMenu();
 
   return (
@@ -23,7 +25,7 @@ export default function HamburgerButton({ className }: HambugerButtonProps) {
         className={cn(
           "after:block before:block", // display
           "w-[26px] after:w-[26px] before:w-[26px]", // dimensions
-          "bg-gray-800 before:bg-gray-800 after:bg-gray-800", // colors
+          "bg-foreground before:bg-foreground after:bg-foreground", // colors
           "h-px before:h-px after:h-px", // stroke width
           "duration-200 before:transform before:translate-y-[-10px] after:transform after:translate-y-[9px]", // animation
           isOpen &&
@@ -32,4 +34,6 @@ export default function HamburgerButton({ className }: HambugerButtonProps) {
       />
     </button>
   );
-}
+};
+
+export default HamburgerButton;

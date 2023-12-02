@@ -2,17 +2,16 @@
 
 import Link from "next/link";
 import moment from "moment";
-import { ExamStatus } from "@prisma/client";
-import { Chip, ChipProps } from "@nextui-org/chip";
+import { Chip } from "@nextui-org/chip";
 import { useTranslations } from "next-intl";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
 import { Tooltip } from "@/components/atoms";
-import { ActionsColumn } from "./actions-column";
-import { examSchema } from "./schema";
+import { getExamStatusChipColor } from "@/lib/getChipColors";
 
-import type { Exam } from "./schema";
+import ActionsColumn from "./actions-column";
+import { examSchema, type Exam } from "./schema";
 
 export const columns: ColumnDef<Exam>[] = [
   {
@@ -60,21 +59,8 @@ export const columns: ColumnDef<Exam>[] = [
       const exam = examSchema.parse(row.original);
       const t = useTranslations("Dashboard.Files.Exams.ListTable.Status");
 
-      const getChipColor = (): ChipProps["color"] => {
-        switch (exam.status) {
-          case ExamStatus.FAILED:
-            return "danger";
-          case ExamStatus.PENDING:
-            return "primary";
-          case ExamStatus.SUCCESS:
-            return "success";
-          default:
-            return "primary";
-        }
-      };
-
       return (
-        <Chip color={getChipColor()} size="sm">
+        <Chip color={getExamStatusChipColor(exam.status)} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
             {t(exam.status)}
           </span>
@@ -89,7 +75,6 @@ export const columns: ColumnDef<Exam>[] = [
     ),
     cell: ({ row }) => {
       const exam = examSchema.parse(row.original);
-
       const date = moment(exam.date);
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;

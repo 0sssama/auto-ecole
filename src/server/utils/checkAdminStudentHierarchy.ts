@@ -9,33 +9,27 @@ export const checkAdminStudentHierarchy = async (studentId: number) => {
 
   if (!sesh.userId || !sesh.orgId) return false;
 
-  const org = await clerkClient.organizations.getOrganization({
-    organizationId: sesh.orgId,
-  });
-
-  if (!org) return false;
-
-  const memberships =
-    await clerkClient.organizations.getOrganizationMembershipList({
+  const [memberships, studentDb] = await Promise.all([
+    clerkClient.organizations.getOrganizationMembershipList({
       organizationId: sesh.orgId,
-    });
+    }),
+    prisma.customer.findUnique({
+      where: {
+        id: studentId,
+      },
+      select: {
+        clerkUserId: true,
+      },
+    }),
+  ]);
+
+  if (!studentDb) return false;
 
   const membership = memberships.find(
     (m) => m.publicUserData?.userId === sesh.userId,
   );
 
   if (!membership) return false;
-
-  const studentDb = await prisma.customer.findUnique({
-    where: {
-      id: studentId,
-    },
-    select: {
-      clerkUserId: true,
-    },
-  });
-
-  if (!studentDb) return false;
 
   if (studentDb.clerkUserId === sesh.userId) return true;
 

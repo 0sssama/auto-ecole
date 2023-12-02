@@ -5,10 +5,9 @@ import { InfoFile } from "@/components/organisms";
 
 import InstructorLicenseFilesTable from "./license-files-table";
 import InstructorLessonsTable from "./lessons-table";
+import type { InstructorComponentType } from "./types";
 
-import type { InstructorProps } from "./types";
-
-export default function Instructor({ instructor }: InstructorProps) {
+const Instructor: InstructorComponentType = ({ instructor }) => {
   return (
     <div className="flex flex-col">
       <InfoFile data={instructor} type="instructor" />
@@ -18,4 +17,6 @@ export default function Instructor({ instructor }: InstructorProps) {
       <InstructorLessonsTable instructorId={instructor.id} />
     </div>
   );
-}
+};
+
+export default Instructor;

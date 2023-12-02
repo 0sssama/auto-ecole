@@ -3,23 +3,23 @@ import { clerkClient } from "@clerk/nextjs";
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { StudentFormSchema } from "@/schemas/student-form-schema";
-import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
+import { studentFormSchema } from "@/schemas/student-form-schema";
+import { instructorFormSchema } from "@/schemas/instructor-form-schema";
 import { createNewCredentials } from "@/utils/createNewCredentials";
 
-const mutationRouter = createTRPCRouter({
+export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
     .input(
       z.object({
-        firstName: StudentFormSchema.shape.firstNameFr,
-        lastName: StudentFormSchema.shape.lastNameFr,
-        emailAddress: StudentFormSchema.shape.email,
-        phoneNumber: StudentFormSchema.shape.phone,
-        cin: StudentFormSchema.shape.cin,
+        firstName: studentFormSchema.shape.firstNameFr,
+        lastName: studentFormSchema.shape.lastNameFr,
+        emailAddress: studentFormSchema.shape.email,
+        phoneNumber: studentFormSchema.shape.phone,
+        cin: studentFormSchema.shape.cin,
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
@@ -58,16 +58,17 @@ const mutationRouter = createTRPCRouter({
         clerkId: user.id,
       };
     }),
+
   addInstructor: orgAdminOnlyPrecedure
     .input(
       z.object({
-        firstName: InstructorFormSchema.shape.firstName,
-        lastName: InstructorFormSchema.shape.lastName,
-        phoneNumber: InstructorFormSchema.shape.phone,
+        firstName: instructorFormSchema.shape.firstName,
+        lastName: instructorFormSchema.shape.lastName,
+        phoneNumber: instructorFormSchema.shape.phone,
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });
@@ -106,42 +107,23 @@ const mutationRouter = createTRPCRouter({
         clerkId: user.id,
       };
     }),
+
   delete: orgAdminOnlyPrecedure
     .input(
       z.object({
         clerkUserId: z.string(),
       }),
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
+      if (!ctx.userId || !ctx.orgId)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+
       await clerkClient.users.deleteUser(input.clerkUserId);
 
       return {
         clerkId: input.clerkUserId,
       };
     }),
-});
-
-const queryRouter = createTRPCRouter({
-  list: orgAdminOnlyPrecedure.query(async ({ ctx }) => {
-    if (!ctx.orgId)
-      throw new TRPCError({
-        code: "UNAUTHORIZED",
-      });
-
-    const users = await clerkClient.organizations.getOrganizationMembershipList(
-      {
-        organizationId: ctx.orgId,
-      },
-    );
-
-    return users.map((user) => ({
-      firstName: user.publicUserData?.firstName || "N/A",
-      lastName: user.publicUserData?.lastName || "N/A",
-    }));
-  }),
-});
-
-export const usersRouter = createTRPCRouter({
-  mutation: mutationRouter,
-  query: queryRouter,
 });

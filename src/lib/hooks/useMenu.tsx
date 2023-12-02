@@ -1,6 +1,9 @@
-import { menuOpenState } from "@/state";
+"use client";
+
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
+
+import { menuOpenState } from "@/state";
 
 export const useMenu = () => {
   const [menuOpen, setMenuOpen] = useRecoilState(menuOpenState);

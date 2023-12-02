@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Modal,
   ModalHeader,
@@ -10,22 +12,17 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Category, LicenseFileStatus } from "@prisma/client";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { AddNewLicenseFileForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
 
-import { LicenseFileFormSchema } from "@/schemas/license-file-form-schema";
+import { licenseFileFormSchema } from "@/schemas/license-file-form-schema";
+import type { ModalComponentType } from "./types";
 
-function AddInstructorModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations("Dashboard.Files.LicenseFiles.AddNewModal");
 
   const closeModal = () => {
@@ -33,8 +30,8 @@ function AddInstructorModal({
     close();
   };
 
-  const form = useForm<z.infer<typeof LicenseFileFormSchema>>({
-    resolver: zodResolver(LicenseFileFormSchema),
+  const form = useForm<z.infer<typeof licenseFileFormSchema>>({
+    resolver: zodResolver(licenseFileFormSchema),
     defaultValues: {
       studentId: "0",
       instructorId: "0",
@@ -61,7 +58,7 @@ function AddInstructorModal({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof LicenseFileFormSchema>) =>
+  const onSubmit = (values: z.infer<typeof licenseFileFormSchema>) =>
     addLicenseFile({
       ...values,
       studentId: Number(values.studentId),
@@ -108,7 +105,7 @@ function AddInstructorModal({
             disabled={isLoading}
           >
             {isLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}
@@ -117,6 +114,6 @@ function AddInstructorModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddInstructorModal;

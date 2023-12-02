@@ -1,3 +1,5 @@
+"use client";
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -15,18 +17,14 @@ import { ExamStatus, ExamType } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/atoms";
 import { AddNewExamForm } from "@/components/organisms";
-import { examFormSchema } from "@/schemas/exam-form-schema";
 import { api } from "@/utils/api";
 
-function AddExamModal({
-  isOpen,
-  close,
-  licenseFileId,
-}: {
-  isOpen: boolean;
-  close: () => void;
+import { examFormSchema } from "@/schemas/exam-form-schema";
+import type { ModalComponentType } from "./types";
+
+const AddExamModal: ModalComponentType<{
   licenseFileId: number;
-}) {
+}> = ({ isOpen, close, context: { licenseFileId } }) => {
   const t = useTranslations("Dashboard.Modals.AddExam");
 
   const closeModal = () => {
@@ -104,7 +102,7 @@ function AddExamModal({
             disabled={isLoading}
           >
             {isLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}
@@ -113,6 +111,6 @@ function AddExamModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddExamModal;

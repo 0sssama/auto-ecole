@@ -1,5 +1,4 @@
 import { prisma } from "@/server/db";
-
 import type { Instructor } from "@/components/sections/instructors/instructor-file/types";
 
 export const getInstructor = async (

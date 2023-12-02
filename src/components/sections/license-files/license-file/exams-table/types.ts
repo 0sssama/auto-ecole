@@ -1,11 +1,7 @@
-import { Row } from "@tanstack/react-table";
+import type { FC } from "react";
 
-import type { LicenseFileExam } from "./schema";
-
-export type ActionsColumnProps = {
-  row: Row<LicenseFileExam>;
-};
-
-export type LicenseFileExamsTableProps = {
+interface LicenseFileExamsTableProps {
   licenseFileId: number;
-};
+}
+
+export type LicenseFileExamsTableComponentType = FC<LicenseFileExamsTableProps>;

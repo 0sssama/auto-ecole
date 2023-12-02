@@ -3,16 +3,17 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { FolderDown, ImageDown, UploadCloud, UserCircle2 } from "lucide-react";
+import type { FC } from "react";
 
 import { Button } from "@/components/ui/button";
 
 import type { ProfileImageColumnProps } from "./types";
 
-export default function ProfileImageColumn({
+const ProfileImageColumn: FC<ProfileImageColumnProps> = ({
   profilePictureUrl,
   fullName,
   type,
-}: ProfileImageColumnProps) {
+}) => {
   const t = useTranslations("Dashboard.Dossier.ImageColumn");
 
   return (
@@ -45,4 +46,6 @@ export default function ProfileImageColumn({
       </div>
     </div>
   );
-}
+};
+
+export default ProfileImageColumn;

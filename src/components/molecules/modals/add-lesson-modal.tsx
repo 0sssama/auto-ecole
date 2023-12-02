@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Modal,
   ModalHeader,
@@ -10,21 +12,17 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { LessonStatus } from "@prisma/client";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { AddNewLessonForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
-import { lessonFormSchema } from "@/schemas/lesson-form-schema";
 
-function AddLessonModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+import { lessonFormSchema } from "@/schemas/lesson-form-schema";
+import type { ModalComponentType } from "./types";
+
+const AddLessonModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations("Dashboard.Modals.AddLesson");
 
   const closeModal = () => {
@@ -108,7 +106,7 @@ function AddLessonModal({
             disabled={isLoading}
           >
             {isLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}
@@ -117,6 +115,6 @@ function AddLessonModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddLessonModal;

@@ -1,35 +1,14 @@
 import omit from "lodash/omit";
+import { useState } from "react";
 import { toast } from "sonner";
 import { extension } from "mime-types";
-import { type FC, type ReactNode, useState } from "react";
 
 import { FileUpload } from "@/components/atoms";
 import { useUploadThing } from "@/utils/uploadthing";
-import type { OurFileRouter } from "@/app/api/uploadthing/core";
 
-type UploadFileResponse = {
-  name: string;
-  size: number;
-  url: string;
-};
+import type { UseFileUploadComponentProps, UseFileUploadHook } from "./types";
 
-export type FileUploadOptions = {
-  endpoint: keyof OurFileRouter; // UploadThing endpoint
-  acceptMultiple?: boolean;
-  onUploadBegin?: (fileName: string) => void;
-  onUploadError?: (message: string) => void;
-  onUploadComplete?: (res: UploadFileResponse[]) => void;
-};
-
-type UseFileUploadComponentProps = { children: ReactNode };
-
-export type FileUploadReturn = {
-  startUpload: () => Promise<{ response: UploadFileResponse[] }>;
-  FileUpload: FC<UseFileUploadComponentProps>;
-  acceptedExtensions: string;
-};
-
-export function useFileUpload(options: FileUploadOptions): FileUploadReturn {
+export const useFileUpload: UseFileUploadHook = (options) => {
   const {
     endpoint,
     acceptMultiple = false,
@@ -91,4 +70,4 @@ export function useFileUpload(options: FileUploadOptions): FileUploadReturn {
       );
     },
   };
-}
+};

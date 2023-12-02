@@ -1,3 +1,5 @@
+import type { FC } from "react";
+
 export type StudentFolder = {
   id: number;
   profilePictureUrl: string | null;
@@ -17,3 +19,7 @@ export type StudentFolder = {
     birthdate: Date;
   };
 };
+
+export type StudentFileComponentType = FC<{
+  student: StudentFolder;
+}>;

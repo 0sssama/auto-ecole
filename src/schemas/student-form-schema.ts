@@ -1,8 +1,9 @@
 import { z } from "zod";
-import validator from "validator";
-import { arabicCharsPattern } from "@/utils/arabicCharsPattern";
 
-export const StudentFormSchema = z.object({
+import { isMobilePhone } from "@/utils/isMobilePhone";
+import { isArabicString } from "@/utils/isArabicString";
+
+export const studentFormSchema = z.object({
   firstNameFr: z
     .string()
     .min(2, {
@@ -19,7 +20,7 @@ export const StudentFormSchema = z.object({
     .max(255, {
       message: "يجب أن يكون الاسم الشخصي 255 حرفًا على الأكثر.",
     })
-    .regex(arabicCharsPattern, {
+    .refine(isArabicString, {
       message: "يجب أن يحتوي الاسم الشخصي على أحرف عربية فقط.",
     }),
   lastNameFr: z
@@ -38,7 +39,7 @@ export const StudentFormSchema = z.object({
     .max(255, {
       message: "يجب أن يكون الاسم العائلي 255 حرفًا على الأكثر.",
     })
-    .regex(arabicCharsPattern, {
+    .refine(isArabicString, {
       message: "يجب أن يحتوي الاسم العائلي على أحرف عربية فقط.",
     }),
   addressFr: z
@@ -57,7 +58,7 @@ export const StudentFormSchema = z.object({
     .max(255, {
       message: "يجب أن يكون العنوان 255 حرفًا على الأكثر.",
     })
-    .regex(arabicCharsPattern, {
+    .refine(isArabicString, {
       message: "يجب أن يحتوي العنوان على أحرف عربية فقط.",
     }),
   professionFr: z
@@ -76,7 +77,7 @@ export const StudentFormSchema = z.object({
     .max(255, {
       message: "يجب أن تكون المهنة 255 حرفًا على الأكثر.",
     })
-    .regex(arabicCharsPattern, {
+    .refine(isArabicString, {
       message: "يجب أن تحتوي المهنة على أحرف عربية فقط.",
     }),
   phone: z
@@ -87,7 +88,7 @@ export const StudentFormSchema = z.object({
     .max(10, {
       message: "Le numéro de téléphone ne doit pas dépasser 10 caractères.",
     })
-    .refine(validator.isMobilePhone, {
+    .refine(isMobilePhone, {
       message: "Le numéro de téléphone n'est pas valide.",
     }),
   cin: z

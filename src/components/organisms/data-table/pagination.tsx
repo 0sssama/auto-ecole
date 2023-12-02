@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -14,9 +16,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { DataTablePaginationProps } from "./types";
 
-export function DataTablePagination({ pagination }: DataTablePaginationProps) {
+import type { DataTablePaginationComponentType } from "./types";
+
+const DataTablePagination: DataTablePaginationComponentType = ({
+  pagination,
+}) => {
   const t = useTranslations("Dashboard.Tables.Pagination");
 
   return (
@@ -33,7 +38,7 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
             <SelectTrigger className="h-8 w-[70px]">
               <SelectValue placeholder={pagination.get.pageSize} />
             </SelectTrigger>
-            <SelectContent side="top">
+            <SelectContent>
               {[1, 2, 10, 20, 30, 40, 50].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
@@ -90,4 +95,6 @@ export function DataTablePagination({ pagination }: DataTablePaginationProps) {
       </div>
     </div>
   );
-}
+};
+
+export default DataTablePagination;

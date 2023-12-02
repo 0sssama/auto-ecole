@@ -1,8 +1,7 @@
-import * as React from "react";
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
-
 import { Plus_Jakarta_Sans, Vazirmatn } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 import { ClerkProvider } from "@clerk/nextjs";
 import { notFound } from "next/navigation";
 
@@ -15,8 +14,7 @@ import {
   NextUIProvider,
   MomentProvider,
 } from "@/providers";
-
-import type { Locale } from "@/lib/locales";
+import { locales, type Locale } from "@/lib/locales";
 
 import "@/styles/globals.css";
 
@@ -35,41 +33,44 @@ const vazirmatn = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: "NEXT BOILERPLATE",
-  description: "NEXTJS INSANE BOILERPLATE",
+  title: "ECPP Dashboard",
+  description: "Ecole Planete Permis Dashboard",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
   params: { locale },
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: {
     locale: Locale;
   };
 }) {
-  let messages;
+  // TODO: ONLY PASS NECESSARY MESSAGES (THIS FUCKS UP PERFORMANCE)
+  const messages = useMessages();
 
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+  if (!locales.includes(locale as any)) notFound();
 
   return (
+    // TODO: ONLY PASS NECESSARY MESSAGES (THIS FUCKS UP PERFORMANCE)
     <NextIntlClientProvider locale={locale} messages={messages}>
       <ClerkProvider>
         <TRPCProvider>
-          <html lang={locale} suppressHydrationWarning>
-            <body className={`${plusJakarta.variable} ${vazirmatn.variable}`}>
-              <NextUIProvider>
-                <RecoilProvider>
-                  <ThemeProvider
-                    attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange
-                  >
+          <html
+            lang={locale}
+            suppressHydrationWarning
+            className="text-foreground bg-background"
+          >
+            <NextUIProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+              >
+                <body
+                  className={`text-foreground bg-background min-h-screen ${plusJakarta.variable} ${vazirmatn.variable}`}
+                >
+                  <RecoilProvider>
                     <NprogressProvider>
                       <ToastProvider>
                         <MomentProvider locale={locale}>
@@ -77,10 +78,10 @@ export default async function RootLayout({
                         </MomentProvider>
                       </ToastProvider>
                     </NprogressProvider>
-                  </ThemeProvider>
-                </RecoilProvider>
-              </NextUIProvider>
-            </body>
+                  </RecoilProvider>
+                </body>
+              </ThemeProvider>
+            </NextUIProvider>
           </html>
         </TRPCProvider>
       </ClerkProvider>

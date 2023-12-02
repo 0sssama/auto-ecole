@@ -14,7 +14,17 @@
         "logout": "Log out",
         "admin": "Admin",
         "student": "Student",
-        "unknown": "Unknown"
+        "unknown": "Unknown",
+        "Langs": {
+          "title": "Language",
+          "fr": "French",
+          "en": "English"
+        },
+        "Theme": {
+          "title": "Theme",
+          "light": "Light",
+          "dark": "Dark"
+        }
       }
     },
     "Sidebar": {
@@ -48,6 +58,7 @@
       "error": "An error has occurred. Please try again later.",
       "no-data": "No results found",
       "search": "Search...",
+      "reset": "Reset",
       "Pagination": {
         "rows-per-page": "Rows per page:",
         "page": "Page",

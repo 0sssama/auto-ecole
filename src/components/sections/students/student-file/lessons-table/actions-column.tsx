@@ -11,11 +11,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { studentLessonSchema } from "./schema";
 
-import type { ActionsColumnProps } from "./types";
+import { studentLessonSchema, type StudentLesson } from "./schema";
+import type { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-export function ActionsColumn({ row }: ActionsColumnProps) {
+const ActionsColumn: ActionsColumnComponentType<StudentLesson> = ({ row }) => {
   const t = useTranslations("Dashboard.Dossier.Tables.StudentLessons.Actions");
 
   const studentLesson = studentLessonSchema.parse(row.original);
@@ -51,4 +51,6 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

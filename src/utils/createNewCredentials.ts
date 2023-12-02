@@ -1,15 +1,15 @@
 import { cleanPhoneNumber } from "./cleanPhoneNumber";
 import { pascalCaseTransformer as pascal } from "./pascalCaseTransformer";
 
-export type CreateNewCredentialsOptions = {
+interface CreateNewCredentialsOptions {
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
   cin?: string;
   isInstructor?: boolean;
-};
+}
 
-export type Credentials = {
+export type ClerkCredentials = {
   username: string;
   password: string;
 };
@@ -30,7 +30,7 @@ export type Credentials = {
 
 export const createNewCredentials = (
   options?: CreateNewCredentialsOptions,
-): Credentials => {
+): ClerkCredentials => {
   if (!options)
     return {
       username: "",

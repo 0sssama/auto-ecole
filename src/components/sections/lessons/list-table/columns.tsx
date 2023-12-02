@@ -2,17 +2,16 @@
 
 import Link from "next/link";
 import moment from "moment";
-import { LessonStatus } from "@prisma/client";
-import { Chip, ChipProps } from "@nextui-org/chip";
+import { Chip } from "@nextui-org/chip";
 import { useTranslations } from "next-intl";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
 import { Tooltip, TooltipConcat } from "@/components/atoms";
-import { ActionsColumn } from "./actions-column";
-import { lessonSchema } from "./schema";
+import { getLessonStatusChipColor } from "@/lib/getChipColors";
 
-import type { Lesson } from "./schema";
+import ActionsColumn from "./actions-column";
+import { lessonSchema, type Lesson } from "./schema";
 
 export const columns: ColumnDef<Lesson>[] = [
   {
@@ -68,21 +67,8 @@ export const columns: ColumnDef<Lesson>[] = [
       const t = useTranslations("Dashboard.Files.Lessons.ListTable.Status");
       const lesson = lessonSchema.parse(row.original);
 
-      const getChipColor = (): ChipProps["color"] => {
-        switch (lesson.status) {
-          case LessonStatus.RESERVED:
-            return "secondary";
-          case LessonStatus.CANCELLED:
-            return "danger";
-          case LessonStatus.DONE:
-            return "success";
-          default:
-            return "primary";
-        }
-      };
-
       return (
-        <Chip color={getChipColor()} size="sm">
+        <Chip color={getLessonStatusChipColor(lesson.status)} size="sm">
           <span className="font-bold !text-[10px] md:text-sm">
             {t(lesson.status)?.toUpperCase()}
           </span>
@@ -111,7 +97,6 @@ export const columns: ColumnDef<Lesson>[] = [
     ),
     cell: ({ row }) => {
       const lesson = lessonSchema.parse(row.original);
-
       const date = moment(lesson.scheduledDate);
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;

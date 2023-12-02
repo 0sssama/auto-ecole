@@ -2,8 +2,9 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
+
+import { getWhereObjFromFilters } from "./utils";
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -18,7 +19,7 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.orgId)
+      if (!ctx.userId || !ctx.orgId)
         throw new TRPCError({
           code: "UNAUTHORIZED",
         });

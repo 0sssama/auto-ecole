@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useOrganization } from "@clerk/nextjs";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/cn";
 import { useScroll } from "@/lib/hooks/useScroll";

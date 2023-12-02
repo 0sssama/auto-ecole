@@ -1,5 +1,4 @@
 import { api } from "@/utils/api";
-
 import type { TRPCOptions } from "@/types";
 
 export const useDeleteExam = (examId: number, options?: TRPCOptions) => {

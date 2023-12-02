@@ -7,14 +7,14 @@ import { Paginated } from "@/components/organisms/data-table/types";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { api } from "@/utils/api";
-import { InstructorLesson } from "./schema";
+
 import { columns } from "./columns";
+import type { InstructorLesson } from "./schema";
+import type { InstructorLessonsTableComponentType } from "./types";
 
-import type { InstructorLessonsTableProps } from "./types";
-
-export default function InstructorLessonsTable({
+const InstructorLessonsTable: InstructorLessonsTableComponentType = ({
   instructorId,
-}: InstructorLessonsTableProps) {
+}) => {
   const t = useTranslations("Dashboard.Dossier.Tables.InstructorLessons");
 
   const pagination = usePagination({
@@ -48,4 +48,6 @@ export default function InstructorLessonsTable({
       />
     </div>
   );
-}
+};
+
+export default InstructorLessonsTable;

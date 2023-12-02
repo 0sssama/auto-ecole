@@ -2,11 +2,11 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { getWhereObjFromFilters } from "./utils";
 import { countPages } from "@/utils/countPages";
-
 import type { Exam } from "@/components/sections/exams/list-table/schema";
 import type { LicenseFileExam } from "@/components/sections/license-files/license-file/exams-table/schema";
+
+import { getWhereObjFromFilters } from "./utils";
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure

@@ -1,3 +1,5 @@
+import type { FC } from "react";
+
 import { cn } from "@/lib/cn";
 
 export type LoadingProps = {
@@ -34,22 +36,20 @@ const variants = {
   },
 };
 
-export default function Loading({
-  size = "md",
-  color,
-  className,
-}: LoadingProps) {
+const Loading: FC<LoadingProps> = ({ size = "md", color, className }) => {
   return (
     <div
       aria-label="Spinner"
       style={{
         ...variants[size],
-        borderColor: color ? color : "#000",
       }}
       className={cn(
-        "border-solid rounded-full border-currentColor !border-t-transparent animate-spin",
+        "border-solid rounded-full border-foreground !border-t-transparent animate-spin",
         className,
+        color && `!border-${color}`,
       )}
     ></div>
   );
-}
+};
+
+export default Loading;

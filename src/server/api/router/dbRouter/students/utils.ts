@@ -1,6 +1,7 @@
-import { Prisma, LicenseFileStatus } from "@prisma/client";
+import type { Prisma, LicenseFileStatus } from "@prisma/client";
 
-import { TableFilters } from "@/components/organisms/data-table/types";
+import type { TableFilters } from "@/components/organisms/data-table/types";
+import type { Student } from "@/components/sections/students/list-table/schema";
 
 const searchFilters = (
   search: TableFilters["get"]["search"],
@@ -36,9 +37,9 @@ export const getWhereObjFromFilters = (
   return { OR: output };
 };
 
-export const getUserStatusFromLicenseFiles = (
+export const getStudentStatusFromLicenseFiles = (
   licenseFiles: { status: LicenseFileStatus }[],
-): "active" | "rejected" | "finished" | "not-started" => {
+): Student["status"] => {
   const statuses = licenseFiles.map((licenseFile) => licenseFile.status);
 
   if (statuses.includes("ONGOING")) return "active";

@@ -1,7 +1,6 @@
 "use client";
 
 import { z } from "zod";
-import { UseFormReturn } from "react-hook-form";
 import { useTranslations } from "next-intl";
 
 import {
@@ -13,11 +12,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
-
 import type { TranslationFunction } from "@/types";
 
-type FormType = z.infer<typeof InstructorFormSchema>;
+import { instructorFormSchema } from "@/schemas/instructor-form-schema";
+import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
   {
@@ -37,15 +35,13 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-export default function AddNewInstructorForm({
+type TFormValues = z.infer<typeof instructorFormSchema>;
+
+const AddNewInstructorForm: FormComponentType<TFormValues> = ({
   form,
   onSubmit,
   className,
-}: {
-  form: UseFormReturn<FormType, any, undefined>;
-  onSubmit: () => any;
-  className?: string;
-}) {
+}) => {
   const t = useTranslations(
     "Dashboard.Users.Instructors.AddNewInstructorModal.AddNewInstructorForm",
   );
@@ -57,7 +53,7 @@ export default function AddNewInstructorForm({
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof FormType}
+            name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="inline-block w-full text-sm">
@@ -78,4 +74,6 @@ export default function AddNewInstructorForm({
       </form>
     </Form>
   );
-}
+};
+
+export default AddNewInstructorForm;

@@ -10,15 +10,15 @@ import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
 import { useModal } from "@/lib/hooks/useModal";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
-
 import type { Paginated } from "@/components/organisms/data-table/types";
-import type { LicenseFileLesson } from "./schema";
-import type { LicenseFileLessonsTableProps } from "./types";
 
-export default function LicenseFileLessonsTable({
+import { columns } from "./columns";
+import type { LicenseFileLesson } from "./schema";
+import type { LicenseFileLessonsTableComponentType } from "./types";
+
+const LicenseFileLessonsTable: LicenseFileLessonsTableComponentType = ({
   context: { licenseFileId, studentId, instructorId },
-}: LicenseFileLessonsTableProps) {
+}) => {
   const addLessonModal = useModal();
 
   const t = useTranslations(
@@ -75,4 +75,6 @@ export default function LicenseFileLessonsTable({
       />
     </div>
   );
-}
+};
+
+export default LicenseFileLessonsTable;

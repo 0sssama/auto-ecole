@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 import {
   Tooltip as ShadcnTooltip,
@@ -12,7 +12,7 @@ export type TooltipProps = {
   content: string;
 };
 
-export default function Tooltip({ children, content }: TooltipProps) {
+const Tooltip: FC<TooltipProps> = ({ children, content }) => {
   return (
     <TooltipProvider delayDuration={300}>
       <ShadcnTooltip>
@@ -23,4 +23,6 @@ export default function Tooltip({ children, content }: TooltipProps) {
       </ShadcnTooltip>
     </TooltipProvider>
   );
-}
+};
+
+export default Tooltip;

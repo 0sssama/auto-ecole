@@ -1,6 +1,9 @@
+"use client";
+
+import { useState } from "react";
+import { toast } from "sonner";
 import {
   Modal,
-  //   ModalContent,
   ModalHeader,
   ModalBody,
   ModalFooter,
@@ -8,25 +11,18 @@ import {
 } from "@nextui-org/modal";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-// import { useOrganization } from "@clerk/nextjs";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { AddNewStudentForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { StudentFormSchema } from "@/schemas/student-form-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { studentFormSchema } from "@/schemas/student-form-schema";
 import { api } from "@/utils/api";
-import { toast } from "sonner";
-import { useState } from "react";
 
-function AddStudentModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+import type { ModalComponentType } from "./types";
+
+const AddStudentModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations("Dashboard.Users.Students.AddNewStudentModal");
 
   const closeModal = () => {
@@ -34,8 +30,8 @@ function AddStudentModal({
     close();
   };
 
-  const form = useForm<z.infer<typeof StudentFormSchema>>({
-    resolver: zodResolver(StudentFormSchema),
+  const form = useForm<z.infer<typeof studentFormSchema>>({
+    resolver: zodResolver(studentFormSchema),
     defaultValues: {
       firstNameAr: "",
       firstNameFr: "",
@@ -94,7 +90,7 @@ function AddStudentModal({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof StudentFormSchema>) =>
+  const onSubmit = (values: z.infer<typeof studentFormSchema>) =>
     addStudentToClerk({
       emailAddress: values.email,
       firstName: values.firstNameFr,
@@ -142,7 +138,7 @@ function AddStudentModal({
             disabled={clerkOperationLoading || dbOperationLoading}
           >
             {clerkOperationLoading || dbOperationLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}
@@ -151,6 +147,6 @@ function AddStudentModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddStudentModal;

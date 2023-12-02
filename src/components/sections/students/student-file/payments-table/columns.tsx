@@ -3,12 +3,11 @@
 import moment from "moment";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { DataTableColumnHeader } from "@/components/organisms/data-table/column-header";
+import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
 import { Tooltip, TooltipConcat } from "@/components/atoms";
-import { ActionsColumn } from "./actions-column";
-import { studentPaymentSchema } from "./schema";
 
-import type { StudentPayment } from "./schema";
+import ActionsColumn from "./actions-column";
+import { studentPaymentSchema, type StudentPayment } from "./schema";
 
 export const columns: ColumnDef<StudentPayment>[] = [
   {
@@ -55,7 +54,6 @@ export const columns: ColumnDef<StudentPayment>[] = [
     ),
     cell: ({ row }) => {
       const studentPayment = studentPaymentSchema.parse(row.original);
-
       const date = moment(studentPayment.date);
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;

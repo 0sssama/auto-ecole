@@ -14,7 +14,17 @@
         "logout": "Déconnexion",
         "admin": "Administrateur",
         "student": "Étudiant",
-        "unknown": "Inconnu"
+        "unknown": "Inconnu",
+        "Langs": {
+          "title": "Langue",
+          "fr": "Français",
+          "en": "Anglais"
+        },
+        "Theme": {
+          "title": "Thème",
+          "light": "Clair",
+          "dark": "Sombre"
+        }
       }
     },
     "Sidebar": {
@@ -48,6 +58,7 @@
       "no-data": "Nous avons rien trouvé ! :/",
       "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
       "search": "Rechercher...",
+      "reset": "Réinitialiser",
       "Pagination": {
         "rows-per-page": "Lignes par page:",
         "page": "Page",

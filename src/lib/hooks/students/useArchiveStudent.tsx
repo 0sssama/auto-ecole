@@ -1,5 +1,5 @@
-import { TRPCOptions } from "@/types";
 import { api } from "@/utils/api";
+import type { TRPCOptions } from "@/types";
 
 export const useArchiveStudent = (studentId: number, options?: TRPCOptions) => {
   const { onSuccess, onError } = options ?? {};

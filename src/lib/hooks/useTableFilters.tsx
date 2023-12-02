@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
 
-import { TableFilters } from "@/components/organisms/data-table/types";
+import type { TableFilters } from "@/components/organisms/data-table/types";
 
 export const useTableFilters = (
   initialState?: TableFilters["get"],

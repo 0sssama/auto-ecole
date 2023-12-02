@@ -1,4 +1,4 @@
-import { ExamStatus, ExamType } from "@prisma/client";
+import type { ExamStatus, ExamType } from "@prisma/client";
 
 export type FetchedExam = {
   id: number;

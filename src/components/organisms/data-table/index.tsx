@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -12,6 +10,8 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  type SortingState,
+  type VisibilityState,
 } from "@tanstack/react-table";
 
 import {
@@ -23,9 +23,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Spinner } from "@/components/atoms";
-import { DataTablePagination } from "./pagination";
-import { DataTableToolbar } from "./toolbar";
 
+import DataTablePagination from "./pagination";
+import DataTableToolbar from "./toolbar";
 import type { TableProps } from "./types";
 
 function DataTable<TData, TValue>({
@@ -75,7 +75,7 @@ function DataTable<TData, TValue>({
   }, [data]);
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 max-w-[90vw] overflow-x-auto">
       <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
       <div className="border rounded-md">
         <Table>

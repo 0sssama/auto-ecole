@@ -6,13 +6,9 @@ import { InfoFile } from "@/components/organisms";
 import LicenseFileExamsTable from "./exams-table";
 import LicenseFileLessonsTable from "./lessons-table";
 
-import type { FetchedLicenseFile } from "./types";
+import type { LicenseFileComponentType } from "./types";
 
-export default function LicenseFile({
-  licenseFile,
-}: {
-  licenseFile: FetchedLicenseFile;
-}) {
+const LicenseFile: LicenseFileComponentType = ({ licenseFile }) => {
   const { id, ...licenseFileNoId } = licenseFile;
 
   return (
@@ -40,4 +36,6 @@ export default function LicenseFile({
       {/* <LicenseFilePaymentsTable licenseFileId={licenseFile.id} /> */}
     </div>
   );
-}
+};
+
+export default LicenseFile;

@@ -1,11 +1,11 @@
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { LicenseFileBackendInputSchema } from "@/schemas/license-file-form-schema";
+import { licenseFileBackendInputSchema } from "@/schemas/license-file-form-schema";
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
-    .input(LicenseFileBackendInputSchema)
+    .input(licenseFileBackendInputSchema)
     .mutation(async ({ input, ctx }) => {
       if (!ctx.orgId || !ctx.userId)
         throw new TRPCError({

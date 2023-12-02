@@ -2,14 +2,14 @@
 
 import { DataTable } from "@/components/organisms";
 import { api } from "@/utils/api";
-import { columns } from "./columns";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { useTableFilters } from "@/lib/hooks/useTableFilters";
-
-import type { Lesson } from "./schema";
 import type { Paginated } from "@/components/organisms/data-table/types";
 
-function LessonsListTable() {
+import { columns } from "./columns";
+import type { Lesson } from "./schema";
+
+const LessonsListTable = () => {
   const pagination = usePagination();
   const filters = useTableFilters();
 
@@ -36,6 +36,6 @@ function LessonsListTable() {
       />
     </div>
   );
-}
+};
 
 export default LessonsListTable;

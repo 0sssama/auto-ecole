@@ -1,17 +1,13 @@
 "use client";
 
-import * as React from "react";
+import { useState, type ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { api, TRPCClient } from "@/utils/api";
 
-export default function TRPCProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [queryClient] = React.useState(() => new QueryClient());
+export default function TRPCProvider({ children }: { children: ReactNode }) {
+  const [queryClient] = useState(() => new QueryClient());
 
-  const [trpcClient] = React.useState(() => TRPCClient());
+  const [trpcClient] = useState(() => TRPCClient());
 
   return (
     <api.Provider client={trpcClient} queryClient={queryClient}>

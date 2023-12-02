@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Eye, MoreHorizontal, Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -10,12 +11,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { instructorLicenseFileSchema } from "./schema";
+import { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-import type { ActionsColumnProps } from "./types";
-import Link from "next/link";
+import {
+  type InstructorLicenseFile,
+  instructorLicenseFileSchema,
+} from "./schema";
 
-export function ActionsColumn({ row }: ActionsColumnProps) {
+const ActionsColumn: ActionsColumnComponentType<InstructorLicenseFile> = ({
+  row,
+}) => {
   const t = useTranslations(
     "Dashboard.Dossier.Tables.InstructorLicenseFiles.Actions",
   );
@@ -53,4 +58,6 @@ export function ActionsColumn({ row }: ActionsColumnProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

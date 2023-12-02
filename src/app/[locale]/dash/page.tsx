@@ -2,7 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { useOrganization } from "@clerk/nextjs";
-import { getSidebarLinks } from "@/components/sections/sidebar";
+
+import { getSidebarLinks } from "@/components/sections/sidebar/utils";
 
 export default function Home() {
   const { membership } = useOrganization();

@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import {
   Archive,
   ArchiveRestore,
@@ -7,8 +10,6 @@ import {
   MoreHorizontal,
   Pencil,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -23,12 +24,11 @@ import {
   useUnarchiveStudent,
 } from "@/lib/hooks/students/useArchiveStudent";
 import { cn } from "@/lib/cn";
-import { studentSchema } from "./schema";
 
-import type { DataTableRowActionsProps } from "./types";
-import Link from "next/link";
+import { studentSchema, type Student } from "./schema";
+import type { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-export function DataTableRowActions({ row }: DataTableRowActionsProps) {
+const ActionsColumn: ActionsColumnComponentType<Student> = ({ row }) => {
   const t = useTranslations(
     "Dashboard.Users.Students.ListStudentsTable.Actions",
   );
@@ -107,4 +107,6 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default ActionsColumn;

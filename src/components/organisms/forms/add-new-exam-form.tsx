@@ -1,8 +1,8 @@
 "use client";
 
 import { z } from "zod";
-import { UseFormReturn } from "react-hook-form";
 import { useTranslations } from "next-intl";
+import { ExamStatus, ExamType } from "@prisma/client";
 
 import {
   Form,
@@ -12,14 +12,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { examFormSchema } from "@/schemas/exam-form-schema";
-import { DatePicker } from "@/components/ui/date-picker";
-
-import type { TranslationFunction } from "@/types";
-import { ExamStatus, ExamType } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
+import { DatePicker } from "@/components/ui/date-picker";
+import type { TranslationFunction } from "@/types";
 
-type FormType = z.infer<typeof examFormSchema>;
+import { examFormSchema } from "@/schemas/exam-form-schema";
+import type { FormComponentType } from "./types";
 
 const fields = (t: TranslationFunction) => [
   {
@@ -49,15 +47,13 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-export default function AddNewInstructorForm({
+type TFormValues = z.infer<typeof examFormSchema>;
+
+const AddNewInstructorForm: FormComponentType<TFormValues> = ({
   form,
   onSubmit,
   className,
-}: {
-  form: UseFormReturn<FormType, any, undefined>;
-  onSubmit: () => any;
-  className?: string;
-}) {
+}) => {
   const t = useTranslations("Dashboard.Modals.AddExam.Form");
 
   return (
@@ -67,7 +63,7 @@ export default function AddNewInstructorForm({
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof FormType}
+            name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="inline-block w-full text-sm">
@@ -111,4 +107,6 @@ export default function AddNewInstructorForm({
       </form>
     </Form>
   );
-}
+};
+
+export default AddNewInstructorForm;

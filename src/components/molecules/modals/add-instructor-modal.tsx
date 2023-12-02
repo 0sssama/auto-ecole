@@ -1,6 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import {
   Modal,
-  //   ModalContent,
   ModalHeader,
   ModalBody,
   ModalFooter,
@@ -8,24 +10,19 @@ import {
 } from "@nextui-org/modal";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { AddNewInstructorForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
-import { InstructorFormSchema } from "@/schemas/instructor-form-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/utils/api";
-import { toast } from "sonner";
-import { useState } from "react";
 
-function AddInstructorModal({
-  isOpen,
-  close,
-}: {
-  isOpen: boolean;
-  close: () => void;
-}) {
+import { instructorFormSchema } from "@/schemas/instructor-form-schema";
+import type { ModalComponentType } from "./types";
+
+const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations(
     "Dashboard.Users.Instructors.AddNewInstructorModal",
   );
@@ -35,8 +32,8 @@ function AddInstructorModal({
     close();
   };
 
-  const form = useForm<z.infer<typeof InstructorFormSchema>>({
-    resolver: zodResolver(InstructorFormSchema),
+  const form = useForm<z.infer<typeof instructorFormSchema>>({
+    resolver: zodResolver(instructorFormSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -86,7 +83,7 @@ function AddInstructorModal({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof InstructorFormSchema>) =>
+  const onSubmit = (values: z.infer<typeof instructorFormSchema>) =>
     addInstructorToClerk({
       firstName: values.firstName,
       lastName: values.lastName,
@@ -132,7 +129,7 @@ function AddInstructorModal({
             disabled={clerkOperationLoading || dbOperationLoading}
           >
             {clerkOperationLoading || dbOperationLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}
@@ -141,6 +138,6 @@ function AddInstructorModal({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default AddInstructorModal;

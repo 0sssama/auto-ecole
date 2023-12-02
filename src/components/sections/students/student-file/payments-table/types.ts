@@ -1,11 +1,7 @@
-import { Row } from "@tanstack/react-table";
+import type { FC } from "react";
 
-import type { StudentPayment } from "./schema";
-
-export type ActionsColumnProps = {
-  row: Row<StudentPayment>;
-};
-
-export type StudentPaymentsTableProps = {
+interface StudentPaymentsTableProps {
   studentId: number;
-};
+}
+
+export type StudentPaymentsTableComponentType = FC<StudentPaymentsTableProps>;

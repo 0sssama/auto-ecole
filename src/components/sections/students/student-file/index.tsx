@@ -6,10 +6,9 @@ import { InfoFile } from "@/components/organisms";
 import StudentLicenseFilesTable from "./license-files-table";
 import StudentLessonsTable from "./lessons-table";
 import StudentPaymentsTable from "./payments-table";
+import type { StudentFileComponentType } from "./types";
 
-import type { StudentFolder } from "./types";
-
-export default function StudentFile({ student }: { student: StudentFolder }) {
+const StudentFile: StudentFileComponentType = ({ student }) => {
   return (
     <div className="flex flex-col">
       <InfoFile data={student} type="student" />
@@ -21,4 +20,6 @@ export default function StudentFile({ student }: { student: StudentFolder }) {
       <StudentPaymentsTable studentId={student.id} />
     </div>
   );
-}
+};
+
+export default StudentFile;
