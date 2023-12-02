@@ -42,12 +42,10 @@ export const useFileUpload: UseFileUploadHook = (options) => {
         return { response: [] };
       }
 
-      console.log("started upload");
       const response = await startUpload(files);
 
       if (!response) return { response: [] };
 
-      console.log("finished upload");
       return {
         response: response.map((file) => omit(file, ["serverData"])),
       };
