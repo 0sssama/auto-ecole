@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import moment from "moment";
 import { useTranslations } from "next-intl";
 import { Chip } from "@nextui-org/chip";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
-import { Tooltip } from "@/components/atoms";
 import { getStudentStatusChipColor } from "@/lib/getChipColors";
 
 import ActionsColumn from "./data-table-row-actions";
@@ -50,6 +48,8 @@ export const columns: ColumnDef<Student>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "status",
@@ -72,19 +72,20 @@ export const columns: ColumnDef<Student>[] = [
     },
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: "category",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Students.created-at" />
+      <DataTableColumnHeader column={column} title="Students.category" />
     ),
-    cell: ({ row }) => {
-      const student = studentSchema.parse(row.original);
-      const date = moment(student.createdAt);
+    cell: function Cell({ row }) {
+      const t = useTranslations(
+        "Dashboard.Users.Students.ListStudentsTable.Category",
+      );
+      const { category } = studentSchema.parse(row.original);
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return <>{category ? `${t(category)} (${category})` : "-"}</>;
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

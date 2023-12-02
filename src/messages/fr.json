@@ -76,8 +76,8 @@
         "Students": {
           "id": "ID",
           "name": "Nom complet",
-          "created-at": "Date ajouté",
-          "status": "Statut du dossier"
+          "status": "Statut du dossier",
+          "category": "Type de permis"
         },
         "StudentLicenseFiles": {
           "id": "ID",
@@ -362,6 +362,12 @@
             "unarchive-success": "Étudiant désarchivé avec succès !",
             "unarchive-error": "Erreur lors du désarchivage du étudiant. Veuillez réessayer plus tard.",
             "loading": "Chargement..."
+          },
+          "Category": {
+            "A": "Motocyclettes",
+            "B": "Voitures",
+            "C": "Camions",
+            "D": "Bus"
           }
         }
       },
