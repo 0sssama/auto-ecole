@@ -484,7 +484,7 @@
               "DONE": "Done"
             }
           },
-          "StudentPayments": {
+          "LicenseFilePayments": {
             "title": "Payments",
             "add-button": "Add Payment",
             "Actions": {

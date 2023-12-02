@@ -44,7 +44,7 @@ const AddStudentModal: ModalComponentType = ({ isOpen, close }) => {
       phone: "",
       cin: "",
       email: "",
-      birthdate: new Date("08-02-2002"),
+      birthdate: new Date(),
     },
   });
 
