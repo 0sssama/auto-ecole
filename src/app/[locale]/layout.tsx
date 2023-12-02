@@ -61,14 +61,14 @@ export default function RootLayout({
             suppressHydrationWarning
             className="text-foreground bg-background"
           >
-            <NextUIProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="light"
-                enableSystem
-              >
-                <body
-                  className={`text-foreground bg-background min-h-screen ${plusJakarta.variable} ${vazirmatn.variable}`}
+            <body
+              className={`text-foreground bg-background min-h-screen ${plusJakarta.variable} ${vazirmatn.variable}`}
+            >
+              <NextUIProvider>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="light"
+                  enableSystem
                 >
                   <RecoilProvider>
                     <NprogressProvider>
@@ -79,9 +79,9 @@ export default function RootLayout({
                       </ToastProvider>
                     </NprogressProvider>
                   </RecoilProvider>
-                </body>
-              </ThemeProvider>
-            </NextUIProvider>
+                </ThemeProvider>
+              </NextUIProvider>
+            </body>
           </html>
         </TRPCProvider>
       </ClerkProvider>
