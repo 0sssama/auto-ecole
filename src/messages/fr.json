@@ -645,6 +645,12 @@
         "button-submit": "Supprimer",
         "exam-delete-success": "Examen supprimé avec succès !",
         "exam-delete-error": "Erreur lors de la suppression de l'examen. Veuillez réessayer plus tard."
+      },
+      "AddPaymentSike": {
+        "title": "Ajouter un nouveau paiement",
+        "subtitle": "",
+        "description": "Veuillez visiter la page du dossier de permis de l'étudiant approprié pour ajouter un nouvel paiement",
+        "button-cancel": "Annuler"
       }
     },
     "Common": {

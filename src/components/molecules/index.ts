@@ -9,3 +9,4 @@ export { default as AddExamModal } from "./modals/add-exam-modal";
 export { default as DeleteExamConfirmModal } from "./modals/delete-exam-confirm";
 export { default as AddLessonModal } from "./modals/add-lesson-modal";
 export { default as AddLicenseFileLessonModal } from "./modals/add-license-file-lesson-modal";
+export { default as AddPaymentModalSike } from "./modals/add-payment-modal-sike";

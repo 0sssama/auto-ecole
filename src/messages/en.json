@@ -645,6 +645,12 @@
         "button-submit": "Delete Exam",
         "exam-delete-success": "Exam deleted successfully!",
         "exam-delete-error": "An error has occurred. Please try again later."
+      },
+      "AddPaymentSike": {
+        "title": "Add new Payment",
+        "subtitle": "",
+        "description": "Please visit the license file page of the appropriate student to add a new payment",
+        "button-cancel": "Cancel"
       }
     },
     "Common": {

@@ -4,10 +4,7 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  PageContentHeader,
-  // AddPaymentsModal
-} from "@/components/molecules";
+import { PageContentHeader, AddPaymentModalSike } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
 import { PaymentsListTable } from "@/components/sections/payments";
 
@@ -27,15 +24,15 @@ const PageHeader = ({ openModal }: { openModal: () => void }) => {
 };
 
 export default function PaymentsPage() {
-  const addPaymentsModal = useModal();
+  const addPaymentModalSike = useModal();
 
   return (
     <main>
-      <PageHeader openModal={addPaymentsModal.open} />
-      {/* <AddPaymentsModal
-        isOpen={addPaymentsModal.isOpen}
-        close={addPaymentsModal.close}
-      /> */}
+      <PageHeader openModal={addPaymentModalSike.open} />
+      <AddPaymentModalSike
+        isOpen={addPaymentModalSike.isOpen}
+        close={addPaymentModalSike.close}
+      />
       <div className="w-full">
         <PaymentsListTable />
       </div>

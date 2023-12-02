@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 import type { ModalComponentType } from "./types";
 
-const AddExamModal: ModalComponentType = ({ isOpen, close }) => {
+const AddExamModalSike: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations("Dashboard.Modals.AddExamSike");
 
   if (!isOpen) return null;
@@ -46,4 +46,4 @@ const AddExamModal: ModalComponentType = ({ isOpen, close }) => {
   );
 };
 
-export default AddExamModal;
+export default AddExamModalSike;
