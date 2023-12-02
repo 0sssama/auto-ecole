@@ -36,7 +36,7 @@ const DataTableToolbar: DataTableToolbarComponentType = ({
       <div className="flex items-center flex-1 space-x-2">
         {filtersAllowed.search && (
           <div className="relative">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-[50%] translate-y-[-50%]" />
+            <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-[50%] translate-y-[-50%]" />
             <Input
               placeholder={t("search")}
               value={search}

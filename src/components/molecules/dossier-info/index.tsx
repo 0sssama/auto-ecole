@@ -102,7 +102,7 @@ function DossierInfo<InfoT extends InfoTypes>({
     <div
       className={cn("flex flex-col gap-2", labelId === "id" && "col-span-2")}
     >
-      <label className="text-xs font-bold text-gray-500 uppercase">
+      <label className="text-xs font-bold text-muted-foreground uppercase">
         {t(`${translatePrefix}.${labelId}`)}
       </label>
       <InfoData {...{ labelId, value, setValue, editing }} />

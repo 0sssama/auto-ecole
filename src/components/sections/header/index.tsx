@@ -27,7 +27,7 @@ const Header = () => {
       <div className="flex items-center justify-between w-full max-w-screen-xl">
         <div className="flex items-center gap-3 lg:gap-5">
           <Logo size={scrolled ? "sm" : "md"} />
-          <span className="text-2xl font-thin leading-none text-gray-800">
+          <span className="text-2xl font-thin leading-none text-foreground/80">
             /
           </span>
           <UserOrgAvatar />
