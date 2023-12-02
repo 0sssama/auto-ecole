@@ -66,7 +66,7 @@ const SidebarLinkGroup: SidebarLinkGroupComponentType = ({
 
   return (
     <div className={cn("px-3 py-2", className)}>
-      <h2 className="px-4 mb-2 text-lg font-semibold tracking-tight">
+      <h2 className="px-4 mb-2 text-xs font-bold tracking-tight uppercase text-muted-foreground">
         {title}
       </h2>
       <div className="flex flex-col gap-y-1">
@@ -86,7 +86,7 @@ const SidebarLink: SidebarLinkComponentType = ({ name, href, icon }) => {
     <Link href={href}>
       <Button
         variant={cleanPathname(pathname).startsWith(href) ? "default" : "ghost"}
-        className="justify-start w-full"
+        className="justify-start w-full !text-left whitespace-nowrap"
         onClick={closeMenu}
       >
         {icon}

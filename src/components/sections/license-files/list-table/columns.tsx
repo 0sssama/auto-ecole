@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import moment from "moment";
 import { Chip } from "@nextui-org/chip";
 import { useTranslations } from "next-intl";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
-import { Tooltip, TooltipConcat } from "@/components/atoms";
+import { TooltipConcat } from "@/components/atoms";
 import { getLicenseFileStatusChipColor } from "@/lib/getChipColors";
 
 import ActionsColumn from "./actions-column";
@@ -35,7 +34,10 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/students?studentId=${licenseFile.student.id}`}>
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
+        >
           <TooltipConcat
             className="text-left"
             text={licenseFile.student.name}
@@ -43,6 +45,8 @@ export const columns: ColumnDef<LicenseFile>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "instructor-name",
@@ -57,7 +61,8 @@ export const columns: ColumnDef<LicenseFile>[] = [
 
       return (
         <Link
-          href={`/dash/admin/instructors?instructorId=${licenseFile.instructor.id}`}
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
         >
           <TooltipConcat
             className="text-left"
@@ -66,6 +71,8 @@ export const columns: ColumnDef<LicenseFile>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "category",
@@ -80,18 +87,34 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <>
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
+        >
           {t(licenseFile.category)} ({licenseFile.category})
-        </>
+        </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "price",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="LicenseFiles.price" />
     ),
-    cell: ({ row }) => <>{row.getValue("price")} DH</>,
+    cell: function Cell({ row }) {
+      const licenseFile = licenseFileSchema.parse(row.original);
+
+      return (
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
+        >
+          {row.getValue("price")} DH
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "status",
@@ -105,31 +128,23 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Chip
-          color={getLicenseFileStatusChipColor(licenseFile.status)}
-          size="sm"
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
         >
-          <span className="font-bold !text-[10px] md:text-sm">
-            {t(licenseFile.status)?.toUpperCase()}
-          </span>
-        </Chip>
+          <Chip
+            color={getLicenseFileStatusChipColor(licenseFile.status)}
+            size="sm"
+          >
+            <span className="font-bold !text-[10px] md:text-sm">
+              {t(licenseFile.status)?.toUpperCase()}
+            </span>
+          </Chip>
+        </Link>
       );
     },
-  },
-  {
-    accessorKey: "createdAt",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="LicenseFiles.created-at" />
-    ),
-    cell: ({ row }) => {
-      const licenseFile = licenseFileSchema.parse(row.original);
-      const date = moment(licenseFile.createdAt);
-
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

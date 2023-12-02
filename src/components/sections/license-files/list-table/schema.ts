@@ -14,7 +14,6 @@ export type LicenseFile = {
   category: Category;
   price: number;
   status: LicenseFileStatus;
-  createdAt: Date;
 };
 
 export const licenseFileSchema: z.ZodType<LicenseFile> = z.object({
@@ -30,5 +29,4 @@ export const licenseFileSchema: z.ZodType<LicenseFile> = z.object({
   category: z.nativeEnum(Category),
   price: z.number(),
   status: z.nativeEnum(LicenseFileStatus),
-  createdAt: z.date(),
 });

@@ -134,8 +134,7 @@
           "instructor-name": "Instructor Name",
           "category": "License Category",
           "price": "Price agreed",
-          "status": "Status",
-          "created-at": "Date created"
+          "status": "Status"
         },
         "LicenseFileExams": {
           "id": "ID",

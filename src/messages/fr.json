@@ -134,8 +134,7 @@
           "instructor-name": "Moniteur",
           "category": "Type de permis",
           "price": "Prix agréé",
-          "status": "Statut",
-          "created-at": "Date créé"
+          "status": "Statut"
         },
         "LicenseFileExams": {
           "id": "ID",
