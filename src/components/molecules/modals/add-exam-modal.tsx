@@ -102,7 +102,7 @@ const AddExamModal: ModalComponentType<{
             disabled={isLoading}
           >
             {isLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}

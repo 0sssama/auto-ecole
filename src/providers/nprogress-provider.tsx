@@ -15,7 +15,7 @@ export default function NprogressProvider({
     <>
       <ProgressBar
         height="2px"
-        color={theme === "dark" ? "#fff" : "#000"}
+        color={theme === "dark" ? "#f9fafb" : "#030711"}
         options={{ showSpinner: true }}
         shallowRouting
       />

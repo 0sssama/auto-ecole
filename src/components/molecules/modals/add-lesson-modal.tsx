@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Modal,
   ModalHeader,
@@ -104,7 +106,7 @@ const AddLessonModal: ModalComponentType = ({ isOpen, close }) => {
             disabled={isLoading}
           >
             {isLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}

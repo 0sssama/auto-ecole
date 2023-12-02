@@ -42,11 +42,11 @@ const Loading: FC<LoadingProps> = ({ size = "md", color, className }) => {
       aria-label="Spinner"
       style={{
         ...variants[size],
-        borderColor: color ? color : "#000",
       }}
       className={cn(
-        "border-solid rounded-full border-currentColor !border-t-transparent animate-spin",
+        "border-solid rounded-full border-foreground !border-t-transparent animate-spin",
         className,
+        color && `!border-${color}`,
       )}
     ></div>
   );

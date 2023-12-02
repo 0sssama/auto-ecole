@@ -54,7 +54,7 @@ const DeleteExamConfirm: ModalComponentType<{ examId: number }> = ({
             disabled={isDeletingExam}
           >
             {isDeletingExam ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}

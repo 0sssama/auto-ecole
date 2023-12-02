@@ -56,16 +56,21 @@ export default function RootLayout({
     <NextIntlClientProvider locale={locale} messages={messages}>
       <ClerkProvider>
         <TRPCProvider>
-          <html lang={locale} suppressHydrationWarning>
-            <body className={`${plusJakarta.variable} ${vazirmatn.variable}`}>
-              <NextUIProvider>
-                <RecoilProvider>
-                  <ThemeProvider
-                    attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange
-                  >
+          <html
+            lang={locale}
+            suppressHydrationWarning
+            className="text-foreground bg-background"
+          >
+            <NextUIProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+              >
+                <body
+                  className={`text-foreground bg-background min-h-screen ${plusJakarta.variable} ${vazirmatn.variable}`}
+                >
+                  <RecoilProvider>
                     <NprogressProvider>
                       <ToastProvider>
                         <MomentProvider locale={locale}>
@@ -73,10 +78,10 @@ export default function RootLayout({
                         </MomentProvider>
                       </ToastProvider>
                     </NprogressProvider>
-                  </ThemeProvider>
-                </RecoilProvider>
-              </NextUIProvider>
-            </body>
+                  </RecoilProvider>
+                </body>
+              </ThemeProvider>
+            </NextUIProvider>
           </html>
         </TRPCProvider>
       </ClerkProvider>

@@ -28,10 +28,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   if (!user || !organization) return <DashPageError />;
 
   return (
-    <div className="grid w-full max-w-screen-xl mx-auto lg:grid-cols-5">
+    <div className="grid w-full h-full max-w-screen-xl min-h-screen mx-auto lg:grid-cols-5 bg-background">
       <Header />
       <Sidebar />
-      <div className="w-full h-full col-span-3 p-6 pt-10 lg:col-span-4 lg:border-l mt-[var(--header-height)]">
+      <div className="w-full h-full col-span-3 p-6 pt-10 lg:col-span-4 lg:border-l mt-[var(--header-height)] bg-background">
         {children}
       </div>
     </div>

@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Cookie from "js-cookie";
+import { MoonStar, Sun } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
 import { SignOutButton, useOrganization, useUser } from "@clerk/nextjs";
 import type { MembershipRole } from "@clerk/types";
 
@@ -60,6 +64,9 @@ export default function UserNav() {
 
   const { user } = useUser();
   const { membership } = useOrganization();
+
+  const { theme: currentTheme, setTheme } = useTheme();
+
   const currentLocale = useLocale() as Locale;
 
   if (!user || !membership) return null;
@@ -89,7 +96,7 @@ export default function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <p className="mt-2 ml-1 mb-1 text-[10px] text-gray-500 uppercase font-bold">
+          <p className="mt-2 ml-1 mb-1 text-[10px] text-muted-foreground uppercase font-bold">
             {t("profile")}
           </p>
           {UserNavLinks(t).map((link, i) => (
@@ -102,7 +109,41 @@ export default function UserNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <p className="mt-2 ml-1 mb-1 text-[10px] text-gray-500 uppercase font-bold">
+          <p className="mt-2 ml-1 mb-1 text-[10px] text-muted-foreground uppercase font-bold">
+            {t("Theme.title")}
+          </p>
+          {["light", "dark"].map((theme, i) => {
+            const isCurrentTheme = theme === currentTheme;
+
+            return (
+              <DropdownMenuItem key={i} className="!p-0 overflow-hidden">
+                <div
+                  className={cn(
+                    "cursor-pointer flex items-center gap-2 w-full h-full px-2 py-1.5",
+                    {
+                      "bg-accent": isCurrentTheme,
+                    },
+                  )}
+                  onClick={() => {
+                    if (isCurrentTheme) return;
+
+                    setTheme(theme);
+                  }}
+                >
+                  {theme === "dark" ? (
+                    <MoonStar size={16} />
+                  ) : (
+                    <Sun size={16} />
+                  )}
+                  {t(`Theme.${theme}`)}
+                </div>
+              </DropdownMenuItem>
+            );
+          })}
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <p className="mt-2 ml-1 mb-1 text-[10px] uppercase font-bold text-muted-foreground">
             {t("Langs.title")}
           </p>
           {locales.map((locale, i) => {
@@ -121,7 +162,7 @@ export default function UserNav() {
                   className={cn(
                     "cursor-pointer flex items-center gap-2 w-full h-full px-2 py-1.5",
                     {
-                      "bg-gray-200": isCurrentLocale,
+                      "bg-accent": isCurrentLocale,
                     },
                   )}
                   onClick={() => {

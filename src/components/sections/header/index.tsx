@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <div
       className={cn(
-        "fixed top-0 left-0 z-[10] w-full flex items-center justify-center backdrop-blur backdrop-saturate-150 transition-all border-b px-8 py-6 bg-white/70",
+        "fixed top-0 left-0 z-[10] w-full flex items-center justify-center backdrop-blur backdrop-saturate-150 transition-all border-b px-8 py-6 bg-background/70",
         scrolled && "py-3 lg:py-5",
       )}
     >

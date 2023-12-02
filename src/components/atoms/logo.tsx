@@ -1,8 +1,10 @@
-import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import type { FC } from "react";
 
 import logo from "@/assets/logo.svg";
+import logoLight from "@/assets/logo-light.svg";
 
 const variants = {
   xs: {
@@ -33,12 +35,14 @@ export type LogoProps = {
 };
 
 const Logo: FC<LogoProps> = ({ size = "md", className }) => {
+  const { theme } = useTheme();
+
   const { width, height } = variants[size];
 
   return (
     <Link href="/" className={className}>
       <Image
-        src={logo}
+        src={theme === "light" ? logo : logoLight}
         alt="Logo"
         width={width}
         height={height}

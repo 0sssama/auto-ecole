@@ -19,6 +19,11 @@
           "title": "Langue",
           "fr": "Français",
           "en": "Anglais"
+        },
+        "Theme": {
+          "title": "Thème",
+          "light": "Clair",
+          "dark": "Sombre"
         }
       }
     },

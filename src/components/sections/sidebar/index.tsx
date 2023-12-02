@@ -39,12 +39,12 @@ const Sidebar: SidebarComponentType = ({ className }) => {
     <div
       className={cn(
         className,
-        !isDesktop && isOpen && "fixed inset-0 z-[9] bg-white",
+        !isDesktop && isOpen && "fixed inset-0 z-[9] bg-background",
       )}
     >
       <div
         className={cn(
-          "sticky top-6 pt-[var(--header-height)] transition-all",
+          "sticky top-6 pt-[var(--header-height)] transition-all lg:mt-10",
           scrolled && "top-0",
           !isDesktop && isOpen && "fixed w-full h-full overflow-scroll pb-20",
         )}

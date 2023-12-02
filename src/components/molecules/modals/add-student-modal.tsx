@@ -138,7 +138,7 @@ const AddStudentModal: ModalComponentType = ({ isOpen, close }) => {
             disabled={clerkOperationLoading || dbOperationLoading}
           >
             {clerkOperationLoading || dbOperationLoading ? (
-              <Spinner size="xs" color="#fff" />
+              <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")
             )}
