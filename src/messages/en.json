@@ -170,6 +170,13 @@
           "status": "Status",
           "type": "Type",
           "date": "Date"
+        },
+        "Payments": {
+          "id": "ID",
+          "sum": "Payment Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
         }
       }
     },
@@ -552,6 +559,13 @@
         "Header": {
           "title": "Payments",
           "button": "New payment"
+        },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          }
         },
         "NotFound": {
           "title": "No Payment Found",

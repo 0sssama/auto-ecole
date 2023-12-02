@@ -170,6 +170,13 @@
           "status": "Statut",
           "type": "Type",
           "date": "Date"
+        },
+        "Payments": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
         }
       }
     },

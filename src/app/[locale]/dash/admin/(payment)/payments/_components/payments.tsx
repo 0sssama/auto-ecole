@@ -9,7 +9,7 @@ import {
   // AddPaymentsModal
 } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
-// import { PaymentsListTable } from "@/components/sections/payments";
+import { PaymentsListTable } from "@/components/sections/payments";
 
 const PageHeader = ({ openModal }: { openModal: () => void }) => {
   const t = useTranslations("Dashboard.Payment.Payments.Header");
@@ -36,7 +36,9 @@ export default function PaymentsPage() {
         isOpen={addPaymentsModal.isOpen}
         close={addPaymentsModal.close}
       /> */}
-      <div className="w-full">{/* <PaymentsListTable /> */}</div>
+      <div className="w-full">
+        <PaymentsListTable />
+      </div>
     </main>
   );
 }
