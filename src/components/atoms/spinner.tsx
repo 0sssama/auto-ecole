@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 
 export type LoadingProps = {
   size?: keyof typeof variants;
-  color?: string;
+  color?: keyof typeof colors;
   className?: string;
 };
 
@@ -36,7 +36,24 @@ const variants = {
   },
 };
 
-const Loading: FC<LoadingProps> = ({ size = "md", color, className }) => {
+const colors = {
+  primary: "border-primary",
+  secondary: "border-secondary",
+  success: "border-success",
+  danger: "border-danger",
+  warning: "border-warning",
+  info: "border-info",
+  light: "border-light",
+  dark: "border-dark",
+  foreground: "border-foreground",
+  background: "border-background",
+};
+
+const Loading: FC<LoadingProps> = ({
+  size = "md",
+  color = "foreground",
+  className,
+}) => {
   return (
     <div
       aria-label="Spinner"
@@ -44,9 +61,9 @@ const Loading: FC<LoadingProps> = ({ size = "md", color, className }) => {
         ...variants[size],
       }}
       className={cn(
-        "border-solid rounded-full border-foreground !border-t-transparent animate-spin",
+        "border-solid rounded-full !border-t-transparent animate-spin",
         className,
-        color && `!border-${color}`,
+        color && colors[color],
       )}
     ></div>
   );

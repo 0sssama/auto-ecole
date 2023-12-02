@@ -26,20 +26,13 @@ const AddPaymentModalSike: ModalComponentType = ({ isOpen, close }) => {
       modal
       onOpenChange={(isOpen) => !isOpen && close()}
     >
-      <DialogContent>
-        <DialogHeader className="flex flex-col items-center gap-1 text-center">
-          <DialogTitle className="text-2xl font-semibold">
+      <DialogContent className="flex flex-col items-center w-full text-center">
+        <DialogHeader>
+          <DialogTitle className="text-xl lg:text-2xl">
             {t("title")}
           </DialogTitle>
-          <DialogDescription className="text-xs opacity-70">
-            {t("subtitle")}
-          </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col items-center justify-center my-4">
-          <p className="text-sm text-center opacity-70 lg:max-w-[400px]">
-            {t("description")}
-          </p>
-        </div>
+        <DialogDescription>{t("description")}</DialogDescription>
         <DialogFooter className="w-full">
           <Button variant="outline" onClick={close} className="w-full">
             {t("button-cancel")}

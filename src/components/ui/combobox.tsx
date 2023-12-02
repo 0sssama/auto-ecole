@@ -103,7 +103,7 @@ export function Combobox({
           <CommandGroup>
             {isLoading ? (
               <div className="flex items-center justify-center gap-2 py-6 text-sm text-center">
-                <Spinner size="xs" color="#000" />
+                <Spinner size="xs" color="foreground" />
                 {loadingMessage}
               </div>
             ) : (

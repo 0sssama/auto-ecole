@@ -105,7 +105,7 @@ const AddNewLessonForm: FormComponentType<TFormValues, TContext> = ({
               name={f.name as keyof TFormValues}
               render={({ field }) => (
                 <FormItem className="relative w-full">
-                  <FormLabel className="inline-block w-full text-sm">
+                  <FormLabel className="inline-block w-full text-sm !text-left">
                     {f.label}
                   </FormLabel>
                   <FormControl className="relative w-full">
@@ -165,7 +165,7 @@ const AddNewLessonForm: FormComponentType<TFormValues, TContext> = ({
                       )}
                     </>
                   </FormControl>
-                  <FormMessage className="inline-block w-full text-[12px] px-1" />
+                  <FormMessage className="inline-block w-full text-[12px] px-1 !text-right" />
                 </FormItem>
               )}
             />
