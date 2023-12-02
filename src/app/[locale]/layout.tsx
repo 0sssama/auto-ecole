@@ -70,15 +70,15 @@ export default function RootLayout({
                   defaultTheme="light"
                   enableSystem
                 >
-                  <RecoilProvider>
-                    <NprogressProvider>
+                  <NprogressProvider>
+                    <RecoilProvider>
                       <ToastProvider>
                         <MomentProvider locale={locale}>
                           {children}
                         </MomentProvider>
                       </ToastProvider>
-                    </NprogressProvider>
-                  </RecoilProvider>
+                    </RecoilProvider>
+                  </NprogressProvider>
                 </ThemeProvider>
               </NextUIProvider>
             </body>

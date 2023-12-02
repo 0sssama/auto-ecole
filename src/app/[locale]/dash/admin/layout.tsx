@@ -11,10 +11,7 @@ export default function AdminProtectedLayout({
 }) {
   const { membership } = useOrganization();
 
-  if (!membership || membership.role !== "admin") {
-    redirect("/dash");
-    return null;
-  }
+  if (!membership || membership.role !== "admin") redirect("/dash");
 
   return <>{children}</>;
 }

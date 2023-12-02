@@ -1,12 +1,14 @@
 import { z } from "zod";
 import { LessonStatus } from "@prisma/client";
 
+import { isDigits } from "@/utils/isDigits";
+
 export const lessonFormSchema = z.object({
-  studentId: z.string().regex(/^[0-9]*$/),
-  instructorId: z.string().regex(/^[0-9]*$/),
+  studentId: z.string().refine(isDigits),
+  instructorId: z.string().refine(isDigits),
   licenseFileId: z.number().min(1).optional(),
-  price: z.string().regex(/^[0-9]*$/),
-  duration: z.string().regex(/^[0-9]*$/),
+  price: z.string().refine(isDigits),
+  duration: z.string().refine(isDigits),
   status: z.nativeEnum(LessonStatus),
   date: z.date(),
 });

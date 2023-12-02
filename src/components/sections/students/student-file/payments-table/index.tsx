@@ -25,14 +25,13 @@ const StudentPaymentsTable: StudentPaymentsTableComponentType = ({
 
   const filters = useTableFilters();
 
-  const { data, isLoading, error } = api.db.payments.query.list.useQuery<
-    Paginated<StudentPayment>
-  >({
-    studentId,
-    pageIndex: pagination.get.pageIndex,
-    pageSize: pagination.get.pageSize,
-    filters: filters.get,
-  });
+  const { data, isLoading, error } =
+    api.db.payments.query.listByStudentId.useQuery<Paginated<StudentPayment>>({
+      studentId,
+      pageIndex: pagination.get.pageIndex,
+      pageSize: pagination.get.pageSize,
+      filters: filters.get,
+    });
 
   return (
     <div className="w-full">

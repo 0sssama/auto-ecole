@@ -80,7 +80,7 @@ const AddExamModal: ModalComponentType<{
         </ModalHeader>
         <ModalBody>
           {error && (
-            <div className="w-full px-2 py-4 text-center bg-red-100 rounded">
+            <div className="w-full px-2 py-4 text-center bg-danger-50 mb-4 rounded">
               <p className="text-sm font-bold text-center text-danger">
                 {error.message}
               </p>

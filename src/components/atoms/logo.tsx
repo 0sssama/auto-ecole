@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -42,7 +44,7 @@ const Logo: FC<LogoProps> = ({ size = "md", className }) => {
   return (
     <Link href="/" className={className}>
       <Image
-        src={theme === "light" ? logo : logoLight}
+        src={theme === "dark" ? logoLight : logo}
         alt="Logo"
         width={width}
         height={height}

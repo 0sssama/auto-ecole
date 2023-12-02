@@ -39,6 +39,7 @@
       "exams": "Exams",
 
       "payment": "Payment",
+      "payments": "Payments",
       "financial-overview": "Financial Overview",
 
       "entities": "Entities",
@@ -152,6 +153,13 @@
           "duration": "Duration (h)",
           "scheduled-date": "Date"
         },
+        "LicenseFilePayments": {
+          "id": "ID",
+          "sum": "Payment Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
+        },
         "Lessons": {
           "id": "ID",
           "instructor-name": "Instructor",
@@ -168,6 +176,13 @@
           "student-name": "Student",
           "status": "Status",
           "type": "Type",
+          "date": "Date"
+        },
+        "Payments": {
+          "id": "ID",
+          "sum": "Payment Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
           "date": "Date"
         }
       }
@@ -468,6 +483,15 @@
               "CANCELLED": "Cancelled",
               "DONE": "Done"
             }
+          },
+          "StudentPayments": {
+            "title": "Payments",
+            "add-button": "Add Payment",
+            "Actions": {
+              "open-menu": "Open menu",
+              "view": "View details",
+              "edit": "Edit"
+            }
           }
         },
         "ListTable": {
@@ -546,6 +570,25 @@
         }
       }
     },
+    "Payment": {
+      "Payments": {
+        "Header": {
+          "title": "Payments",
+          "button": "New payment"
+        },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
+          }
+        },
+        "NotFound": {
+          "title": "No Payment Found",
+          "subtitle": "The payment you are looking for does not exist."
+        }
+      }
+    },
     "Modals": {
       "AddExamSike": {
         "title": "Add new exam",
@@ -618,6 +661,30 @@
         "button-submit": "Delete Exam",
         "exam-delete-success": "Exam deleted successfully!",
         "exam-delete-error": "An error has occurred. Please try again later."
+      },
+      "AddPaymentSike": {
+        "title": "Add new Payment",
+        "subtitle": "",
+        "description": "Please visit the license file page of the appropriate student to add a new payment",
+        "button-cancel": "Cancel"
+      },
+      "AddLicenseFilePayment": {
+        "title": "Add new payment",
+        "subtitle": "Fill in the form below to add a new payment",
+        "success": "Payment added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "sum": "Payment Sum:",
+          "comment": "Comment:",
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add Payment"
+      }
+    },
+    "Common": {
+      "FileUpload": {
+        "idle": "Drop or click to upload files"
       }
     },
     "Error": {

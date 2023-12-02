@@ -1,4 +1,7 @@
-export { default as Logo } from "./logo";
+import dynamic from "next/dynamic";
+
+export const Logo = dynamic(() => import("./logo"), { ssr: false });
+
 export { default as UserOrgAvatar } from "./user-org-avatar";
 export { default as Spinner } from "./spinner";
 export { default as HelpButton } from "./help-button";

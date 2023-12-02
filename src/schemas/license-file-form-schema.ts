@@ -1,10 +1,12 @@
 import { z } from "zod";
 import { Category, LicenseFileStatus } from "@prisma/client";
 
+import { isDigits } from "@/utils/isDigits";
+
 export const licenseFileFormSchema = z.object({
-  studentId: z.string().regex(/^[0-9]*$/),
-  instructorId: z.string().regex(/^[0-9]*$/),
-  price: z.string().regex(/^[0-9]*$/),
+  studentId: z.string().refine(isDigits),
+  instructorId: z.string().refine(isDigits),
+  price: z.string().refine(isDigits),
   category: z.nativeEnum(Category),
   status: z.nativeEnum(LicenseFileStatus),
 });

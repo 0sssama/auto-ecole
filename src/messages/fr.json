@@ -39,6 +39,7 @@
       "exams": "Examens",
 
       "payment": "Paiements",
+      "payments": "Paiements",
       "financial-overview": "Finance",
 
       "entities": "Entités",
@@ -152,6 +153,13 @@
           "duration": "Durée (h)",
           "scheduled-date": "Date"
         },
+        "LicenseFilePayments": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
+        },
         "Lessons": {
           "id": "ID",
           "instructor-name": "Moniteur",
@@ -168,6 +176,13 @@
           "student-name": "Étudiant",
           "status": "Statut",
           "type": "Type",
+          "date": "Date"
+        },
+        "Payments": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
           "date": "Date"
         }
       }
@@ -468,6 +483,15 @@
               "CANCELLED": "Annulé",
               "DONE": "Terminé"
             }
+          },
+          "LicenseFilePayments": {
+            "title": "Paiements",
+            "add-button": "Nouveau paiement",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir dossier",
+              "edit": "Modifier"
+            }
           }
         },
         "ListTable": {
@@ -552,6 +576,18 @@
         }
       }
     },
+    "Payment": {
+      "Payments": {
+        "Header": {
+          "title": "Paiements",
+          "button": "Nouveau paiement"
+        },
+        "NotFound": {
+          "title": "Aucun paiement trouvé",
+          "subtitle": "Aucun paiement n'a été trouvé avec l'ID spécifié."
+        }
+      }
+    },
     "Modals": {
       "AddExamSike": {
         "title": "Ajouter un nouveau examen",
@@ -625,6 +661,30 @@
         "button-submit": "Supprimer",
         "exam-delete-success": "Examen supprimé avec succès !",
         "exam-delete-error": "Erreur lors de la suppression de l'examen. Veuillez réessayer plus tard."
+      },
+      "AddPaymentSike": {
+        "title": "Ajouter un nouveau paiement",
+        "subtitle": "",
+        "description": "Veuillez visiter la page du dossier de permis de l'étudiant approprié pour ajouter un nouvel paiement",
+        "button-cancel": "Annuler"
+      },
+      "AddLicenseFilePayment": {
+        "title": "Ajouter un nouveau paiement",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau paiement",
+        "success": "Paiement ajouté avec succès !",
+        "error": "Erreur lors de l'ajout du paiement. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter paiement"
+      }
+    },
+    "Common": {
+      "FileUpload": {
+        "idle": "Glissez et déposez un fichier ici ou cliquez pour le sélectionner"
       }
     },
     "Error": {

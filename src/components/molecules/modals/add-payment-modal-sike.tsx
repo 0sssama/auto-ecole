@@ -14,8 +14,8 @@ import { Button } from "@/components/ui/button";
 
 import type { ModalComponentType } from "./types";
 
-const AddExamModalSike: ModalComponentType = ({ isOpen, close }) => {
-  const t = useTranslations("Dashboard.Modals.AddExamSike");
+const AddPaymentModalSike: ModalComponentType = ({ isOpen, close }) => {
+  const t = useTranslations("Dashboard.Modals.AddPaymentSike");
 
   if (!isOpen) return null;
 
@@ -28,13 +28,11 @@ const AddExamModalSike: ModalComponentType = ({ isOpen, close }) => {
     >
       <DialogContent className="flex flex-col items-center w-full text-center">
         <DialogHeader>
-          <DialogTitle className="text-xl text-center lg:text-2xl">
+          <DialogTitle className="text-xl lg:text-2xl">
             {t("title")}
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-center">
-          {t("description")}
-        </DialogDescription>
+        <DialogDescription>{t("description")}</DialogDescription>
         <DialogFooter className="w-full">
           <Button variant="outline" onClick={close} className="w-full">
             {t("button-cancel")}
@@ -45,4 +43,4 @@ const AddExamModalSike: ModalComponentType = ({ isOpen, close }) => {
   );
 };
 
-export default AddExamModalSike;
+export default AddPaymentModalSike;

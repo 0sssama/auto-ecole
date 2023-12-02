@@ -1,4 +1,5 @@
 import {
+  Banknote,
   BookOpenCheck,
   Building,
   CarFront,
@@ -70,6 +71,11 @@ export const getSidebarLinks = (
     {
       title: t("payment"),
       links: [
+        {
+          name: t("payments"),
+          href: "/dash/admin/payments",
+          icon: <Banknote {...sidebarIconProps} />,
+        },
         {
           name: t("financial-overview"),
           href: "/dash/admin/financial-overview",

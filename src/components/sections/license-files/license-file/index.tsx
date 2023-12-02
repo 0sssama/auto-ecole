@@ -5,6 +5,7 @@ import { InfoFile } from "@/components/organisms";
 
 import LicenseFileExamsTable from "./exams-table";
 import LicenseFileLessonsTable from "./lessons-table";
+import LicenseFilePaymentsTable from "./payments-table";
 
 import type { LicenseFileComponentType } from "./types";
 
@@ -32,8 +33,8 @@ const LicenseFile: LicenseFileComponentType = ({ licenseFile }) => {
           instructorId: licenseFile.instructor.id,
         }}
       />
-      {/* <Separator className="mb-6 mt-14" /> */}
-      {/* <LicenseFilePaymentsTable licenseFileId={licenseFile.id} /> */}
+      <Separator className="mb-6 mt-14" />
+      <LicenseFilePaymentsTable context={{ licenseFileId: licenseFile.id }} />
     </div>
   );
 };

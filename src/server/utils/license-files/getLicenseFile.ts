@@ -64,9 +64,6 @@ export const getLicenseFile = async (
 
   const formattedLicenseFile: FetchedLicenseFile = {
     id: licenseFile.id,
-    licenseFileStatus: licenseFile.status,
-    price: licenseFile.price,
-    createdAt: licenseFile.createdAt,
 
     student: {
       id: licenseFile.customer.id,
@@ -85,6 +82,10 @@ export const getLicenseFile = async (
       fullName: licenseFile.createdBy.fullName,
       profilePictureUrl: admin.hasImage ? admin.imageUrl : "",
     },
+
+    licenseFileStatus: licenseFile.status,
+    price: licenseFile.price,
+    createdAt: licenseFile.createdAt,
   };
 
   return formattedLicenseFile;
