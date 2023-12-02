@@ -29,6 +29,8 @@ export const columns: ColumnDef<Payment>[] = [
 
       return <TooltipConcat text={payment.adminName} />;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "sum",
@@ -36,6 +38,8 @@ export const columns: ColumnDef<Payment>[] = [
       <DataTableColumnHeader column={column} title="Payments.sum" />
     ),
     cell: ({ row }) => <>{row.getValue("sum")} DH</>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "comment",
@@ -45,6 +49,8 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => (
       <TooltipConcat text={row.getValue("comment") || "-"} maxLength={20} />
     ),
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "date",
@@ -57,6 +63,8 @@ export const columns: ColumnDef<Payment>[] = [
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

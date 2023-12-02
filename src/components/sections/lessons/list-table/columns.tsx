@@ -37,6 +37,8 @@ export const columns: ColumnDef<Lesson>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "instructor-name",
@@ -57,6 +59,8 @@ export const columns: ColumnDef<Lesson>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "status",
@@ -75,6 +79,8 @@ export const columns: ColumnDef<Lesson>[] = [
         </Chip>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "price",
@@ -82,6 +88,8 @@ export const columns: ColumnDef<Lesson>[] = [
       <DataTableColumnHeader column={column} title="Lessons.price" />
     ),
     cell: ({ row }) => <>{row.getValue("price")} DH</>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "duration",
@@ -89,6 +97,8 @@ export const columns: ColumnDef<Lesson>[] = [
       <DataTableColumnHeader column={column} title="Lessons.duration" />
     ),
     cell: ({ row }) => <>{row.getValue("duration")}h</>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "scheduledDate",
@@ -101,9 +111,8 @@ export const columns: ColumnDef<Lesson>[] = [
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

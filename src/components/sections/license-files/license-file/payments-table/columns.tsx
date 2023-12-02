@@ -32,6 +32,8 @@ export const columns: ColumnDef<LicenseFilePayment>[] = [
 
       return <TooltipConcat text={licenseFilePayment.adminName} />;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "sum",
@@ -39,6 +41,8 @@ export const columns: ColumnDef<LicenseFilePayment>[] = [
       <DataTableColumnHeader column={column} title="LicenseFilePayments.sum" />
     ),
     cell: ({ row }) => <>{row.getValue("sum")} DH</>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "comment",
@@ -51,6 +55,8 @@ export const columns: ColumnDef<LicenseFilePayment>[] = [
     cell: ({ row }) => (
       <TooltipConcat text={row.getValue("comment") || "-"} maxLength={20} />
     ),
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "date",
@@ -63,6 +69,8 @@ export const columns: ColumnDef<LicenseFilePayment>[] = [
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

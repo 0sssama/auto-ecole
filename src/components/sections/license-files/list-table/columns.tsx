@@ -115,6 +115,8 @@ export const columns: ColumnDef<LicenseFile>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "status",

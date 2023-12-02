@@ -35,6 +35,8 @@ export const columns: ColumnDef<LicenseFileExam>[] = [
 
       return <p>{t(exam.type)}</p>;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "status",
@@ -55,6 +57,8 @@ export const columns: ColumnDef<LicenseFileExam>[] = [
         </Chip>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "date",
@@ -67,9 +71,8 @@ export const columns: ColumnDef<LicenseFileExam>[] = [
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

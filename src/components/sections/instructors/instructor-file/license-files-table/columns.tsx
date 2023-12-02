@@ -41,11 +41,16 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/students?studentId=${licenseFile.studentId}`}>
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
+        >
           <TooltipConcat className="text-left" text={licenseFile.studentName} />
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "category",
@@ -62,11 +67,16 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
-        <>
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
+        >
           {t(licenseFile.category)} ({licenseFile.category})
-        </>
+        </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "price",
@@ -76,7 +86,20 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
         title="InstructorLicenseFiles.price"
       />
     ),
-    cell: ({ row }) => <>{row.getValue("price")} DH</>,
+    cell: ({ row }) => {
+      const licenseFile = instructorLicenseFileSchema.parse(row.original);
+
+      return (
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
+        >
+          {row.getValue("price")} DH
+        </Link>
+      );
+    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "status",
@@ -93,16 +116,23 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
-        <Chip
-          color={getLicenseFileStatusChipColor(licenseFile.status)}
-          size="sm"
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
         >
-          <span className="font-bold !text-[10px] md:text-sm">
-            {t(licenseFile.status)?.toUpperCase()}
-          </span>
-        </Chip>
+          <Chip
+            color={getLicenseFileStatusChipColor(licenseFile.status)}
+            size="sm"
+          >
+            <span className="font-bold !text-[10px] md:text-sm">
+              {t(licenseFile.status)?.toUpperCase()}
+            </span>
+          </Chip>
+        </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "createdAt",
@@ -117,11 +147,17 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
 
       const date = moment(licenseFile.createdAt);
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return (
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
+          className="flex w-full h-full"
+        >
+          <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>
+        </Link>
+      );
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

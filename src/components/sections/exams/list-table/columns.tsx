@@ -37,6 +37,8 @@ export const columns: ColumnDef<Exam>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "type",
@@ -49,6 +51,8 @@ export const columns: ColumnDef<Exam>[] = [
 
       return <p>{t(exam.type)}</p>;
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "status",
@@ -67,6 +71,8 @@ export const columns: ColumnDef<Exam>[] = [
         </Chip>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "date",
@@ -79,9 +85,8 @@ export const columns: ColumnDef<Exam>[] = [
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

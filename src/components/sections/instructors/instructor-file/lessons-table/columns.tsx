@@ -48,6 +48,8 @@ export const columns: ColumnDef<InstructorLesson>[] = [
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "status",
@@ -71,6 +73,8 @@ export const columns: ColumnDef<InstructorLesson>[] = [
         </Chip>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "comment",
@@ -81,6 +85,8 @@ export const columns: ColumnDef<InstructorLesson>[] = [
       />
     ),
     cell: ({ row }) => <TooltipConcat text={row.getValue("comment") || "-"} />,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "grade",
@@ -100,6 +106,8 @@ export const columns: ColumnDef<InstructorLesson>[] = [
         </Chip>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "price",
@@ -107,6 +115,8 @@ export const columns: ColumnDef<InstructorLesson>[] = [
       <DataTableColumnHeader column={column} title="InstructorLessons.price" />
     ),
     cell: ({ row }) => <>{row.getValue("price")} DH</>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "duration",
@@ -117,6 +127,8 @@ export const columns: ColumnDef<InstructorLesson>[] = [
       />
     ),
     cell: ({ row }) => <>{row.getValue("duration")}h</>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "scheduledDate",
@@ -132,9 +144,8 @@ export const columns: ColumnDef<InstructorLesson>[] = [
 
       return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

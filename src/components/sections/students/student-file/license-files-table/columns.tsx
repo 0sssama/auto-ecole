@@ -36,12 +36,15 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
 
       return (
         <Link
-          href={`/dash/admin/instructors?instructorId=${studentLicenseFile.instructorId}`}
+          href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`}
+          className="flex w-full h-full"
         >
           <TooltipConcat text={studentLicenseFile.instructorName} />
         </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "category",
@@ -55,14 +58,19 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       const t = useTranslations(
         "Dashboard.Dossier.Tables.StudentLicenseFiles.Category",
       );
-      const licenseFile = studentLicenseFileSchema.parse(row.original);
+      const studentLicenseFile = studentLicenseFileSchema.parse(row.original);
 
       return (
-        <>
-          {t(licenseFile.category)} ({licenseFile.category})
-        </>
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`}
+          className="flex w-full h-full"
+        >
+          {t(studentLicenseFile.category)} ({studentLicenseFile.category})
+        </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "price",
@@ -72,7 +80,20 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
         title="StudentLicenseFiles.price"
       />
     ),
-    cell: ({ row }) => <>{row.getValue("price")} DH</>,
+    cell: ({ row }) => {
+      const studentLicenseFile = studentLicenseFileSchema.parse(row.original);
+
+      return (
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`}
+          className="flex w-full h-full"
+        >
+          {row.getValue("price")} DH
+        </Link>
+      );
+    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "status",
@@ -86,19 +107,26 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       const t = useTranslations(
         "Dashboard.Dossier.Tables.StudentLicenseFiles.Status",
       );
-      const licenseFile = studentLicenseFileSchema.parse(row.original);
+      const studentLicenseFile = studentLicenseFileSchema.parse(row.original);
 
       return (
-        <Chip
-          color={getLicenseFileStatusChipColor(licenseFile.status)}
-          size="sm"
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`}
+          className="flex w-full h-full"
         >
-          <span className="font-bold !text-[10px] md:text-sm">
-            {t(licenseFile.status)?.toUpperCase()}
-          </span>
-        </Chip>
+          <Chip
+            color={getLicenseFileStatusChipColor(studentLicenseFile.status)}
+            size="sm"
+          >
+            <span className="font-bold !text-[10px] md:text-sm">
+              {t(studentLicenseFile.status)?.toUpperCase()}
+            </span>
+          </Chip>
+        </Link>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "createdAt",
@@ -109,14 +137,20 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
       />
     ),
     cell: ({ row }) => {
-      const licenseFile = studentLicenseFileSchema.parse(row.original);
-      const date = moment(licenseFile.createdAt);
+      const studentLicenseFile = studentLicenseFileSchema.parse(row.original);
+      const date = moment(studentLicenseFile.createdAt);
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return (
+        <Link
+          href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`}
+          className="flex w-full h-full"
+        >
+          <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>
+        </Link>
+      );
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

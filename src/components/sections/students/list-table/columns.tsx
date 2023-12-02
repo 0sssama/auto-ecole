@@ -70,6 +70,8 @@ export const columns: ColumnDef<Student>[] = [
         </Chip>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "category",
