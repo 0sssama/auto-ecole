@@ -1,3 +1,7 @@
+import { getTranslations } from "next-intl/server";
+
+import type { Locale } from "@/lib/locales";
+
 export default function Editors() {
   return (
     <div className="w-full min-h-[300px] grid place-items-center">
@@ -9,4 +13,21 @@ export default function Editors() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: {
+    locale: Locale;
+  };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Dashboard.Users.Editors.Header",
+  });
+
+  return {
+    title: `${t("title")} / Dashboard`,
+  };
 }

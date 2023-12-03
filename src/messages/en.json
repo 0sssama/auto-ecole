@@ -407,6 +407,12 @@
             "loading": "Loading..."
           }
         }
+      },
+      "Editors": {
+        "Header": {
+          "title": "Editors",
+          "button": "New Editor"
+        }
       }
     },
     "Files": {
@@ -590,6 +596,18 @@
         "NotFound": {
           "title": "No Payment Found",
           "subtitle": "The payment you are looking for does not exist."
+        }
+      },
+      "FinancialOverview": {
+        "Header": {
+          "title": "Financial Overview"
+        }
+      }
+    },
+    "Entities": {
+      "Cars": {
+        "Header": {
+          "title": "Vehicles"
         }
       }
     },

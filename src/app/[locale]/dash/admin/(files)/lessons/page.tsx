@@ -1,5 +1,9 @@
+import { getTranslations } from "next-intl/server";
+
 // import { getLesson } from "@/server/utils/lessons/getLesson";
 // import { Lesson } from "@/components/sections/lessons";
+import type { Locale } from "@/lib/locales";
+
 import LessonsPage from "./_components/lessons";
 import LessonNotFound from "./_components/not-found";
 
@@ -21,4 +25,21 @@ export default async function Lessons({
   //   if (!lesson) return <LicenseFileNotFound />;
 
   //   return <LicenseFile lesson={lesson} />;
+}
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: {
+    locale: Locale;
+  };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Dashboard.Files.Lessons.Header",
+  });
+
+  return {
+    title: `${t("title")} / Dashboard`,
+  };
 }

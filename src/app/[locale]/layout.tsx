@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Vazirmatn } from "next/font/google";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 import { ClerkProvider } from "@clerk/nextjs";
 import { notFound } from "next/navigation";
 
@@ -46,10 +47,12 @@ export default function RootLayout({
     locale: Locale;
   };
 }) {
+  if (!locales.includes(locale as any)) notFound();
+
+  unstable_setRequestLocale(locale);
+
   // TODO: ONLY PASS NECESSARY MESSAGES (THIS FUCKS UP PERFORMANCE)
   const messages = useMessages();
-
-  if (!locales.includes(locale as any)) notFound();
 
   return (
     // TODO: ONLY PASS NECESSARY MESSAGES (THIS FUCKS UP PERFORMANCE)
@@ -87,4 +90,8 @@ export default function RootLayout({
       </ClerkProvider>
     </NextIntlClientProvider>
   );
+}
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
 }

@@ -1,5 +1,9 @@
+import { getTranslations } from "next-intl/server";
+
 // import { getExam } from "@/server/utils/exams/getExam";
 // import { Lesson } from "@/components/sections/exams";
+import type { Locale } from "@/lib/locales";
+
 import ExamsPage from "./_components/exams";
 import ExamNotFound from "./_components/not-found";
 
@@ -21,4 +25,21 @@ export default async function Exams({
   //   if (!exam) return <ExamNotFound />;
 
   //   return <Exam exam={exam} />;
+}
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: {
+    locale: Locale;
+  };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Dashboard.Files.Exams.Header",
+  });
+
+  return {
+    title: `${t("title")} / Dashboard`,
+  };
 }
