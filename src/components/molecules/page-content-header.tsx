@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from "react";
 
 export type PageContentHeaderProps = {
-  title: string;
+  title: ReactNode;
   children?: ReactNode;
 };
 
