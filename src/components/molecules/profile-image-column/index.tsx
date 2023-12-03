@@ -17,7 +17,7 @@ const ProfileImageColumn: FC<ProfileImageColumnProps> = ({
   const t = useTranslations("Dashboard.Dossier.ImageColumn");
 
   return (
-    <div className="flex items-center w-full gap-4 md:flex-col max-w-[90vw]">
+    <div className="flex items-center w-full gap-4 md:flex-col max-w-[calc(100vw-3rem)]">
       <div className="flex flex-col items-center w-full gap-2">
         <div className="group flex items-center justify-center w-full max-w-[140px] overflow-hidden bg-muted rounded-full aspect-square cursor-pointer relative">
           <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center p-1 transition-all ease-in bg-gray-600/40 group-hover:bg-gray-600/80 group-hover:p-2 duration-400">
