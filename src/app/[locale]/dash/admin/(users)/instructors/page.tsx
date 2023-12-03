@@ -1,5 +1,9 @@
+import { getTranslations } from "next-intl/server";
+
 import { getInstructor } from "@/server/utils/instructors/getInstructor";
 import { InstructorFile } from "@/components/sections/instructors";
+import type { Locale } from "@/lib/locales";
+
 import InstructorsPage from "./_components/instructors";
 import InstructorNotFound from "./_components/not-found";
 
@@ -21,4 +25,21 @@ export default async function Instructors({
   if (!instructor) return <InstructorNotFound />;
 
   return <InstructorFile instructor={instructor} />;
+}
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: {
+    locale: Locale;
+  };
+}) {
+  const t = await getTranslations({
+    locale,
+    namespace: "Dashboard.Users.Instructors.Header",
+  });
+
+  return {
+    title: `${t("title")} / Dashboard`,
+  };
 }

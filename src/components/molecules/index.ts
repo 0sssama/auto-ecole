@@ -1,4 +1,5 @@
 export { default as PageContentHeader } from "./page-content-header";
+export { default as PageHeader } from "./page-header";
 export { default as AddStudentModal } from "./modals/add-student-modal";
 export { default as DossierInfo } from "./dossier-info";
 export { default as AddInstructorModal } from "./modals/add-instructor-modal";

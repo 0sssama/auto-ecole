@@ -407,6 +407,11 @@
           "title": "Dossier introuvable",
           "subtitle": "Le dossier que vous cherchez n'existe pas ou a été supprimé."
         }
+      },
+      "Editors": {
+        "Header": {
+          "title": "Modérateurs"
+        }
       }
     },
     "Files": {
@@ -589,6 +594,18 @@
         "NotFound": {
           "title": "Aucun paiement trouvé",
           "subtitle": "Aucun paiement n'a été trouvé avec l'ID spécifié."
+        }
+      },
+      "FinancialOverview": {
+        "Header": {
+          "title": "Finance"
+        }
+      }
+    },
+    "Entities": {
+      "Cars": {
+        "Header": {
+          "title": "Voitures"
         }
       }
     },
