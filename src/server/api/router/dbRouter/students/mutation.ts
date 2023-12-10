@@ -18,7 +18,7 @@ export const mutationRouter = createTRPCRouter({
           code: "UNAUTHORIZED",
         });
 
-      const user = await ctx.prisma.customer.create({
+      const user = await ctx.prisma.student.create({
         data: {
           clerkUserId: input.clerkId,
           clerkOrgId: ctx.orgId,
@@ -62,7 +62,7 @@ export const mutationRouter = createTRPCRouter({
         });
 
       try {
-        await ctx.prisma.customer.update({
+        await ctx.prisma.student.update({
           where: {
             id: input.studentId,
           },
@@ -88,7 +88,7 @@ export const mutationRouter = createTRPCRouter({
         });
 
       try {
-        await ctx.prisma.customer.update({
+        await ctx.prisma.student.update({
           where: {
             id: input.studentId,
           },
@@ -114,7 +114,7 @@ export const mutationRouter = createTRPCRouter({
         });
 
       try {
-        const result = await ctx.prisma.customer.delete({
+        const result = await ctx.prisma.student.delete({
           where: {
             id: input.studentId,
           },

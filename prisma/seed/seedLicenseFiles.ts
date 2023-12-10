@@ -62,7 +62,7 @@ export const seedLicenseFiles = async (
                     id: superAdminId,
                   },
                 },
-                customer: {
+                student: {
                   connect: {
                     id: studentId,
                   },
@@ -91,7 +91,7 @@ export const seedLicenseFiles = async (
               },
             },
 
-            customer: {
+            student: {
               connect: {
                 id: studentId,
               },

@@ -33,7 +33,7 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.lesson.findMany({
           where: {
             ...filtersObj,
-            customer: {
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -50,7 +50,7 @@ export const queryRouter = createTRPCRouter({
                 lastName: true,
               },
             },
-            customer: {
+            student: {
               select: {
                 id: true,
                 firstNameFr: true,
@@ -67,7 +67,7 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.lesson.count({
           where: {
             ...filtersObj,
-            customer: {
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -81,8 +81,8 @@ export const queryRouter = createTRPCRouter({
           fullName: `${lesson.instructor.firstName} ${lesson.instructor.lastName}`,
         },
         student: {
-          id: lesson.customer.id,
-          fullName: `${lesson.customer.firstNameFr} ${lesson.customer.lastNameFr}`,
+          id: lesson.student.id,
+          fullName: `${lesson.student.firstNameFr} ${lesson.student.lastNameFr}`,
         },
         status: lesson.status,
         price: lesson.price,
@@ -119,8 +119,8 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.lesson.findMany({
           where: {
             ...filtersObj,
-            customerId: input.studentId,
-            customer: {
+            studentId: input.studentId,
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -150,8 +150,8 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.lesson.count({
           where: {
             ...filtersObj,
-            customerId: input.studentId,
-            customer: {
+            studentId: input.studentId,
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -202,7 +202,7 @@ export const queryRouter = createTRPCRouter({
           where: {
             ...filtersObj,
             instructorId: input.instructorId,
-            customer: {
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -215,7 +215,7 @@ export const queryRouter = createTRPCRouter({
             duration: true,
             date: true,
             grade: true,
-            customer: {
+            student: {
               select: {
                 id: true,
                 lastNameFr: true,
@@ -233,7 +233,7 @@ export const queryRouter = createTRPCRouter({
           where: {
             ...filtersObj,
             instructorId: input.instructorId,
-            customer: {
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -243,8 +243,8 @@ export const queryRouter = createTRPCRouter({
       const formattedInstructorLessons: InstructorLesson[] =
         instructorLessons.map((lesson) => ({
           id: lesson.id,
-          studentId: lesson.customer.id,
-          studentName: `${lesson.customer.firstNameFr} ${lesson.customer.lastNameFr}`,
+          studentId: lesson.student.id,
+          studentName: `${lesson.student.firstNameFr} ${lesson.student.lastNameFr}`,
           status: lesson.status,
           comment: lesson.comment,
           grade: lesson.grade,
@@ -283,7 +283,7 @@ export const queryRouter = createTRPCRouter({
           where: {
             ...filtersObj,
             licenseFileId: input.licenseFileId,
-            customer: {
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -296,7 +296,7 @@ export const queryRouter = createTRPCRouter({
             duration: true,
             date: true,
             grade: true,
-            customer: {
+            student: {
               select: {
                 id: true,
                 lastNameFr: true,
@@ -314,7 +314,7 @@ export const queryRouter = createTRPCRouter({
           where: {
             ...filtersObj,
             licenseFileId: input.licenseFileId,
-            customer: {
+            student: {
               clerkOrgId: ctx.orgId,
             },
           },

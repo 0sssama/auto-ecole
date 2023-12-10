@@ -27,7 +27,7 @@ export const mutationRouter = createTRPCRouter({
               id: input.instructorId,
             },
           },
-          customer: {
+          student: {
             connect: {
               id: input.studentId,
             },

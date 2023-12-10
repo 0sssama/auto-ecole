@@ -328,7 +328,7 @@
           "subtitle": "Fill in the form below to add a new student.",
           "button-cancel": "Cancel",
           "button-submit": "Add Student",
-          "success": "Customer added successfully!",
+          "success": "Student added successfully!",
           "user-exists": "User already exists!",
           "error": "An error has occurred. Please try again later.",
           "AddNewStudentForm": {

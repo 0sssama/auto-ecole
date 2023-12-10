@@ -32,7 +32,7 @@ export const queryRouter = createTRPCRouter({
           where: {
             ...filtersObj,
             licenseFile: {
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -44,7 +44,7 @@ export const queryRouter = createTRPCRouter({
             date: true,
             licenseFile: {
               select: {
-                customer: {
+                student: {
                   select: {
                     id: true,
                     firstNameFr: true,
@@ -64,7 +64,7 @@ export const queryRouter = createTRPCRouter({
           where: {
             ...filtersObj,
             licenseFile: {
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -78,8 +78,8 @@ export const queryRouter = createTRPCRouter({
         type: exam.type,
         date: exam.date,
         student: {
-          id: exam.licenseFile.customer.id,
-          fullName: `${exam.licenseFile.customer.firstNameFr} ${exam.licenseFile.customer.lastNameFr}`,
+          id: exam.licenseFile.student.id,
+          fullName: `${exam.licenseFile.student.firstNameFr} ${exam.licenseFile.student.lastNameFr}`,
         },
       }));
 
@@ -115,7 +115,7 @@ export const queryRouter = createTRPCRouter({
             ...filtersObj,
             licenseFileId: input.licenseFileId,
             licenseFile: {
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -137,7 +137,7 @@ export const queryRouter = createTRPCRouter({
             ...filtersObj,
             licenseFileId: input.licenseFileId,
             licenseFile: {
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },

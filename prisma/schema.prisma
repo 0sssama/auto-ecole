@@ -28,10 +28,10 @@ model Admin {
     lessonsCreated      Lesson[]
 
     instructors Instructor[] // Instructors have accounts that need to be linked to an Admin account
-    customer    Customer[]
+    student     Student[]
 }
 
-model Customer {
+model Student {
     id          Int    @id @default(autoincrement())
     clerkUserId String @unique
     clerkOrgId  String
@@ -100,8 +100,8 @@ model LicenseFile {
     exams    Exam[]
     payments Payment[]
 
-    customer   Customer @relation(fields: [customerId], references: [id])
-    customerId Int
+    student   Student @relation(fields: [studentId], references: [id])
+    studentId Int
 
     instructor   Instructor @relation(fields: [instructorId], references: [id])
     instructorId Int
@@ -113,7 +113,7 @@ model LicenseFile {
     updatedAt DateTime @updatedAt
 
     @@index([instructorId])
-    @@index([customerId])
+    @@index([studentId])
     @@index([createdById])
 }
 
@@ -149,8 +149,8 @@ model Lesson {
     payment   Payment @relation(fields: [paymentId], references: [id])
     paymentId Int     @unique
 
-    customer   Customer @relation(fields: [customerId], references: [id])
-    customerId Int
+    student   Student @relation(fields: [studentId], references: [id])
+    studentId Int
 
     instructor   Instructor @relation(fields: [instructorId], references: [id])
     instructorId Int
@@ -163,7 +163,7 @@ model Lesson {
 
     @@index([createdById])
     @@index([paymentId])
-    @@index([customerId])
+    @@index([studentId])
     @@index([instructorId])
     @@index([licenseFileId])
 }

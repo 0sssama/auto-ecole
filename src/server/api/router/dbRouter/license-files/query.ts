@@ -33,7 +33,7 @@ export const queryRouter = createTRPCRouter({
           ctx.prisma.licenseFile.findMany({
             where: {
               ...filtersObj,
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -49,7 +49,7 @@ export const queryRouter = createTRPCRouter({
                   lastName: true,
                 },
               },
-              customer: {
+              student: {
                 select: {
                   id: true,
                   firstNameFr: true,
@@ -66,7 +66,7 @@ export const queryRouter = createTRPCRouter({
           ctx.prisma.licenseFile.count({
             where: {
               ...filtersObj,
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -82,8 +82,8 @@ export const queryRouter = createTRPCRouter({
             name: `${licenseFile.instructor.firstName} ${licenseFile.instructor.lastName}`,
           },
           student: {
-            id: licenseFile.customer.id,
-            name: `${licenseFile.customer.firstNameFr} ${licenseFile.customer.lastNameFr}`,
+            id: licenseFile.student.id,
+            name: `${licenseFile.student.firstNameFr} ${licenseFile.student.lastNameFr}`,
           },
           category: licenseFile.category,
           price: licenseFile.price,
@@ -121,8 +121,8 @@ export const queryRouter = createTRPCRouter({
           ctx.prisma.licenseFile.findMany({
             where: {
               ...filtersObj,
-              customerId: input.studentId,
-              customer: {
+              studentId: input.studentId,
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -149,8 +149,8 @@ export const queryRouter = createTRPCRouter({
           ctx.prisma.licenseFile.count({
             where: {
               ...filtersObj,
-              customerId: input.studentId,
-              customer: {
+              studentId: input.studentId,
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -201,7 +201,7 @@ export const queryRouter = createTRPCRouter({
             where: {
               ...filtersObj,
               instructorId: input.instructorId,
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -211,7 +211,7 @@ export const queryRouter = createTRPCRouter({
               createdAt: true,
               category: true,
               price: true,
-              customer: {
+              student: {
                 select: {
                   id: true,
                   firstNameFr: true,
@@ -229,7 +229,7 @@ export const queryRouter = createTRPCRouter({
             where: {
               ...filtersObj,
               instructorId: input.instructorId,
-              customer: {
+              student: {
                 clerkOrgId: ctx.orgId,
               },
             },
@@ -239,8 +239,8 @@ export const queryRouter = createTRPCRouter({
       const formattedInstructorLicenseFiles: InstructorLicenseFile[] =
         instructorLicenseFiles.map((licenseFile) => ({
           id: licenseFile.id,
-          studentId: licenseFile.customer.id,
-          studentName: `${licenseFile.customer.firstNameFr} ${licenseFile.customer.lastNameFr}`,
+          studentId: licenseFile.student.id,
+          studentName: `${licenseFile.student.firstNameFr} ${licenseFile.student.lastNameFr}`,
           category: licenseFile.category,
           price: licenseFile.price,
           status: licenseFile.status,

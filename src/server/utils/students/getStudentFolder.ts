@@ -15,7 +15,7 @@ export const getStudentFolder = async (
 
   if (!hasPermission) return null;
 
-  const student = await prisma.customer.findUnique({
+  const student = await prisma.student.findUnique({
     where: {
       id: studentId,
     },
