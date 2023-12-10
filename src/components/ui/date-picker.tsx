@@ -13,15 +13,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function DatePicker({
-  value,
-  onChange,
-  placeholder,
-}: {
+interface DatePickerProps {
   placeholder: string;
   value: Date | undefined;
   onChange: (date: Date | undefined) => void;
-}) {
+}
+
+export const DatePicker = ({
+  value,
+  onChange,
+  placeholder,
+}: DatePickerProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -51,4 +53,4 @@ export function DatePicker({
       </PopoverContent>
     </Popover>
   );
-}
+};

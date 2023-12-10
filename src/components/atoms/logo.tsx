@@ -42,13 +42,21 @@ const Logo: FC<LogoProps> = ({ size = "md", className }) => {
   const { width, height } = variants[size];
 
   return (
-    <Link href="/" className={className}>
+    <Link
+      href="/"
+      className={className}
+      style={{
+        display: "block",
+        width: `${width}px`,
+        height: `${height}px`,
+      }}
+    >
       <Image
+        priority
         src={theme === "dark" ? logoLight : logo}
         alt="Logo"
         width={width}
         height={height}
-        loading="lazy"
         decoding="async"
         className="transition-all"
       />

@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 "use client";
 
-import * as React from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/atoms";
 import {
   Command,
   CommandEmpty,
@@ -17,9 +20,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Spinner } from "../atoms";
 
-type ComboboxProps = {
+interface ComboboxProps {
   options: {
     value: string;
     label: string;
@@ -34,9 +36,9 @@ type ComboboxProps = {
   };
   isLoading?: boolean;
   loadingMessage?: string;
-};
+}
 
-export function Combobox({
+export const Combobox = ({
   options,
   value,
   onChange,
@@ -45,30 +47,59 @@ export function Combobox({
   search,
   isLoading,
   loadingMessage,
-}: ComboboxProps) {
-  const [open, setOpen] = React.useState(false);
-  const [valueOption, setValueOption] = React.useState<{
+}: ComboboxProps) => {
+  const [internalSearchQuery, setInternalSearchQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const [valueOption, setValueOption] = useState<{
     value: string;
     label: string;
   } | null>(null);
 
-  const getValue = React.useCallback(
-    (value: string | null) =>
-      options.find(
-        (option) => value && option.value.toUpperCase() === value.toUpperCase(),
-      ),
-    [options],
-  );
-
-  const isCurrentValue = React.useCallback(
+  const isCurrentValue = useCallback(
     (optionValue: string) =>
       value && value.toUpperCase() === optionValue.toUpperCase(),
     [value],
   );
 
-  React.useEffect(() => {
-    if (!open && search) search.setSearchQuery("");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  const searchedOptions = useMemo(() => {
+    if (search) return options; // if search is passed in props, it will be handled server-side
+
+    return options.filter((option) =>
+      option.label.toUpperCase().includes(internalSearchQuery.toUpperCase()),
+    );
+  }, [options, internalSearchQuery, search]);
+
+  const getValue = useCallback(
+    (value: string | null) =>
+      searchedOptions.find(
+        (option) => value && option.value.toUpperCase() === value.toUpperCase(),
+      ),
+    [searchedOptions],
+  );
+
+  const displayOptions = useMemo(() => {
+    console.log("-> running display options");
+    return [
+      ...(value && valueOption && !getValue(value) ? [valueOption] : []), // the selected option must always be displayed
+      ...searchedOptions,
+    ];
+  }, [valueOption, searchedOptions]);
+
+  useEffect(() => {
+    if (value) {
+      const option = getValue(value);
+      if (option) setValueOption(option);
+    } else {
+      setValueOption(null);
+    }
+  }, [value, getValue]);
+
+  useEffect(() => {
+    if (open) return;
+
+    if (search) search.setSearchQuery("");
+
+    setInternalSearchQuery("");
   }, [open]);
 
   return (
@@ -93,7 +124,10 @@ export function Combobox({
                   value: search.searchQuery,
                   onValueChange: (query) => search.setSearchQuery(query),
                 }
-              : {})}
+              : {
+                  value: internalSearchQuery,
+                  onValueChange: (query) => setInternalSearchQuery(query),
+                })}
           />
           <CommandEmpty className="!p-0 !m-0">
             {!isLoading && (
@@ -107,23 +141,16 @@ export function Combobox({
                 {loadingMessage}
               </div>
             ) : (
-              [
-                ...(value && valueOption && !getValue(value)
-                  ? [valueOption]
-                  : []),
-                ...options,
-              ].map((option) => (
+              displayOptions.map((option) => (
                 <CommandItem
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
-                    if (isCurrentValue(currentValue)) {
-                      onChange("0");
-                      setValueOption(null);
-                    } else {
+                    if (!isCurrentValue(currentValue)) {
                       onChange(currentValue.toUpperCase());
                       setValueOption(option);
                     }
+
                     setOpen(false);
                   }}
                 >
@@ -144,4 +171,4 @@ export function Combobox({
       </PopoverContent>
     </Popover>
   );
-}
+};

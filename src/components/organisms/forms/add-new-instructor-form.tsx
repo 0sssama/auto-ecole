@@ -61,8 +61,8 @@ const AddNewInstructorForm: FormComponentType<TFormValues> = ({
                 </FormLabel>
                 <FormControl>
                   <Input
-                    placeholder={f.placeholder}
                     {...field}
+                    placeholder={f.placeholder}
                     value={field.value as string}
                   />
                 </FormControl>

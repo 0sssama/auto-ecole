@@ -1,5 +1,6 @@
 "use client";
 
+import omit from "lodash/omit";
 import { useState } from "react";
 import { z } from "zod";
 import { useTranslations } from "next-intl";
@@ -103,18 +104,18 @@ const AddNewStudentForm: FormComponentType<TFormValues> = ({
                   <>
                     {field.name === "price" && (
                       <Input
-                        placeholder={f.placeholder}
                         {...field}
+                        placeholder={f.placeholder}
                         value={field.value as string}
                       />
                     )}
 
                     {field.name !== "price" && (
                       <Combobox
+                        {...omit(field, "ref")}
                         placeholder={f.placeholder}
                         emptyMessage={f.emptyMessage}
                         loadingMessage={f.loadingMessage}
-                        {...field}
                         value={field.value as string | null}
                         options={
                           {
