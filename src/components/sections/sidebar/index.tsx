@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useOrganization } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
@@ -11,8 +10,8 @@ import { useMedia } from "@/lib/hooks/useMedia";
 import { getLgMedia } from "@/lib/media";
 import { useMenu } from "@/lib/hooks/useMenu";
 import { cleanPathname } from "@/utils/cleanPathname";
+import { useSidebar } from "@/lib/hooks/useSidebar";
 
-import { getSidebarLinks } from "./utils";
 import type {
   SidebarComponentType,
   SidebarLinkComponentType,
@@ -22,15 +21,13 @@ import type {
 const Sidebar: SidebarComponentType = ({ className }) => {
   const t = useTranslations("Dashboard.Sidebar");
 
-  const { membership, isLoaded } = useOrganization();
+  const sidebarLinks = useSidebar(t);
 
   const { isOpen } = useMenu();
 
   const isDesktop = useMedia(getLgMedia());
 
-  const { [membership!.role]: sidebarLinks } = getSidebarLinks(t);
-
-  if ((!isOpen && !isDesktop) || !membership || !isLoaded) return null;
+  if ((!isOpen && !isDesktop) || sidebarLinks.length === 0) return null;
 
   return (
     <div

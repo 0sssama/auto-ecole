@@ -1,31 +1,17 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
-import { useOrganization, useOrganizationList, useUser } from "@clerk/nextjs";
+import type { ReactNode } from "react";
 
-import { DashPageError, DashPageLoading } from "@/components/pages";
 import { Header, Sidebar } from "@/components/sections";
+import { useSetActiveOrganization } from "@/lib/hooks/useSetActiveOrganization";
+import { DashPageError, DashPageLoading } from "@/components/pages";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const { user, isLoaded: isLoaded1, isSignedIn } = useUser();
-  const { setActive, isLoaded: isLoaded2 } = useOrganizationList();
-  const { organization } = useOrganization();
+  const { loading, noOrgFound } = useSetActiveOrganization();
 
-  const isLoaded = isLoaded1 && isLoaded2;
+  if (loading) return <DashPageLoading />;
 
-  useEffect(() => {
-    if (!isLoaded || !isSignedIn || !user || !setActive || organization) return;
-
-    const { organization: userOrg } = user.organizationMemberships[0] ?? {};
-
-    if (!userOrg) return;
-
-    setActive({ organization: userOrg.id });
-  }, [user, isSignedIn, setActive, isLoaded, organization]);
-
-  if (!isLoaded || !isSignedIn) return <DashPageLoading />;
-
-  if (!user || !organization) return <DashPageError />;
+  if (noOrgFound) return <DashPageError />;
 
   return (
     <div className="grid w-full h-full max-w-screen-xl min-h-screen mx-auto lg:grid-cols-5 bg-background">

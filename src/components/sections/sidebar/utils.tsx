@@ -23,7 +23,7 @@ const sidebarIconProps = {
 };
 
 export const getSidebarLinks = (
-  t: TranslationFunction,
+  t: TranslationFunction = () => "",
 ): {
   [_ in MembershipRole]: SidebarLinkGroupProps[];
 } => ({
