@@ -1,5 +1,6 @@
 "use client";
 
+import omit from "lodash/omit";
 import { z } from "zod";
 import { useTranslations } from "next-intl";
 
@@ -63,24 +64,24 @@ const AddNewLicenseFilePaymentForm: FormComponentType<TFormValues> = ({
                   <>
                     {field.name === "sum" && (
                       <Input
-                        placeholder={f.placeholder}
                         {...field}
+                        placeholder={f.placeholder}
                         value={field.value as string}
                       />
                     )}
 
                     {field.name === "comment" && (
                       <Textarea
-                        placeholder={f.placeholder}
                         {...field}
+                        placeholder={f.placeholder}
                         value={field.value as string}
                       />
                     )}
 
                     {field.name === "date" && (
                       <DatePicker
+                        {...omit(field, "ref")}
                         placeholder={f.placeholder}
-                        {...field}
                         value={field.value as Date}
                       />
                     )}

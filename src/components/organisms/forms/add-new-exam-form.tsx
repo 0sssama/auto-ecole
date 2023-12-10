@@ -1,6 +1,7 @@
 "use client";
 
 import { z } from "zod";
+import omit from "lodash/omit";
 import { useTranslations } from "next-intl";
 import { ExamStatus, ExamType } from "@prisma/client";
 
@@ -73,9 +74,9 @@ const AddNewInstructorForm: FormComponentType<TFormValues> = ({
                   <>
                     {field.name !== "date" && (
                       <Combobox
+                        {...omit(field, "ref")}
                         placeholder={f.placeholder}
                         emptyMessage={f.emptyMessage}
-                        {...field}
                         value={field.value as string | null}
                         options={
                           {
@@ -92,8 +93,8 @@ const AddNewInstructorForm: FormComponentType<TFormValues> = ({
 
                     {field.name === "date" && (
                       <DatePicker
+                        {...omit(field, "ref")}
                         placeholder={f.placeholder}
-                        {...field}
                         value={field.value as Date}
                       />
                     )}

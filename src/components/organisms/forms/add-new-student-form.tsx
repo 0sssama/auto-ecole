@@ -1,5 +1,6 @@
 "use client";
 
+import omit from "lodash/omit";
 import { z } from "zod";
 import { useTranslations } from "next-intl";
 
@@ -121,8 +122,8 @@ const AddNewStudentForm: FormComponentType<TFormValues> = ({
 
                     {field.name === "birthdate" && (
                       <DatePicker
+                        {...omit(field, "ref")}
                         placeholder={f.placeholder}
-                        {...field}
                         value={field.value as Date}
                       />
                     )}

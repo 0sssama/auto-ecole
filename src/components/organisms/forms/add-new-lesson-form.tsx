@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import omit from "lodash/omit";
 import { z } from "zod";
 import { useTranslations } from "next-intl";
 import { LessonStatus } from "@prisma/client";
@@ -112,8 +113,8 @@ const AddNewLessonForm: FormComponentType<TFormValues, TContext> = ({
                     <>
                       {field.name === "date" && (
                         <DatePicker
+                          {...omit(field, "ref")}
                           placeholder={f.placeholder}
-                          {...field}
                           value={field.value as Date}
                         />
                       )}
@@ -121,8 +122,8 @@ const AddNewLessonForm: FormComponentType<TFormValues, TContext> = ({
                       {(field.name === "price" ||
                         field.name === "duration") && (
                         <Input
-                          placeholder={f.placeholder}
                           {...field}
+                          placeholder={f.placeholder}
                           value={field.value as string}
                         />
                       )}
@@ -131,10 +132,10 @@ const AddNewLessonForm: FormComponentType<TFormValues, TContext> = ({
                         field.name === "studentId" ||
                         field.name === "status") && (
                         <Combobox
+                          {...omit(field, "ref")}
                           placeholder={f.placeholder}
                           emptyMessage={f.emptyMessage}
                           loadingMessage={f.loadingMessage}
-                          {...field}
                           value={field.value as string | null}
                           options={
                             {
