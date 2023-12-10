@@ -17,7 +17,7 @@ export const getExam = async (id: number): Promise<FetchedExam | null> => {
       date: true,
       licenseFile: {
         select: {
-          customer: {
+          student: {
             select: {
               clerkUserId: true,
             },
@@ -30,7 +30,7 @@ export const getExam = async (id: number): Promise<FetchedExam | null> => {
   if (!exam) return null;
 
   const student = await clerkClient.users.getUser(
-    exam.licenseFile.customer.clerkUserId,
+    exam.licenseFile.student.clerkUserId,
   );
 
   if (!student) return null;

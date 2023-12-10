@@ -13,7 +13,7 @@ export const checkAdminStudentHierarchy = async (studentId: number) => {
     clerkClient.organizations.getOrganizationMembershipList({
       organizationId: sesh.orgId,
     }),
-    prisma.customer.findUnique({
+    prisma.student.findUnique({
       where: {
         id: studentId,
       },

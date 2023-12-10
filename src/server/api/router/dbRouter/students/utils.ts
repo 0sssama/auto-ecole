@@ -5,8 +5,8 @@ import type { Student } from "@/components/sections/students/list-table/schema";
 
 const searchFilters = (
   search: TableFilters["get"]["search"],
-): Prisma.CustomerWhereInput[] => {
-  const searchableFields: (keyof Prisma.CustomerWhereInput)[] = [
+): Prisma.StudentWhereInput[] => {
+  const searchableFields: (keyof Prisma.StudentWhereInput)[] = [
     "firstNameAr",
     "firstNameFr",
     "lastNameAr",
@@ -27,8 +27,8 @@ const searchFilters = (
 
 export const getWhereObjFromFilters = (
   filters: TableFilters["get"],
-): Prisma.CustomerWhereInput => {
-  let output: Prisma.CustomerWhereInput["OR"] = [];
+): Prisma.StudentWhereInput => {
+  let output: Prisma.StudentWhereInput["OR"] = [];
 
   if (filters.search) output = [...output, ...searchFilters(filters.search)];
 

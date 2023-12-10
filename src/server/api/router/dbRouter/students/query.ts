@@ -31,7 +31,7 @@ export const queryRouter = createTRPCRouter({
           })
         : {};
 
-      const students = await ctx.prisma.customer.findMany({
+      const students = await ctx.prisma.student.findMany({
         where: {
           ...filtersObj,
           clerkOrgId: ctx.orgId,
@@ -72,7 +72,7 @@ export const queryRouter = createTRPCRouter({
       const filtersObj = getWhereObjFromFilters(input.filters);
 
       const [students, totalStudents] = await Promise.all([
-        ctx.prisma.customer.findMany({
+        ctx.prisma.student.findMany({
           where: {
             ...filtersObj,
             clerkOrgId: ctx.orgId,
@@ -95,7 +95,7 @@ export const queryRouter = createTRPCRouter({
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
         }),
-        ctx.prisma.customer.count({
+        ctx.prisma.student.count({
           where: {
             ...filtersObj,
             clerkOrgId: ctx.orgId,

@@ -77,13 +77,13 @@ export const Combobox = ({
     [searchedOptions],
   );
 
-  const displayOptions = useMemo(() => {
-    console.log("-> running display options");
-    return [
+  const displayOptions = useMemo(
+    () => [
       ...(value && valueOption && !getValue(value) ? [valueOption] : []), // the selected option must always be displayed
       ...searchedOptions,
-    ];
-  }, [valueOption, searchedOptions]);
+    ],
+    [valueOption, searchedOptions],
+  );
 
   useEffect(() => {
     if (value) {

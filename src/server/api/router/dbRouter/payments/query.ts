@@ -175,7 +175,7 @@ export const queryRouter = createTRPCRouter({
             AND: [
               {
                 licenseFile: {
-                  customer: {
+                  student: {
                     clerkOrgId: ctx.orgId,
                   },
                 },
@@ -184,12 +184,12 @@ export const queryRouter = createTRPCRouter({
                 OR: [
                   {
                     licenseFile: {
-                      customerId: input.studentId,
+                      studentId: input.studentId,
                     },
                   },
                   {
                     lesson: {
-                      customerId: input.studentId,
+                      studentId: input.studentId,
                     },
                   },
                   ...(filtersObj["OR"] ?? []),
@@ -219,7 +219,7 @@ export const queryRouter = createTRPCRouter({
             AND: [
               {
                 licenseFile: {
-                  customer: {
+                  student: {
                     clerkOrgId: ctx.orgId,
                   },
                 },
@@ -228,12 +228,12 @@ export const queryRouter = createTRPCRouter({
                 OR: [
                   {
                     licenseFile: {
-                      customerId: input.studentId,
+                      studentId: input.studentId,
                     },
                   },
                   {
                     lesson: {
-                      customerId: input.studentId,
+                      studentId: input.studentId,
                     },
                   },
                   ...(filtersObj["OR"] ?? []),

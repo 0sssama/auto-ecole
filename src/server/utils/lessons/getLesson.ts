@@ -31,7 +31,7 @@ export const getLesson = async (id: number): Promise<FetchedLesson | null> => {
           },
         },
       },
-      customer: {
+      student: {
         select: {
           id: true,
           lastNameFr: true,
@@ -45,7 +45,7 @@ export const getLesson = async (id: number): Promise<FetchedLesson | null> => {
   if (!lesson) return null;
 
   const [student, instructor] = await clerkClient.users.getUserList({
-    userId: [lesson.customer.clerkUserId, lesson.instructor.account.clerkId],
+    userId: [lesson.student.clerkUserId, lesson.instructor.account.clerkId],
   });
 
   if (!student || !instructor) return null;
@@ -58,8 +58,8 @@ export const getLesson = async (id: number): Promise<FetchedLesson | null> => {
       profilePictureUrl: instructor.hasImage ? instructor.imageUrl : "",
     },
     student: {
-      id: lesson.customer.id,
-      fullName: `${lesson.customer.firstNameFr} ${lesson.customer.lastNameFr}`,
+      id: lesson.student.id,
+      fullName: `${lesson.student.firstNameFr} ${lesson.student.lastNameFr}`,
       profilePictureUrl: student.hasImage ? student.imageUrl : "",
     },
     status: lesson.status,

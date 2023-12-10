@@ -10,7 +10,7 @@ export const seedStudents = async (
   prisma.$transaction(
     faker.helpers.multiple(
       () =>
-        prisma.customer.create({
+        prisma.student.create({
           data: {
             clerkOrgId,
 

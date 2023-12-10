@@ -18,7 +18,7 @@ export const getLicenseFile = async (
       price: true,
       createdAt: true,
 
-      customer: {
+      student: {
         select: {
           id: true,
           firstNameFr: true,
@@ -54,7 +54,7 @@ export const getLicenseFile = async (
 
   const [student, instructor, admin] = await clerkClient.users.getUserList({
     userId: [
-      licenseFile.customer.clerkUserId,
+      licenseFile.student.clerkUserId,
       licenseFile.instructor.account.clerkId,
       licenseFile.createdBy.clerkId,
     ],
@@ -66,8 +66,8 @@ export const getLicenseFile = async (
     id: licenseFile.id,
 
     student: {
-      id: licenseFile.customer.id,
-      fullName: `${licenseFile.customer.firstNameFr} ${licenseFile.customer.lastNameFr}`,
+      id: licenseFile.student.id,
+      fullName: `${licenseFile.student.firstNameFr} ${licenseFile.student.lastNameFr}`,
       profilePictureUrl: student.hasImage ? student.imageUrl : "",
     },
 
