@@ -215,6 +215,7 @@
         "LicenseFile": {
           "licenseFileStatus": "License File Status:",
           "Status": {
+            "UNDEPOSITED": "Undeposited",
             "ONGOING": "Ongoing",
             "REJECTED": "Rejected",
             "VALIDATED": "Validated"
@@ -243,6 +244,7 @@
         "StudentLicenseFiles": {
           "title": "License Files",
           "Status": {
+            "UNDEPOSITED": "Undeposited",
             "ONGOING": "Ongoing",
             "REJECTED": "Rejected",
             "VALIDATED": "Validated"
@@ -283,6 +285,7 @@
         "InstructorLicenseFiles": {
           "title": "License Files",
           "Status": {
+            "UNDEPOSITED": "Undeposited",
             "ONGOING": "Ongoing",
             "REJECTED": "Rejected",
             "VALIDATED": "Validated"
@@ -446,6 +449,7 @@
             "Status": {
               "status": "Status:",
               "empty": "Status not found",
+              "UNDEPOSITED": "Undeposited",
               "ONGOING": "Ongoing",
               "REJECTED": "Rejected",
               "VALIDATED": "Validated"
@@ -507,6 +511,7 @@
         "ListTable": {
           "no-data": "No results found",
           "Status": {
+            "UNDEPOSITED": "Undeposited",
             "ONGOING": "Ongoing",
             "REJECTED": "Rejected",
             "VALIDATED": "Validated"

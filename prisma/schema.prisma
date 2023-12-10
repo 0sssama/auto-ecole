@@ -92,7 +92,7 @@ model Instructor {
 model LicenseFile {
     id Int @id @default(autoincrement())
 
-    status   LicenseFileStatus @default(ONGOING)
+    status   LicenseFileStatus @default(UNDEPOSITED)
     category Category          @default(B)
     price    Int
 
@@ -200,6 +200,7 @@ enum AdminRank {
 }
 
 enum LicenseFileStatus {
+    UNDEPOSITED
     ONGOING
     REJECTED
     VALIDATED

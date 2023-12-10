@@ -12,9 +12,6 @@ export const ourFileRouter = {
       // This code runs on your server before upload
       const authObj = auth();
 
-      console.log("got auth object:");
-      console.log(authObj);
-
       // If you throw, the user will not be able to upload
       if (!authObj || !authObj.userId) throw new Error("Unauthorized");
 
@@ -34,9 +31,6 @@ export const ourFileRouter = {
   pdfUploader: f({ "application/pdf": { maxFileSize: "4MB" } })
     .middleware(async () => {
       const authObj = auth();
-
-      console.log("got auth object:");
-      console.log(authObj);
 
       if (!authObj || !authObj.userId) throw new Error("Unauthorized");
 

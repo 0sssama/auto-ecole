@@ -13,6 +13,8 @@ export const getLicenseFileStatusChipColor = (
       return "danger";
     case LicenseFileStatus.VALIDATED:
       return "success";
+    case LicenseFileStatus.UNDEPOSITED:
+      return "warning";
     default:
       return "primary";
   }

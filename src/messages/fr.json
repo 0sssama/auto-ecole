@@ -215,6 +215,7 @@
         "LicenseFile": {
           "licenseFileStatus": "Statut du dossier :",
           "Status": {
+            "UNDEPOSITED": "Non déposé",
             "ONGOING": "En cours",
             "REJECTED": "Rejeté",
             "VALIDATED": "Validé"
@@ -243,6 +244,7 @@
         "StudentLicenseFiles": {
           "title": "Dossiers de permis",
           "Status": {
+            "UNDEPOSITED": "Non déposé",
             "ONGOING": "En cours",
             "REJECTED": "Rejeté",
             "VALIDATED": "Validé"
@@ -283,6 +285,7 @@
         "InstructorLicenseFiles": {
           "title": "Dossiers de permis",
           "Status": {
+            "UNDEPOSITED": "Non déposé",
             "ONGOING": "En cours",
             "REJECTED": "Rejeté",
             "VALIDATED": "Validé"
@@ -445,6 +448,7 @@
             "Status": {
               "status": "Statut :",
               "empty": "Statut non trouvé",
+              "UNDEPOSITED": "Non déposé",
               "ONGOING": "En cours",
               "REJECTED": "Rejeté",
               "VALIDATED": "Validé"
@@ -506,6 +510,7 @@
         "ListTable": {
           "no-data": "Nous avons rien trouvé ! :/",
           "Status": {
+            "UNDEPOSITED": "Non déposé",
             "ONGOING": "En cours",
             "REJECTED": "Rejeté",
             "VALIDATED": "Validé"

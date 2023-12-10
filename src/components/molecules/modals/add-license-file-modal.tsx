@@ -36,7 +36,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
       studentId: "0",
       instructorId: "0",
       price: "3200",
-      status: LicenseFileStatus.ONGOING,
+      status: LicenseFileStatus.UNDEPOSITED,
       category: Category.B,
     },
   });
@@ -82,9 +82,9 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
         </ModalHeader>
         <ModalBody>
           {error && (
-            <div className="w-full px-2 py-4 text-center bg-danger-50 mb-4 rounded">
+            <div className="w-full px-2 py-4 mb-4 text-center rounded bg-danger-50">
               <p className="text-sm font-bold text-center text-danger">
-                {error ? t("no-user-instructor") : t("error")}
+                {t("no-user-instructor")}
               </p>
             </div>
           )}
