@@ -7,7 +7,6 @@ import { useOrganization } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-import { useScroll } from "@/lib/hooks/useScroll";
 import { useMedia } from "@/lib/hooks/useMedia";
 import { getLgMedia } from "@/lib/media";
 import { useMenu } from "@/lib/hooks/useMenu";
@@ -29,8 +28,6 @@ const Sidebar: SidebarComponentType = ({ className }) => {
 
   const isDesktop = useMedia(getLgMedia());
 
-  const { scrolled } = useScroll({ threshold: 50 });
-
   const { [membership!.role]: sidebarLinks } = getSidebarLinks(t);
 
   if ((!isOpen && !isDesktop) || !membership || !isLoaded) return null;
@@ -44,8 +41,7 @@ const Sidebar: SidebarComponentType = ({ className }) => {
     >
       <div
         className={cn(
-          "sticky top-6 pt-[var(--header-height)] transition-all lg:mt-10",
-          scrolled && "top-0",
+          "sticky top-4 pt-[var(--header-height)] transition-all lg:mt-10",
           !isDesktop && isOpen && "fixed w-full h-full overflow-scroll pb-20",
         )}
       >

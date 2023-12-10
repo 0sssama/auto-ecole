@@ -5,7 +5,7 @@ import { useOrganization } from "@clerk/nextjs";
 
 import { getSidebarLinks } from "@/components/sections/sidebar/utils";
 
-export default function Home() {
+export default function DashboardHome() {
   const { membership } = useOrganization();
 
   const { [membership!.role]: sidebarLinks } = getSidebarLinks(() => "");
