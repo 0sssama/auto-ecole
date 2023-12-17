@@ -30,9 +30,7 @@ export const useSetActiveOrganization = () => {
       return;
     }
 
-    console.log("before");
     setActive?.({ organization: userOrg.id });
-    console.log("after");
     setLoading(false);
     setNoOrgFound(false);
   }, [isLoaded1, isLoaded2, isLoaded3]);
