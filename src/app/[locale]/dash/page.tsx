@@ -1,12 +1,18 @@
-import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useOrganization } from "@clerk/nextjs";
 
 import { getSidebarLinks } from "@/components/sections/sidebar/utils";
 
-export default async function DashboardHome() {
-  const { orgRole } = auth();
+export default function DashboardHome() {
+  const { membership } = useOrganization();
+  const { push } = useRouter();
 
-  if (!orgRole) return redirect("/");
+  useEffect(() => {
+    if (!membership) return;
 
-  redirect(getSidebarLinks()?.[orgRole]?.[0]?.links?.[0]?.href);
+    push(getSidebarLinks()?.[membership.role]?.[0]?.links?.[0]?.href);
+  }, [membership, push]);
 }
