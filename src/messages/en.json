@@ -640,8 +640,8 @@
           }
         },
         "NotFound": {
-          "title": "No Car Found",
-          "subtitle": "The car you are looking for does not exist."
+          "title": "No Vehicle Found",
+          "subtitle": "The vehicle you are looking for does not exist."
         }
       }
     },
