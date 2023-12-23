@@ -46,7 +46,7 @@
       "financial-overview": "Finance",
 
       "entities": "Entités",
-      "cars": "Voitures",
+      "vehicles": "Véhicules",
 
       "account": "Compte",
       "folder": "Mon Dossier",
@@ -185,6 +185,12 @@
           "comment": "Comment.",
           "admin-name": "Accordé à.",
           "date": "Date"
+        },
+        "Vehicles": {
+          "id": "ID",
+          "name": "Nom",
+          "type": "Type",
+          "instructor": "Moniteur"
         }
       }
     },
@@ -611,9 +617,29 @@
       }
     },
     "Entities": {
-      "Cars": {
+      "Vehicles": {
         "Header": {
-          "title": "Voitures"
+          "title": "Véhicules",
+          "button": "Nouveau véhicule"
+        },
+        "ListTable": {
+          "Type": {
+            "CAR": "Voiture",
+            "MOTORCYCLE": "Moto",
+            "TRAILER": "Remorque",
+            "TRUCK": "Camion"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier",
+            "activate": "Activer",
+            "deactivate": "Désactiver"
+          }
+        },
+        "NotFound": {
+          "title": "Aucun véhicule trouvé",
+          "subtitle": "Aucun véhicule n'a été trouvé avec l'ID spécifié."
         }
       }
     },

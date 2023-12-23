@@ -62,7 +62,7 @@ const ActionsColumn: ActionsColumnComponentType<Exam> = ({ row }) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className={cn(
-            "text-sm font-medium cursor-pointer text-danger/90 bg-danger/10 hover:!text-danger/100 hover:!bg-danger/20",
+            "text-sm font-medium cursor-pointer text-destructive/90 bg-destructive/10 hover:!text-destructive/100 hover:!bg-destructive/20",
             deleteExamModal.isOpen && "opacity-50 !cursor-not-allowed",
           )}
           onClick={deleteExamModal.open}

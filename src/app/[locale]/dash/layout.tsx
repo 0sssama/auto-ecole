@@ -10,8 +10,6 @@ export default async function DashboardLayout({
 }) {
   const isAuthenticated = await enforceAuthenticated();
 
-  console.log("isAuthenticated", isAuthenticated);
-
   /* Clerk will handle redirection in the case of an unauthenticated user */
   if (isAuthenticated) return <DashPageUILayout>{children}</DashPageUILayout>;
 }

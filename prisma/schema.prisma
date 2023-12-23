@@ -11,6 +11,24 @@ datasource db {
     relationMode = "prisma"
 }
 
+// model School {
+//     id Int @id @default(autoincrement())
+
+//     name String
+
+//     admins      Admin[]
+//     students    Student[]
+//     instructors Instructor[]
+//	   vehicles    Vehicle[]
+
+//     cashFund    CashFund
+
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @updatedAt
+
+//	   createdAt DateTime @default(now())
+// }
+
 model Admin {
     id Int @id @default(autoincrement())
 
@@ -24,11 +42,11 @@ model Admin {
     updatedAt DateTime @updatedAt
 
     licenseFilesCreated LicenseFile[]
+    instructorsCreated  Instructor[]
     paymentsCreated     Payment[]
+    expensesCreated     Expense[]
+    studentsCreated     Student[]
     lessonsCreated      Lesson[]
-
-    instructors Instructor[] // Instructors have accounts that need to be linked to an Admin account
-    student     Student[]
 }
 
 model Student {
@@ -79,6 +97,8 @@ model Instructor {
 
     account   Admin @relation(fields: [accountId], references: [id])
     accountId Int
+
+    vehicles Vehicle[]
 
     licenseFiles LicenseFile[]
     lessons      Lesson[]
@@ -175,6 +195,9 @@ model Payment {
     sum     Int
     comment String
 
+    // cashFund   CashFund? @relation(fields: [cashFundId], references: [id])
+    // cashFundId Int?
+
     licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
 
@@ -189,8 +212,67 @@ model Payment {
 
     @@index([licenseFileId])
     @@index([lessonId])
+    // @@index([cashFundId])
     @@index([createdById])
 }
+
+model Expense {
+    id Int @id @default(autoincrement())
+
+    date    DateTime @default(now())
+    sum     Int
+    comment String
+
+    vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+    vehicleId Int?
+
+    // cashFund   CashFund? @relation(fields: [cashFundId], references: [id])
+    // cashFundId Int?
+
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    // @@index([cashFundId])
+
+    @@index([vehicleId])
+    @@index([createdById])
+}
+
+model Vehicle {
+    id Int @id @default(autoincrement())
+
+    name   String      @unique
+    image  String      @default("")
+    brand  String
+    type   VehicleType
+    active Boolean     @default(true)
+
+    instructor   Instructor @relation(fields: [instructorId], references: [id])
+    instructorId Int        @unique
+
+    expenses Expense[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([instructorId])
+}
+
+// model CashFund {
+//     id Int @id @default(autoincrement())
+
+//     clerkOrgId String @unique
+
+//     payments Payment[]
+//     expenses Expense[]
+
+//     sum Int @default(0)
+
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @updatedAt
+// }
 
 enum AdminRank {
     SUPER_ADMIN
@@ -237,4 +319,11 @@ enum Category {
     B
     C
     D
+}
+
+enum VehicleType {
+    CAR
+    MOTORCYCLE
+    TRUCK // Camion
+    TRAILER // Remorque
 }

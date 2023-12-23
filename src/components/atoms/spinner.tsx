@@ -40,7 +40,7 @@ const colors = {
   primary: "border-primary",
   secondary: "border-secondary",
   success: "border-success",
-  danger: "border-danger",
+  destructive: "border-destructive",
   warning: "border-warning",
   info: "border-info",
   light: "border-light",

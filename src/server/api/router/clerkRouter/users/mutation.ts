@@ -19,11 +19,6 @@ export const mutationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const user = await clerkClient.users.createUser({
         firstName: input.firstName,
         lastName: input.lastName,
@@ -68,11 +63,6 @@ export const mutationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const user = await clerkClient.users.createUser({
         firstName: input.firstName,
         lastName: input.lastName,
@@ -114,12 +104,7 @@ export const mutationRouter = createTRPCRouter({
         clerkUserId: z.string(),
       }),
     )
-    .mutation(async ({ ctx, input }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
+    .mutation(async ({ input }) => {
       await clerkClient.users.deleteUser(input.clerkUserId);
 
       return {

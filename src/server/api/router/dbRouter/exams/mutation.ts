@@ -8,9 +8,6 @@ export const mutationRouter = createTRPCRouter({
   addToLicenseFile: orgAdminOnlyPrecedure
     .input(examBackendInputSchema)
     .mutation(async ({ ctx, input }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({ code: "UNAUTHORIZED" });
-
       const newExam = await ctx.prisma.exam.create({
         data: {
           type: input.type,
@@ -39,9 +36,6 @@ export const mutationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({ code: "UNAUTHORIZED" });
-
       const deletedExam = await ctx.prisma.exam.delete({
         where: {
           id: input.examId,

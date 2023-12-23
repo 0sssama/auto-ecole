@@ -108,40 +108,44 @@ const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
 /**
  * Organization admin only procedure
  */
-const enforceOrgAdminOnly = t.middleware(async ({ ctx, next }) => {
-  const { userId, orgId } = ctx;
+const enforceOrgAdminOnly = enforceUserAuthentication.unstable_pipe(
+  async ({ ctx, next }) => {
+    const { userId, orgId } = ctx;
 
-  const isAdmin = await userIsAdmin(userId!, orgId!);
+    const isAdmin = await userIsAdmin(userId, orgId);
 
-  if (!isAdmin)
-    throw new TRPCError({ code: "UNAUTHORIZED", message: "Not an admin" });
+    if (!isAdmin)
+      throw new TRPCError({ code: "UNAUTHORIZED", message: "Not an admin" });
 
-  return next({
-    ctx: {
-      ...ctx,
-      isAdmin,
-    },
-  });
-});
+    return next({
+      ctx: { ...ctx, isAdmin },
+    });
+  },
+);
 
 /**
  * Organization super admin only procedure
  */
-const enforceOrgSuperAdminOnly = t.middleware(async ({ ctx, next }) => {
-  const { userId, orgId } = ctx;
+const enforceOrgSuperAdminOnly = enforceOrgAdminOnly.unstable_pipe(
+  async ({ ctx, next }) => {
+    const { userId, orgId } = ctx;
 
-  const isSuperAdmin = await userIsSuperAdmin(userId!, orgId!);
+    const isSuperAdmin = await userIsSuperAdmin(userId, orgId);
 
-  if (!isSuperAdmin)
-    throw new TRPCError({ code: "UNAUTHORIZED", message: "Not a super admin" });
+    if (!isSuperAdmin)
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "Not a super admin",
+      });
 
-  return next({
-    ctx: {
-      ...ctx,
-      isSuperAdmin,
-    },
-  });
-});
+    return next({
+      ctx: {
+        ...ctx,
+        isSuperAdmin,
+      },
+    });
+  },
+);
 
 export const privateProcedure = t.procedure.use(enforceUserAuthentication);
 export const orgAdminOnlyPrecedure = privateProcedure.use(enforceOrgAdminOnly);

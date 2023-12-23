@@ -46,7 +46,7 @@
       "financial-overview": "Financial Overview",
 
       "entities": "Entities",
-      "cars": "Vehicles",
+      "vehicles": "Vehicles",
 
       "account": "Account",
       "folder": "My Folder",
@@ -185,6 +185,12 @@
           "comment": "Comment",
           "admin-name": "Taken by",
           "date": "Date"
+        },
+        "Vehicles": {
+          "id": "ID",
+          "name": "Name",
+          "type": "Type",
+          "instructor": "Instructor"
         }
       }
     },
@@ -613,9 +619,29 @@
       }
     },
     "Entities": {
-      "Cars": {
+      "Vehicles": {
         "Header": {
-          "title": "Vehicles"
+          "title": "Vehicles",
+          "button": "New vehicle"
+        },
+        "ListTable": {
+          "Type": {
+            "CAR": "Car",
+            "MOTORCYCLE": "Motorcycle",
+            "TRUCK": "Truck",
+            "TRAILER": "Trailer"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit",
+            "activate": "Activate",
+            "deactivate": "Deactivate"
+          }
+        },
+        "NotFound": {
+          "title": "No Car Found",
+          "subtitle": "The car you are looking for does not exist."
         }
       }
     },

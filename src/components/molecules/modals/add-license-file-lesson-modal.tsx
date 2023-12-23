@@ -88,8 +88,8 @@ const AddLessonModal: ModalComponentType<{
         </ModalHeader>
         <ModalBody>
           {error && (
-            <div className="w-full px-2 py-4 mb-4 text-center rounded bg-danger-50">
-              <p className="text-sm font-bold text-center text-danger">
+            <div className="w-full px-2 py-4 mb-4 text-center rounded bg-destructive-50">
+              <p className="text-sm font-bold text-center text-destructive">
                 {t("no-user-instructor")}
               </p>
             </div>
