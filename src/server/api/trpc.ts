@@ -8,13 +8,14 @@
  */
 import superjson from "superjson";
 import { getAuth } from "@clerk/nextjs/server";
-import { clerkClient } from "@clerk/nextjs";
 import { TRPCError, initTRPC } from "@trpc/server";
 import { ZodError } from "zod";
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import type { RequestLike } from "@clerk/nextjs/dist/types/server/types";
 
 import { prisma } from "@/server/db";
+import { userIsSuperAdmin } from "@/server/utils/auth/userIsSuperAdmin";
+import { userIsAdmin } from "@/server/utils/auth/userIsAdmin";
 
 /**
  * 1. CONTEXT
@@ -110,28 +111,40 @@ const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
 const enforceOrgAdminOnly = t.middleware(async ({ ctx, next }) => {
   const { userId, orgId } = ctx;
 
-  const memberships =
-    await clerkClient.organizations.getOrganizationMembershipList({
-      organizationId: orgId!, // we know this is defined because of previous procedure
-    });
+  const isAdmin = await userIsAdmin(userId!, orgId!);
 
-  const membership = memberships.find(
-    (m) => m.publicUserData?.userId === userId,
-  );
-
-  if (!membership || membership.role !== "admin")
+  if (!isAdmin)
     throw new TRPCError({ code: "UNAUTHORIZED", message: "Not an admin" });
 
   return next({
     ctx: {
-      userId: ctx.userId,
-      orgId: ctx.orgId,
-      membership,
+      ...ctx,
+      isAdmin,
+    },
+  });
+});
+
+/**
+ * Organization super admin only procedure
+ */
+const enforceOrgSuperAdminOnly = t.middleware(async ({ ctx, next }) => {
+  const { userId, orgId } = ctx;
+
+  const isSuperAdmin = await userIsSuperAdmin(userId!, orgId!);
+
+  if (!isSuperAdmin)
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Not a super admin" });
+
+  return next({
+    ctx: {
+      ...ctx,
+      isSuperAdmin,
     },
   });
 });
 
 export const privateProcedure = t.procedure.use(enforceUserAuthentication);
 export const orgAdminOnlyPrecedure = privateProcedure.use(enforceOrgAdminOnly);
-//   export const orgSuperAdminOnlyPrecedure =
-//   orgMembersProcedure.use(enforceOrgSuperAdminOnly);
+export const orgSuperAdminOnlyPrecedure = orgAdminOnlyPrecedure.use(
+  enforceOrgSuperAdminOnly,
+);

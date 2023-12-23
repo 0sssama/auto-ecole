@@ -5,6 +5,7 @@ import { licenseFilesRouter } from "./license-files";
 import { lessonsRouter } from "./lessons";
 import { paymentsRouter } from "./payments";
 import { examsRouter } from "./exams";
+import { adminsRouter } from "./admins";
 
 export const dbRouter = createTRPCRouter({
   students: studentsRouter,
@@ -13,4 +14,5 @@ export const dbRouter = createTRPCRouter({
   lessons: lessonsRouter,
   payments: paymentsRouter,
   exams: examsRouter,
+  admins: adminsRouter,
 });

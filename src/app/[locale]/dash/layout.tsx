@@ -1,25 +1,17 @@
-"use client";
-
 import type { ReactNode } from "react";
 
-import { Header, Sidebar } from "@/components/sections";
-import { useSetActiveOrganization } from "@/lib/hooks/useSetActiveOrganization";
-import { DashPageError, DashPageLoading } from "@/components/pages";
+import { DashPageUILayout } from "@/components/pages";
+import { enforceAuthenticated } from "@/server/utils/auth/enforceAuthenticated";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const { loading, noOrgFound } = useSetActiveOrganization();
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const isAuthenticated = await enforceAuthenticated();
 
-  if (loading) return <DashPageLoading />;
+  console.log("isAuthenticated", isAuthenticated);
 
-  if (noOrgFound) return <DashPageError />;
-
-  return (
-    <div className="grid w-full h-full max-w-screen-xl min-h-screen mx-auto lg:grid-cols-5 bg-background">
-      <Header />
-      <Sidebar />
-      <div className="w-full h-full col-span-3 p-6 pt-10 lg:col-span-4 lg:border-l mt-[var(--header-height)] bg-background">
-        {children}
-      </div>
-    </div>
-  );
+  /* Clerk will handle redirection in the case of an unauthenticated user */
+  if (isAuthenticated) return <DashPageUILayout>{children}</DashPageUILayout>;
 }

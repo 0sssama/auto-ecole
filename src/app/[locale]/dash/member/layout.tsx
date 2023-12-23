@@ -1,24 +1,16 @@
-"use client";
+import type { ReactNode } from "react";
+import { notFound } from "next/navigation";
 
-import { useEffect, type ReactNode } from "react";
-import { useRouter } from "next/navigation";
-import { useOrganization } from "@clerk/nextjs";
+import { enforceAuthenticated } from "@/server/utils/auth/enforceAuthenticated";
 
-export default function MemberProtectedLayout({
+export default async function MemberProtectedLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const { membership } = useOrganization();
-  const { push } = useRouter();
+  const isAuthenticated = await enforceAuthenticated();
 
-  useEffect(() => {
-    if (
-      !membership ||
-      (membership.role !== "admin" && membership.role !== "basic_member")
-    )
-      push("/dash");
-  }, [membership, push]);
+  if (!isAuthenticated) notFound();
 
   return <>{children}</>;
 }
