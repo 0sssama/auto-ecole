@@ -1,5 +1,12 @@
 "use client";
 
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { toast } from "sonner";
+import { useTranslations } from "next-intl";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { VehicleType } from "@prisma/client";
+
 import {
   Dialog,
   DialogContent,
@@ -8,45 +15,38 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { toast } from "sonner";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Button } from "@/components/ui/button";
-import { AddNewLicenseFilePaymentForm } from "@/components/organisms";
 import { Spinner } from "@/components/atoms";
+import { AddNewVehicleForm } from "@/components/organisms";
 import { api } from "@/utils/api";
 
-import { licenseFilePaymentFormSchema } from "@/schemas/license-file-payment-form-schema";
+import { vehicleFormSchema } from "@/schemas/vehicle-form-schema";
 import type { ModalComponentType } from "./types";
 
-const AddLicenseFilePaymentModal: ModalComponentType<{
-  licenseFileId: number;
-}> = ({ isOpen, close, context: { licenseFileId } }) => {
-  const t = useTranslations("Dashboard.Modals.AddLicenseFilePayment");
+const AddVehicleModal: ModalComponentType = ({ isOpen, close }) => {
+  const t = useTranslations("Dashboard.Modals.AddVehicle");
 
   const closeModal = () => {
     form.reset();
     close();
   };
 
-  const form = useForm<z.infer<typeof licenseFilePaymentFormSchema>>({
-    resolver: zodResolver(licenseFilePaymentFormSchema),
+  const form = useForm<z.infer<typeof vehicleFormSchema>>({
+    resolver: zodResolver(vehicleFormSchema),
     defaultValues: {
-      licenseFileId,
-      sum: "0",
-      comment: "",
-      date: new Date(),
+      name: "",
+      brand: "",
+      image: "",
+      instructorId: "0",
+      type: VehicleType.CAR,
     },
   });
 
   const {
-    mutate: addPayment,
+    mutate: addVehicle,
     isLoading,
     error,
-  } = api.db.payments.mutation.addToLicenseFile.useMutation({
+  } = api.db.vehicles.mutation.create.useMutation({
     onSuccess: () => {
       //   void ctx.users.getPage.invalidate();
       toast.success(t("success"));
@@ -58,10 +58,10 @@ const AddLicenseFilePaymentModal: ModalComponentType<{
     },
   });
 
-  const onSubmit = (values: z.infer<typeof licenseFilePaymentFormSchema>) =>
-    addPayment({
+  const onSubmit = (values: z.infer<typeof vehicleFormSchema>) =>
+    addVehicle({
       ...values,
-      sum: Number(values.sum),
+      instructorId: Number(values.instructorId),
     });
 
   if (!isOpen) return null;
@@ -71,7 +71,7 @@ const AddLicenseFilePaymentModal: ModalComponentType<{
       open={isOpen}
       defaultOpen={isOpen}
       modal
-      onOpenChange={(isOpen) => !isOpen && closeModal()}
+      onOpenChange={(isOpen) => !isOpen && close()}
     >
       <DialogContent className="flex flex-col items-center w-full text-center">
         <DialogHeader>
@@ -90,14 +90,14 @@ const AddLicenseFilePaymentModal: ModalComponentType<{
               </p>
             </div>
           )}
-          <AddNewLicenseFilePaymentForm
+          <AddNewVehicleForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid w-full grid-cols-1 gap-y-2 gap-x-6"
+            className="grid grid-cols-1 gap-2"
           />
         </div>
         <DialogFooter className="flex items-center justify-end w-full gap-2 mt-4">
-          <Button variant="outline" onClick={closeModal} className="w-full">
+          <Button variant="ghost" onClick={closeModal} className="w-full">
             {t("button-cancel")}
           </Button>
           <Button
@@ -118,4 +118,4 @@ const AddLicenseFilePaymentModal: ModalComponentType<{
   );
 };
 
-export default AddLicenseFilePaymentModal;
+export default AddVehicleModal;

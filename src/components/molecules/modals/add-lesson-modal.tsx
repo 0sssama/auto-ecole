@@ -88,7 +88,7 @@ const AddLessonModal: ModalComponentType = ({ isOpen, close }) => {
         </DialogHeader>
         <div className="w-full max-h-[40vh] max-lg:overflow-auto lg:max-h-full">
           {error && (
-            <div className="w-full px-2 py-4 mb-4 text-center rounded bg-destructive-50">
+            <div className="w-full px-2 py-4 mb-4 text-center rounded bg-destructive/10">
               <p className="text-sm font-bold text-center text-destructive">
                 {t("no-user-instructor")}
               </p>

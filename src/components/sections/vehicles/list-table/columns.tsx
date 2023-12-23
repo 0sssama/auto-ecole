@@ -16,7 +16,11 @@ export const columns: ColumnDef<Vehicle>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Vehicles.id" />
     ),
-    cell: ({ row }) => <>{row.getValue("id")}</>,
+    cell: ({ row }) => (
+      <Link href={`/dash/admin/vehicles?vehicleId=${row.getValue("id")}`}>
+        {row.getValue("id")}
+      </Link>
+    ),
     enableSorting: false,
     enableHiding: false,
   },
@@ -35,7 +39,9 @@ export const columns: ColumnDef<Vehicle>[] = [
         >
           <Avatar className="h-9 w-9">
             <AvatarImage src={vehicle.image} alt={vehicle.name} />
-            <AvatarFallback>{vehicle.name}</AvatarFallback>
+            <AvatarFallback>
+              {vehicle.name.slice(0, 2).toUpperCase()}
+            </AvatarFallback>
           </Avatar>
           <div className="ml-4 space-y-1">
             <p className="text-sm font-medium leading-none">{vehicle.name}</p>

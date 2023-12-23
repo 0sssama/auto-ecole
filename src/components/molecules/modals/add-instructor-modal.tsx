@@ -107,7 +107,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
         </ModalHeader>
         <ModalBody>
           {(dbOperationError || clerkOperationError) && (
-            <div className="w-full px-2 py-4 text-center bg-destructive-50 mb-4 rounded">
+            <div className="w-full px-2 py-4 text-center bg-destructive/10 mb-4 rounded">
               <p className="text-sm font-bold text-center text-destructive">
                 {clerkOperationError ? t("user-exists") : t("error")}
               </p>

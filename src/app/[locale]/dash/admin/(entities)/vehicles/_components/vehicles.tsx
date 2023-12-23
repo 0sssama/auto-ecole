@@ -8,6 +8,7 @@ import {
 } from "@/components/molecules";
 import { useModal } from "@/lib/hooks/useModal";
 import { VehiclesListTable } from "@/components/sections/vehicles";
+import { AddVehicleModal } from "@/components/molecules";
 
 export default function VehiclesPage() {
   const t = useTranslations("Dashboard.Entities.Vehicles.Header");
@@ -16,10 +17,10 @@ export default function VehiclesPage() {
   return (
     <main>
       <PageHeader openModal={addVehicleModal.open} t={t} />
-      {/* <AddVehicleModal
+      <AddVehicleModal
         isOpen={addVehicleModal.isOpen}
         close={addVehicleModal.close}
-      /> */}
+      />
       <div className="w-full">
         <VehiclesListTable />
       </div>

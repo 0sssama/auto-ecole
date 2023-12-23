@@ -46,6 +46,7 @@ model Admin {
     paymentsCreated     Payment[]
     expensesCreated     Expense[]
     studentsCreated     Student[]
+    vehiclesCreated     Vehicle[]
     lessonsCreated      Lesson[]
 }
 
@@ -252,12 +253,16 @@ model Vehicle {
     instructor   Instructor @relation(fields: [instructorId], references: [id])
     instructorId Int        @unique
 
+    createdBy   Admin @relation(fields: [createdById], references: [id])
+    createdById Int
+
     expenses Expense[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@index([instructorId])
+    @@index([createdById])
 }
 
 // model CashFund {
