@@ -1,12 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 
-import { seedSuperAdmin } from "./seed/seedSuperAdmin";
+import { seedSuperAdmin, seedSecretary } from "./seed/seedSuperAdmin";
 import { seedStudents } from "./seed/seedStudents";
 import { seedInstructors } from "./seed/seedInstructors";
 import { seedLicenseFiles } from "./seed/seedLicenseFiles";
 
 export const clerkOrgId = "org_2Vr89LWYt1FRrhR7ALcBq5HqYhC";
 export const superAdminClerkId = "user_2YBRtRz9u0fyELr5fus2ty0aOeo";
+export const secretaryClerkId = "user_2ZMBck8CD5AsqoewQZoLCbwFhU7";
 
 const twirlTimer = () => {
   const P = ["\\", "|", "/", "-"];
@@ -27,6 +28,10 @@ async function main() {
     console.time("Seeding SuperAdmin");
     const superAdmin = await seedSuperAdmin(prisma);
     console.timeEnd("Seeding SuperAdmin");
+
+    console.time("Seeding Secretary");
+    await seedSecretary(prisma);
+    console.timeEnd("Seeding Secretary");
 
     console.time("Seeding Students");
     const students = await seedStudents(prisma, superAdmin.id);

@@ -5,6 +5,9 @@
   },
   "Dashboard": {
     "redirecting": "Redirection...",
+    "404": {
+      "page-not-found": "Page non trouvée"
+    },
     "Header": {
       "help": "Besoin d'aide?",
       "UserNav": {
@@ -715,7 +718,7 @@
     },
     "Error": {
       "sorry": "Oups, désolé !",
-      "description": "Vous n'êtes pas connecté, ou vous ne faites partie d'aucune organisation...",
+      "description": "Vous ne faites partie d'aucune auto école...",
       "logout": "Déconnexion"
     }
   }

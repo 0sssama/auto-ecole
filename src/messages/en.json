@@ -5,6 +5,9 @@
   },
   "Dashboard": {
     "redirecting": "Redirecting...",
+    "404": {
+      "page-not-found": "Page not found"
+    },
     "Header": {
       "help": "Need help?",
       "UserNav": {
@@ -716,7 +719,7 @@
     },
     "Error": {
       "sorry": "Whoops, sorry!",
-      "description": "You are either not logged in, or not part of any organization...",
+      "description": "You are not part of any driving school...",
       "logout": "Log out"
     }
   }

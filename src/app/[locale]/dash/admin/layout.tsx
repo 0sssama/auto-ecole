@@ -1,17 +1,16 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { redirect } from "next/navigation";
-import { useOrganization } from "@clerk/nextjs";
+import { notFound } from "next/navigation";
 
-export default function AdminProtectedLayout({
+import { enforceAdmin } from "@/server/utils/auth/enforceAdmin";
+
+export default async function AdminProtectedLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const { membership } = useOrganization();
+  const isAdmin = await enforceAdmin();
 
-  if (!membership || membership.role !== "admin") redirect("/dash");
+  if (!isAdmin) notFound();
 
   return <>{children}</>;
 }

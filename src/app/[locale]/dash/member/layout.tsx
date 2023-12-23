@@ -1,21 +1,16 @@
-"use client";
-
-import { redirect } from "next/navigation";
-import { useOrganization } from "@clerk/nextjs";
 import type { ReactNode } from "react";
+import { notFound } from "next/navigation";
 
-export default function MemberProtectedLayout({
+import { enforceAuthenticated } from "@/server/utils/auth/enforceAuthenticated";
+
+export default async function MemberProtectedLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const { membership } = useOrganization();
+  const isAuthenticated = await enforceAuthenticated();
 
-  if (
-    !membership ||
-    (membership.role !== "admin" && membership.role !== "basic_member")
-  )
-    redirect("/dash");
+  if (!isAuthenticated) notFound();
 
   return <>{children}</>;
 }

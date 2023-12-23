@@ -194,8 +194,7 @@ model Payment {
 
 enum AdminRank {
     SUPER_ADMIN
-    ADMIN
-    MODERATOR
+    SECRETARY
     INSTRUCTOR
 }
 
