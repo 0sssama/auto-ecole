@@ -5,6 +5,9 @@
   },
   "Dashboard": {
     "redirecting": "Redirecting...",
+    "404": {
+      "page-not-found": "Page not found"
+    },
     "Header": {
       "help": "Need help?",
       "UserNav": {
