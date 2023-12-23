@@ -1,8 +1,8 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { useEffect, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { useOrganization } from "@clerk/nextjs";
-import type { ReactNode } from "react";
 
 export default function MemberProtectedLayout({
   children,
@@ -10,12 +10,15 @@ export default function MemberProtectedLayout({
   children: ReactNode;
 }) {
   const { membership } = useOrganization();
+  const { push } = useRouter();
 
-  if (
-    !membership ||
-    (membership.role !== "admin" && membership.role !== "basic_member")
-  )
-    redirect("/dash");
+  useEffect(() => {
+    if (
+      !membership ||
+      (membership.role !== "admin" && membership.role !== "basic_member")
+    )
+      push("/dash");
+  }, [membership, push]);
 
   return <>{children}</>;
 }
