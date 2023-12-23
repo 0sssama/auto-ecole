@@ -18,17 +18,12 @@ export default async function Vehicles({
 
   const id = Number(vehicleId);
 
-  console.log("1");
-
   if (isNaN(id) || id <= 0) return <VehicleNotFound />;
 
-  console.log("2");
   const vehicle = await getVehicle(id);
 
-  console.log("3");
   if (!vehicle) return <VehicleNotFound />;
 
-  console.log("4");
   return <VehicleReport vehicle={vehicle} />;
 }
 
