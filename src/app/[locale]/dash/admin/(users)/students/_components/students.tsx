@@ -13,10 +13,7 @@ export default function StudentsPage() {
   return (
     <main>
       <PageHeader openModal={addStudentModal.open} t={t} />
-      <AddStudentModal
-        isOpen={addStudentModal.isOpen}
-        close={addStudentModal.close}
-      />
+      <AddStudentModal {...addStudentModal} />
       <div className="w-full">
         <StudentsListTable />
       </div>

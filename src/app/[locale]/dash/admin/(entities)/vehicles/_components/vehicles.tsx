@@ -17,10 +17,7 @@ export default function VehiclesPage() {
   return (
     <main>
       <PageHeader openModal={addVehicleModal.open} t={t} />
-      <AddVehicleModal
-        isOpen={addVehicleModal.isOpen}
-        close={addVehicleModal.close}
-      />
+      <AddVehicleModal {...addVehicleModal} />
       <div className="w-full">
         <VehiclesListTable />
       </div>

@@ -13,10 +13,7 @@ export default function PaymentsPage() {
   return (
     <main>
       <PageHeader openModal={addPaymentModalSike.open} t={t} />
-      <AddPaymentModalSike
-        isOpen={addPaymentModalSike.isOpen}
-        close={addPaymentModalSike.close}
-      />
+      <AddPaymentModalSike {...addPaymentModalSike} />
       <div className="w-full">
         <PaymentsListTable />
       </div>

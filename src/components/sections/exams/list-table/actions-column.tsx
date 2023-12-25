@@ -29,8 +29,7 @@ const ActionsColumn: ActionsColumnComponentType<Exam> = ({ row }) => {
   return (
     <DropdownMenu>
       <DeleteExamConfirmModal
-        isOpen={deleteExamModal.isOpen}
-        close={deleteExamModal.close}
+        {...deleteExamModal}
         context={{ examId: exam.id }}
       />
       <DropdownMenuTrigger asChild>

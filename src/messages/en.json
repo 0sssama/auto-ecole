@@ -793,6 +793,19 @@
         },
         "button-cancel": "Cancel",
         "button-submit": "Add Vehicle"
+      },
+      "AddVehicleExpense": {
+        "title": "Add new expense",
+        "subtitle": "Fill in the form below to add a new expense",
+        "success": "Expense added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "sum": "Expense Sum:",
+          "comment": "Comment:",
+          "date": "Date:"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
       }
     },
     "Common": {

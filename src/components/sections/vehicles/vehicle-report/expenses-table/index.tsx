@@ -14,6 +14,7 @@ import type { Paginated } from "@/components/organisms/data-table/types";
 import { columns } from "./columns";
 import type { VehicleExpense } from "./schema";
 import type { VehicleExpensesTableComponentType } from "./types";
+import { AddVehicleExpenseModal } from "@/components/molecules";
 
 const VehicleExpensesTable: VehicleExpensesTableComponentType = ({
   vehicleId,
@@ -40,6 +41,7 @@ const VehicleExpensesTable: VehicleExpensesTableComponentType = ({
 
   return (
     <div className="w-full">
+      <AddVehicleExpenseModal {...addExpenseModal} context={{ vehicleId }} />
       <div className="flex items-center justify-between w-full mb-4">
         <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
         <div>

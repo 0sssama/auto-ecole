@@ -792,6 +792,19 @@
         },
         "button-cancel": "Annuler",
         "button-submit": "Ajouter véhicule"
+      },
+      "AddVehicleExpense": {
+        "title": "Ajouter une nouvelle dépense",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
+        "success": "Dépense ajouté avec succès",
+        "error": "Erreur lors de l'ajout du véhicule. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
       }
     },
     "Common": {

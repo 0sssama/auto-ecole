@@ -57,8 +57,7 @@ const LicenseFilePaymentsTable: LicenseFilePaymentsTableComponentType = ({
         </div>
       </div>
       <AddLicenseFilePaymentModal
-        isOpen={addPaymentModal.isOpen}
-        close={addPaymentModal.close}
+        {...addPaymentModal}
         context={{
           licenseFileId,
         }}

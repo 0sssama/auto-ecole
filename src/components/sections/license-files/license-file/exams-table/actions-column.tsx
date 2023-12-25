@@ -33,8 +33,7 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExam> = ({
   return (
     <DropdownMenu>
       <DeleteExamConfirmModal
-        isOpen={deleteExamModal.isOpen}
-        close={deleteExamModal.close}
+        {...deleteExamModal}
         context={{ examId: exam.id }}
       />
       <DropdownMenuTrigger asChild>

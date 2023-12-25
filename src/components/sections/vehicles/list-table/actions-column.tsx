@@ -36,13 +36,11 @@ const ActionsColumn: ActionsColumnComponentType<Vehicle> = ({ row }) => {
   return (
     <DropdownMenu>
       {/* <DeactivateVehicleModal
-        isOpen={deactivateVehicleModal.isOpen}
-        close={deactivateVehicleModal.close}
+        {...deactivateVehicleModal}
         context={{ vehicleId: vehicle.id }}
       /> */}
       {/* <ActivateVehicleModal
-        isOpen={activateVehicleModal.isOpen}
-        close={activateVehicleModal.close}
+        {...activateVehicleModal}
         context={{ vehicleId: vehicle.id }}
       /> */}
       <DropdownMenuTrigger asChild>
