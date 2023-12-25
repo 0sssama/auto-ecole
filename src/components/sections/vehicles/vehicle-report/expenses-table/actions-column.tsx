@@ -13,12 +13,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { ActionsColumnComponentType } from "@/components/organisms/data-table/types";
 
-import { studentPaymentSchema, type StudentPayment } from "./schema";
+import { vehicleExpenseSchema, type VehicleExpense } from "./schema";
 
-const ActionsColumn: ActionsColumnComponentType<StudentPayment> = ({ row }) => {
+const ActionsColumn: ActionsColumnComponentType<VehicleExpense> = ({ row }) => {
   const t = useTranslations("Dashboard.Dossier.Tables.StudentPayments.Actions");
 
-  const studentPayment = studentPaymentSchema.parse(row.original);
+  const vehicleExpense = vehicleExpenseSchema.parse(row.original);
 
   return (
     <DropdownMenu>
@@ -35,7 +35,7 @@ const ActionsColumn: ActionsColumnComponentType<StudentPayment> = ({ row }) => {
         <DropdownMenuItem className="text-sm font-medium cursor-pointer text-muted-foreground/90">
           <Link
             className="flex items-center w-full h-full"
-            href={`/dash/admin/payments?paymentId=${studentPayment.id}`}
+            href={`/dash/admin/payments?paymentId=${vehicleExpense.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t("view")}
@@ -43,7 +43,7 @@ const ActionsColumn: ActionsColumnComponentType<StudentPayment> = ({ row }) => {
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-sm font-medium cursor-pointer text-muted-foreground/90"
-          onClick={() => console.log("editing", studentPayment.id)}
+          onClick={() => console.log("editing", vehicleExpense.id)}
         >
           <Pencil className="mr-2 h-3.5 w-3.5" />
           {t("edit")}

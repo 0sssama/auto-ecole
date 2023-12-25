@@ -191,6 +191,13 @@
           "name": "Nom",
           "type": "Type",
           "instructor": "Moniteur"
+        },
+        "VehicleExpenses": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
         }
       }
     },
@@ -335,6 +342,15 @@
             "RESERVED": "Reservé",
             "CANCELLED": "Annulé",
             "DONE": "Terminé"
+          }
+        },
+        "VehicleExpenses": {
+          "title": "Les dépenses",
+          "add-button": "Nouvelle dépense",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier"
           }
         }
       }

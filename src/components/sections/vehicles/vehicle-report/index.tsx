@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { InfoFile } from "@/components/organisms";
 
+import VehicleExpensesTable from "./expenses-table";
 import type { VehicleReportComponentType } from "./types";
 
 const VehicleReport: VehicleReportComponentType = ({ vehicle }) => {
@@ -21,11 +22,7 @@ const VehicleReport: VehicleReportComponentType = ({ vehicle }) => {
         type="vehicle"
       />
       <Separator className="mb-6 mt-14" />
-      {/* <StudentLicenseFilesTable studentId={student.id} /> */}
-      {/* <Separator className="mb-6 mt-14" /> */}
-      {/* <StudentLessonsTable studentId={student.id} /> */}
-      {/* <Separator className="mb-6 mt-14" /> */}
-      {/* <StudentPaymentsTable studentId={student.id} /> */}
+      <VehicleExpensesTable vehicleId={vehicle.id} />
     </div>
   );
 };

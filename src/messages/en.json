@@ -191,6 +191,13 @@
           "name": "Name",
           "type": "Type",
           "instructor": "Instructor"
+        },
+        "VehicleExpenses": {
+          "id": "ID",
+          "sum": "Expense Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
         }
       }
     },
@@ -335,6 +342,15 @@
             "RESERVED": "Reserved",
             "CANCELLED": "Cancelled",
             "DONE": "Done"
+          }
+        },
+        "VehicleExpenses": {
+          "title": "Expenses",
+          "add-button": "Add Expense",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
           }
         }
       }
