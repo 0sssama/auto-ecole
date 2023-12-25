@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import { vehicleFormSchemaBackend } from "@/schemas/vehicle-form-schema";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 
@@ -26,5 +28,35 @@ export const mutationRouter = createTRPCRouter({
       });
 
       return newVehicle;
+    }),
+
+  activate: orgAdminOnlyPrecedure
+    .input(z.object({ vehicleId: z.number().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const updatedVehicle = await ctx.prisma.vehicle.update({
+        where: {
+          id: input.vehicleId,
+        },
+        data: {
+          active: true,
+        },
+      });
+
+      return updatedVehicle;
+    }),
+
+  deactivate: orgAdminOnlyPrecedure
+    .input(z.object({ vehicleId: z.number().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const updatedVehicle = await ctx.prisma.vehicle.update({
+        where: {
+          id: input.vehicleId,
+        },
+        data: {
+          active: false,
+        },
+      });
+
+      return updatedVehicle;
     }),
 });
