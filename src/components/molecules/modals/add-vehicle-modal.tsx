@@ -19,8 +19,9 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/atoms";
 import { AddNewVehicleForm } from "@/components/organisms";
 import { api } from "@/utils/api";
-
+import { useFileUpload } from "@/lib/hooks/useFileUpload";
 import { vehicleFormSchema } from "@/schemas/vehicle-form-schema";
+
 import type { ModalComponentType } from "./types";
 
 const AddVehicleModal: ModalComponentType = ({ isOpen, close }) => {
@@ -42,6 +43,10 @@ const AddVehicleModal: ModalComponentType = ({ isOpen, close }) => {
     },
   });
 
+  const { startUpload, FileUpload, isUploading } = useFileUpload({
+    endpoint: "imageUploader",
+  });
+
   const {
     mutate: addVehicle,
     isLoading,
@@ -59,10 +64,19 @@ const AddVehicleModal: ModalComponentType = ({ isOpen, close }) => {
   });
 
   const onSubmit = (values: z.infer<typeof vehicleFormSchema>) =>
-    addVehicle({
-      ...values,
-      instructorId: Number(values.instructorId),
-    });
+    startUpload()
+      .then(({ response }) => response[0])
+      .then(({ url }) => {
+        addVehicle({
+          ...values,
+          image: url,
+          instructorId: Number(values.instructorId),
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(t("error"));
+      });
 
   if (!isOpen) return null;
 
@@ -94,6 +108,9 @@ const AddVehicleModal: ModalComponentType = ({ isOpen, close }) => {
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
             className="grid grid-cols-1 gap-2"
+            context={{
+              FileUpload,
+            }}
           />
         </div>
         <DialogFooter className="flex items-center justify-end w-full gap-2 mt-4">
@@ -103,10 +120,10 @@ const AddVehicleModal: ModalComponentType = ({ isOpen, close }) => {
           <Button
             variant="default"
             onClick={form.handleSubmit(onSubmit)}
-            disabled={isLoading}
+            disabled={isLoading || isUploading}
             className="w-full"
           >
-            {isLoading ? (
+            {isLoading || isUploading ? (
               <Spinner size="xs" color="background" />
             ) : (
               t("button-submit")

@@ -22,6 +22,7 @@ import type { TranslationFunction } from "@/types";
 
 import { vehicleFormSchema } from "@/schemas/vehicle-form-schema";
 import type { FormComponentType } from "./types";
+import { UseFileUploadHook } from "@/lib/hooks/useFileUpload/types";
 
 const fields = (t: TranslationFunction) => [
   {
@@ -59,13 +60,14 @@ const fields = (t: TranslationFunction) => [
 
 type TFormValues = z.infer<typeof vehicleFormSchema>;
 type TContext = {
-  isLicenseFileLesson?: boolean;
+  FileUpload?: ReturnType<UseFileUploadHook>["FileUpload"];
 };
 
 const AddNewVehicleForm: FormComponentType<TFormValues, TContext> = ({
   form,
   onSubmit,
   className,
+  context: { FileUpload } = {},
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   //   const { startUpload, FileUpload } = useFileUpload({
@@ -135,9 +137,9 @@ const AddNewVehicleForm: FormComponentType<TFormValues, TContext> = ({
                       />
                     )}
 
-                    {/* {field.name === "image" && (
+                    {field.name === "image" && FileUpload !== undefined && (
                       <FileUpload>Upload an image mf</FileUpload>
-                    )} */}
+                    )}
                   </>
                 </FormControl>
                 <FormMessage className="inline-block w-full text-[12px] px-1 !text-right" />

@@ -31,6 +31,7 @@ export const columns: ColumnDef<Vehicle>[] = [
     ),
     cell: ({ row }) => {
       const vehicle = vehicleSchema.parse(row.original);
+      console.log(vehicle);
 
       return (
         <Link

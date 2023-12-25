@@ -251,7 +251,7 @@ model Vehicle {
     active Boolean     @default(true)
 
     instructor   Instructor @relation(fields: [instructorId], references: [id])
-    instructorId Int        @unique
+    instructorId Int
 
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int
