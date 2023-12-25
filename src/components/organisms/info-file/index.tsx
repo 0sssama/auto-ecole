@@ -12,6 +12,8 @@ const translatePrefix = (type: InfoFileType) => {
       return "Student";
     case "licenseFile":
       return "LicenseFile";
+    case "vehicle":
+      return "Vehicle";
     default:
       return "";
   }

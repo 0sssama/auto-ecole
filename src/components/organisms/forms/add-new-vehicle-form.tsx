@@ -19,10 +19,10 @@ import { Combobox } from "@/components/ui/combobox";
 import { api } from "@/utils/api";
 // import { useFileUpload } from "@/lib/hooks/useFileUpload";
 import type { TranslationFunction } from "@/types";
+import type { UseFileUploadHook } from "@/lib/hooks/useFileUpload/types";
 
 import { vehicleFormSchema } from "@/schemas/vehicle-form-schema";
 import type { FormComponentType } from "./types";
-import { UseFileUploadHook } from "@/lib/hooks/useFileUpload/types";
 
 const fields = (t: TranslationFunction) => [
   {
@@ -138,7 +138,7 @@ const AddNewVehicleForm: FormComponentType<TFormValues, TContext> = ({
                     )}
 
                     {field.name === "image" && FileUpload !== undefined && (
-                      <FileUpload>Upload an image mf</FileUpload>
+                      <FileUpload>{t("upload-image")}</FileUpload>
                     )}
                   </>
                 </FormControl>

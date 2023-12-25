@@ -239,6 +239,18 @@
             "student": "Student",
             "admin": "Admin"
           }
+        },
+        "Vehicle": {
+          "fullName": "Vehicle name:",
+          "brand": "Vehicle brand:",
+          "instructor": "Instructor:",
+          "vehicleType": "Vehicle type:",
+          "Type": {
+            "CAR": "Car",
+            "MOTORCYCLE": "Motorcycle",
+            "TRAILER": "Trailer",
+            "TRUCK": "Truck"
+          }
         }
       },
       "ImageColumn": {
@@ -247,7 +259,8 @@
         "student-cin": "Student CIN",
         "instructor": "Instructor",
         "instructor-file": "Instructor File",
-        "instructor-cin": "Instructor CIN"
+        "instructor-cin": "Instructor CIN",
+        "vehicle": "Vehicle"
       },
       "Tables": {
         "StudentLicenseFiles": {
@@ -746,6 +759,7 @@
           "name": "Vehicle name:",
           "brand": "Vehicle brand:",
           "image": "Vehicle image:",
+          "upload-image": "Upload an image of the vehicle (max 4MB)",
           "Type": {
             "label": "Vehicle type:",
             "empty": "No type found",

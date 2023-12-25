@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-export type InfoFileType = "student" | "instructor" | "licenseFile";
+export type InfoFileType = "student" | "instructor" | "licenseFile" | "vehicle";
 
 export type InfoFileProps = {
   data: {

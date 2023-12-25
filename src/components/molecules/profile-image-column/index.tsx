@@ -24,7 +24,7 @@ const ProfileImageColumn: FC<ProfileImageColumnProps> = ({
             <UploadCloud className="text-white" size={16} />
           </div>
           {profilePictureUrl ? (
-            <Image src={profilePictureUrl} alt={fullName} />
+            <Image src={profilePictureUrl} alt={fullName} fill />
           ) : (
             <UserCircle2 className="text-muted-foreground" size={32} />
           )}
@@ -34,16 +34,18 @@ const ProfileImageColumn: FC<ProfileImageColumnProps> = ({
           <p className="text-xs text-muted-foreground">{t(type)}</p>
         </div>
       </div>
-      <div className="flex flex-col w-full gap-2">
-        <Button className="w-full text-sm" variant="default" size="sm">
-          <FolderDown size={16} className="mr-2" />
-          {t(`${type}-file`)}
-        </Button>
-        <Button className="w-full text-sm" variant="outline" size="sm">
-          <ImageDown size={16} className="mr-2" />
-          {t(`${type}-cin`)}
-        </Button>
-      </div>
+      {type === "student" && (
+        <div className="flex flex-col w-full gap-2">
+          <Button className="w-full text-sm" variant="default" size="sm">
+            <FolderDown size={16} className="mr-2" />
+            {t(`${type}-file`)}
+          </Button>
+          <Button className="w-full text-sm" variant="outline" size="sm">
+            <ImageDown size={16} className="mr-2" />
+            {t(`${type}-cin`)}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

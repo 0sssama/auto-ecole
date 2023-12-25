@@ -239,6 +239,18 @@
             "student": "Étudiant",
             "admin": "Administrateur"
           }
+        },
+        "Vehicle": {
+          "fullName": "Nom du véhicule : ",
+          "brand": "Nom de marque : ",
+          "instructor": "Moniteur :",
+          "vehicleType": "Type du véhicule: ",
+          "Type": {
+            "CAR": "Voiture",
+            "MOTORCYCLE": "Moto",
+            "TRAILER": "Remorque",
+            "TRUCK": "Camion"
+          }
         }
       },
       "ImageColumn": {
@@ -247,7 +259,8 @@
         "student-cin": "Copie CIN",
         "instructor": "Moniteur",
         "instructor-file": "Dossier Complet",
-        "instructor-cin": "Copie CIN"
+        "instructor-cin": "Copie CIN",
+        "vehicle": "Véhicule"
       },
       "Tables": {
         "StudentLicenseFiles": {
@@ -745,6 +758,7 @@
           "name": "Nom du véhicule :",
           "brand": "Nom de marque :",
           "image": "Photo du véhicule :",
+          "upload-image": "Télécharger une photo du véhicule (max. 4MB)",
           "Type": {
             "label": "Type du véhicule :",
             "empty": "Aucun type trouvé",
