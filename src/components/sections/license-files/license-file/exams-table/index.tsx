@@ -56,11 +56,7 @@ const LicenseFileExamsTable: LicenseFileExamsTableComponentType = ({
           </Button>
         </div>
       </div>
-      <AddExamModal
-        isOpen={addExamModal.isOpen}
-        close={addExamModal.close}
-        context={{ licenseFileId }}
-      />
+      <AddExamModal {...addExamModal} context={{ licenseFileId }} />
       <DataTable
         data={data}
         error={error?.message}

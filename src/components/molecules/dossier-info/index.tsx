@@ -32,6 +32,8 @@ function InfoData<InfoT extends InfoTypes>({
           </span>
         </Chip>
       );
+    case "vehicleType":
+      return <p>{t("Vehicle.Type." + value)}</p>;
   }
 
   if (["student", "instructor", "createdBy"].includes(labelId))

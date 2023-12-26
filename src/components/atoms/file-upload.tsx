@@ -13,6 +13,7 @@ import { useDropzone } from "@uploadthing/react/hooks";
 
 import { concatFileName } from "@/utils/concatText";
 import { useUploadThing } from "@/utils/uploadthing";
+import { cn } from "@/lib/cn";
 
 export type FileUploadProps = {
   acceptMultiple: boolean;
@@ -51,7 +52,13 @@ const FileUpload: FileUploadComponentType = ({
 
   return (
     <div
-      className="w-full flex flex-col items-center justify-center gap-1 rounded-lg border-dashed min-h-[175px] border-1 cursor-pointer border-foreground-300 bg-accent p-4 transition-colors duration-400 hover:bg-background"
+      className={cn(
+        "w-full flex flex-col items-center justify-center min-h-[175px] cursor-pointer",
+        " border-1 border-dashed rounded-lg border-foreground-300",
+        "p-4 gap-1",
+        "transition-colors duration-400",
+        "bg-accent/30 hover:bg-accent/80",
+      )}
       {...getRootProps()}
     >
       <input

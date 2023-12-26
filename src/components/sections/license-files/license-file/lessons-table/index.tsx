@@ -57,8 +57,7 @@ const LicenseFileLessonsTable: LicenseFileLessonsTableComponentType = ({
         </div>
       </div>
       <AddLicenseFileLessonModal
-        isOpen={addLessonModal.isOpen}
-        close={addLessonModal.close}
+        {...addLessonModal}
         context={{
           licenseFileId,
           studentId,

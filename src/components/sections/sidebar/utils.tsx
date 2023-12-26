@@ -103,8 +103,8 @@ export const getSidebarLinks = (
       title: t("entities"),
       links: [
         {
-          name: t("cars"),
-          href: "/dash/admin/cars",
+          name: t("vehicles"),
+          href: "/dash/admin/vehicles",
           icon: <CarFront {...sidebarIconProps} />,
         },
       ],
@@ -181,8 +181,8 @@ export const getSidebarLinks = (
       title: t("entities"),
       links: [
         {
-          name: t("cars"),
-          href: "/dash/admin/cars",
+          name: t("vehicles"),
+          href: "/dash/admin/vehicles",
           icon: <CarFront {...sidebarIconProps} />,
         },
       ],

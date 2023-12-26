@@ -46,7 +46,7 @@
       "financial-overview": "Financial Overview",
 
       "entities": "Entities",
-      "cars": "Vehicles",
+      "vehicles": "Vehicles",
 
       "account": "Account",
       "folder": "My Folder",
@@ -185,6 +185,19 @@
           "comment": "Comment",
           "admin-name": "Taken by",
           "date": "Date"
+        },
+        "Vehicles": {
+          "id": "ID",
+          "name": "Name",
+          "type": "Type",
+          "instructor": "Instructor"
+        },
+        "VehicleExpenses": {
+          "id": "ID",
+          "sum": "Expense Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
         }
       }
     },
@@ -233,6 +246,18 @@
             "student": "Student",
             "admin": "Admin"
           }
+        },
+        "Vehicle": {
+          "fullName": "Vehicle name:",
+          "brand": "Vehicle brand:",
+          "instructor": "Instructor:",
+          "vehicleType": "Vehicle type:",
+          "Type": {
+            "CAR": "Car",
+            "MOTORCYCLE": "Motorcycle",
+            "TRAILER": "Trailer",
+            "TRUCK": "Truck"
+          }
         }
       },
       "ImageColumn": {
@@ -241,7 +266,8 @@
         "student-cin": "Student CIN",
         "instructor": "Instructor",
         "instructor-file": "Instructor File",
-        "instructor-cin": "Instructor CIN"
+        "instructor-cin": "Instructor CIN",
+        "vehicle": "Vehicle"
       },
       "Tables": {
         "StudentLicenseFiles": {
@@ -316,6 +342,15 @@
             "RESERVED": "Reserved",
             "CANCELLED": "Cancelled",
             "DONE": "Done"
+          }
+        },
+        "VehicleExpenses": {
+          "title": "Expenses",
+          "add-button": "Add Expense",
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit"
           }
         }
       }
@@ -613,9 +648,29 @@
       }
     },
     "Entities": {
-      "Cars": {
+      "Vehicles": {
         "Header": {
-          "title": "Vehicles"
+          "title": "Vehicles",
+          "button": "New vehicle"
+        },
+        "ListTable": {
+          "Type": {
+            "CAR": "Car",
+            "MOTORCYCLE": "Motorcycle",
+            "TRUCK": "Truck",
+            "TRAILER": "Trailer"
+          },
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit",
+            "activate": "Activate",
+            "deactivate": "Deactivate"
+          }
+        },
+        "NotFound": {
+          "title": "No Vehicle Found",
+          "subtitle": "The vehicle you are looking for does not exist."
         }
       }
     },
@@ -710,6 +765,47 @@
         },
         "button-cancel": "Cancel",
         "button-submit": "Add Payment"
+      },
+      "AddVehicle": {
+        "title": "Add new vehicle",
+        "subtitle": "Fill in the form below to add a new vehicle",
+        "success": "Vehicle added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "name": "Vehicle name:",
+          "brand": "Vehicle brand:",
+          "image": "Vehicle image:",
+          "upload-image": "Upload an image of the vehicle (max 4MB)",
+          "Type": {
+            "label": "Vehicle type:",
+            "empty": "No type found",
+            "CAR": "Car",
+            "MOTORCYCLE": "Motorcycle",
+            "TRAILER": "Trailer",
+            "TRUCK": "Truck"
+          },
+          "Instructor": {
+            "empty": "No instructor found",
+            "loading": "Loading...",
+            "placeholder": "Instructor Name",
+            "instructor": "Instructor:"
+          }
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add Vehicle"
+      },
+      "AddVehicleExpense": {
+        "title": "Add new expense",
+        "subtitle": "Fill in the form below to add a new expense",
+        "success": "Expense added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "sum": "Expense Sum:",
+          "comment": "Comment:",
+          "date": "Date:"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
       }
     },
     "Common": {

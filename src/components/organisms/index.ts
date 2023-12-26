@@ -6,3 +6,5 @@ export { default as AddNewLicenseFileForm } from "./forms/add-new-license-file-f
 export { default as AddNewExamForm } from "./forms/add-new-exam-form";
 export { default as AddNewLessonForm } from "./forms/add-new-lesson-form";
 export { default as AddNewLicenseFilePaymentForm } from "./forms/add-new-license-file-payment-form";
+export { default as AddNewVehicleForm } from "./forms/add-new-vehicle-form";
+export { default as AddNewVehicleExpenseForm } from "./forms/add-new-vehicle-expense-form";

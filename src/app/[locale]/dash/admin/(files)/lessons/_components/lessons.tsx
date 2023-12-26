@@ -13,10 +13,7 @@ export default function LessonsPage() {
   return (
     <main>
       <PageHeader openModal={addLessonModal.open} t={t} />
-      <AddLessonModal
-        isOpen={addLessonModal.isOpen}
-        close={addLessonModal.close}
-      />
+      <AddLessonModal {...addLessonModal} />
       <div className="w-full">
         <LessonsListTable />
       </div>

@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { countPages } from "@/utils/countPages";
@@ -21,11 +20,6 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const filtersObj = getWhereObjFromFilters(input.filters);
 
       const [studentLicenseFiles, totalStudentLicenseFiles] = await Promise.all(
@@ -109,11 +103,6 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const filtersObj = getWhereObjFromFilters(input.filters);
 
       const [studentLicenseFiles, totalStudentLicenseFiles] = await Promise.all(
@@ -188,11 +177,6 @@ export const queryRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const filtersObj = getWhereObjFromFilters(input.filters);
 
       const [instructorLicenseFiles, totalInstructorLicenseFiles] =

@@ -33,8 +33,7 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExam> = ({
   return (
     <DropdownMenu>
       <DeleteExamConfirmModal
-        isOpen={deleteExamModal.isOpen}
-        close={deleteExamModal.close}
+        {...deleteExamModal}
         context={{ examId: exam.id }}
       />
       <DropdownMenuTrigger asChild>
@@ -66,7 +65,7 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExam> = ({
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className={cn(
-            "text-sm font-medium cursor-pointer text-danger/90 bg-danger/10 hover:!text-danger/100 hover:!bg-danger/20",
+            "text-sm font-medium cursor-pointer text-destructive/90 bg-destructive/10 hover:!text-destructive/100 hover:!bg-destructive/20",
             deleteExamModal.isOpen && "opacity-50 !cursor-not-allowed",
           )}
           onClick={deleteExamModal.open}

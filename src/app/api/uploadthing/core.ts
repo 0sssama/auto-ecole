@@ -13,7 +13,8 @@ export const ourFileRouter = {
       const authObj = auth();
 
       // If you throw, the user will not be able to upload
-      if (!authObj || !authObj.userId) throw new Error("Unauthorized");
+      if (!authObj || !authObj.userId || !authObj.orgId)
+        throw new Error("Unauthorized");
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: authObj.userId };

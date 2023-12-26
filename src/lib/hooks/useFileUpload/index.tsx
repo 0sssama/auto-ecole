@@ -23,12 +23,15 @@ export const useFileUpload: UseFileUploadHook = (options) => {
 
   const [files, setFiles] = useState<File[]>([]);
 
-  const { startUpload, permittedFileInfo } = useUploadThing(endpoint, {
-    onClientUploadComplete: (res) =>
-      onUploadComplete(res.map((r) => omit(r, ["serverData"]))),
-    onUploadError: (err) => onUploadError(err.message),
-    onUploadBegin,
-  });
+  const { startUpload, permittedFileInfo, isUploading } = useUploadThing(
+    endpoint,
+    {
+      onClientUploadComplete: (res) =>
+        onUploadComplete(res.map((r) => omit(r, ["serverData"]))),
+      onUploadError: (err) => onUploadError(err.message),
+      onUploadBegin,
+    },
+  );
 
   if (!endpoint || typeof endpoint !== "string") {
     throw new Error("No endpoint provided for File Upload");
@@ -53,6 +56,7 @@ export const useFileUpload: UseFileUploadHook = (options) => {
     acceptedExtensions: Object.keys(permittedFileInfo?.config || {})
       .map((type) => `.${extension(type)}`)
       .join(", "),
+    isUploading,
     FileUpload: ({ children }: UseFileUploadComponentProps) => {
       return (
         <FileUpload

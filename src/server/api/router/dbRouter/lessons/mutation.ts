@@ -7,11 +7,6 @@ export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
     .input(lessonFormBackendInputSchema)
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const lesson = await ctx.prisma.lesson.create({
         data: {
           price: input.price,

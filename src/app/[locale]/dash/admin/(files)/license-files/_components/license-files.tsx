@@ -13,10 +13,7 @@ export default function LicenseFilesPage() {
   return (
     <main>
       <PageHeader openModal={addLicenseFileModal.open} t={t} />
-      <AddLicenseFileModal
-        isOpen={addLicenseFileModal.isOpen}
-        close={addLicenseFileModal.close}
-      />
+      <AddLicenseFileModal {...addLicenseFileModal} />
       <div className="w-full">
         <LicenseFilesListTable />
       </div>

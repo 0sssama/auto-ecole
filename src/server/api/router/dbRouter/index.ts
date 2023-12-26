@@ -6,6 +6,8 @@ import { lessonsRouter } from "./lessons";
 import { paymentsRouter } from "./payments";
 import { examsRouter } from "./exams";
 import { adminsRouter } from "./admins";
+import { vehiclesRouter } from "./vehicles";
+import { expensesRouter } from "./expenses";
 
 export const dbRouter = createTRPCRouter({
   students: studentsRouter,
@@ -15,4 +17,6 @@ export const dbRouter = createTRPCRouter({
   payments: paymentsRouter,
   exams: examsRouter,
   admins: adminsRouter,
+  vehicles: vehiclesRouter,
+  expenses: expensesRouter,
 });

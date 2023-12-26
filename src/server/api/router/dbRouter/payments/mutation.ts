@@ -1,14 +1,12 @@
+import { TRPCError } from "@trpc/server";
+
 import { licenseFilePaymentBackendInputSchema } from "@/schemas/license-file-payment-form-schema";
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { TRPCError } from "@trpc/server";
 
 export const mutationRouter = createTRPCRouter({
   addToLicenseFile: orgAdminOnlyPrecedure
     .input(licenseFilePaymentBackendInputSchema)
     .mutation(async ({ ctx, input }) => {
-      if (!ctx.orgId || !ctx.userId)
-        throw new TRPCError({ code: "UNAUTHORIZED" });
-
       const payment = await ctx.prisma.payment.create({
         data: {
           sum: input.sum,

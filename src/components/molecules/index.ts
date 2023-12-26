@@ -12,3 +12,5 @@ export { default as AddLessonModal } from "./modals/add-lesson-modal";
 export { default as AddLicenseFileLessonModal } from "./modals/add-license-file-lesson-modal";
 export { default as AddLicenseFilePaymentModal } from "./modals/add-license-file-payment-modal";
 export { default as AddPaymentModalSike } from "./modals/add-payment-modal-sike";
+export { default as AddVehicleModal } from "./modals/add-vehicle-modal";
+export { default as AddVehicleExpenseModal } from "./modals/add-vehicle-expense-modal";

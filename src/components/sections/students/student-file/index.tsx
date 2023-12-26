@@ -1,5 +1,3 @@
-"use client";
-
 import { Separator } from "@/components/ui/separator";
 import { InfoFile } from "@/components/organisms";
 

@@ -13,10 +13,7 @@ export default function ExamsPage() {
   return (
     <main>
       <PageHeader openModal={addExamModalSike.open} t={t} />
-      <AddExamModalSike
-        isOpen={addExamModalSike.isOpen}
-        close={addExamModalSike.close}
-      />
+      <AddExamModalSike {...addExamModalSike} />
       <div className="w-full">
         <ExamsListTable />
       </div>

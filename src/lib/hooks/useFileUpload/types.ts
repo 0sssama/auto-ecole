@@ -24,6 +24,7 @@ export type FileUploadReturn = {
   startUpload: () => Promise<{ response: UploadFileResponse[] }>;
   FileUpload: FC<UseFileUploadComponentProps>;
   acceptedExtensions: string;
+  isUploading: boolean;
 };
 
 export type UseFileUploadHook = (

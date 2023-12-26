@@ -13,11 +13,6 @@ export const mutationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId || !ctx.userId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const user = await ctx.prisma.student.create({
         data: {
           clerkUserId: input.clerkId,
@@ -56,11 +51,6 @@ export const mutationRouter = createTRPCRouter({
   dearchive: orgAdminOnlyPrecedure
     .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       try {
         await ctx.prisma.student.update({
           where: {
@@ -82,11 +72,6 @@ export const mutationRouter = createTRPCRouter({
   archive: orgAdminOnlyPrecedure
     .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       try {
         await ctx.prisma.student.update({
           where: {
@@ -108,11 +93,6 @@ export const mutationRouter = createTRPCRouter({
   delete: orgAdminOnlyPrecedure
     .input(z.object({ studentId: z.number() }))
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.userId || !ctx.orgId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       try {
         const result = await ctx.prisma.student.delete({
           where: {

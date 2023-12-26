@@ -46,7 +46,7 @@
       "financial-overview": "Finance",
 
       "entities": "Entités",
-      "cars": "Voitures",
+      "vehicles": "Véhicules",
 
       "account": "Compte",
       "folder": "Mon Dossier",
@@ -185,6 +185,19 @@
           "comment": "Comment.",
           "admin-name": "Accordé à.",
           "date": "Date"
+        },
+        "Vehicles": {
+          "id": "ID",
+          "name": "Nom",
+          "type": "Type",
+          "instructor": "Moniteur"
+        },
+        "VehicleExpenses": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
         }
       }
     },
@@ -233,6 +246,18 @@
             "student": "Étudiant",
             "admin": "Administrateur"
           }
+        },
+        "Vehicle": {
+          "fullName": "Nom du véhicule : ",
+          "brand": "Nom de marque : ",
+          "instructor": "Moniteur :",
+          "vehicleType": "Type du véhicule: ",
+          "Type": {
+            "CAR": "Voiture",
+            "MOTORCYCLE": "Moto",
+            "TRAILER": "Remorque",
+            "TRUCK": "Camion"
+          }
         }
       },
       "ImageColumn": {
@@ -241,7 +266,8 @@
         "student-cin": "Copie CIN",
         "instructor": "Moniteur",
         "instructor-file": "Dossier Complet",
-        "instructor-cin": "Copie CIN"
+        "instructor-cin": "Copie CIN",
+        "vehicle": "Véhicule"
       },
       "Tables": {
         "StudentLicenseFiles": {
@@ -316,6 +342,15 @@
             "RESERVED": "Reservé",
             "CANCELLED": "Annulé",
             "DONE": "Terminé"
+          }
+        },
+        "VehicleExpenses": {
+          "title": "Les dépenses",
+          "add-button": "Nouvelle dépense",
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier"
           }
         }
       }
@@ -611,9 +646,29 @@
       }
     },
     "Entities": {
-      "Cars": {
+      "Vehicles": {
         "Header": {
-          "title": "Voitures"
+          "title": "Véhicules",
+          "button": "Nouveau véhicule"
+        },
+        "ListTable": {
+          "Type": {
+            "CAR": "Voiture",
+            "MOTORCYCLE": "Moto",
+            "TRAILER": "Remorque",
+            "TRUCK": "Camion"
+          },
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier",
+            "activate": "Activer",
+            "deactivate": "Désactiver"
+          }
+        },
+        "NotFound": {
+          "title": "Aucun véhicule trouvé",
+          "subtitle": "Aucun véhicule n'a été trouvé avec l'ID spécifié."
         }
       }
     },
@@ -709,6 +764,47 @@
         },
         "button-cancel": "Annuler",
         "button-submit": "Ajouter paiement"
+      },
+      "AddVehicle": {
+        "title": "Ajouter un nouveau véhicule",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau véhicule",
+        "success": "Véhicule ajouté avec succès !",
+        "error": "Erreur lors de l'ajout du véhicule. Veuillez réessayer plus tard.",
+        "Form": {
+          "name": "Nom du véhicule :",
+          "brand": "Nom de marque :",
+          "image": "Photo du véhicule :",
+          "upload-image": "Télécharger une photo du véhicule (max. 4MB)",
+          "Type": {
+            "label": "Type du véhicule :",
+            "empty": "Aucun type trouvé",
+            "CAR": "Voiture",
+            "MOTORCYCLE": "Moto",
+            "TRAILER": "Remorque",
+            "TRUCK": "Camion"
+          },
+          "Instructor": {
+            "empty": "Aucun moniteur trouvé",
+            "loading": "Chargement...",
+            "placeholder": "Nom du moniteur",
+            "instructor": "Moniteur :"
+          }
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter véhicule"
+      },
+      "AddVehicleExpense": {
+        "title": "Ajouter une nouvelle dépense",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
+        "success": "Dépense ajouté avec succès",
+        "error": "Erreur lors de l'ajout du véhicule. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
       }
     },
     "Common": {

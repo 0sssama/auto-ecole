@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
 import { instructorFormSchema } from "@/schemas/instructor-form-schema";
@@ -14,11 +13,6 @@ export const mutationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      if (!ctx.orgId || !ctx.userId)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-        });
-
       const credentials = createNewCredentials({
         firstName: input.firstName,
         lastName: input.lastName,

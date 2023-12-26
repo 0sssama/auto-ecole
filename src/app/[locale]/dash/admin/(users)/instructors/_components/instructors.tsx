@@ -13,10 +13,7 @@ export default function InstructorsPage() {
   return (
     <main>
       <PageHeader openModal={addInstructorModal.open} t={t} />
-      <AddInstructorModal
-        isOpen={addInstructorModal.isOpen}
-        close={addInstructorModal.close}
-      />
+      <AddInstructorModal {...addInstructorModal} />
       <div className="w-full">
         <InstructorsListTable />
       </div>
