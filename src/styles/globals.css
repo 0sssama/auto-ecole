@@ -76,7 +76,7 @@
 
 @layer base {
 * {
-    font-family: var(--font-outfit), Helvetica,sans-serif;
+    font-family: var(--font-outfit), Helvetica, sans-serif;
     @apply border-border;
     @apply box-border p-0 m-0;
   }
