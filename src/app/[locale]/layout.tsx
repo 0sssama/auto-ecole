@@ -21,8 +21,8 @@ import { locales, type Locale } from "@/lib/locales";
 import "@/styles/globals.css";
 
 const outfit = Outfit({
-  subsets: ["latin-ext"],
-  weight: ["400", "700"],
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   variable: "--font-outfit",
   display: "swap",
 });
