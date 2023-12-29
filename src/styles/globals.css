@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('font.css');
+
 @layer base {
   :root {
     --header-height: 80px;
@@ -75,8 +77,9 @@
 }
 
 @layer base {
-  * {
-    font-family: var(--font-plus-jakarta), "Helvetica Neue", Helvetica, Arial,
+* {
+    font-family: 'Cereal-Medium',
+      Helvetica,
       sans-serif;
     @apply border-border;
     @apply box-border p-0 m-0;

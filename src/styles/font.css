@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Cereal-Medium';
+    src: url('fonts/Cereal_W_Md.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cereal-Light';
+    src: url('fonts/Cereal_W_Lt.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cereal-Bold';
+    src: url('fonts/Cereal_W_Bd.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cereal-Book';
+    src: url('fonts/Cereal_W_Bk.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cereal-Black';
+    src: url('fonts/Cereal_W_Blk.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cereal-ExtraBold';
+    src: url('fonts/Cereal_W_XBd.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}

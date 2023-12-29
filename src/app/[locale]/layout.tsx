@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Vazirmatn } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -16,15 +16,7 @@ import {
   MomentProvider,
 } from "@/providers";
 import { locales, type Locale } from "@/lib/locales";
-
 import "@/styles/globals.css";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-plus-jakarta",
-  display: "swap",
-});
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
@@ -65,7 +57,7 @@ export default function RootLayout({
             className="text-foreground bg-background"
           >
             <body
-              className={`text-foreground bg-background min-h-screen ${plusJakarta.variable} ${vazirmatn.variable}`}
+              className={`text-foreground bg-background min-h-screen ${vazirmatn.variable}`}
             >
               <NextUIProvider>
                 <ThemeProvider
