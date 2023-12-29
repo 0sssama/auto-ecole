@@ -1,12 +1,10 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
+import { Outfit ,Vazirmatn } from "next/font/google";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { ClerkProvider } from "@clerk/nextjs";
 import { notFound } from "next/navigation";
-
-import { Outfit } from "next/font/google";
 
 import {
   ThemeProvider,
