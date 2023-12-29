@@ -78,7 +78,7 @@
 
 @layer base {
 * {
-    font-family: 'Cereal-Medium',
+    font-family: 'Cereal-Book',
       Helvetica,
       sans-serif;
     @apply border-border;
