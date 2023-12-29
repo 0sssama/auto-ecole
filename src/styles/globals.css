@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('font.css');
-
+/* @import url('font.css');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 @layer base {
   :root {
     --header-height: 80px;
@@ -78,9 +79,7 @@
 
 @layer base {
 * {
-    font-family: 'Cereal-Book',
-      Helvetica,
-      sans-serif;
+    font-family: var(--font-outfit), 'Merriweather', Helvetica,sans-serif;
     @apply border-border;
     @apply box-border p-0 m-0;
   }

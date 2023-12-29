@@ -6,6 +6,8 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import { ClerkProvider } from "@clerk/nextjs";
 import { notFound } from "next/navigation";
 
+import { Outfit } from "next/font/google";
+
 import {
   ThemeProvider,
   RecoilProvider,
@@ -17,6 +19,13 @@ import {
 } from "@/providers";
 import { locales, type Locale } from "@/lib/locales";
 import "@/styles/globals.css";
+
+const outfit = Outfit({
+  subsets: ["latin-ext"],
+  weight: ["400", "700"],
+  variable: "--font-outfit",
+  display: "swap",
+});
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
@@ -57,7 +66,7 @@ export default function RootLayout({
             className="text-foreground bg-background"
           >
             <body
-              className={`text-foreground bg-background min-h-screen ${vazirmatn.variable}`}
+              className={`text-foreground bg-background min-h-screen ${outfit.variable} ${vazirmatn.variable}`}
             >
               <NextUIProvider>
                 <ThemeProvider
