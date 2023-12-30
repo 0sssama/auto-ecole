@@ -1,12 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
-import type { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
+import type { z } from 'zod';
 
 import { studentFormSchema } from '@/base/schemas/student-form-schema';
 import { useAddStudent } from '@/base/hooks/students/create/use-add-student';
@@ -14,10 +15,16 @@ import { AddNewStudentForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms';
 import { useFileUpload } from '@/base/hooks/use-file-upload';
+import { useModal } from '@/base/hooks/use-modal';
+import { ShouldCreateLicenseFileModal } from '@/components/molecules';
 
 export default function CreateStudentPage() {
   const router = useRouter();
+
   const t = useTranslations('Dashboard.Users.Students.Create');
+
+  const [studentId, setStudentId] = useState<number | null>(null);
+  const licenseFileModal = useModal();
 
   const form = useForm<z.infer<typeof studentFormSchema>>({
     resolver: zodResolver(studentFormSchema),
@@ -40,9 +47,11 @@ export default function CreateStudentPage() {
   });
 
   const { createStudent, isCreating, creationError } = useAddStudent({
-    onSuccess: () => {
+    onSuccess: ({ newUserId }: { newUserId: number }) => {
+      setStudentId(newUserId);
+
       toast.success(t('success'));
-      router.push('/dash/admin/students');
+      licenseFileModal.open();
     },
     onError: () => {
       toast.error(t('error'));
@@ -80,6 +89,14 @@ export default function CreateStudentPage() {
 
   return (
     <main className="relative w-full">
+      {studentId && (
+        <ShouldCreateLicenseFileModal
+          {...licenseFileModal}
+          context={{
+            studentId,
+          }}
+        />
+      )}
       <div className="flex w-full flex-col gap-2">
         <div>
           <Button onClick={() => router.back()} variant="ghost" className="mb-6 px-0 hover:bg-transparent">
@@ -92,7 +109,7 @@ export default function CreateStudentPage() {
       </div>
       <div className="mt-4 flex w-full flex-col items-end gap-8 lg:max-w-[60%]">
         {creationError && (
-          <div className="mb-4 w-full rounded bg-destructive/10 px-2 py-4 text-center">
+          <div className="w-full rounded bg-destructive/10 px-2 py-4 text-center">
             <p className="text-center text-sm font-bold text-destructive">{t('error')}</p>
           </div>
         )}

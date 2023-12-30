@@ -1,16 +1,36 @@
+import dynamic from 'next/dynamic';
+
 export { default as PageContentHeader } from './page-content-header';
-export { default as PageHeader } from './page-header';
-export { default as AddStudentModal } from './modals/add-student-modal';
-export { default as DossierInfo } from './dossier-info';
-export { default as AddInstructorModal } from './modals/add-instructor-modal';
 export { default as ProfileImageColumn } from './profile-image-column';
-export { default as AddLicenseFileModal } from './modals/add-license-file-modal';
-export { default as AddExamModalSike } from './modals/add-exam-modal-sike';
-export { default as AddExamModal } from './modals/add-exam-modal';
-export { default as DeleteExamConfirmModal } from './modals/delete-exam-confirm';
-export { default as AddLessonModal } from './modals/add-lesson-modal';
-export { default as AddLicenseFileLessonModal } from './modals/add-license-file-lesson-modal';
-export { default as AddLicenseFilePaymentModal } from './modals/add-license-file-payment-modal';
-export { default as AddPaymentModalSike } from './modals/add-payment-modal-sike';
-export { default as AddVehicleModal } from './modals/add-vehicle-modal';
-export { default as AddVehicleExpenseModal } from './modals/add-vehicle-expense-modal';
+export { default as DossierInfo } from './dossier-info';
+export { default as PageHeader } from './page-header';
+
+const AddStudentModal = dynamic(() => import('./modals/add-student-modal'), { ssr: false });
+const AddInstructorModal = dynamic(() => import('./modals/add-instructor-modal'), { ssr: false });
+const AddLicenseFileModal = dynamic(() => import('./modals/add-license-file-modal'), { ssr: false });
+const AddExamModalSike = dynamic(() => import('./modals/add-exam-modal-sike'), { ssr: false });
+const AddExamModal = dynamic(() => import('./modals/add-exam-modal'), { ssr: false });
+const DeleteExamConfirmModal = dynamic(() => import('./modals/delete-exam-confirm'), { ssr: false });
+const AddLessonModal = dynamic(() => import('./modals/add-lesson-modal'), { ssr: false });
+const AddLicenseFileLessonModal = dynamic(() => import('./modals/add-license-file-lesson-modal'), { ssr: false });
+const AddLicenseFilePaymentModal = dynamic(() => import('./modals/add-license-file-payment-modal'), { ssr: false });
+const AddPaymentModalSike = dynamic(() => import('./modals/add-payment-modal-sike'), { ssr: false });
+const AddVehicleModal = dynamic(() => import('./modals/add-vehicle-modal'), { ssr: false });
+const AddVehicleExpenseModal = dynamic(() => import('./modals/add-vehicle-expense-modal'), { ssr: false });
+const ShouldCreateLicenseFileModal = dynamic(() => import('./modals/should-create-license-file-modal'), { ssr: false });
+
+export {
+  AddStudentModal,
+  AddInstructorModal,
+  AddLicenseFileModal,
+  AddLicenseFileLessonModal,
+  AddLicenseFilePaymentModal,
+  AddPaymentModalSike,
+  AddLessonModal,
+  AddExamModalSike,
+  AddExamModal,
+  DeleteExamConfirmModal,
+  AddVehicleModal,
+  AddVehicleExpenseModal,
+  ShouldCreateLicenseFileModal,
+};

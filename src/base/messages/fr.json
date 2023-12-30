@@ -426,7 +426,13 @@
           "back": "Retour",
           "button-submit": "Ajouter Étudiant",
           "error": "Erreur lors de l'ajout du étudiant. Veuillez réessayer plus tard.",
-          "success": "Étudiant ajouté avec succès !"
+          "success": "Étudiant ajouté avec succès !",
+          "RedirectModal": {
+            "title": "L'étudiant est ajouté!",
+            "question": "Est-ce que vous voulez créer un dossier pour cet étudiant?",
+            "yes": "Oui, emmènez-moi!",
+            "no": "Non, au plus tard."
+          }
         }
       },
       "Instructors": {
@@ -587,6 +593,14 @@
         "NotFound": {
           "title": "Aucun dossier de permis trouvé",
           "subtitle": "Aucun dossier de permis n'a été trouvé avec l'ID spécifié."
+        },
+        "Create": {
+          "title": "Nouveau dossier",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau dossier",
+          "back": "Retour",
+          "button-submit": "Ajouter Dossier",
+          "error": "Erreur lors de l'ajout du dossier. Veuillez réessayer plus tard.",
+          "success": "Dossier ajouté avec succès !"
         }
       },
       "Lessons": {

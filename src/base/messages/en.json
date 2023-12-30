@@ -426,7 +426,13 @@
           "back": "Back to students",
           "button-submit": "Add Student",
           "error": "An error has occurred. Please try again later.",
-          "success": "Student added successfully!"
+          "success": "Student added successfully!",
+          "RedirectModal": {
+            "title": "Student created!",
+            "question": "Would you like to create a license file for this student now?",
+            "yes": "Yes, take me there",
+            "no": "I'll do it later"
+          }
         }
       },
       "Instructors": {
@@ -582,6 +588,14 @@
         "NotFound": {
           "title": "No License File Found",
           "subtitle": "The license file you are looking for does not exist."
+        },
+        "Create": {
+          "title": "Add new license file",
+          "subtitle": "Fill in the form below to add a new license file.",
+          "back": "Back to license files",
+          "button-submit": "Add License File",
+          "error": "An error has occurred. Please try again later.",
+          "success": "License file added successfully!"
         }
       },
       "Lessons": {
