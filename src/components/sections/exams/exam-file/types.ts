@@ -9,6 +9,6 @@ export type FetchedExam = {
   student: {
     id: string;
     fullName: string;
-    profilePictureUrl: string;
+    profilePicture: string;
   };
 };

@@ -7,6 +7,8 @@ export const studentSchema = z.object({
   archived: z.boolean(),
   status: z.enum(['active', 'rejected', 'finished', 'not-started']),
   category: z.nativeEnum(Category).optional(),
+  profilePicture: z.string(),
+  cin: z.string(),
 });
 
 export type Student = z.infer<typeof studentSchema>;

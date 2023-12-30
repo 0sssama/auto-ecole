@@ -10,7 +10,7 @@ export type VehicleReport = {
   instructor: {
     id: number;
     fullName: string;
-    profilePictureUrl: string | null;
+    profilePicture: string;
   };
 };
 

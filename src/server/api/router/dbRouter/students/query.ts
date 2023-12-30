@@ -69,6 +69,8 @@ export const queryRouter = createTRPCRouter({
             firstNameFr: true,
             lastNameFr: true,
             archived: true,
+            profilePicture: true,
+            cin: true,
             licenseFiles: {
               select: {
                 status: true,
@@ -95,6 +97,8 @@ export const queryRouter = createTRPCRouter({
           id: student.id,
           name: `${student.firstNameFr} ${student.lastNameFr}`,
           archived: student.archived,
+          profilePicture: student.profilePicture,
+          cin: student.cin,
           status: getStudentStatusFromLicenseFiles(student.licenseFiles),
           category: getStudentCategoryFromLicenseFiles(student.licenseFiles),
         };

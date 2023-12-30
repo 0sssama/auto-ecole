@@ -32,13 +32,6 @@ export const getVehicle = async (id: number): Promise<VehicleReport | null> => {
 
     if (!vehicle) return null;
 
-    /* TODO: UNCOMMENT IN PROD */
-    // const instructor = await clerkClient.users.getUser(
-    //   vehicle.instructor.account.clerkId
-    // );
-
-    // if (!instructor) return null;
-
     return {
       id: vehicle.id,
       name: vehicle.name,
@@ -48,8 +41,7 @@ export const getVehicle = async (id: number): Promise<VehicleReport | null> => {
       instructor: {
         id: vehicle.instructor.id,
         fullName: `${vehicle.instructor.firstName} ${vehicle.instructor.lastName}`,
-        profilePictureUrl: null,
-        // profilePictureUrl: instructor.hasImage ? instructor.imageUrl : null,
+        profilePicture: '',
       },
     };
   } catch {

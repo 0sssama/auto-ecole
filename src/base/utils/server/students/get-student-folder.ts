@@ -37,22 +37,19 @@ export const getStudentFolder = async (studentId: number): Promise<StudentFolder
       email: true,
       cin: true,
       birthdate: true,
+
+      profilePicture: true,
+      cinFile: true,
     },
   });
 
   if (!student) return null;
 
-  // UNCOMMENT BEFORE RELEASE
-  //   const studentClerk = await clerkClient.users.getUser(student.clerkUserId);
-
-  //   if (!studentClerk) return null;
-
   return {
     id: student.id,
 
-    // UNCOMMENT BEFORE RELEASE
-    // profilePictureUrl: studentClerk.hasImage ? studentClerk.imageUrl : null,
-    profilePictureUrl: null,
+    profilePicture: student.profilePicture,
+    cinFile: student.cinFile,
 
     info: {
       fullName: `${student.firstNameFr} ${student.lastNameFr}`,

@@ -1,7 +1,8 @@
 import type { InfoFileType } from '@/components/organisms/info-file/types';
 
 export type ProfileImageColumnProps = {
-  profilePictureUrl: string | null;
+  profilePicture: string;
+  cinFile: string;
   fullName: string;
   type: InfoFileType;
 };

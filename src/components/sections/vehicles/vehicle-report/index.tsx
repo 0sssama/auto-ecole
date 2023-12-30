@@ -9,7 +9,8 @@ const VehicleReport: VehicleReportComponentType = ({ vehicle }) => (
     <InfoFile
       data={{
         id: vehicle.id,
-        profilePictureUrl: vehicle.image,
+        profilePicture: vehicle.image,
+        cinFile: '',
 
         info: {
           fullName: `${vehicle.brand} ${vehicle.name}`,
