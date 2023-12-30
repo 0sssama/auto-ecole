@@ -15,6 +15,11 @@ import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
   {
+    name: 'profilePicture',
+    label: t('profilePicture'),
+    placeholder: t('upload-profile-picture'),
+  },
+  {
     name: 'lastNameFr',
     label: t('lastName'),
     placeholder: 'Doe',
@@ -33,6 +38,21 @@ const fields = (t: TranslationFunction) => [
     name: 'firstNameAr',
     label: 'الإسم الشخصي :',
     placeholder: 'محمد',
+  },
+  {
+    name: 'phone',
+    label: t('phone'),
+    placeholder: '06XXXXXXXX',
+  },
+  {
+    name: 'email',
+    label: t('email'),
+    placeholder: 'john@doe.com',
+  },
+  {
+    name: 'birthdate',
+    label: t('birthdate'),
+    placeholder: '02-08-1969',
   },
   {
     name: 'addressFr',
@@ -63,26 +83,6 @@ const fields = (t: TranslationFunction) => [
     name: 'cinFile',
     label: t('cinFile'),
     placeholder: t('upload-cin-file'),
-  },
-  {
-    name: 'phone',
-    label: t('phone'),
-    placeholder: '06XXXXXXXX',
-  },
-  {
-    name: 'email',
-    label: t('email'),
-    placeholder: 'john@doe.com',
-  },
-  {
-    name: 'birthdate',
-    label: t('birthdate'),
-    placeholder: '02-08-1969',
-  },
-  {
-    name: 'profilePicture',
-    label: t('profilePicture'),
-    placeholder: t('upload-profile-picture'),
   },
 ];
 

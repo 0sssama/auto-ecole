@@ -392,6 +392,7 @@
             "active": "Active",
             "rejected": "Rejected",
             "finished": "Finished",
+            "undeposited": "Undeposited",
             "not-started": "Not started"
           },
           "Actions": {

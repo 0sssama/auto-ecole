@@ -392,6 +392,7 @@
             "active": "Actif",
             "rejected": "Rejeté",
             "finished": "Terminé",
+            "undeposited": "Non déposé",
             "not-started": "Non commencé"
           },
           "Actions": {

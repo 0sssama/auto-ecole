@@ -82,6 +82,9 @@ export const getStudentStatusChipColor = (status: Student['status']): ChipProps[
     case 'finished': {
       return 'success';
     }
+    case 'undeposited': {
+      return 'warning';
+    }
     case 'not-started': {
       return 'primary';
     }
