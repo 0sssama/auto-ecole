@@ -43,6 +43,7 @@
 
       "payment": "Payment",
       "payments": "Payments",
+      "expenses": "Expenses",
       "financial-overview": "Financial Overview",
 
       "entities": "Entities",
@@ -666,6 +667,11 @@
         "NotFound": {
           "title": "No Payment Found",
           "subtitle": "The payment you are looking for does not exist."
+        }
+      },
+      "Expenses": {
+        "Header": {
+          "title": "Expenses"
         }
       },
       "FinancialOverview": {

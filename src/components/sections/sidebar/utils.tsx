@@ -11,6 +11,7 @@ import {
   Settings,
   User2,
   Users2,
+  Wallet2,
 } from 'lucide-react';
 import type { OrganizationCustomRoleKey } from '@clerk/types';
 
@@ -91,6 +92,11 @@ export const getSidebarLinks = (
           {
             name: t('payments'),
             href: '/dash/admin/payments',
+            icon: <Wallet2 {...sidebarIconProps} />,
+          },
+          {
+            name: t('expenses'),
+            href: '/dash/admin/expenses',
             icon: <Banknote {...sidebarIconProps} />,
           },
           {
@@ -141,11 +147,6 @@ export const getSidebarLinks = (
             name: t('monitors'),
             href: '/dash/admin/instructors',
             icon: <Users2 {...sidebarIconProps} />,
-          },
-          {
-            name: t('editors'),
-            href: '/dash/admin/editors',
-            icon: <Building {...sidebarIconProps} />,
           },
         ],
       },

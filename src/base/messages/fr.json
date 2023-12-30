@@ -43,6 +43,7 @@
 
       "payment": "Paiements",
       "payments": "Paiements",
+      "expenses": "Dépenses",
       "financial-overview": "Finance",
 
       "entities": "Entités",
@@ -670,6 +671,11 @@
         "NotFound": {
           "title": "Aucun paiement trouvé",
           "subtitle": "Aucun paiement n'a été trouvé avec l'ID spécifié."
+        }
+      },
+      "Expenses": {
+        "Header": {
+          "title": "Les dépenses"
         }
       },
       "FinancialOverview": {
