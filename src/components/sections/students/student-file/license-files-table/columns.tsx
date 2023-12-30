@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import { useTranslations } from 'next-intl';
 import { Chip } from '@nextui-org/chip';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -91,11 +91,11 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
     cell: ({ row }) => {
       const studentLicenseFile = studentLicenseFileSchema.parse(row.original);
       const date = new Date(studentLicenseFile.createdAt);
-      const relativeTime = formatDistanceToNow(date);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
       return (
         <Link href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`} className="flex h-full w-full">
-          <Tooltip content={relativeTime}>{relativeTime}</Tooltip>
+          <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>
         </Link>
       );
     },

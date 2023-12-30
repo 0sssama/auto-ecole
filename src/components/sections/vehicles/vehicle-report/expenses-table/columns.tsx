@@ -1,6 +1,6 @@
 'use client';
 
-import { formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
@@ -48,9 +48,9 @@ export const columns: ColumnDef<VehicleExpense>[] = [
     cell: ({ row }) => {
       const vehicleExpense = vehicleExpenseSchema.parse(row.original);
       const date = new Date(vehicleExpense.date);
-      const relativeTime = formatDistanceToNow(date);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
-      return <Tooltip content={relativeTime}>{relativeTime}</Tooltip>;
+      return <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,

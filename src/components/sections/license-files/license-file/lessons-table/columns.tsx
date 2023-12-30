@@ -1,6 +1,6 @@
 'use client';
 
-import { formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import { Chip } from '@nextui-org/chip';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -80,9 +80,9 @@ export const columns: ColumnDef<LicenseFileLesson>[] = [
     cell: ({ row }) => {
       const lesson = licenseFileLessonSchema.parse(row.original);
       const date = new Date(lesson.scheduledDate);
-      const relativeTime = formatDistanceToNow(date);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
-      return <Tooltip content={relativeTime}>{relativeTime}</Tooltip>;
+      return <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,
