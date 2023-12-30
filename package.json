@@ -13,7 +13,7 @@
     "db-push": "prisma db push",
     "db-clear": "prisma migrate reset && prisma db push",
     "db-seed": "ts-node -O '{\"module\": \"commonjs\"}' prisma/seed.ts",
-    "db-reseed": "bun db-clear && bun db-seed"
+    "db-reseed": "pnpm db-clear && pnpm db-seed"
   },
   "repository": {
     "type": "git",
