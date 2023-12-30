@@ -13,6 +13,7 @@ import { useAddStudent } from '@/base/hooks/students/create/use-add-student';
 import { AddNewStudentForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms';
+import { useFileUpload } from '@/base/hooks/use-file-upload';
 
 export default function CreateStudentPage() {
   const router = useRouter();
@@ -32,6 +33,8 @@ export default function CreateStudentPage() {
       phone: '',
       cin: '',
       email: '',
+      cinFile: '',
+      profilePicture: '',
       birthdate: new Date(),
     },
   });
@@ -46,7 +49,34 @@ export default function CreateStudentPage() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof studentFormSchema>) => createStudent(values);
+  const {
+    startUpload: uploadPFP,
+    FileUpload: FileUploadPFP,
+    isUploading: isUploading1,
+  } = useFileUpload({
+    endpoint: 'imageUploader',
+  });
+
+  const {
+    startUpload: uploadCIN,
+    FileUpload: FileUploadCIN,
+    isUploading: isUploading2,
+  } = useFileUpload({
+    endpoint: 'pdfUploader',
+  });
+
+  const isUploading = isUploading1 || isUploading2;
+
+  const onSubmit = (values: z.infer<typeof studentFormSchema>) =>
+    Promise.all([uploadPFP(), uploadCIN()])
+      .then(([{ response: response1 }, { response: response2 }]) => [response1[0], response2[0]])
+      .then(([{ url: pfpUrl }, { url: cinUrl }]) =>
+        createStudent({ ...values, profilePicture: pfpUrl, cinFile: cinUrl }),
+      )
+      .catch((error) => {
+        console.error(error);
+        toast.error(t('error'));
+      });
 
   return (
     <main className="relative w-full">
@@ -60,21 +90,29 @@ export default function CreateStudentPage() {
         <h1 className="text-xl font-bold tracking-tight lg:text-3xl">{t('title')}</h1>
         <p className="lg:text-md text-sm text-muted-foreground">{t('subtitle')}</p>
       </div>
-      <div className="mt-4 flex w-full flex-col items-end gap-8 lg:max-w-[70%]">
+      <div className="mt-4 flex w-full flex-col items-end gap-8 lg:max-w-[60%]">
         {creationError && (
           <div className="mb-4 w-full rounded bg-destructive/10 px-2 py-4 text-center">
             <p className="text-center text-sm font-bold text-destructive">{t('error')}</p>
           </div>
         )}
-        <AddNewStudentForm form={form} onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col gap-2" />
+        <AddNewStudentForm
+          form={form}
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex w-full flex-col gap-4"
+          context={{
+            FileUploadPFP,
+            FileUploadCIN,
+          }}
+        />
         <div className="w-full md:w-fit">
           <Button
             variant="default"
             onClick={form.handleSubmit(onSubmit)}
-            disabled={isCreating}
+            disabled={isCreating || isUploading}
             className="w-full md:w-fit"
           >
-            {isCreating ? <Spinner size="xs" color="background" /> : t('button-submit')}
+            {isCreating || isUploading ? <Spinner size="xs" color="background" /> : t('button-submit')}
           </Button>
         </div>
       </div>

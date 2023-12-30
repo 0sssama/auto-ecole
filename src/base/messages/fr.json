@@ -376,8 +376,12 @@
             "profession": "Profession:",
             "phone": "Téléphone:",
             "cin": "N° CIN:",
+            "cinFile": "Copie CIN:",
+            "upload-cin-file": "Télécharger une copie CIN en format PDF (max. 4MO)",
             "email": "E-mail:",
-            "birthdate": "Date de naissance:"
+            "birthdate": "Date de naissance:",
+            "profilePicture": "Photo de profil:",
+            "upload-profile-picture": "Télécharger une photo de profil (max. 4MO)"
           }
         },
         "ListStudentsTable": {
@@ -788,7 +792,7 @@
           "name": "Nom du véhicule :",
           "brand": "Nom de marque :",
           "image": "Photo du véhicule :",
-          "upload-image": "Télécharger une photo du véhicule (max. 4MB)",
+          "upload-image": "Télécharger une photo du véhicule (max. 4MO)",
           "Type": {
             "label": "Type du véhicule :",
             "empty": "Aucun type trouvé",

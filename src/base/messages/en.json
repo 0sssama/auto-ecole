@@ -376,8 +376,12 @@
             "profession": "Profession:",
             "phone": "Phone Number:",
             "cin": "National ID Number:",
+            "cinFile": "National ID File:",
+            "upload-cin-file": "Upload a file of the student's national ID (.PDF, max 4MB)",
             "email": "Email:",
-            "birthdate": "Birthdate:"
+            "birthdate": "Birthdate:",
+            "profilePicture": "Profile Picture:",
+            "upload-profile-picture": "Upload a profile picture for the student (max 4MB)"
           }
         },
         "ListStudentsTable": {

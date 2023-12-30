@@ -112,4 +112,7 @@ export const studentFormSchema = z.object({
       message: "L'étudiant doit être âgé d'au moins 18 ans.",
     },
   ),
+
+  cinFile: z.string().default(''),
+  profilePicture: z.string().default(''),
 });
