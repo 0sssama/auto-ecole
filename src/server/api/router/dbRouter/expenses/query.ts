@@ -1,8 +1,8 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
-import type { VehicleExpense } from "@/components/sections/vehicles/vehicle-report/expenses-table/schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/utils/count-pages';
+import type { VehicleExpense } from '@/components/sections/vehicles/vehicle-report/expenses-table/schema';
 
 export const queryRouter = createTRPCRouter({
   listByVehicleId: orgAdminOnlyPrecedure
@@ -36,7 +36,7 @@ export const queryRouter = createTRPCRouter({
               },
             },
           },
-          orderBy: { createdAt: "desc" },
+          orderBy: { createdAt: 'desc' },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
         }),
@@ -50,15 +50,15 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedVehicleExpenses: VehicleExpense[] = vehicleExpenses.map(
-        (payment) => ({
+      const formattedVehicleExpenses: VehicleExpense[] = vehicleExpenses.map((payment) => {
+        return {
           id: payment.id,
           sum: payment.sum,
           comment: payment.comment,
           adminName: payment.createdBy.fullName,
           date: payment.createdAt,
-        }),
-      );
+        };
+      });
 
       return {
         data: formattedVehicleExpenses,

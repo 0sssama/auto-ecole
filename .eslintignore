@@ -1,0 +1,8 @@
+public
+.next
+.github
+.husky
+prisma
+
+next-env.d.ts
+pnpm-lock.yaml

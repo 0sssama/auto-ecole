@@ -1,8 +1,8 @@
-import { z } from "zod";
-import { TRPCError } from "@trpc/server";
+import { z } from 'zod';
+import { TRPCError } from '@trpc/server';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { studentFormSchema } from "@/schemas/student-form-schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { studentFormSchema } from '@/schemas/student-form-schema';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
@@ -48,69 +48,63 @@ export const mutationRouter = createTRPCRouter({
         newUserClerkId: user.clerkUserId,
       };
     }),
-  dearchive: orgAdminOnlyPrecedure
-    .input(z.object({ studentId: z.number() }))
-    .mutation(async ({ input, ctx }) => {
-      try {
-        await ctx.prisma.student.update({
-          where: {
-            id: input.studentId,
-          },
-          data: {
-            archived: false,
-          },
-        });
+  dearchive: orgAdminOnlyPrecedure.input(z.object({ studentId: z.number() })).mutation(async ({ input, ctx }) => {
+    try {
+      await ctx.prisma.student.update({
+        where: {
+          id: input.studentId,
+        },
+        data: {
+          archived: false,
+        },
+      });
 
-        return true;
-      } catch (error) {
-        console.error(error);
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-        });
-      }
-    }),
-  archive: orgAdminOnlyPrecedure
-    .input(z.object({ studentId: z.number() }))
-    .mutation(async ({ input, ctx }) => {
-      try {
-        await ctx.prisma.student.update({
-          where: {
-            id: input.studentId,
-          },
-          data: {
-            archived: true,
-          },
-        });
+      return true;
+    } catch (error) {
+      console.error(error);
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+      });
+    }
+  }),
+  archive: orgAdminOnlyPrecedure.input(z.object({ studentId: z.number() })).mutation(async ({ input, ctx }) => {
+    try {
+      await ctx.prisma.student.update({
+        where: {
+          id: input.studentId,
+        },
+        data: {
+          archived: true,
+        },
+      });
 
-        return true;
-      } catch (error) {
-        console.error(error);
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-        });
-      }
-    }),
-  delete: orgAdminOnlyPrecedure
-    .input(z.object({ studentId: z.number() }))
-    .mutation(async ({ input, ctx }) => {
-      try {
-        const result = await ctx.prisma.student.delete({
-          where: {
-            id: input.studentId,
-          },
-          select: {
-            clerkUserId: true,
-          },
-        });
+      return true;
+    } catch (error) {
+      console.error(error);
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+      });
+    }
+  }),
+  delete: orgAdminOnlyPrecedure.input(z.object({ studentId: z.number() })).mutation(async ({ input, ctx }) => {
+    try {
+      const result = await ctx.prisma.student.delete({
+        where: {
+          id: input.studentId,
+        },
+        select: {
+          clerkUserId: true,
+        },
+      });
 
-        return {
-          clerkUserId: result.clerkUserId,
-        };
-      } catch (error) {
-        console.error(error);
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-        });
-      }
-    }),
+      return {
+        clerkUserId: result.clerkUserId,
+      };
+    } catch (error) {
+      console.error(error);
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+      });
+    }
+  }),
 });

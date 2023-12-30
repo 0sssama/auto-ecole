@@ -1,7 +1,7 @@
-import { z } from "zod";
-import { VehicleType } from "@prisma/client";
+import { z } from 'zod';
+import { VehicleType } from '@prisma/client';
 
-import { isDigits } from "@/utils/isDigits";
+import { isDigits } from '@/utils/is-digits';
 
 export const vehicleFormSchema = z.object({
   name: z.string(),

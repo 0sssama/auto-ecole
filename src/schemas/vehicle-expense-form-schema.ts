@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { isDigits } from "@/utils/isDigits";
+import { isDigits } from '@/utils/is-digits';
 
 export const vehicleExpenseFormSchema = z.object({
   vehicleId: z.number().min(1),

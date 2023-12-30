@@ -1,6 +1,6 @@
-import { Row } from "@tanstack/react-table";
+import type { Row } from '@tanstack/react-table';
 
-import { Instructor } from "./schema";
+import type { Instructor } from './schema';
 
 export type ActionsColumnProps = {
   row: Row<Instructor>;

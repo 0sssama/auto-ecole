@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { ExamStatus, ExamType } from "@prisma/client";
+import { z } from 'zod';
+import { ExamStatus, ExamType } from '@prisma/client';
 
 export const examFormSchema = z.object({
   type: z.nativeEnum(ExamType),

@@ -1,21 +1,19 @@
-"use client";
+'use client';
 
-import { DataTable } from "@/components/organisms";
-import { usePagination } from "@/lib/hooks/usePagination";
-import { useTableFilters } from "@/lib/hooks/useTableFilters";
-import { api } from "@/utils/api";
-import type { Paginated } from "@/components/organisms/data-table/types";
+import { DataTable } from '@/components/organisms';
+import { usePagination } from '@/lib/hooks/use-pagination';
+import { useTableFilters } from '@/lib/hooks/use-table-filters';
+import { api } from '@/utils/api';
+import type { Paginated } from '@/components/organisms/data-table/types';
 
-import { columns } from "./columns";
-import type { Payment } from "./schema";
+import { columns } from './columns';
+import type { Payment } from './schema';
 
 const PaymentsListTable = () => {
   const filters = useTableFilters();
   const pagination = usePagination();
 
-  const { data, isLoading, error } = api.db.payments.query.list.useQuery<
-    Paginated<Payment>
-  >({
+  const { data, isLoading, error } = api.db.payments.query.list.useQuery<Paginated<Payment>>({
     pageIndex: pagination.get.pageIndex,
     pageSize: pagination.get.pageSize,
     filters: filters.get,

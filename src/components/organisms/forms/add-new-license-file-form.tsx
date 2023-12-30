@@ -1,81 +1,72 @@
-"use client";
+'use client';
 
-import omit from "lodash/omit";
-import { useState } from "react";
-import { z } from "zod";
-import { useTranslations } from "next-intl";
-import { Category, LicenseFileStatus } from "@prisma/client";
+import omit from 'lodash/omit';
+import { useState } from 'react';
+import type { z } from 'zod';
+import { useTranslations } from 'next-intl';
+import { Category, LicenseFileStatus } from '@prisma/client';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Combobox } from "@/components/ui/combobox";
-import { api } from "@/utils/api";
-import type { TranslationFunction } from "@/types";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Combobox } from '@/components/ui/combobox';
+import { api } from '@/utils/api';
+import type { TranslationFunction } from '@/types';
+import type { licenseFileFormSchema } from '@/schemas/license-file-form-schema';
 
-import { licenseFileFormSchema } from "@/schemas/license-file-form-schema";
-import type { FormComponentType } from "./types";
+import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
   {
-    name: "studentId",
-    label: t("Student.student"),
-    placeholder: t("Student.placeholder"),
-    emptyMessage: t("Student.empty"),
-    loadingMessage: t("Student.loading"),
+    name: 'studentId',
+    label: t('Student.student'),
+    placeholder: t('Student.placeholder'),
+    emptyMessage: t('Student.empty'),
+    loadingMessage: t('Student.loading'),
   },
   {
-    name: "instructorId",
-    label: t("Instructor.instructor"),
-    placeholder: t("Instructor.placeholder"),
-    emptyMessage: t("Instructor.empty"),
-    loadingMessage: t("Instructor.loading"),
+    name: 'instructorId',
+    label: t('Instructor.instructor'),
+    placeholder: t('Instructor.placeholder'),
+    emptyMessage: t('Instructor.empty'),
+    loadingMessage: t('Instructor.loading'),
   },
   {
-    name: "price",
-    label: t("price"),
-    placeholder: "3200",
+    name: 'price',
+    label: t('price'),
+    placeholder: '3200',
   },
   {
-    name: "category",
-    label: t("Category.category"),
-    placeholder: `B (${t("Category.B")})`,
-    emptyMessage: t("Category.empty"),
-    options: Object.keys(Category).map((key) => ({
-      value: key,
-      label: `${key} (${t("Category." + key)})`,
-    })),
+    name: 'category',
+    label: t('Category.category'),
+    placeholder: `B (${t('Category.B')})`,
+    emptyMessage: t('Category.empty'),
+    options: Object.keys(Category).map((key) => {
+      return {
+        value: key,
+        label: `${key} (${t('Category.' + key)})`,
+      };
+    }),
   },
   {
-    name: "status",
-    label: t("Status.status"),
-    placeholder: t("Status.ONGOING"),
-    emptyMessage: t("Status.empty"),
-    options: Object.keys(LicenseFileStatus).map((key) => ({
-      value: key,
-      label: t("Status." + key),
-    })),
+    name: 'status',
+    label: t('Status.status'),
+    placeholder: t('Status.ONGOING'),
+    emptyMessage: t('Status.empty'),
+    options: Object.keys(LicenseFileStatus).map((key) => {
+      return {
+        value: key,
+        label: t('Status.' + key),
+      };
+    }),
   },
 ];
 
 type TFormValues = z.infer<typeof licenseFileFormSchema>;
 
-const AddNewStudentForm: FormComponentType<TFormValues> = ({
-  form,
-  onSubmit,
-  className,
-}) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const AddNewStudentForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const t = useTranslations(
-    "Dashboard.Files.LicenseFiles.AddNewModal.AddNewLicenseFileForm",
-  );
+  const t = useTranslations('Dashboard.Files.LicenseFiles.AddNewModal.AddNewLicenseFileForm');
 
   const students = api.db.students.query.getManyForSelect.useQuery({
     searchQuery,
@@ -97,22 +88,16 @@ const AddNewStudentForm: FormComponentType<TFormValues> = ({
             name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem className="relative w-full">
-                <FormLabel className="inline-block w-full text-sm">
-                  {f.label}
-                </FormLabel>
+                <FormLabel className="inline-block w-full text-sm">{f.label}</FormLabel>
                 <FormControl className="relative w-full">
                   <>
-                    {field.name === "price" && (
-                      <Input
-                        {...field}
-                        placeholder={f.placeholder}
-                        value={field.value as string}
-                      />
+                    {field.name === 'price' && (
+                      <Input {...field} placeholder={f.placeholder} value={field.value as string} />
                     )}
 
-                    {field.name !== "price" && (
+                    {field.name !== 'price' && (
                       <Combobox
-                        {...omit(field, "ref")}
+                        {...omit(field, 'ref')}
                         placeholder={f.placeholder}
                         emptyMessage={f.emptyMessage}
                         loadingMessage={f.loadingMessage}
@@ -149,7 +134,7 @@ const AddNewStudentForm: FormComponentType<TFormValues> = ({
                     )}
                   </>
                 </FormControl>
-                <FormMessage className="inline-block w-full text-[12px] px-1" />
+                <FormMessage className="inline-block w-full px-1 text-[12px]" />
               </FormItem>
             )}
           />

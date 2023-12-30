@@ -1,8 +1,7 @@
-import type { FC, HTMLAttributes } from "react";
-import type { Column, ColumnDef, Row } from "@tanstack/react-table";
+import type { FC, HTMLAttributes } from 'react';
+import type { Column, ColumnDef, Row } from '@tanstack/react-table';
 
-export interface DataTableColumnHeaderProps<TData, TValue>
-  extends HTMLAttributes<HTMLDivElement> {
+export interface DataTableColumnHeaderProps<TData, TValue> extends HTMLAttributes<HTMLDivElement> {
   column: Column<TData, TValue>;
   title: string;
 }
@@ -17,7 +16,7 @@ export type TablePagination = {
     pageIndex: (pageIndex: number) => void;
     pageSize: (pageSize: number) => void;
     pageCount: (pageCount: number) => void;
-    pagination: (pagination: Omit<TablePagination["get"], "pageCount">) => void;
+    pagination: (pagination: Omit<TablePagination['get'], 'pageCount'>) => void;
   };
   helpers: {
     previousPage: () => void;
@@ -54,7 +53,7 @@ export type TableProps<TData, TValue> = {
 
   filters: TableFilters;
   filtersAllowed?: {
-    [filterName in keyof TableFilters["get"]]?: boolean;
+    [filterName in keyof TableFilters['get']]?: boolean;
   };
 };
 
@@ -62,9 +61,7 @@ export type DataTableRowActionsProps<TData> = {
   row: Row<TData>;
 };
 
-export type ActionsColumnComponentType<TData> = FC<
-  DataTableRowActionsProps<TData>
->;
+export type ActionsColumnComponentType<TData> = FC<DataTableRowActionsProps<TData>>;
 
 export type DataTablePaginationProps = {
   pagination: TablePagination;
@@ -75,7 +72,7 @@ export type DataTablePaginationComponentType = FC<DataTablePaginationProps>;
 export type DataTableToolbarProps = {
   filters: TableFilters;
   filtersAllowed?: {
-    [filterName in keyof TableFilters["get"]]?: boolean;
+    [filterName in keyof TableFilters['get']]?: boolean;
   };
 };
 

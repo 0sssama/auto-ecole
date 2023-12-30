@@ -1,6 +1,12 @@
-import { getRequestConfig } from "next-intl/server";
+import { getRequestConfig } from 'next-intl/server';
 
-export default getRequestConfig(async ({ locale }) => ({
-  messages: (await import(`./messages/${locale}.json`)).default,
-  timeZone: "Africa/Casablanca",
-}));
+export default getRequestConfig(async ({ locale }) => {
+  const messages = await import(`./messages/${locale}.json`);
+
+  if (!messages) throw new Error(`Locale "${locale}" not found.`);
+
+  return {
+    messages: messages.default,
+    timeZone: 'Africa/Casablanca',
+  };
+});

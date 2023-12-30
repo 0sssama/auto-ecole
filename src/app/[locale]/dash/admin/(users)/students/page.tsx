@@ -1,11 +1,11 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
-import { getStudentFolder } from "@/server/utils/students/getStudentFolder";
-import { StudentFile } from "@/components/sections/students";
-import type { Locale } from "@/lib/locales";
+import { getStudentFolder } from '@/server/utils/students/get-student-folder';
+import { StudentFile } from '@/components/sections/students';
+import type { Locale } from '@/lib/locales';
 
-import StudentsPage from "./_components/students";
-import StudentNotFound from "./_components/not-found";
+import StudentsPage from './_components/students';
+import StudentNotFound from './_components/not-found';
 
 export default async function Students({
   searchParams: { studentId },
@@ -18,7 +18,7 @@ export default async function Students({
 
   const id = Number(studentId);
 
-  if (isNaN(id) || id <= 0) return <StudentNotFound />;
+  if (Number.isNaN(id) || id <= 0) return <StudentNotFound />;
 
   const student = await getStudentFolder(id);
 
@@ -36,10 +36,10 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations({
     locale,
-    namespace: "Dashboard.Users.Students.Header",
+    namespace: 'Dashboard.Users.Students.Header',
   });
 
   return {
-    title: `${t("title")} / Dashboard`,
+    title: `${t('title')} / Dashboard`,
   };
 }

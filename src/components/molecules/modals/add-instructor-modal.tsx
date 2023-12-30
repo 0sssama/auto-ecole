@@ -1,31 +1,23 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalContent,
-} from "@nextui-org/modal";
-import { useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from 'react';
+import { Modal, ModalHeader, ModalBody, ModalFooter, ModalContent } from '@nextui-org/modal';
+import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import type { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button } from "@/components/ui/button";
-import { AddNewInstructorForm } from "@/components/organisms";
-import { Spinner } from "@/components/atoms";
-import { api } from "@/utils/api";
+import { Button } from '@/components/ui/button';
+import { AddNewInstructorForm } from '@/components/organisms';
+import { Spinner } from '@/components/atoms';
+import { api } from '@/utils/api';
+import { instructorFormSchema } from '@/schemas/instructor-form-schema';
 
-import { instructorFormSchema } from "@/schemas/instructor-form-schema";
-import type { ModalComponentType } from "./types";
+import type { ModalComponentType } from './types';
 
 const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
-  const t = useTranslations(
-    "Dashboard.Users.Instructors.AddNewInstructorModal",
-  );
+  const t = useTranslations('Dashboard.Users.Instructors.AddNewInstructorModal');
 
   const closeModal = () => {
     form.reset();
@@ -35,14 +27,13 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   const form = useForm<z.infer<typeof instructorFormSchema>>({
     resolver: zodResolver(instructorFormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      phone: "",
+      firstName: '',
+      lastName: '',
+      phone: '',
     },
   });
 
-  const { mutate: deleteUserFromClerk } =
-    api.clerk.users.mutation.delete.useMutation();
+  const { mutate: deleteUserFromClerk } = api.clerk.users.mutation.delete.useMutation();
   const [userClerkId, setUserClerkId] = useState<string | null>(null);
 
   const {
@@ -52,11 +43,11 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   } = api.db.instructors.mutation.add.useMutation({
     onSuccess: () => {
       //   void ctx.users.getPage.invalidate();
-      toast.success(t("success"));
+      toast.success(t('success'));
       closeModal();
     },
     onError: (error) => {
-      console.log("CLEANING UP INSTRUCTOR FROM CLERK, FAILURE TO ADD TO DB");
+      console.log('CLEANING UP INSTRUCTOR FROM CLERK, FAILURE TO ADD TO DB');
       console.error(error);
 
       if (!userClerkId) return;
@@ -102,26 +93,26 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
     >
       <ModalContent>
         <ModalHeader className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-semibold">{t("title")}</h1>
-          <p className="text-xs opacity-70">{t("subtitle")}</p>
+          <h1 className="text-2xl font-semibold">{t('title')}</h1>
+          <p className="text-xs opacity-70">{t('subtitle')}</p>
         </ModalHeader>
         <ModalBody>
           {(dbOperationError || clerkOperationError) && (
-            <div className="w-full px-2 py-4 text-center bg-destructive/10 mb-4 rounded">
-              <p className="text-sm font-bold text-center text-destructive">
-                {clerkOperationError ? t("user-exists") : t("error")}
+            <div className="mb-4 w-full rounded bg-destructive/10 px-2 py-4 text-center">
+              <p className="text-center text-sm font-bold text-destructive">
+                {clerkOperationError ? t('user-exists') : t('error')}
               </p>
             </div>
           )}
           <AddNewInstructorForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6"
+            className="grid grid-cols-1 gap-x-6 gap-y-2 md:grid-cols-2"
           />
         </ModalBody>
         <ModalFooter className="flex items-center justify-end gap-1">
           <Button variant="ghost" onClick={closeModal}>
-            {t("button-cancel")}
+            {t('button-cancel')}
           </Button>
           <Button
             variant="default"
@@ -131,7 +122,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
             {clerkOperationLoading || dbOperationLoading ? (
               <Spinner size="xs" color="background" />
             ) : (
-              t("button-submit")
+              t('button-submit')
             )}
           </Button>
         </ModalFooter>

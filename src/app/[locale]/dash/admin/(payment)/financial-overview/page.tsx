@@ -1,15 +1,13 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
-import type { Locale } from "@/lib/locales";
+import type { Locale } from '@/lib/locales';
 
 export default function FinancialOverview() {
   return (
-    <div className="w-full min-h-[300px] grid place-items-center">
+    <div className="grid min-h-[300px] w-full place-items-center">
       <div className="flex flex-col items-center gap-1">
         <h1 className="text-2xl font-bold">Coming soon.</h1>
-        <p className="text-sm text-center opacity-70">
-          Under construction {":)"}
-        </p>
+        <p className="text-center text-sm opacity-70">Under construction {':)'}</p>
       </div>
     </div>
   );
@@ -24,10 +22,10 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations({
     locale,
-    namespace: "Dashboard.Payment.FinancialOverview.Header",
+    namespace: 'Dashboard.Payment.FinancialOverview.Header',
   });
 
   return {
-    title: `${t("title")} / Dashboard`,
+    title: `${t('title')} / Dashboard`,
   };
 }

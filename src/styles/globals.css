@@ -76,13 +76,12 @@
 
 @layer base {
   * {
-    font-family: var(--font-plus-jakarta), "Helvetica Neue", Helvetica, Arial,
-      sans-serif;
+    font-family: var(--font-plus-jakarta), 'Helvetica Neue', Helvetica, Arial, sans-serif;
     @apply border-border;
-    @apply box-border p-0 m-0;
+    @apply m-0 box-border p-0;
   }
 
-  *[dir="rtl"] {
+  *[dir='rtl'] {
     font-family: var(--font-vazirmatn);
     @apply text-right;
   }

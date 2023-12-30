@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
-import type { Exam } from "@/components/sections/exams/list-table/schema";
-import type { LicenseFileExam } from "@/components/sections/license-files/license-file/exams-table/schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/utils/count-pages';
+import type { Exam } from '@/components/sections/exams/list-table/schema';
+import type { LicenseFileExam } from '@/components/sections/license-files/license-file/exams-table/schema';
 
-import { getWhereObjFromFilters } from "./utils";
+import { getWhereObjFromFilters } from './utils';
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -49,7 +49,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           take: input.pageSize,
           skip: input.pageIndex * input.pageSize,
@@ -66,16 +66,18 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedExams: Exam[] = exams.map((exam) => ({
-        id: exam.id,
-        status: exam.status,
-        type: exam.type,
-        date: exam.date,
-        student: {
-          id: exam.licenseFile.student.id,
-          fullName: `${exam.licenseFile.student.firstNameFr} ${exam.licenseFile.student.lastNameFr}`,
-        },
-      }));
+      const formattedExams: Exam[] = exams.map((exam) => {
+        return {
+          id: exam.id,
+          status: exam.status,
+          type: exam.type,
+          date: exam.date,
+          student: {
+            id: exam.licenseFile.student.id,
+            fullName: `${exam.licenseFile.student.firstNameFr} ${exam.licenseFile.student.lastNameFr}`,
+          },
+        };
+      });
 
       return {
         data: formattedExams,
@@ -116,7 +118,7 @@ export const queryRouter = createTRPCRouter({
             date: true,
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           take: input.pageSize,
           skip: input.pageIndex * input.pageSize,

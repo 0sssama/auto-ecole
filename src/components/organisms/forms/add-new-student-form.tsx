@@ -1,97 +1,84 @@
-"use client";
+'use client';
 
-import omit from "lodash/omit";
-import { z } from "zod";
-import { useTranslations } from "next-intl";
+import omit from 'lodash/omit';
+import type { z } from 'zod';
+import { useTranslations } from 'next-intl';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { DatePicker } from "@/components/ui/date-picker";
-import type { TranslationFunction } from "@/types";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { DatePicker } from '@/components/ui/date-picker';
+import type { TranslationFunction } from '@/types';
+import type { studentFormSchema } from '@/schemas/student-form-schema';
 
-import { studentFormSchema } from "@/schemas/student-form-schema";
-import type { FormComponentType } from "./types";
+import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
   {
-    name: "lastNameFr",
-    label: t("lastName"),
-    placeholder: "Doe",
+    name: 'lastNameFr',
+    label: t('lastName'),
+    placeholder: 'Doe',
   },
   {
-    name: "lastNameAr",
-    label: "الإسم العائلي :",
-    placeholder: "العلوي",
+    name: 'lastNameAr',
+    label: 'الإسم العائلي :',
+    placeholder: 'العلوي',
   },
   {
-    name: "firstNameFr",
-    label: t("firstName"),
-    placeholder: "John",
+    name: 'firstNameFr',
+    label: t('firstName'),
+    placeholder: 'John',
   },
   {
-    name: "firstNameAr",
-    label: "الإسم الشخصي :",
-    placeholder: "محمد",
+    name: 'firstNameAr',
+    label: 'الإسم الشخصي :',
+    placeholder: 'محمد',
   },
   {
-    name: "addressFr",
-    label: t("address"),
-    placeholder: "Rue 123, Ville, Pays",
+    name: 'addressFr',
+    label: t('address'),
+    placeholder: 'Rue 123, Ville, Pays',
   },
   {
-    name: "addressAr",
-    label: "العنوان :",
-    placeholder: "شارع 123، المدينة، البلد",
+    name: 'addressAr',
+    label: 'العنوان :',
+    placeholder: 'شارع 123، المدينة، البلد',
   },
   {
-    name: "professionFr",
-    label: t("profession"),
-    placeholder: "Professeur",
+    name: 'professionFr',
+    label: t('profession'),
+    placeholder: 'Professeur',
   },
   {
-    name: "professionAr",
-    label: "المهنة :",
-    placeholder: "أستاذ",
+    name: 'professionAr',
+    label: 'المهنة :',
+    placeholder: 'أستاذ',
   },
   {
-    name: "cin",
-    label: t("cin"),
-    placeholder: "CDXXXXXX",
+    name: 'cin',
+    label: t('cin'),
+    placeholder: 'CDXXXXXX',
   },
   {
-    name: "phone",
-    label: t("phone"),
-    placeholder: "06XXXXXXXX",
+    name: 'phone',
+    label: t('phone'),
+    placeholder: '06XXXXXXXX',
   },
   {
-    name: "email",
-    label: t("email"),
-    placeholder: "john@doe.com",
+    name: 'email',
+    label: t('email'),
+    placeholder: 'john@doe.com',
   },
   {
-    name: "birthdate",
-    label: t("birthdate"),
-    placeholder: "02-08-1969",
+    name: 'birthdate',
+    label: t('birthdate'),
+    placeholder: '02-08-1969',
   },
 ];
 
 type TFormValues = z.infer<typeof studentFormSchema>;
 
-const AddNewStudentForm: FormComponentType<TFormValues> = ({
-  form,
-  onSubmit,
-  className,
-}) => {
-  const t = useTranslations(
-    "Dashboard.Users.Students.AddNewStudentModal.AddNewStudentForm",
-  );
+const AddNewStudentForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+  const t = useTranslations('Dashboard.Users.Students.AddNewStudentModal.AddNewStudentForm');
 
   return (
     <Form {...form}>
@@ -103,35 +90,28 @@ const AddNewStudentForm: FormComponentType<TFormValues> = ({
             name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
-                <FormLabel
-                  className="inline-block w-full text-sm"
-                  dir={f.name.endsWith("Ar") ? "rtl" : "ltr"}
-                >
+                <FormLabel className="inline-block w-full text-sm" dir={f.name.endsWith('Ar') ? 'rtl' : 'ltr'}>
                   {f.label}
                 </FormLabel>
                 <FormControl>
                   <>
-                    {field.name !== "birthdate" && (
+                    {field.name !== 'birthdate' && (
                       <Input
                         placeholder={f.placeholder}
-                        dir={f.name.endsWith("Ar") ? "rtl" : "ltr"}
+                        dir={f.name.endsWith('Ar') ? 'rtl' : 'ltr'}
                         {...field}
                         value={field.value as string}
                       />
                     )}
 
-                    {field.name === "birthdate" && (
-                      <DatePicker
-                        {...omit(field, "ref")}
-                        placeholder={f.placeholder}
-                        value={field.value as Date}
-                      />
+                    {field.name === 'birthdate' && (
+                      <DatePicker {...omit(field, 'ref')} placeholder={f.placeholder} value={field.value as Date} />
                     )}
                   </>
                 </FormControl>
                 <FormMessage
-                  dir={f.name.endsWith("Ar") ? "rtl" : "ltr"}
-                  className="inline-block w-full text-[12px] px-1"
+                  dir={f.name.endsWith('Ar') ? 'rtl' : 'ltr'}
+                  className="inline-block w-full px-1 text-[12px]"
                 />
               </FormItem>
             )}

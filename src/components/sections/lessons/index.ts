@@ -1,1 +1,1 @@
-export { default as LessonsListTable } from "./list-table";
+export { default as LessonsListTable } from './list-table';

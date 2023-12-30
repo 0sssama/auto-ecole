@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useOrganization } from "@clerk/nextjs";
+import Link from 'next/link';
+import { useOrganization } from '@clerk/nextjs';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/cn";
-import { useScroll } from "@/lib/hooks/useScroll";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { cn } from '@/lib/cn';
+import { useScroll } from '@/lib/hooks/use-scroll';
 
 export default function UserOrgAvatar() {
   const { scrolled } = useScroll({ threshold: 50 });
@@ -15,24 +15,12 @@ export default function UserOrgAvatar() {
   if (!organization) return null;
 
   return (
-    <Link href="/dash" className="inline-flex items-center h-8">
-      <Avatar
-        className={cn(
-          "rounded-md shadow-lg w-10 h-10 transition-all",
-          scrolled && "w-8 h-8",
-        )}
-      >
+    <Link href="/dash" className="inline-flex h-8 items-center">
+      <Avatar className={cn('h-10 w-10 rounded-md shadow-lg transition-all', scrolled && 'h-8 w-8')}>
         <AvatarImage src={organization.imageUrl} alt={organization.name} />
-        <AvatarFallback>
-          {organization.name.slice(0, 2).toUpperCase()}
-        </AvatarFallback>
+        <AvatarFallback>{organization.name.slice(0, 2).toUpperCase()}</AvatarFallback>
       </Avatar>
-      <p
-        className={cn(
-          "ml-4 text-sm font-semibold leading-none transition-all",
-          scrolled && "ml-2 text-xs",
-        )}
-      >
+      <p className={cn('ml-4 text-sm font-semibold leading-none transition-all', scrolled && 'ml-2 text-xs')}>
         {organization.name}
       </p>
     </Link>

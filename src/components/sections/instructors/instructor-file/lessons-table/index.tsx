@@ -1,21 +1,19 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl';
 
-import { DataTable } from "@/components/organisms";
-import { Paginated } from "@/components/organisms/data-table/types";
-import { usePagination } from "@/lib/hooks/usePagination";
-import { useTableFilters } from "@/lib/hooks/useTableFilters";
-import { api } from "@/utils/api";
+import { DataTable } from '@/components/organisms';
+import type { Paginated } from '@/components/organisms/data-table/types';
+import { usePagination } from '@/lib/hooks/use-pagination';
+import { useTableFilters } from '@/lib/hooks/use-table-filters';
+import { api } from '@/utils/api';
 
-import { columns } from "./columns";
-import type { InstructorLesson } from "./schema";
-import type { InstructorLessonsTableComponentType } from "./types";
+import { columns } from './columns';
+import type { InstructorLesson } from './schema';
+import type { InstructorLessonsTableComponentType } from './types';
 
-const InstructorLessonsTable: InstructorLessonsTableComponentType = ({
-  instructorId,
-}) => {
-  const t = useTranslations("Dashboard.Dossier.Tables.InstructorLessons");
+const InstructorLessonsTable: InstructorLessonsTableComponentType = ({ instructorId }) => {
+  const t = useTranslations('Dashboard.Dossier.Tables.InstructorLessons');
 
   const pagination = usePagination({
     pageIndex: 0,
@@ -25,19 +23,16 @@ const InstructorLessonsTable: InstructorLessonsTableComponentType = ({
 
   const filters = useTableFilters();
 
-  const { data, isLoading, error } =
-    api.db.lessons.query.listByInstructorId.useQuery<
-      Paginated<InstructorLesson>
-    >({
-      instructorId,
-      pageIndex: pagination.get.pageIndex,
-      pageSize: pagination.get.pageSize,
-      filters: filters.get,
-    });
+  const { data, isLoading, error } = api.db.lessons.query.listByInstructorId.useQuery<Paginated<InstructorLesson>>({
+    instructorId,
+    pageIndex: pagination.get.pageIndex,
+    pageSize: pagination.get.pageSize,
+    filters: filters.get,
+  });
 
   return (
     <div className="w-full">
-      <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
+      <h1 className="mb-4 w-full text-2xl font-bold">{t('title')}</h1>
       <DataTable
         data={data}
         error={error?.message}

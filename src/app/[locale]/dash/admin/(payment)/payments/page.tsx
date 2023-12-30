@@ -1,11 +1,11 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
 // import { getPayment } from "@/server/utils/payments/getPayment";
 // import { Payment } from "@/components/sections/payments";
-import type { Locale } from "@/lib/locales";
+import type { Locale } from '@/lib/locales';
 
-import PaymentsPage from "./_components/payments";
-import PaymentNotFound from "./_components/not-found";
+import PaymentsPage from './_components/payments';
+import PaymentNotFound from './_components/not-found';
 
 export default async function Payments({
   searchParams: { paymentId },
@@ -18,7 +18,7 @@ export default async function Payments({
 
   const id = Number(paymentId);
 
-  if (isNaN(id) || id <= 0) return <PaymentNotFound />;
+  if (Number.isNaN(id) || id <= 0) return <PaymentNotFound />;
 
   //   const payment = await getPayment(id);
 
@@ -36,10 +36,10 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations({
     locale,
-    namespace: "Dashboard.Payment.Payments.Header",
+    namespace: 'Dashboard.Payment.Payments.Header',
   });
 
   return {
-    title: `${t("title")} / Dashboard`,
+    title: `${t('title')} / Dashboard`,
   };
 }

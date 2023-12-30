@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl';
 
-import { PageHeader, AddPaymentModalSike } from "@/components/molecules";
-import { useModal } from "@/lib/hooks/useModal";
-import { PaymentsListTable } from "@/components/sections/payments";
+import { PageHeader, AddPaymentModalSike } from '@/components/molecules';
+import { useModal } from '@/lib/hooks/use-modal';
+import { PaymentsListTable } from '@/components/sections/payments';
 
 export default function PaymentsPage() {
-  const t = useTranslations("Dashboard.Payment.Payments.Header");
+  const t = useTranslations('Dashboard.Payment.Payments.Header');
   const addPaymentModalSike = useModal();
 
   return (

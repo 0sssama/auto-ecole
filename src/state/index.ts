@@ -1,11 +1,11 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const menuOpenState = atom({
-  key: "menuOpenState",
+  key: 'menuOpenState',
   default: false,
 });
 
 export const loadingState = atom({
-  key: "loadingState",
+  key: 'loadingState',
   default: false,
 });

@@ -1,21 +1,19 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl';
 
-import { DataTable } from "@/components/organisms";
-import { usePagination } from "@/lib/hooks/usePagination";
-import { useTableFilters } from "@/lib/hooks/useTableFilters";
-import { api } from "@/utils/api";
-import type { Paginated } from "@/components/organisms/data-table/types";
+import { DataTable } from '@/components/organisms';
+import { usePagination } from '@/lib/hooks/use-pagination';
+import { useTableFilters } from '@/lib/hooks/use-table-filters';
+import { api } from '@/utils/api';
+import type { Paginated } from '@/components/organisms/data-table/types';
 
-import { columns } from "./columns";
-import type { StudentLesson } from "./schema";
-import type { StudentLessonsTableComponentType } from "./types";
+import { columns } from './columns';
+import type { StudentLesson } from './schema';
+import type { StudentLessonsTableComponentType } from './types';
 
-const StudentLessonsTable: StudentLessonsTableComponentType = ({
-  studentId,
-}) => {
-  const t = useTranslations("Dashboard.Dossier.Tables.StudentLessons");
+const StudentLessonsTable: StudentLessonsTableComponentType = ({ studentId }) => {
+  const t = useTranslations('Dashboard.Dossier.Tables.StudentLessons');
 
   const pagination = usePagination({
     pageIndex: 0,
@@ -25,17 +23,16 @@ const StudentLessonsTable: StudentLessonsTableComponentType = ({
 
   const filters = useTableFilters();
 
-  const { data, isLoading, error } =
-    api.db.lessons.query.listByStudentId.useQuery<Paginated<StudentLesson>>({
-      studentId,
-      pageIndex: pagination.get.pageIndex,
-      pageSize: pagination.get.pageSize,
-      filters: filters.get,
-    });
+  const { data, isLoading, error } = api.db.lessons.query.listByStudentId.useQuery<Paginated<StudentLesson>>({
+    studentId,
+    pageIndex: pagination.get.pageIndex,
+    pageSize: pagination.get.pageSize,
+    filters: filters.get,
+  });
 
   return (
     <div className="w-full">
-      <h1 className="w-full mb-4 text-2xl font-bold">{t("title")}</h1>
+      <h1 className="mb-4 w-full text-2xl font-bold">{t('title')}</h1>
       <DataTable
         data={data}
         error={error?.message}

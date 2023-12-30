@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import type { FC } from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import type { FC } from 'react';
 
-import logo from "@/assets/logo.svg";
-import logoLight from "@/assets/logo-light.svg";
+import logo from '@/assets/logo.svg';
+import logoLight from '@/assets/logo-light.svg';
 
 const variants = {
   xs: {
@@ -36,7 +36,7 @@ export type LogoProps = {
   className?: string;
 };
 
-const Logo: FC<LogoProps> = ({ size = "md", className }) => {
+const Logo: FC<LogoProps> = ({ size = 'md', className }) => {
   const { theme } = useTheme();
 
   const { width, height } = variants[size];
@@ -46,14 +46,14 @@ const Logo: FC<LogoProps> = ({ size = "md", className }) => {
       href="/"
       className={className}
       style={{
-        display: "block",
+        display: 'block',
         width: `${width}px`,
         height: `${height}px`,
       }}
     >
       <Image
         priority
-        src={theme === "dark" ? logoLight : logo}
+        src={theme === 'dark' ? logoLight : logo}
         alt="Logo"
         width={width}
         height={height}

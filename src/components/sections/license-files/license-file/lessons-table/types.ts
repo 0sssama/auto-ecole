@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface LicenseFileLessonsTableProps {
   context: {
@@ -8,5 +8,4 @@ interface LicenseFileLessonsTableProps {
   };
 }
 
-export type LicenseFileLessonsTableComponentType =
-  FC<LicenseFileLessonsTableProps>;
+export type LicenseFileLessonsTableComponentType = FC<LicenseFileLessonsTableProps>;

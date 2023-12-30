@@ -1,7 +1,7 @@
-import { z } from "zod";
-import { LessonStatus } from "@prisma/client";
+import { z } from 'zod';
+import { LessonStatus } from '@prisma/client';
 
-import { isDigits } from "@/utils/isDigits";
+import { isDigits } from '@/utils/is-digits';
 
 export const lessonFormSchema = z.object({
   studentId: z.string().refine(isDigits),

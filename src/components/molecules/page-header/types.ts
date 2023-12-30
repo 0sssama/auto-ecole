@@ -1,5 +1,6 @@
-import type { TranslationFunction } from "@/types";
-import type { FC } from "react";
+import type { FC } from 'react';
+
+import type { TranslationFunction } from '@/types';
 
 interface PageHeaderProps {
   openModal: () => void;

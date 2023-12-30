@@ -1,7 +1,7 @@
-import { z } from "zod";
-import { Category, LicenseFileStatus } from "@prisma/client";
+import { z } from 'zod';
+import { Category, LicenseFileStatus } from '@prisma/client';
 
-import { isDigits } from "@/utils/isDigits";
+import { isDigits } from '@/utils/is-digits';
 
 export const licenseFileFormSchema = z.object({
   studentId: z.string().refine(isDigits),

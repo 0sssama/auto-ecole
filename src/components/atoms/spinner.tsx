@@ -1,6 +1,6 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
-import { cn } from "@/lib/cn";
+import { cn } from '@/lib/cn';
 
 export type LoadingProps = {
   size?: keyof typeof variants;
@@ -37,36 +37,26 @@ const variants = {
 };
 
 const colors = {
-  primary: "border-primary",
-  secondary: "border-secondary",
-  success: "border-success",
-  destructive: "border-destructive",
-  warning: "border-warning",
-  info: "border-info",
-  light: "border-light",
-  dark: "border-dark",
-  foreground: "border-foreground",
-  background: "border-background",
+  primary: 'border-primary',
+  secondary: 'border-secondary',
+  success: 'border-success',
+  destructive: 'border-destructive',
+  warning: 'border-warning',
+  info: 'border-info',
+  light: 'border-light',
+  dark: 'border-dark',
+  foreground: 'border-foreground',
+  background: 'border-background',
 };
 
-const Loading: FC<LoadingProps> = ({
-  size = "md",
-  color = "foreground",
-  className,
-}) => {
-  return (
-    <div
-      aria-label="Spinner"
-      style={{
-        ...variants[size],
-      }}
-      className={cn(
-        "border-solid rounded-full !border-t-transparent animate-spin",
-        className,
-        color && colors[color],
-      )}
-    ></div>
-  );
-};
+const Loading: FC<LoadingProps> = ({ size = 'md', color = 'foreground', className }) => (
+  <div
+    aria-label="Spinner"
+    style={{
+      ...variants[size],
+    }}
+    className={cn('animate-spin rounded-full border-solid !border-t-transparent', className, color && colors[color])}
+  ></div>
+);
 
 export default Loading;

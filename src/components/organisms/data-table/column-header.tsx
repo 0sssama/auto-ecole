@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
-import { ArrowDownAZ, ArrowUpZA, ChevronsDownUp, EyeOff } from "lucide-react";
+import { useTranslations } from 'next-intl';
+import { ArrowDownAZ, ArrowUpZA, ChevronsDownUp, EyeOff } from 'lucide-react';
 
 import {
   DropdownMenu,
@@ -9,40 +9,30 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/cn";
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/cn';
 
-import type { DataTableColumnHeaderProps } from "./types";
+import type { DataTableColumnHeaderProps } from './types';
 
 export default function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
-  const t = useTranslations("Dashboard.Tables.Header");
+  const t = useTranslations('Dashboard.Tables.Header');
 
-  if (!column.getCanSort()) {
-    return <div className={cn(className)}>{t(title)}</div>;
-  }
+  if (!column.getCanSort()) return <div className={cn(className)}>{t(title)}</div>;
 
   return (
-    <div className={cn("flex items-center space-x-2", className)}>
+    <div className={cn('flex items-center space-x-2', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="-ml-3 h-8 data-[state=open]:bg-accent !text-left"
-          >
+          <Button variant="ghost" size="sm" className="-ml-3 h-8 !text-left data-[state=open]:bg-accent">
             <span>{t(title)}</span>
-            {column.getIsSorted() === "desc" ? (
-              <ArrowDownAZ className="w-4 h-4 ml-2" />
-            ) : column.getIsSorted() === "asc" ? (
-              <ArrowUpZA className="w-4 h-4 ml-2" />
-            ) : (
-              <ChevronsDownUp className="w-3 h-3 ml-2" />
-            )}
+            {column.getIsSorted() === 'desc' && <ArrowDownAZ className="ml-2 h-4 w-4" />}
+            {column.getIsSorted() === 'asc' && <ArrowUpZA className="ml-2 h-4 w-4" />}
+            {!column.getIsSorted() && <ChevronsDownUp className="ml-2 h-3 w-3" />}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
@@ -51,14 +41,14 @@ export default function DataTableColumnHeader<TData, TValue>({
             className="text-sm font-medium text-muted-foreground/90"
           >
             <ArrowUpZA className="mr-2 h-3.5 w-3.5" />
-            {t("asc")}
+            {t('asc')}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => column.toggleSorting(true)}
             className="text-sm font-medium text-muted-foreground/90"
           >
             <ArrowDownAZ className="mr-2 h-3.5 w-3.5" />
-            {t("desc")}
+            {t('desc')}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
@@ -66,7 +56,7 @@ export default function DataTableColumnHeader<TData, TValue>({
             className="text-sm font-medium text-muted-foreground/90"
           >
             <EyeOff className="mr-2 h-3.5 w-3.5" />
-            {t("hide")}
+            {t('hide')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

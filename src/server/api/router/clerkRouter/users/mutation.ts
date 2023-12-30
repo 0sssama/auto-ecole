@@ -1,11 +1,11 @@
-import { z } from "zod";
-import { clerkClient } from "@clerk/nextjs";
-import { TRPCError } from "@trpc/server";
+import { z } from 'zod';
+import { clerkClient } from '@clerk/nextjs';
+import { TRPCError } from '@trpc/server';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { studentFormSchema } from "@/schemas/student-form-schema";
-import { instructorFormSchema } from "@/schemas/instructor-form-schema";
-import { createNewCredentials } from "@/utils/createNewCredentials";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { studentFormSchema } from '@/schemas/student-form-schema';
+import { instructorFormSchema } from '@/schemas/instructor-form-schema';
+import { createNewCredentials } from '@/utils/create-new-credentials';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
@@ -36,16 +36,16 @@ export const mutationRouter = createTRPCRouter({
         await clerkClient.organizations.createOrganizationMembership({
           organizationId: ctx.orgId,
           userId: user.id,
-          role: "basic_member",
+          role: 'basic_member',
         });
-      } catch (err) {
-        console.error(err);
-        console.log("CLEANING UP USER, FAILURE TO ADD USER TO ORGANIZATION");
+      } catch (error) {
+        console.error(error);
+        console.log('CLEANING UP USER, FAILURE TO ADD USER TO ORGANIZATION');
         // cleanup user that was created
         await clerkClient.users.deleteUser(user.id);
 
         throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
+          code: 'INTERNAL_SERVER_ERROR',
         });
       }
 
@@ -80,16 +80,16 @@ export const mutationRouter = createTRPCRouter({
         await clerkClient.organizations.createOrganizationMembership({
           organizationId: ctx.orgId,
           userId: user.id,
-          role: "admin",
+          role: 'admin',
         });
-      } catch (err) {
-        console.error(err);
-        console.log("CLEANING UP USER, FAILURE TO ADD USER TO ORGANIZATION");
+      } catch (error) {
+        console.error(error);
+        console.log('CLEANING UP USER, FAILURE TO ADD USER TO ORGANIZATION');
         // cleanup user that was created
         await clerkClient.users.deleteUser(user.id);
 
         throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
+          code: 'INTERNAL_SERVER_ERROR',
         });
       }
 

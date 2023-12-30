@@ -1,13 +1,11 @@
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from '@prisma/client';
 
-import type { TableFilters } from "@/components/organisms/data-table/types";
+import type { TableFilters } from '@/components/organisms/data-table/types';
 
-export const getWhereObjFromFilters = (
-  filters: TableFilters["get"],
-): Prisma.PaymentWhereInput => {
+export const getWhereObjFromFilters = (filters: TableFilters['get']): Prisma.PaymentWhereInput => {
   void filters;
 
-  let output: Prisma.PaymentWhereInput["OR"] = [];
+  const output: Prisma.PaymentWhereInput['OR'] = [];
 
   // if (filters.search) output = [...output, ...searchFilters(filters.search)];
 

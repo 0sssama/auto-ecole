@@ -1,51 +1,40 @@
-"use client";
+'use client';
 
-import omit from "lodash/omit";
-import { z } from "zod";
-import { useTranslations } from "next-intl";
+import omit from 'lodash/omit';
+import type { z } from 'zod';
+import { useTranslations } from 'next-intl';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { DatePicker } from "@/components/ui/date-picker";
-import type { TranslationFunction } from "@/types";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { DatePicker } from '@/components/ui/date-picker';
+import type { TranslationFunction } from '@/types';
+import type { vehicleExpenseFormSchema } from '@/schemas/vehicle-expense-form-schema';
 
-import { vehicleExpenseFormSchema } from "@/schemas/vehicle-expense-form-schema";
-import type { FormComponentType } from "./types";
+import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
   {
-    name: "sum",
-    label: t("sum"),
-    placeholder: "500",
+    name: 'sum',
+    label: t('sum'),
+    placeholder: '500',
   },
   {
-    name: "comment",
-    label: t("comment"),
-    placeholder: "Diesel fuel",
+    name: 'comment',
+    label: t('comment'),
+    placeholder: 'Diesel fuel',
   },
   {
-    name: "date",
-    label: t("date"),
-    placeholder: "2021-07-13",
+    name: 'date',
+    label: t('date'),
+    placeholder: '2021-07-13',
   },
 ];
 
 type TFormValues = z.infer<typeof vehicleExpenseFormSchema>;
 
-const AddNewVehicleExpenseForm: FormComponentType<TFormValues> = ({
-  form,
-  onSubmit,
-  className,
-}) => {
-  const t = useTranslations("Dashboard.Modals.AddVehicleExpense.Form");
+const AddNewVehicleExpenseForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+  const t = useTranslations('Dashboard.Modals.AddVehicleExpense.Form');
 
   return (
     <Form {...form}>
@@ -57,37 +46,23 @@ const AddNewVehicleExpenseForm: FormComponentType<TFormValues> = ({
             name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="inline-block w-full text-sm !text-left">
-                  {f.label}
-                </FormLabel>
+                <FormLabel className="inline-block w-full !text-left text-sm">{f.label}</FormLabel>
                 <FormControl>
                   <>
-                    {field.name === "sum" && (
-                      <Input
-                        {...field}
-                        placeholder={f.placeholder}
-                        value={field.value as string}
-                      />
+                    {field.name === 'sum' && (
+                      <Input {...field} placeholder={f.placeholder} value={field.value as string} />
                     )}
 
-                    {field.name === "comment" && (
-                      <Textarea
-                        {...field}
-                        placeholder={f.placeholder}
-                        value={field.value as string}
-                      />
+                    {field.name === 'comment' && (
+                      <Textarea {...field} placeholder={f.placeholder} value={field.value as string} />
                     )}
 
-                    {field.name === "date" && (
-                      <DatePicker
-                        {...omit(field, "ref")}
-                        placeholder={f.placeholder}
-                        value={field.value as Date}
-                      />
+                    {field.name === 'date' && (
+                      <DatePicker {...omit(field, 'ref')} placeholder={f.placeholder} value={field.value as Date} />
                     )}
                   </>
                 </FormControl>
-                <FormMessage className="inline-block w-full text-[12px] px-1 !text-right" />
+                <FormMessage className="inline-block w-full px-1 !text-right text-[12px]" />
               </FormItem>
             )}
           />

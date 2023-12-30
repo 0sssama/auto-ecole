@@ -1,8 +1,7 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface InstructorLessonsTableProps {
   instructorId: number;
 }
 
-export type InstructorLessonsTableComponentType =
-  FC<InstructorLessonsTableProps>;
+export type InstructorLessonsTableComponentType = FC<InstructorLessonsTableProps>;

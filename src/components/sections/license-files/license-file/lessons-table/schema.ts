@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { LessonStatus } from "@prisma/client";
+import { z } from 'zod';
+import { LessonStatus } from '@prisma/client';
 
 export type LicenseFileLesson = {
   id: number;

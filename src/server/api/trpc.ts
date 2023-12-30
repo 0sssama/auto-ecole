@@ -6,16 +6,15 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-import superjson from "superjson";
-import { getAuth } from "@clerk/nextjs/server";
-import { TRPCError, initTRPC } from "@trpc/server";
-import { ZodError } from "zod";
-import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-import type { RequestLike } from "@clerk/nextjs/dist/types/server/types";
+import superjson from 'superjson';
+import { getAuth } from '@clerk/nextjs/server';
+import { TRPCError, initTRPC } from '@trpc/server';
+import { ZodError } from 'zod';
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
-import { prisma } from "@/server/db";
-import { userIsSuperAdmin } from "@/server/utils/auth/userIsSuperAdmin";
-import { userIsAdmin } from "@/server/utils/auth/userIsAdmin";
+import { prisma } from '@/server/db';
+import { userIsSuperAdmin } from '@/server/utils/auth/user-is-super-admin';
+import { userIsAdmin } from '@/server/utils/auth/user-is-admin';
 
 /**
  * 1. CONTEXT
@@ -33,7 +32,7 @@ import { userIsAdmin } from "@/server/utils/auth/userIsAdmin";
  */
 export const createTRPCContext = (opts: FetchCreateContextFnOptions) => {
   // get current auth session
-  const sesh = getAuth(opts.req as RequestLike);
+  const sesh = getAuth(opts.req as Parameters<typeof getAuth>[0]);
 
   return {
     prisma,
@@ -57,8 +56,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       data: {
         ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
+        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
     };
   },
@@ -91,11 +89,10 @@ export const publicProcedure = t.procedure;
  * Private (authenticated) procedure
  */
 const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
-  if (!ctx.userId || !ctx.orgId) {
+  if (!ctx.userId || !ctx.orgId)
     throw new TRPCError({
-      code: "UNAUTHORIZED",
+      code: 'UNAUTHORIZED',
     });
-  }
 
   return next({
     ctx: {
@@ -108,47 +105,40 @@ const enforceUserAuthentication = t.middleware(async ({ ctx, next }) => {
 /**
  * Organization admin only procedure
  */
-const enforceOrgAdminOnly = enforceUserAuthentication.unstable_pipe(
-  async ({ ctx, next }) => {
-    const { userId, orgId } = ctx;
+const enforceOrgAdminOnly = enforceUserAuthentication.unstable_pipe(async ({ ctx, next }) => {
+  const { userId, orgId } = ctx;
 
-    const isAdmin = await userIsAdmin(userId, orgId);
+  const isAdmin = await userIsAdmin(userId, orgId);
 
-    if (!isAdmin)
-      throw new TRPCError({ code: "UNAUTHORIZED", message: "Not an admin" });
+  if (!isAdmin) throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Not an admin' });
 
-    return next({
-      ctx: { ...ctx, isAdmin },
-    });
-  },
-);
+  return next({
+    ctx: { ...ctx, isAdmin },
+  });
+});
 
 /**
  * Organization super admin only procedure
  */
-const enforceOrgSuperAdminOnly = enforceOrgAdminOnly.unstable_pipe(
-  async ({ ctx, next }) => {
-    const { userId, orgId } = ctx;
+const enforceOrgSuperAdminOnly = enforceOrgAdminOnly.unstable_pipe(async ({ ctx, next }) => {
+  const { userId, orgId } = ctx;
 
-    const isSuperAdmin = await userIsSuperAdmin(userId, orgId);
+  const isSuperAdmin = await userIsSuperAdmin(userId, orgId);
 
-    if (!isSuperAdmin)
-      throw new TRPCError({
-        code: "UNAUTHORIZED",
-        message: "Not a super admin",
-      });
-
-    return next({
-      ctx: {
-        ...ctx,
-        isSuperAdmin,
-      },
+  if (!isSuperAdmin)
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Not a super admin',
     });
-  },
-);
+
+  return next({
+    ctx: {
+      ...ctx,
+      isSuperAdmin,
+    },
+  });
+});
 
 export const privateProcedure = t.procedure.use(enforceUserAuthentication);
 export const orgAdminOnlyPrecedure = privateProcedure.use(enforceOrgAdminOnly);
-export const orgSuperAdminOnlyPrecedure = orgAdminOnlyPrecedure.use(
-  enforceOrgSuperAdminOnly,
-);
+export const orgSuperAdminOnlyPrecedure = orgAdminOnlyPrecedure.use(enforceOrgSuperAdminOnly);

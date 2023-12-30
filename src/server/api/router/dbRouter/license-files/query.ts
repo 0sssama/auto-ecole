@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
-import type { InstructorLicenseFile } from "@/components/sections/instructors/instructor-file/license-files-table/schema";
-import type { StudentLicenseFile } from "@/components/sections/students/student-file/license-files-table/schema";
-import type { LicenseFile } from "@/components/sections/license-files/list-table/schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/utils/count-pages';
+import type { InstructorLicenseFile } from '@/components/sections/instructors/instructor-file/license-files-table/schema';
+import type { StudentLicenseFile } from '@/components/sections/students/student-file/license-files-table/schema';
+import type { LicenseFile } from '@/components/sections/license-files/list-table/schema';
 
-import { getWhereObjFromFilters } from "./utils";
+import { getWhereObjFromFilters } from './utils';
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -22,54 +22,52 @@ export const queryRouter = createTRPCRouter({
     .query(async ({ input, ctx }) => {
       const filtersObj = getWhereObjFromFilters(input.filters);
 
-      const [studentLicenseFiles, totalStudentLicenseFiles] = await Promise.all(
-        [
-          ctx.prisma.licenseFile.findMany({
-            where: {
-              ...filtersObj,
-              student: {
-                clerkOrgId: ctx.orgId,
+      const [studentLicenseFiles, totalStudentLicenseFiles] = await Promise.all([
+        ctx.prisma.licenseFile.findMany({
+          where: {
+            ...filtersObj,
+            student: {
+              clerkOrgId: ctx.orgId,
+            },
+          },
+          select: {
+            id: true,
+            status: true,
+            category: true,
+            price: true,
+            instructor: {
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
               },
             },
-            select: {
-              id: true,
-              status: true,
-              category: true,
-              price: true,
-              instructor: {
-                select: {
-                  id: true,
-                  firstName: true,
-                  lastName: true,
-                },
-              },
-              student: {
-                select: {
-                  id: true,
-                  firstNameFr: true,
-                  lastNameFr: true,
-                },
+            student: {
+              select: {
+                id: true,
+                firstNameFr: true,
+                lastNameFr: true,
               },
             },
-            orderBy: {
-              createdAt: "desc",
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          skip: input.pageIndex * input.pageSize,
+          take: input.pageSize,
+        }),
+        ctx.prisma.licenseFile.count({
+          where: {
+            ...filtersObj,
+            student: {
+              clerkOrgId: ctx.orgId,
             },
-            skip: input.pageIndex * input.pageSize,
-            take: input.pageSize,
-          }),
-          ctx.prisma.licenseFile.count({
-            where: {
-              ...filtersObj,
-              student: {
-                clerkOrgId: ctx.orgId,
-              },
-            },
-          }),
-        ],
-      );
+          },
+        }),
+      ]);
 
-      const formattedStudentLicenseFiles: LicenseFile[] =
-        studentLicenseFiles.map((licenseFile) => ({
+      const formattedStudentLicenseFiles: LicenseFile[] = studentLicenseFiles.map((licenseFile) => {
+        return {
           id: licenseFile.id,
           instructor: {
             id: licenseFile.instructor.id,
@@ -82,7 +80,8 @@ export const queryRouter = createTRPCRouter({
           category: licenseFile.category,
           price: licenseFile.price,
           status: licenseFile.status,
-        }));
+        };
+      });
 
       return {
         data: formattedStudentLicenseFiles,
@@ -105,50 +104,48 @@ export const queryRouter = createTRPCRouter({
     .query(async ({ input, ctx }) => {
       const filtersObj = getWhereObjFromFilters(input.filters);
 
-      const [studentLicenseFiles, totalStudentLicenseFiles] = await Promise.all(
-        [
-          ctx.prisma.licenseFile.findMany({
-            where: {
-              ...filtersObj,
-              studentId: input.studentId,
-              student: {
-                clerkOrgId: ctx.orgId,
+      const [studentLicenseFiles, totalStudentLicenseFiles] = await Promise.all([
+        ctx.prisma.licenseFile.findMany({
+          where: {
+            ...filtersObj,
+            studentId: input.studentId,
+            student: {
+              clerkOrgId: ctx.orgId,
+            },
+          },
+          select: {
+            id: true,
+            status: true,
+            createdAt: true,
+            category: true,
+            price: true,
+            instructor: {
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
               },
             },
-            select: {
-              id: true,
-              status: true,
-              createdAt: true,
-              category: true,
-              price: true,
-              instructor: {
-                select: {
-                  id: true,
-                  firstName: true,
-                  lastName: true,
-                },
-              },
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          skip: input.pageIndex * input.pageSize,
+          take: input.pageSize,
+        }),
+        ctx.prisma.licenseFile.count({
+          where: {
+            ...filtersObj,
+            studentId: input.studentId,
+            student: {
+              clerkOrgId: ctx.orgId,
             },
-            orderBy: {
-              createdAt: "desc",
-            },
-            skip: input.pageIndex * input.pageSize,
-            take: input.pageSize,
-          }),
-          ctx.prisma.licenseFile.count({
-            where: {
-              ...filtersObj,
-              studentId: input.studentId,
-              student: {
-                clerkOrgId: ctx.orgId,
-              },
-            },
-          }),
-        ],
-      );
+          },
+        }),
+      ]);
 
-      const formattedStudentLicenseFiles: StudentLicenseFile[] =
-        studentLicenseFiles.map((licenseFile) => ({
+      const formattedStudentLicenseFiles: StudentLicenseFile[] = studentLicenseFiles.map((licenseFile) => {
+        return {
           id: licenseFile.id,
           instructorId: licenseFile.instructor.id,
           instructorName: `${licenseFile.instructor.firstName} ${licenseFile.instructor.lastName}`,
@@ -156,7 +153,8 @@ export const queryRouter = createTRPCRouter({
           price: licenseFile.price,
           status: licenseFile.status,
           createdAt: licenseFile.createdAt,
-        }));
+        };
+      });
 
       return {
         data: formattedStudentLicenseFiles,
@@ -179,49 +177,48 @@ export const queryRouter = createTRPCRouter({
     .query(async ({ input, ctx }) => {
       const filtersObj = getWhereObjFromFilters(input.filters);
 
-      const [instructorLicenseFiles, totalInstructorLicenseFiles] =
-        await Promise.all([
-          ctx.prisma.licenseFile.findMany({
-            where: {
-              ...filtersObj,
-              instructorId: input.instructorId,
-              student: {
-                clerkOrgId: ctx.orgId,
+      const [instructorLicenseFiles, totalInstructorLicenseFiles] = await Promise.all([
+        ctx.prisma.licenseFile.findMany({
+          where: {
+            ...filtersObj,
+            instructorId: input.instructorId,
+            student: {
+              clerkOrgId: ctx.orgId,
+            },
+          },
+          select: {
+            id: true,
+            status: true,
+            createdAt: true,
+            category: true,
+            price: true,
+            student: {
+              select: {
+                id: true,
+                firstNameFr: true,
+                lastNameFr: true,
               },
             },
-            select: {
-              id: true,
-              status: true,
-              createdAt: true,
-              category: true,
-              price: true,
-              student: {
-                select: {
-                  id: true,
-                  firstNameFr: true,
-                  lastNameFr: true,
-                },
-              },
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          skip: input.pageIndex * input.pageSize,
+          take: input.pageSize,
+        }),
+        ctx.prisma.licenseFile.count({
+          where: {
+            ...filtersObj,
+            instructorId: input.instructorId,
+            student: {
+              clerkOrgId: ctx.orgId,
             },
-            orderBy: {
-              createdAt: "desc",
-            },
-            skip: input.pageIndex * input.pageSize,
-            take: input.pageSize,
-          }),
-          ctx.prisma.licenseFile.count({
-            where: {
-              ...filtersObj,
-              instructorId: input.instructorId,
-              student: {
-                clerkOrgId: ctx.orgId,
-              },
-            },
-          }),
-        ]);
+          },
+        }),
+      ]);
 
-      const formattedInstructorLicenseFiles: InstructorLicenseFile[] =
-        instructorLicenseFiles.map((licenseFile) => ({
+      const formattedInstructorLicenseFiles: InstructorLicenseFile[] = instructorLicenseFiles.map((licenseFile) => {
+        return {
           id: licenseFile.id,
           studentId: licenseFile.student.id,
           studentName: `${licenseFile.student.firstNameFr} ${licenseFile.student.lastNameFr}`,
@@ -229,7 +226,8 @@ export const queryRouter = createTRPCRouter({
           price: licenseFile.price,
           status: licenseFile.status,
           createdAt: licenseFile.createdAt,
-        }));
+        };
+      });
 
       return {
         data: formattedInstructorLicenseFiles,
