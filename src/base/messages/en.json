@@ -162,6 +162,13 @@
           "admin-name": "Taken by",
           "date": "Date"
         },
+        "LicenseFileExpenses": {
+          "id": "ID",
+          "sum": "Expense Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
+        },
         "Lessons": {
           "id": "ID",
           "instructor-name": "Instructor",
@@ -564,6 +571,16 @@
               "view": "View details",
               "edit": "Edit"
             }
+          },
+          "LicenseFileExpenses": {
+            "title": "Expenses",
+            "add-button": "Add Expense",
+            "Actions": {
+              "open-menu": "Open menu",
+              "view": "View details",
+              "edit": "Edit",
+              "delete": "Delete"
+            }
           }
         },
         "ListTable": {
@@ -798,6 +815,19 @@
         },
         "button-cancel": "Cancel",
         "button-submit": "Add Payment"
+      },
+      "AddLicenseFileExpense": {
+        "title": "Add new expense",
+        "subtitle": "Fill in the form below to add a new expense",
+        "success": "Expense added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "sum": "Expense Sum:",
+          "comment": "Comment:",
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add expense"
       },
       "AddVehicle": {
         "title": "Add new vehicle",

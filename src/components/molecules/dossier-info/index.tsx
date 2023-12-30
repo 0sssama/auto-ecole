@@ -3,12 +3,12 @@
 import moment from 'moment';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { User } from '@nextui-org/user';
 import { Chip } from '@nextui-org/chip';
 import type { LicenseFileStatus } from '@prisma/client';
 
 import { cn } from '@/base/utils/client/cn';
 import { getLicenseFileStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import type { DossierInfoProps, InfoDataProps, InfoTypes } from './types';
 
@@ -43,18 +43,21 @@ function InfoData<InfoT extends InfoTypes>({ labelId, value }: InfoDataProps<Inf
           labelId === 'createdBy' ? 'editor' : labelId
           //   @ts-ignore
         }Id=${value.id}`}
+        className="mt-2 flex items-center space-x-2"
       >
-        <User
-          className="mt-2"
-          //   @ts-ignore
-          name={value.fullName}
-          description={labelId === 'createdBy' ? t('LicenseFile.UserDesc.admin') : t('LicenseFile.UserDesc.' + labelId)}
-          avatarProps={{
-            //   @ts-ignore
-            src: value.profilePictureUrl,
-            size: 'sm',
-          }}
-        />
+        <Avatar className="h-9 w-9">
+          {/* @ts-ignore */}
+          <AvatarImage src={value.profilePicture} alt={value.fullName ?? ''} />
+          {/* @ts-ignore */}
+          <AvatarFallback>{value.fullName.slice(0, 2).toUpperCase()}</AvatarFallback>
+        </Avatar>
+        <div className="ml-4 flex w-full flex-col justify-center space-y-1">
+          {/* @ts-ignore */}
+          <p className="truncate text-sm font-medium leading-none">{value.fullName}</p>
+          <p className="text-xs text-muted-foreground">
+            {labelId === 'createdBy' ? t('LicenseFile.UserDesc.admin') : t('LicenseFile.UserDesc.' + labelId)}
+          </p>
+        </div>
       </Link>
     );
 

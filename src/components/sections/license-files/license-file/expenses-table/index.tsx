@@ -9,15 +9,15 @@ import { DataTable } from '@/components/organisms';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { api } from '@/base/utils/server/api';
-import { AddVehicleExpenseModal } from '@/components/molecules';
+import { AddLicenseFileExpenseModal } from '@/components/molecules';
 import type { Paginated } from '@/components/organisms/data-table/types';
 
 import { columns } from './columns';
-import type { VehicleExpense } from './schema';
-import type { VehicleExpensesTableComponentType } from './types';
+import type { LicenseFileExpense } from './schema';
+import type { LicenseFileExpensesTableComponentType } from './types';
 
-const VehicleExpensesTable: VehicleExpensesTableComponentType = ({ vehicleId }) => {
-  const t = useTranslations('Dashboard.Dossier.Tables.VehicleExpenses');
+const LicenseFileExpensesTable: LicenseFileExpensesTableComponentType = ({ context: { licenseFileId } }) => {
+  const t = useTranslations('Dashboard.Files.LicenseFiles.FilePage.LicenseFileExpenses');
 
   const pagination = usePagination({
     pageIndex: 0,
@@ -29,8 +29,8 @@ const VehicleExpensesTable: VehicleExpensesTableComponentType = ({ vehicleId }) 
 
   const addExpenseModal = useModal();
 
-  const { data, isLoading, error } = api.db.expenses.query.listByVehicleId.useQuery<Paginated<VehicleExpense>>({
-    vehicleId,
+  const { data, isLoading, error } = api.db.expenses.query.listByLicenseFileId.useQuery<Paginated<LicenseFileExpense>>({
+    licenseFileId,
     pageIndex: pagination.get.pageIndex,
     pageSize: pagination.get.pageSize,
     filters: filters.get,
@@ -38,7 +38,7 @@ const VehicleExpensesTable: VehicleExpensesTableComponentType = ({ vehicleId }) 
 
   return (
     <div className="w-full">
-      <AddVehicleExpenseModal {...addExpenseModal} context={{ vehicleId }} />
+      <AddLicenseFileExpenseModal {...addExpenseModal} context={{ licenseFileId }} />
       <div className="mb-4 flex w-full items-center justify-between">
         <h1 className="mb-4 w-full text-2xl font-bold">{t('title')}</h1>
         <div>
@@ -60,4 +60,4 @@ const VehicleExpensesTable: VehicleExpensesTableComponentType = ({ vehicleId }) 
   );
 };
 
-export default VehicleExpensesTable;
+export default LicenseFileExpensesTable;
