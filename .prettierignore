@@ -4,4 +4,4 @@ public
 .husky
 
 next-env.d.ts
-pnpm-lock.yaml
+bun.lockb

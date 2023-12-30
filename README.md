@@ -9,7 +9,7 @@ This is a cool boilerplate for Next.js projects. It includes setup for the follo
 ## DX
 
 - [x] [TypeScript](https://www.typescriptlang.org/)
-- [x] [Pnpm](https://pnpm.io/)
+- [x] [bun](https://bun.sh/)
 - [x] [ESLint](https://eslint.org/)
 - [x] [Prettier](https://prettier.io/)
 - [x] [Husky](https://typicode.github.io/husky/)
@@ -46,7 +46,7 @@ Do I have to tell you how?
 
 ## Install dependencies
 
-- run `pnpm i` to install all dependencies
+- run `bun i` to install all dependencies
 
 ## Create Clerk app
 
@@ -59,7 +59,7 @@ Do I have to tell you how?
 - Visit [PlanetScale](https://planetscale.com/) and create an account
 - Create a new database and set framework to [Prisma](https://www.prisma.io/)
 - Copy the `DATABASE_URL` variable and paste it into `.env.local`
-- run `pnpm prisma db push` to push the state of `schema.prisma` to the database
+- run `bun prisma db push` to push the state of `schema.prisma` to the database
 
 ## Create Uploadthing App
 
@@ -77,7 +77,7 @@ Along with your Clerk, Uploadthing, and Database env variables, you will need to
 
 ## Run the app
 
-- run `pnpm dev` to start the app
+- run `bun dev` to start the app
 - Test Clerk authentication and tRPC works by following instructions
 
 ## Start building

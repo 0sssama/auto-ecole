@@ -13,7 +13,7 @@
     "db-push": "prisma db push",
     "db-clear": "prisma migrate reset && prisma db push",
     "db-seed": "ts-node -O '{\"module\": \"commonjs\"}' prisma/seed.ts",
-    "db-reseed": "pnpm db-clear && pnpm db-seed"
+    "db-reseed": "bun db-clear && bun db-seed"
   },
   "repository": {
     "type": "git",
@@ -114,9 +114,6 @@
     "tailwindcss": "3.3.3"
   },
   "engines": {
-    "node": ">=18 <19",
-    "pnpm": ">=8 <9",
-    "npm": "please-use-pnpm-instead",
-    "yarn": "please-use-pnpm-instead"
+    "node": ">=18 <19"
   }
 }
