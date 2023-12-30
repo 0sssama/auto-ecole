@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 // import { getExam } from "@/server/utils/exams/getExam";
 // import { Lesson } from "@/components/sections/exams";
-import type { Locale } from '@/lib/locales';
+import type { Locale } from '@/base/data/locales';
 
 import ExamsPage from './_components/exams';
 import ExamNotFound from './_components/not-found';

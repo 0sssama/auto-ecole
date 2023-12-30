@@ -5,12 +5,12 @@ import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/cn';
-import { useMedia } from '@/lib/hooks/use-media';
-import { getLgMedia } from '@/lib/media';
-import { useMenu } from '@/lib/hooks/use-menu';
-import { cleanPathname } from '@/utils/clean-pathname';
-import { useSidebar } from '@/lib/hooks/use-sidebar';
+import { cn } from '@/base/utils/client/cn';
+import { useMedia } from '@/base/hooks/use-media';
+import { getLgMedia } from '@/base/utils/client/media';
+import { useMenu } from '@/base/hooks/use-menu';
+import { cleanPathname } from '@/base/utils/client/clean-pathname';
+import { useSidebar } from '@/base/hooks/use-sidebar';
 
 import type { SidebarComponentType, SidebarLinkComponentType, SidebarLinkGroupComponentType } from './types';
 

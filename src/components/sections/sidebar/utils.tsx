@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import type { OrganizationCustomRoleKey } from '@clerk/types';
 
-import type { TranslationFunction } from '@/types';
+import type { TranslationFunction } from '@/base/types';
 
 import type { SidebarLinkGroupProps } from './types';
 

@@ -6,10 +6,10 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/organisms';
 import { AddLicenseFilePaymentModal } from '@/components/molecules';
-import { usePagination } from '@/lib/hooks/use-pagination';
-import { useTableFilters } from '@/lib/hooks/use-table-filters';
-import { useModal } from '@/lib/hooks/use-modal';
-import { api } from '@/utils/api';
+import { usePagination } from '@/base/hooks/use-pagination';
+import { useTableFilters } from '@/base/hooks/use-table-filters';
+import { useModal } from '@/base/hooks/use-modal';
+import { api } from '@/base/utils/server/api';
 import type { Paginated } from '@/components/organisms/data-table/types';
 
 import { columns } from './columns';

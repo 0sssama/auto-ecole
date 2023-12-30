@@ -1,6 +1,6 @@
 import { TRPCError } from '@trpc/server';
 
-import { licenseFilePaymentBackendInputSchema } from '@/schemas/license-file-payment-form-schema';
+import { licenseFilePaymentBackendInputSchema } from '@/base/schemas/license-file-payment-form-schema';
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
 
 export const mutationRouter = createTRPCRouter({

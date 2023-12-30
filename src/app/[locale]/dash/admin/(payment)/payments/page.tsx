@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 // import { getPayment } from "@/server/utils/payments/getPayment";
 // import { Payment } from "@/components/sections/payments";
-import type { Locale } from '@/lib/locales';
+import type { Locale } from '@/base/data/locales';
 
 import PaymentsPage from './_components/payments';
 import PaymentNotFound from './_components/not-found';

@@ -8,8 +8,8 @@ import { ExamStatus, ExamType } from '@prisma/client';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Combobox } from '@/components/ui/combobox';
 import { DatePicker } from '@/components/ui/date-picker';
-import type { examFormSchema } from '@/schemas/exam-form-schema';
-import type { TranslationFunction } from '@/types';
+import type { examFormSchema } from '@/base/schemas/exam-form-schema';
+import type { TranslationFunction } from '@/base/types';
 
 import type { FormComponentType } from './types';
 

@@ -9,9 +9,9 @@ import { Category, LicenseFileStatus } from '@prisma/client';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Combobox } from '@/components/ui/combobox';
-import { api } from '@/utils/api';
-import type { TranslationFunction } from '@/types';
-import type { licenseFileFormSchema } from '@/schemas/license-file-form-schema';
+import { api } from '@/base/utils/server/api';
+import type { TranslationFunction } from '@/base/types';
+import type { licenseFileFormSchema } from '@/base/schemas/license-file-form-schema';
 
 import type { FormComponentType } from './types';
 

@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { vehicleExpenseBackendSchema } from '@/schemas/vehicle-expense-form-schema';
+import { vehicleExpenseBackendSchema } from '@/base/schemas/vehicle-expense-form-schema';
 
 export const mutationRouter = createTRPCRouter({
   addToVehicle: orgAdminOnlyPrecedure.input(vehicleExpenseBackendSchema).mutation(async ({ ctx, input }) => {

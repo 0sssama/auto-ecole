@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { PageHeader, AddLessonModal } from '@/components/molecules';
-import { useModal } from '@/lib/hooks/use-modal';
+import { useModal } from '@/base/hooks/use-modal';
 import { LessonsListTable } from '@/components/sections/lessons';
 
 export default function LessonsPage() {

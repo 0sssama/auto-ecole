@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { countPages } from '@/utils/count-pages';
+import { countPages } from '@/base/utils/client/count-pages';
 import type { Lesson } from '@/components/sections/lessons/list-table/schema';
 import type { InstructorLesson } from '@/components/sections/instructors/instructor-file/lessons-table/schema';
 import type { StudentLesson } from '@/components/sections/students/student-file/lessons-table/schema';

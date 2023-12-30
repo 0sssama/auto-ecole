@@ -18,8 +18,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { AddNewLessonForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms';
-import { api } from '@/utils/api';
-import { lessonFormSchema } from '@/schemas/lesson-form-schema';
+import { api } from '@/base/utils/server/api';
+import { lessonFormSchema } from '@/base/schemas/lesson-form-schema';
 
 import type { ModalComponentType } from './types';
 

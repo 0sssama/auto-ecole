@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import type { TranslationFunction } from '@/types';
-import type { instructorFormSchema } from '@/schemas/instructor-form-schema';
+import type { TranslationFunction } from '@/base/types';
+import type { instructorFormSchema } from '@/base/schemas/instructor-form-schema';
 
 import type { FormComponentType } from './types';
 

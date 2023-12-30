@@ -6,7 +6,7 @@ import { Chip } from '@nextui-org/chip';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { getStudentStatusChipColor } from '@/lib/get-chip-colors';
+import { getStudentStatusChipColor } from '@/base/utils/client/get-chip-colors';
 
 import ActionsColumn from './data-table-row-actions';
 import { studentSchema, type Student } from './schema';

@@ -6,7 +6,7 @@ import { Modal, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/modal
 
 import { Spinner } from '@/components/atoms';
 import { Button } from '@/components/ui/button';
-import { useDeleteExam } from '@/lib/hooks/exams/use-delete-exam';
+import { useDeleteExam } from '@/base/hooks/exams/use-delete-exam';
 
 import type { ModalComponentType } from './types';
 

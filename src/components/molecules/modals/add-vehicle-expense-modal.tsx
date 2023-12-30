@@ -17,8 +17,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { AddNewVehicleExpenseForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms';
-import { api } from '@/utils/api';
-import { vehicleExpenseFormSchema } from '@/schemas/vehicle-expense-form-schema';
+import { api } from '@/base/utils/server/api';
+import { vehicleExpenseFormSchema } from '@/base/schemas/vehicle-expense-form-schema';
 
 import type { ModalComponentType } from './types';
 

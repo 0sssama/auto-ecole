@@ -2,8 +2,8 @@
 
 import type { FC } from 'react';
 
-import { cn } from '@/lib/cn';
-import { useMenu } from '@/lib/hooks/use-menu';
+import { cn } from '@/base/utils/client/cn';
+import { useMenu } from '@/base/hooks/use-menu';
 
 export type HambugerButtonProps = {
   className?: string;

@@ -7,7 +7,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip } from '@/components/atoms';
-import { getExamStatusChipColor } from '@/lib/get-chip-colors';
+import { getExamStatusChipColor } from '@/base/utils/client/get-chip-colors';
 
 import ActionsColumn from './actions-column';
 import { licenseFileExamSchema, type LicenseFileExam } from './schema';

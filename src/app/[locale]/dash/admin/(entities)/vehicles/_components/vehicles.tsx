@@ -7,7 +7,7 @@ import {
   // AddCarModal
   AddVehicleModal,
 } from '@/components/molecules';
-import { useModal } from '@/lib/hooks/use-modal';
+import { useModal } from '@/base/hooks/use-modal';
 import { VehiclesListTable } from '@/components/sections/vehicles';
 
 export default function VehiclesPage() {

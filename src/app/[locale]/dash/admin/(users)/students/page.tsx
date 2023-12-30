@@ -1,8 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getStudentFolder } from '@/server/utils/students/get-student-folder';
+import { getStudentFolder } from '@/base/utils/server/students/get-student-folder';
 import { StudentFile } from '@/components/sections/students';
-import type { Locale } from '@/lib/locales';
+import type { Locale } from '@/base/data/locales';
 
 import StudentsPage from './_components/students';
 import StudentNotFound from './_components/not-found';

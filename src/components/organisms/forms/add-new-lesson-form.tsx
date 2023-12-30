@@ -10,9 +10,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Combobox } from '@/components/ui/combobox';
 import { DatePicker } from '@/components/ui/date-picker';
-import { api } from '@/utils/api';
-import type { TranslationFunction } from '@/types';
-import type { lessonFormSchema } from '@/schemas/lesson-form-schema';
+import { api } from '@/base/utils/server/api';
+import type { TranslationFunction } from '@/base/types';
+import type { lessonFormSchema } from '@/base/schemas/lesson-form-schema';
 
 import type { FormComponentType } from './types';
 

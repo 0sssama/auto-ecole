@@ -8,8 +8,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { DatePicker } from '@/components/ui/date-picker';
-import type { TranslationFunction } from '@/types';
-import type { vehicleExpenseFormSchema } from '@/schemas/vehicle-expense-form-schema';
+import type { TranslationFunction } from '@/base/types';
+import type { vehicleExpenseFormSchema } from '@/base/schemas/vehicle-expense-form-schema';
 
 import type { FormComponentType } from './types';
 

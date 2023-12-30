@@ -17,8 +17,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { AddNewLicenseFilePaymentForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms';
-import { api } from '@/utils/api';
-import { licenseFilePaymentFormSchema } from '@/schemas/license-file-payment-form-schema';
+import { api } from '@/base/utils/server/api';
+import { licenseFilePaymentFormSchema } from '@/base/schemas/license-file-payment-form-schema';
 
 import type { ModalComponentType } from './types';
 

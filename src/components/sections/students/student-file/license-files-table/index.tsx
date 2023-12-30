@@ -3,9 +3,9 @@
 import { useTranslations } from 'next-intl';
 
 import { DataTable } from '@/components/organisms';
-import { usePagination } from '@/lib/hooks/use-pagination';
-import { useTableFilters } from '@/lib/hooks/use-table-filters';
-import { api } from '@/utils/api';
+import { usePagination } from '@/base/hooks/use-pagination';
+import { useTableFilters } from '@/base/hooks/use-table-filters';
+import { api } from '@/base/utils/server/api';
 import type { Paginated } from '@/components/organisms/data-table/types';
 
 import { columns } from './columns';

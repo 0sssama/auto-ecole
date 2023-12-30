@@ -9,11 +9,11 @@ import { VehicleType } from '@prisma/client';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Combobox } from '@/components/ui/combobox';
-import { api } from '@/utils/api';
+import { api } from '@/base/utils/server/api';
 // import { useFileUpload } from "@/lib/hooks/useFileUpload";
-import type { TranslationFunction } from '@/types';
-import type { UseFileUploadHook } from '@/lib/hooks/use-file-upload/types';
-import type { vehicleFormSchema } from '@/schemas/vehicle-form-schema';
+import type { TranslationFunction } from '@/base/types';
+import type { UseFileUploadHook } from '@/base/hooks/use-file-upload/types';
+import type { vehicleFormSchema } from '@/base/schemas/vehicle-form-schema';
 
 import type { FormComponentType } from './types';
 

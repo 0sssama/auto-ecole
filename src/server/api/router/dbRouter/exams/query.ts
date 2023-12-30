@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { countPages } from '@/utils/count-pages';
+import { countPages } from '@/base/utils/client/count-pages';
 import type { Exam } from '@/components/sections/exams/list-table/schema';
 import type { LicenseFileExam } from '@/components/sections/license-files/license-file/exams-table/schema';
 

@@ -7,8 +7,8 @@ import { User } from '@nextui-org/user';
 import { Chip } from '@nextui-org/chip';
 import type { LicenseFileStatus } from '@prisma/client';
 
-import { cn } from '@/lib/cn';
-import { getLicenseFileStatusChipColor } from '@/lib/get-chip-colors';
+import { cn } from '@/base/utils/client/cn';
+import { getLicenseFileStatusChipColor } from '@/base/utils/client/get-chip-colors';
 
 import type { DossierInfoProps, InfoDataProps, InfoTypes } from './types';
 

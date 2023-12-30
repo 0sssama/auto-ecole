@@ -1,6 +1,6 @@
 import DossierInfo from '@/components/molecules/dossier-info';
 import { ProfileImageColumn } from '@/components/molecules';
-import { cn } from '@/lib/cn';
+import { cn } from '@/base/utils/client/cn';
 
 import type { InfoFileComponentType, InfoFileType } from './types';
 

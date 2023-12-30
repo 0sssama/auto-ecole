@@ -1,8 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getInstructor } from '@/server/utils/instructors/get-instructor';
+import { getInstructor } from '@/base/utils/server/instructors/get-instructor';
 import { InstructorFile } from '@/components/sections/instructors';
-import type { Locale } from '@/lib/locales';
+import type { Locale } from '@/base/data/locales';
 
 import InstructorsPage from './_components/instructors';
 import InstructorNotFound from './_components/not-found';

@@ -18,9 +18,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms';
 import { AddNewVehicleForm } from '@/components/organisms';
-import { api } from '@/utils/api';
-import { useFileUpload } from '@/lib/hooks/use-file-upload';
-import { vehicleFormSchema } from '@/schemas/vehicle-form-schema';
+import { api } from '@/base/utils/server/api';
+import { useFileUpload } from '@/base/hooks/use-file-upload';
+import { vehicleFormSchema } from '@/base/schemas/vehicle-form-schema';
 
 import type { ModalComponentType } from './types';
 

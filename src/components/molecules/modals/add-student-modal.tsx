@@ -11,8 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { AddNewStudentForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms';
-import { studentFormSchema } from '@/schemas/student-form-schema';
-import { api } from '@/utils/api';
+import { studentFormSchema } from '@/base/schemas/student-form-schema';
+import { api } from '@/base/utils/server/api';
 
 import type { ModalComponentType } from './types';
 

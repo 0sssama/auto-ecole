@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 
 import { Tooltip } from '@/components/atoms';
-import { concatText } from '@/utils/concat-text';
+import { concatText } from '@/base/utils/client/concat-text';
 
 export type TooltipConcatProps = {
   text: string;

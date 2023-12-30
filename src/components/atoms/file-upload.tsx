@@ -5,9 +5,9 @@ import { useTranslations } from 'next-intl';
 import { generateClientDropzoneAccept } from 'uploadthing/client';
 import { useDropzone } from '@uploadthing/react/hooks';
 
-import { concatFileName } from '@/utils/concat-text';
-import type { useUploadThing } from '@/utils/uploadthing';
-import { cn } from '@/lib/cn';
+import { concatFileName } from '@/base/utils/client/concat-text';
+import type { useUploadThing } from '@/base/utils/client/uploadthing';
+import { cn } from '@/base/utils/client/cn';
 
 export type FileUploadProps = {
   acceptMultiple: boolean;

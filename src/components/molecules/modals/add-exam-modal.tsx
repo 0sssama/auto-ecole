@@ -11,8 +11,8 @@ import { ExamStatus, ExamType } from '@prisma/client';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms';
 import { AddNewExamForm } from '@/components/organisms';
-import { api } from '@/utils/api';
-import { examFormSchema } from '@/schemas/exam-form-schema';
+import { examFormSchema } from '@/base/schemas/exam-form-schema';
+import { api } from '@/base/utils/server/api';
 
 import type { ModalComponentType } from './types';
 

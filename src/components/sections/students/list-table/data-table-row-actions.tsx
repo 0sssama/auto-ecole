@@ -13,8 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useArchiveStudent, useUnarchiveStudent } from '@/lib/hooks/students/use-archive-student';
-import { cn } from '@/lib/cn';
+import { useArchiveStudent, useUnarchiveStudent } from '@/base/hooks/students/use-archive-student';
+import { cn } from '@/base/utils/client/cn';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
 
 import { studentSchema, type Student } from './schema';

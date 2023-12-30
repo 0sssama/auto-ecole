@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { Locale } from '@/lib/locales';
+import type { Locale } from '@/base/data/locales';
 
 export default function Editors() {
   return (

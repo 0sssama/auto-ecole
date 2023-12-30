@@ -1,8 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
 import { VehicleReport } from '@/components/sections/vehicles';
-import { getVehicle } from '@/server/utils/vehicles/get-vehicle';
-import type { Locale } from '@/lib/locales';
+import { getVehicle } from '@/base/utils/server/vehicles/get-vehicle';
+import type { Locale } from '@/base/data/locales';
 
 import VehicleNotFound from './_components/not-found';
 import VehiclesPage from './_components/vehicles';

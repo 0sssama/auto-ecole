@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { AddExamModalSike, PageHeader } from '@/components/molecules';
-import { useModal } from '@/lib/hooks/use-modal';
+import { useModal } from '@/base/hooks/use-modal';
 import { ExamsListTable } from '@/components/sections/exams';
 
 export default function ExamsPage() {

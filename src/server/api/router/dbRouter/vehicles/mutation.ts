@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { vehicleFormSchemaBackend } from '@/schemas/vehicle-form-schema';
+import { vehicleFormSchemaBackend } from '@/base/schemas/vehicle-form-schema';
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
 
 export const mutationRouter = createTRPCRouter({

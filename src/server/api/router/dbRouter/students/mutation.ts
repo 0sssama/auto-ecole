@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { TRPCError } from '@trpc/server';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { studentFormSchema } from '@/schemas/student-form-schema';
+import { studentFormSchema } from '@/base/schemas/student-form-schema';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure

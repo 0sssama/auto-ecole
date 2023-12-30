@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { PageHeader, AddPaymentModalSike } from '@/components/molecules';
-import { useModal } from '@/lib/hooks/use-modal';
+import { useModal } from '@/base/hooks/use-modal';
 import { PaymentsListTable } from '@/components/sections/payments';
 
 export default function PaymentsPage() {

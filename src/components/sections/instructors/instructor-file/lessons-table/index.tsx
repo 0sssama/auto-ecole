@@ -4,9 +4,9 @@ import { useTranslations } from 'next-intl';
 
 import { DataTable } from '@/components/organisms';
 import type { Paginated } from '@/components/organisms/data-table/types';
-import { usePagination } from '@/lib/hooks/use-pagination';
-import { useTableFilters } from '@/lib/hooks/use-table-filters';
-import { api } from '@/utils/api';
+import { usePagination } from '@/base/hooks/use-pagination';
+import { useTableFilters } from '@/base/hooks/use-table-filters';
+import { api } from '@/base/utils/server/api';
 
 import { columns } from './columns';
 import type { InstructorLesson } from './schema';

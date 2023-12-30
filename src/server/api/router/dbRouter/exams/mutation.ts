@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { TRPCError } from '@trpc/server';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { examBackendInputSchema } from '@/schemas/exam-form-schema';
+import { examBackendInputSchema } from '@/base/schemas/exam-form-schema';
 
 export const mutationRouter = createTRPCRouter({
   addToLicenseFile: orgAdminOnlyPrecedure.input(examBackendInputSchema).mutation(async ({ ctx, input }) => {

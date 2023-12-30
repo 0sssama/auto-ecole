@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { countPages } from '@/utils/count-pages';
+import { countPages } from '@/base/utils/client/count-pages';
 import type { Payment } from '@/components/sections/payments/list-table/schema';
 import type { StudentPayment } from '@/components/sections/students/student-file/payments-table/schema';
 import type { LicenseFilePayment } from '@/components/sections/license-files/license-file/payments-table/schema';

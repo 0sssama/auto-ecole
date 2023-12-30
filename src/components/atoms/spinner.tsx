@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { cn } from '@/lib/cn';
+import { cn } from '@/base/utils/client/cn';
 
 export type LoadingProps = {
   size?: keyof typeof variants;

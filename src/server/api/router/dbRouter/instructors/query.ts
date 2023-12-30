@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { countPages } from '@/utils/count-pages';
+import { countPages } from '@/base/utils/client/count-pages';
 import type { Instructor } from '@/components/sections/instructors/list-table/schema';
 
 import { getWhereObjFromFilters } from './utils';

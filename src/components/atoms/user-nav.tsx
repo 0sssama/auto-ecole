@@ -21,9 +21,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from '@/lib/cn';
-import { locales, type Locale } from '@/lib/locales';
-import type { TranslationFunction } from '@/types';
+import { cn } from '@/base/utils/client/cn';
+import { locales, type Locale } from '@/base/data/locales';
+import type { TranslationFunction } from '@/base/types';
 import frIcon from '@/assets/fr-icon.png';
 import enIcon from '@/assets/en-icon.png';
 

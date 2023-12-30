@@ -6,8 +6,8 @@ import { useTranslations } from 'next-intl';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import type { TranslationFunction } from '@/types';
-import type { licenseFilePaymentFormSchema } from '@/schemas/license-file-payment-form-schema';
+import type { TranslationFunction } from '@/base/types';
+import type { licenseFilePaymentFormSchema } from '@/base/schemas/license-file-payment-form-schema';
 import { Textarea } from '@/components/ui/textarea';
 import { DatePicker } from '@/components/ui/date-picker';
 

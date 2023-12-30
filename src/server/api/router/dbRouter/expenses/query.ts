@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { countPages } from '@/utils/count-pages';
+import { countPages } from '@/base/utils/client/count-pages';
 import type { VehicleExpense } from '@/components/sections/vehicles/vehicle-report/expenses-table/schema';
 
 export const queryRouter = createTRPCRouter({

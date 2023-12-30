@@ -3,8 +3,8 @@
 import { useTranslations } from 'next-intl';
 
 import { HamburgerButton, HelpButton, Logo, UserNav, UserOrgAvatar } from '@/components/atoms';
-import { cn } from '@/lib/cn';
-import { useScroll } from '@/lib/hooks/use-scroll';
+import { cn } from '@/base/utils/client/cn';
+import { useScroll } from '@/base/hooks/use-scroll';
 
 const Header = () => {
   const t = useTranslations('Dashboard.Header');

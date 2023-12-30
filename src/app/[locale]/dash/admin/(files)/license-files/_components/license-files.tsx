@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { PageHeader, AddLicenseFileModal } from '@/components/molecules';
-import { useModal } from '@/lib/hooks/use-modal';
+import { useModal } from '@/base/hooks/use-modal';
 import { LicenseFilesListTable } from '@/components/sections/license-files';
 
 export default function LicenseFilesPage() {

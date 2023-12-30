@@ -12,8 +12,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from '@/lib/cn';
-import { useModal } from '@/lib/hooks/use-modal';
+import { cn } from '@/base/utils/client/cn';
+import { useModal } from '@/base/hooks/use-modal';
 import { DeleteExamConfirmModal } from '@/components/molecules';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
 

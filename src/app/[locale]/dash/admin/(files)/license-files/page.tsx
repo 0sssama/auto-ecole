@@ -1,8 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getLicenseFile } from '@/server/utils/license-files/get-license-file';
+import { getLicenseFile } from '@/base/utils/server/license-files/get-license-file';
 import { LicenseFile } from '@/components/sections/license-files';
-import type { Locale } from '@/lib/locales';
+import type { Locale } from '@/base/data/locales';
 
 import LicenseFilesPage from './_components/license-files';
 import LicenseFileNotFound from './_components/not-found';

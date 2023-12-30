@@ -5,7 +5,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { cn } from '@/lib/cn';
+import { cn } from '@/base/utils/client/cn';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';

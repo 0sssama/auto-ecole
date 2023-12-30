@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 
 import { Header, Sidebar } from '@/components/sections';
-import { useSetActiveOrganization } from '@/lib/hooks/use-set-active-organization';
+import { useSetActiveOrganization } from '@/base/hooks/use-set-active-organization';
 import { DashPageError, DashPageLoading } from '@/components/pages';
 
 export default function DashPageUILayout({ children }: { children: ReactNode }) {

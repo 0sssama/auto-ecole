@@ -13,8 +13,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { DeleteExamConfirmModal } from '@/components/molecules';
-import { useModal } from '@/lib/hooks/use-modal';
-import { cn } from '@/lib/cn';
+import { useModal } from '@/base/hooks/use-modal';
+import { cn } from '@/base/utils/client/cn';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
 
 import { type Exam, examSchema } from './schema';

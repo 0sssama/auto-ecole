@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useOrganization } from '@clerk/nextjs';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { cn } from '@/lib/cn';
-import { useScroll } from '@/lib/hooks/use-scroll';
+import { cn } from '@/base/utils/client/cn';
+import { useScroll } from '@/base/hooks/use-scroll';
 
 export default function UserOrgAvatar() {
   const { scrolled } = useScroll({ threshold: 50 });

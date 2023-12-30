@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { countPages } from '@/utils/count-pages';
+import { countPages } from '@/base/utils/client/count-pages';
 import type { Student } from '@/components/sections/students/list-table/schema';
 
 import { getStudentCategoryFromLicenseFiles, getStudentStatusFromLicenseFiles, getWhereObjFromFilters } from './utils';

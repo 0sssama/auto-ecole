@@ -1,5 +1,5 @@
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { licenseFileBackendInputSchema } from '@/schemas/license-file-form-schema';
+import { licenseFileBackendInputSchema } from '@/base/schemas/license-file-form-schema';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure.input(licenseFileBackendInputSchema).mutation(async ({ input, ctx }) => {

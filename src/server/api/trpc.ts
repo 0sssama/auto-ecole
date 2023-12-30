@@ -13,8 +13,8 @@ import { ZodError } from 'zod';
 import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
 import { prisma } from '@/server/db';
-import { userIsSuperAdmin } from '@/server/utils/auth/user-is-super-admin';
-import { userIsAdmin } from '@/server/utils/auth/user-is-admin';
+import { userIsSuperAdmin } from '@/base/utils/server/auth/user-is-super-admin';
+import { userIsAdmin } from '@/base/utils/server/auth/user-is-admin';
 
 /**
  * 1. CONTEXT

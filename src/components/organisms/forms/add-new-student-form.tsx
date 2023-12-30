@@ -7,8 +7,8 @@ import { useTranslations } from 'next-intl';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { DatePicker } from '@/components/ui/date-picker';
-import type { TranslationFunction } from '@/types';
-import type { studentFormSchema } from '@/schemas/student-form-schema';
+import type { TranslationFunction } from '@/base/types';
+import type { studentFormSchema } from '@/base/schemas/student-form-schema';
 
 import type { FormComponentType } from './types';
 

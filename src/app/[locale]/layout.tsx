@@ -14,10 +14,10 @@ import {
   TRPCProvider,
   NextUIProvider,
   MomentProvider,
-} from '@/providers';
-import { locales, type Locale } from '@/lib/locales';
+} from '@/base/providers';
+import { locales, type Locale } from '@/base/data/locales';
 
-import '@/styles/globals.css';
+import '@/base/styles/globals.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],

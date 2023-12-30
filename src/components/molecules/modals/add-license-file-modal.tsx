@@ -11,8 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { AddNewLicenseFileForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms';
-import { api } from '@/utils/api';
-import { licenseFileFormSchema } from '@/schemas/license-file-form-schema';
+import { api } from '@/base/utils/server/api';
+import { licenseFileFormSchema } from '@/base/schemas/license-file-form-schema';
 
 import type { ModalComponentType } from './types';
 

@@ -2,7 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { authMiddleware } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
-import { DEFAULT_LOCALE, locales } from '@/lib/locales';
+import { DEFAULT_LOCALE, locales } from '@/base/data/locales';
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
