@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { Chip } from '@nextui-org/chip';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -95,9 +97,11 @@ export const columns: ColumnDef<InstructorLesson>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="InstructorLessons.scheduled-date" />,
     cell: ({ row }) => {
       const instructorLesson = instructorLessonSchema.parse(row.original);
-      const date = moment(instructorLesson.scheduledDate);
+      dayjs.extend(relativeTime);
+      dayjs.extend(localizedFormat);
+      const date = dayjs(instructorLesson.scheduledDate);
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return <Tooltip content={date.fromNow()}>{date.fromNow()}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,

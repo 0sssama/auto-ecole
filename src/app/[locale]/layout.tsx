@@ -13,7 +13,6 @@ import {
   ToastProvider,
   TRPCProvider,
   NextUIProvider,
-  MomentProvider,
 } from '@/base/providers';
 import { locales, type Locale } from '@/base/data/locales';
 
@@ -68,9 +67,7 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
                   <NprogressProvider>
                     <RecoilProvider>
-                      <ToastProvider>
-                        <MomentProvider locale={locale}>{children}</MomentProvider>
-                      </ToastProvider>
+                      <ToastProvider>{children}</ToastProvider>
                     </RecoilProvider>
                   </NprogressProvider>
                 </ThemeProvider>

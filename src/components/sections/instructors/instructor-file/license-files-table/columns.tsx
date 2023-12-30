@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { useTranslations } from 'next-intl';
 import { Chip } from '@nextui-org/chip';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -90,12 +92,13 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="InstructorLicenseFiles.created-at" />,
     cell: ({ row }) => {
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
-
-      const date = moment(licenseFile.createdAt);
+      dayjs.extend(relativeTime);
+      dayjs.extend(localizedFormat);
+      const date = dayjs(licenseFile.createdAt);
 
       return (
         <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
-          <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>
+          <Tooltip content={date.fromNow()}>{date.fromNow()}</Tooltip>
         </Link>
       );
     },

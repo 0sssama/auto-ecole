@@ -1,6 +1,8 @@
 'use client';
 
-import moment from 'moment';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import dayjs from 'dayjs';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
@@ -47,9 +49,11 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="Payments.date" />,
     cell: ({ row }) => {
       const payment = paymentSchema.parse(row.original);
-      const date = moment(payment.date);
+      dayjs.extend(relativeTime);
+      dayjs.extend(localizedFormat);
+      const date = dayjs(payment.date);
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return <Tooltip content={date.fromNow()}>{date.fromNow()}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,
