@@ -63,6 +63,7 @@ export const queryRouter = createTRPCRouter({
           where: {
             ...filtersObj,
             clerkOrgId: ctx.orgId,
+            archived: false,
           },
           select: {
             id: true,
