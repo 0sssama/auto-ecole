@@ -408,6 +408,20 @@
             "C": "Camions",
             "D": "Bus"
           }
+        },
+        "Folder": {
+          "NotFound": {
+            "title": "Folder not found",
+            "subtitle": "The folder you are looking for does not exist."
+          }
+        },
+        "Create": {
+          "title": "Nouveau étudiant",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau étudiant",
+          "back": "Retour",
+          "button-submit": "Ajouter Étudiant",
+          "error": "Erreur lors de l'ajout du étudiant. Veuillez réessayer plus tard.",
+          "success": "Étudiant ajouté avec succès !"
         }
       },
       "Instructors": {

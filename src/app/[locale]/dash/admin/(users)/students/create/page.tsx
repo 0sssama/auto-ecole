@@ -1,0 +1,83 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import type { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { ArrowLeft } from 'lucide-react';
+
+import { studentFormSchema } from '@/base/schemas/student-form-schema';
+import { useAddStudent } from '@/base/hooks/students/create/use-add-student';
+import { AddNewStudentForm } from '@/components/organisms';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/atoms';
+
+export default function CreateStudentPage() {
+  const router = useRouter();
+  const t = useTranslations('Dashboard.Users.Students.Create');
+
+  const form = useForm<z.infer<typeof studentFormSchema>>({
+    resolver: zodResolver(studentFormSchema),
+    defaultValues: {
+      firstNameAr: '',
+      firstNameFr: '',
+      lastNameAr: '',
+      lastNameFr: '',
+      addressAr: '',
+      addressFr: '',
+      professionAr: '',
+      professionFr: '',
+      phone: '',
+      cin: '',
+      email: '',
+      birthdate: new Date(),
+    },
+  });
+
+  const { createStudent, isCreating, creationError } = useAddStudent({
+    onSuccess: () => {
+      toast.success(t('success'));
+      router.push('/dash/admin/students');
+    },
+    onError: () => {
+      toast.error(t('error'));
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof studentFormSchema>) => createStudent(values);
+
+  return (
+    <main className="relative w-full">
+      <div className="flex w-full flex-col gap-2">
+        <div>
+          <Button onClick={() => router.back()} variant="ghost" className="mb-6 px-0 hover:bg-transparent">
+            <ArrowLeft size={18} />
+            <span className="ml-2">{t('back')}</span>
+          </Button>
+        </div>
+        <h1 className="text-xl font-bold tracking-tight lg:text-3xl">{t('title')}</h1>
+        <p className="lg:text-md text-sm text-muted-foreground">{t('subtitle')}</p>
+      </div>
+      <div className="mt-4 flex w-full flex-col items-end gap-8 lg:max-w-[70%]">
+        {creationError && (
+          <div className="mb-4 w-full rounded bg-destructive/10 px-2 py-4 text-center">
+            <p className="text-center text-sm font-bold text-destructive">{t('error')}</p>
+          </div>
+        )}
+        <AddNewStudentForm form={form} onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col gap-2" />
+        <div className="w-full md:w-fit">
+          <Button
+            variant="default"
+            onClick={form.handleSubmit(onSubmit)}
+            disabled={isCreating}
+            className="w-full md:w-fit"
+          >
+            {isCreating ? <Spinner size="xs" color="background" /> : t('button-submit')}
+          </Button>
+        </div>
+      </div>
+    </main>
+  );
+}

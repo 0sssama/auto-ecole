@@ -3,7 +3,8 @@ import type { FC } from 'react';
 import type { TranslationFunction } from '@/base/types';
 
 interface PageHeaderProps {
-  openModal: () => void;
+  openModal?: () => void;
+  href?: string;
   t: TranslationFunction;
 }
 

@@ -414,6 +414,14 @@
             "title": "Folder not found",
             "subtitle": "The folder you are looking for does not exist."
           }
+        },
+        "Create": {
+          "title": "Add new student",
+          "subtitle": "Fill in the form below to add a new student.",
+          "back": "Back to students",
+          "button-submit": "Add Student",
+          "error": "An error has occurred. Please try again later.",
+          "success": "Student added successfully!"
         }
       },
       "Instructors": {
