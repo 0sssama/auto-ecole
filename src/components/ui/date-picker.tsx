@@ -1,6 +1,9 @@
 'use client';
 
-import { format, enUS, fr } from 'date-fns';
+// eslint-disable-next-line import/no-duplicates
+import { format } from 'date-fns';
+// eslint-disable-next-line import/no-duplicates
+import { enUS, fr } from 'date-fns/locale';
 import { Calendar as CalendarIcon } from 'lucide-react';
 
 import { cn } from '@/base/utils/client/cn';
