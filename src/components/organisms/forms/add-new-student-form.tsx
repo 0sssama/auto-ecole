@@ -9,10 +9,16 @@ import { Input } from '@/components/ui/input';
 import { DatePicker } from '@/components/ui/date-picker';
 import type { TranslationFunction } from '@/base/types';
 import type { studentFormSchema } from '@/base/schemas/student-form-schema';
+import type { UseFileUploadHook } from '@/base/hooks/use-file-upload/types';
 
 import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
+  {
+    name: 'profilePicture',
+    label: t('profilePicture'),
+    placeholder: t('upload-profile-picture'),
+  },
   {
     name: 'lastNameFr',
     label: t('lastName'),
@@ -32,6 +38,21 @@ const fields = (t: TranslationFunction) => [
     name: 'firstNameAr',
     label: 'الإسم الشخصي :',
     placeholder: 'محمد',
+  },
+  {
+    name: 'phone',
+    label: t('phone'),
+    placeholder: '06XXXXXXXX',
+  },
+  {
+    name: 'email',
+    label: t('email'),
+    placeholder: 'john@doe.com',
+  },
+  {
+    name: 'birthdate',
+    label: t('birthdate'),
+    placeholder: '02-08-1969',
   },
   {
     name: 'addressFr',
@@ -59,25 +80,24 @@ const fields = (t: TranslationFunction) => [
     placeholder: 'CDXXXXXX',
   },
   {
-    name: 'phone',
-    label: t('phone'),
-    placeholder: '06XXXXXXXX',
-  },
-  {
-    name: 'email',
-    label: t('email'),
-    placeholder: 'john@doe.com',
-  },
-  {
-    name: 'birthdate',
-    label: t('birthdate'),
-    placeholder: '02-08-1969',
+    name: 'cinFile',
+    label: t('cinFile'),
+    placeholder: t('upload-cin-file'),
   },
 ];
 
 type TFormValues = z.infer<typeof studentFormSchema>;
+type TContext = {
+  FileUploadPFP?: ReturnType<UseFileUploadHook>['FileUpload'];
+  FileUploadCIN?: ReturnType<UseFileUploadHook>['FileUpload'];
+};
 
-const AddNewStudentForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+const AddNewStudentForm: FormComponentType<TFormValues, TContext> = ({
+  form,
+  onSubmit,
+  className,
+  context: { FileUploadPFP, FileUploadCIN } = {},
+}) => {
   const t = useTranslations('Dashboard.Users.Students.AddNewStudentModal.AddNewStudentForm');
 
   return (
@@ -95,7 +115,7 @@ const AddNewStudentForm: FormComponentType<TFormValues> = ({ form, onSubmit, cla
                 </FormLabel>
                 <FormControl>
                   <>
-                    {field.name !== 'birthdate' && (
+                    {field.name !== 'birthdate' && field.name !== 'profilePicture' && field.name !== 'cinFile' && (
                       <Input
                         placeholder={f.placeholder}
                         dir={f.name.endsWith('Ar') ? 'rtl' : 'ltr'}
@@ -106,6 +126,14 @@ const AddNewStudentForm: FormComponentType<TFormValues> = ({ form, onSubmit, cla
 
                     {field.name === 'birthdate' && (
                       <DatePicker {...omit(field, 'ref')} placeholder={f.placeholder} value={field.value as Date} />
+                    )}
+
+                    {field.name === 'profilePicture' && FileUploadPFP !== undefined && (
+                      <FileUploadPFP>{f.placeholder}</FileUploadPFP>
+                    )}
+
+                    {field.name === 'cinFile' && FileUploadCIN !== undefined && (
+                      <FileUploadCIN>{f.placeholder}</FileUploadCIN>
                     )}
                   </>
                 </FormControl>

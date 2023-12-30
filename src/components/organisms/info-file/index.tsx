@@ -32,7 +32,12 @@ const InfoFile: InfoFileComponentType = ({ data, type }) => (
     )}
   >
     {type !== 'licenseFile' && (
-      <ProfileImageColumn profilePictureUrl={data.profilePictureUrl} fullName={data.info.fullName} type={type} />
+      <ProfileImageColumn
+        profilePicture={data.profilePicture}
+        cinFile={data.cinFile}
+        fullName={data.info.fullName}
+        type={type}
+      />
     )}
     <div
       className={cn('grid w-full grid-cols-1 gap-6', type === 'licenseFile' ? 'md:grid-cols-3' : 'md:grid-cols-2')}

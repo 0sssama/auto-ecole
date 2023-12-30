@@ -10,19 +10,19 @@ export type FetchedLicenseFile = {
   student: {
     id: number;
     fullName: string;
-    profilePictureUrl: string;
+    profilePicture: string;
   };
 
   instructor: {
     id: number;
     fullName: string;
-    profilePictureUrl: string;
+    profilePicture: string;
   };
 
   createdBy: {
     id: number;
     fullName: string;
-    profilePictureUrl: string;
+    profilePicture: string;
   };
 };
 

@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 export type Instructor = {
   id: number;
-  profilePictureUrl: string | null;
+  profilePicture: string;
 
   info: {
     fullName: string;

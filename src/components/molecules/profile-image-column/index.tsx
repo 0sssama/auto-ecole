@@ -1,15 +1,17 @@
 'use client';
 
 import Image from 'next/image';
+import snakeCase from 'lodash/snakeCase';
 import { useTranslations } from 'next-intl';
 import { FolderDown, ImageDown, UploadCloud, UserCircle2 } from 'lucide-react';
 import type { FC } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { Link } from '@/components/atoms';
 
 import type { ProfileImageColumnProps } from './types';
 
-const ProfileImageColumn: FC<ProfileImageColumnProps> = ({ profilePictureUrl, fullName, type }) => {
+const ProfileImageColumn: FC<ProfileImageColumnProps> = ({ profilePicture, cinFile, fullName, type }) => {
   const t = useTranslations('Dashboard.Dossier.ImageColumn');
 
   return (
@@ -19,8 +21,8 @@ const ProfileImageColumn: FC<ProfileImageColumnProps> = ({ profilePictureUrl, fu
           <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center bg-gray-600/40 p-1 transition-all duration-400 ease-in group-hover:bg-gray-600/80 group-hover:p-2">
             <UploadCloud className="text-white" size={16} />
           </div>
-          {profilePictureUrl ? (
-            <Image src={profilePictureUrl} alt={fullName} fill />
+          {profilePicture ? (
+            <Image src={profilePicture} alt={fullName} fill />
           ) : (
             <UserCircle2 className="text-muted-foreground" size={32} />
           )}
@@ -36,10 +38,14 @@ const ProfileImageColumn: FC<ProfileImageColumnProps> = ({ profilePictureUrl, fu
             <FolderDown size={16} className="mr-2" />
             {t(`${type}-file`)}
           </Button>
-          <Button className="w-full text-sm" variant="outline" size="sm">
-            <ImageDown size={16} className="mr-2" />
-            {t(`${type}-cin`)}
-          </Button>
+          {cinFile && (
+            <Link download={`${snakeCase(fullName)}_cin.pdf`} href={cinFile}>
+              <Button className="w-full text-sm" variant="outline" size="sm">
+                <ImageDown size={16} className="mr-2" />
+                {t(`${type}-cin`)}
+              </Button>
+            </Link>
+          )}
         </div>
       )}
     </div>

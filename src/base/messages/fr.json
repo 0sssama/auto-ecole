@@ -43,6 +43,7 @@
 
       "payment": "Paiements",
       "payments": "Paiements",
+      "expenses": "Dépenses",
       "financial-overview": "Finance",
 
       "entities": "Entités",
@@ -376,8 +377,12 @@
             "profession": "Profession:",
             "phone": "Téléphone:",
             "cin": "N° CIN:",
+            "cinFile": "Copie CIN:",
+            "upload-cin-file": "Télécharger une copie CIN en format PDF (max. 4MO)",
             "email": "E-mail:",
-            "birthdate": "Date de naissance:"
+            "birthdate": "Date de naissance:",
+            "profilePicture": "Photo de profil:",
+            "upload-profile-picture": "Télécharger une photo de profil (max. 4MO)"
           }
         },
         "ListStudentsTable": {
@@ -388,6 +393,7 @@
             "active": "Actif",
             "rejected": "Rejeté",
             "finished": "Terminé",
+            "undeposited": "Non déposé",
             "not-started": "Non commencé"
           },
           "Actions": {
@@ -407,6 +413,26 @@
             "B": "Voitures",
             "C": "Camions",
             "D": "Bus"
+          }
+        },
+        "Folder": {
+          "NotFound": {
+            "title": "Folder not found",
+            "subtitle": "The folder you are looking for does not exist."
+          }
+        },
+        "Create": {
+          "title": "Nouveau étudiant",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau étudiant",
+          "back": "Retour",
+          "button-submit": "Ajouter Étudiant",
+          "error": "Erreur lors de l'ajout du étudiant. Veuillez réessayer plus tard.",
+          "success": "Étudiant ajouté avec succès !",
+          "RedirectModal": {
+            "title": "L'étudiant est ajouté!",
+            "question": "Est-ce que vous voulez créer un dossier pour cet étudiant?",
+            "yes": "Oui, emmènez-moi!",
+            "no": "Non, au plus tard."
           }
         }
       },
@@ -568,6 +594,14 @@
         "NotFound": {
           "title": "Aucun dossier de permis trouvé",
           "subtitle": "Aucun dossier de permis n'a été trouvé avec l'ID spécifié."
+        },
+        "Create": {
+          "title": "Nouveau dossier",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau dossier",
+          "back": "Retour",
+          "button-submit": "Ajouter Dossier",
+          "error": "Erreur lors de l'ajout du dossier. Veuillez réessayer plus tard.",
+          "success": "Dossier ajouté avec succès !"
         }
       },
       "Lessons": {
@@ -637,6 +671,11 @@
         "NotFound": {
           "title": "Aucun paiement trouvé",
           "subtitle": "Aucun paiement n'a été trouvé avec l'ID spécifié."
+        }
+      },
+      "Expenses": {
+        "Header": {
+          "title": "Les dépenses"
         }
       },
       "FinancialOverview": {
@@ -774,7 +813,7 @@
           "name": "Nom du véhicule :",
           "brand": "Nom de marque :",
           "image": "Photo du véhicule :",
-          "upload-image": "Télécharger une photo du véhicule (max. 4MB)",
+          "upload-image": "Télécharger une photo du véhicule (max. 4MO)",
           "Type": {
             "label": "Type du véhicule :",
             "empty": "Aucun type trouvé",

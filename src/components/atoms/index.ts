@@ -10,3 +10,4 @@ export { default as UserNav } from './user-nav';
 export { default as Tooltip } from './tooltip';
 export { default as TooltipConcat } from './tooltip-concat';
 export { default as FileUpload } from './file-upload';
+export { default as Link } from './link';

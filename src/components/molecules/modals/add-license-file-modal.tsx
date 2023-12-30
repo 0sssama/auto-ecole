@@ -16,7 +16,7 @@ import { licenseFileFormSchema } from '@/base/schemas/license-file-form-schema';
 
 import type { ModalComponentType } from './types';
 
-const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
+const AddLicenseFileModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations('Dashboard.Files.LicenseFiles.AddNewModal');
 
   const closeModal = () => {
@@ -99,4 +99,4 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   );
 };
 
-export default AddInstructorModal;
+export default AddLicenseFileModal;

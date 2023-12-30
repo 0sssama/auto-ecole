@@ -43,6 +43,7 @@
 
       "payment": "Payment",
       "payments": "Payments",
+      "expenses": "Expenses",
       "financial-overview": "Financial Overview",
 
       "entities": "Entities",
@@ -376,8 +377,12 @@
             "profession": "Profession:",
             "phone": "Phone Number:",
             "cin": "National ID Number:",
+            "cinFile": "National ID File:",
+            "upload-cin-file": "Upload a file of the student's national ID (.PDF, max 4MB)",
             "email": "Email:",
-            "birthdate": "Birthdate:"
+            "birthdate": "Birthdate:",
+            "profilePicture": "Profile Picture:",
+            "upload-profile-picture": "Upload a profile picture for the student (max 4MB)"
           }
         },
         "ListStudentsTable": {
@@ -388,6 +393,7 @@
             "active": "Active",
             "rejected": "Rejected",
             "finished": "Finished",
+            "undeposited": "Undeposited",
             "not-started": "Not started"
           },
           "Actions": {
@@ -413,6 +419,20 @@
           "NotFound": {
             "title": "Folder not found",
             "subtitle": "The folder you are looking for does not exist."
+          }
+        },
+        "Create": {
+          "title": "Add new student",
+          "subtitle": "Fill in the form below to add a new student.",
+          "back": "Back to students",
+          "button-submit": "Add Student",
+          "error": "An error has occurred. Please try again later.",
+          "success": "Student added successfully!",
+          "RedirectModal": {
+            "title": "Student created!",
+            "question": "Would you like to create a license file for this student now?",
+            "yes": "Yes, take me there",
+            "no": "I'll do it later"
           }
         }
       },
@@ -569,6 +589,14 @@
         "NotFound": {
           "title": "No License File Found",
           "subtitle": "The license file you are looking for does not exist."
+        },
+        "Create": {
+          "title": "Add new license file",
+          "subtitle": "Fill in the form below to add a new license file.",
+          "back": "Back to license files",
+          "button-submit": "Add License File",
+          "error": "An error has occurred. Please try again later.",
+          "success": "License file added successfully!"
         }
       },
       "Lessons": {
@@ -639,6 +667,11 @@
         "NotFound": {
           "title": "No Payment Found",
           "subtitle": "The payment you are looking for does not exist."
+        }
+      },
+      "Expenses": {
+        "Header": {
+          "title": "Expenses"
         }
       },
       "FinancialOverview": {

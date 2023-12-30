@@ -5,7 +5,8 @@ export type InfoFileType = 'student' | 'instructor' | 'licenseFile' | 'vehicle';
 export type InfoFileProps = {
   data: {
     id: number;
-    profilePictureUrl: string | null;
+    profilePicture: string;
+    cinFile: string;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     info: Record<string, any>;

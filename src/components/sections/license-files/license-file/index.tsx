@@ -14,7 +14,8 @@ const LicenseFile: LicenseFileComponentType = ({ licenseFile }) => {
       <InfoFile
         data={{
           id,
-          profilePictureUrl: null,
+          profilePicture: '',
+          cinFile: '',
 
           info: licenseFileNoId,
         }}

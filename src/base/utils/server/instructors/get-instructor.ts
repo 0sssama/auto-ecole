@@ -24,7 +24,7 @@ export const getInstructor = async (instructorId: number): Promise<Instructor | 
 
     return {
       id: instructor.id,
-      profilePictureUrl: null,
+      profilePicture: '',
 
       info: {
         fullName: instructor.account.fullName,

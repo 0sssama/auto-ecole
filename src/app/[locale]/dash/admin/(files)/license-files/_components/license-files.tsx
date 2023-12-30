@@ -2,18 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 
-import { PageHeader, AddLicenseFileModal } from '@/components/molecules';
-import { useModal } from '@/base/hooks/use-modal';
+import { PageHeader } from '@/components/molecules';
 import { LicenseFilesListTable } from '@/components/sections/license-files';
 
 export default function LicenseFilesPage() {
   const t = useTranslations('Dashboard.Files.LicenseFiles.Header');
-  const addLicenseFileModal = useModal();
 
   return (
     <main>
-      <PageHeader openModal={addLicenseFileModal.open} t={t} />
-      <AddLicenseFileModal {...addLicenseFileModal} />
+      <PageHeader href="/dash/admin/license-files/create" t={t} />
       <div className="w-full">
         <LicenseFilesListTable />
       </div>
