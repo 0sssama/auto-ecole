@@ -1,8 +1,6 @@
 'use client';
 
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { formatDistanceToNow } from 'date-fns';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { User } from '@nextui-org/user';
@@ -84,9 +82,7 @@ function InfoData<InfoT extends InfoTypes>({ labelId, value }: InfoDataProps<Inf
     }
 
     default: {
-      dayjs.extend(relativeTime);
-      dayjs.extend(localizedFormat);
-      return <p>{dayjs(value).fromNow()}</p>;
+      return <p>{formatDistanceToNow(new Date(value))}</p>;
     }
   }
 }

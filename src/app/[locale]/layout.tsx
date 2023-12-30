@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Vazirmatn } from 'next/font/google';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
@@ -13,6 +13,7 @@ import {
   ToastProvider,
   TRPCProvider,
   NextUIProvider,
+  DateFnsProvider,
 } from '@/base/providers';
 import { locales, type Locale } from '@/base/data/locales';
 
@@ -50,7 +51,6 @@ export default function RootLayout({
   if (!locales.includes(locale as any)) notFound();
 
   unstable_setRequestLocale(locale);
-
   // TODO: ONLY PASS NECESSARY MESSAGES (THIS FUCKS UP PERFORMANCE)
   const messages = useMessages();
 
@@ -67,7 +67,9 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
                   <NprogressProvider>
                     <RecoilProvider>
-                      <ToastProvider>{children}</ToastProvider>
+                      <ToastProvider>
+                        <DateFnsProvider locale={locale}>{children}</DateFnsProvider>
+                      </ToastProvider>
                     </RecoilProvider>
                   </NprogressProvider>
                 </ThemeProvider>

@@ -1,8 +1,6 @@
 'use client';
 
-import relativeTime from 'dayjs/plugin/relativeTime';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-import dayjs from 'dayjs';
+import { formatDistanceToNow } from 'date-fns';
 import { Chip } from '@nextui-org/chip';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -55,11 +53,10 @@ export const columns: ColumnDef<LicenseFileExam>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFileExams.date" />,
     cell: ({ row }) => {
       const exam = licenseFileExamSchema.parse(row.original);
-      dayjs.extend(relativeTime);
-      dayjs.extend(localizedFormat);
-      const date = dayjs(exam.date);
+      const date = new Date(exam.date);
+      const relativeTime = formatDistanceToNow(date);
 
-      return <Tooltip content={date.fromNow()}>{date.fromNow()}</Tooltip>;
+      return <Tooltip content={relativeTime}>{relativeTime}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,

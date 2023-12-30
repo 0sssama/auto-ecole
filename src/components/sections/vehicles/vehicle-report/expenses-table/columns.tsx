@@ -1,8 +1,6 @@
 'use client';
 
-import relativeTime from 'dayjs/plugin/relativeTime';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-import dayjs from 'dayjs';
+import { formatDistanceToNow } from 'date-fns';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
@@ -49,11 +47,10 @@ export const columns: ColumnDef<VehicleExpense>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="VehicleExpenses.date" />,
     cell: ({ row }) => {
       const vehicleExpense = vehicleExpenseSchema.parse(row.original);
-      dayjs.extend(relativeTime);
-      dayjs.extend(localizedFormat);
-      const date = dayjs(vehicleExpense.date);
+      const date = new Date(vehicleExpense.date);
+      const relativeTime = formatDistanceToNow(date);
 
-      return <Tooltip content={date.fromNow()}>{date.fromNow()}</Tooltip>;
+      return <Tooltip content={relativeTime}>{relativeTime}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,
