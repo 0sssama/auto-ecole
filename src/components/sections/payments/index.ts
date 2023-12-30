@@ -1,1 +1,1 @@
-export { default as PaymentsListTable } from "./list-table";
+export { default as PaymentsListTable } from './list-table';

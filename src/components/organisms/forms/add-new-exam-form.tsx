@@ -1,61 +1,54 @@
-"use client";
+'use client';
 
-import { z } from "zod";
-import omit from "lodash/omit";
-import { useTranslations } from "next-intl";
-import { ExamStatus, ExamType } from "@prisma/client";
+import type { z } from 'zod';
+import omit from 'lodash/omit';
+import { useTranslations } from 'next-intl';
+import { ExamStatus, ExamType } from '@prisma/client';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Combobox } from "@/components/ui/combobox";
-import { DatePicker } from "@/components/ui/date-picker";
-import { examFormSchema } from "@/schemas/exam-form-schema";
-import type { TranslationFunction } from "@/types";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Combobox } from '@/components/ui/combobox';
+import { DatePicker } from '@/components/ui/date-picker';
+import type { examFormSchema } from '@/base/schemas/exam-form-schema';
+import type { TranslationFunction } from '@/base/types';
 
-import type { FormComponentType } from "./types";
+import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
   {
-    name: "type",
-    label: t("Type.label"),
-    placeholder: t("Type.placeholder"),
-    emptyMessage: t("Type.empty"),
-    options: Object.keys(ExamType).map((key) => ({
-      value: key,
-      label: t("Type." + key),
-    })),
+    name: 'type',
+    label: t('Type.label'),
+    placeholder: t('Type.placeholder'),
+    emptyMessage: t('Type.empty'),
+    options: Object.keys(ExamType).map((key) => {
+      return {
+        value: key,
+        label: t('Type.' + key),
+      };
+    }),
   },
   {
-    name: "date",
-    label: t("date"),
-    placeholder: "09/11/2002",
+    name: 'date',
+    label: t('date'),
+    placeholder: '09/11/2002',
   },
   {
-    name: "status",
-    label: t("Status.label"),
-    placeholder: t("Status.placeholder"),
-    emptyMessage: t("Status.empty"),
-    options: Object.keys(ExamStatus).map((key) => ({
-      value: key,
-      label: t("Status." + key),
-    })),
+    name: 'status',
+    label: t('Status.label'),
+    placeholder: t('Status.placeholder'),
+    emptyMessage: t('Status.empty'),
+    options: Object.keys(ExamStatus).map((key) => {
+      return {
+        value: key,
+        label: t('Status.' + key),
+      };
+    }),
   },
 ];
 
 type TFormValues = z.infer<typeof examFormSchema>;
 
-const AddNewInstructorForm: FormComponentType<TFormValues> = ({
-  form,
-  onSubmit,
-  className,
-}) => {
-  const t = useTranslations("Dashboard.Modals.AddExam.Form");
+const AddNewInstructorForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+  const t = useTranslations('Dashboard.Modals.AddExam.Form');
 
   return (
     <Form {...form}>
@@ -67,14 +60,12 @@ const AddNewInstructorForm: FormComponentType<TFormValues> = ({
             name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="inline-block w-full text-sm">
-                  {f.label}
-                </FormLabel>
+                <FormLabel className="inline-block w-full text-sm">{f.label}</FormLabel>
                 <FormControl>
                   <>
-                    {field.name !== "date" && (
+                    {field.name !== 'date' && (
                       <Combobox
-                        {...omit(field, "ref")}
+                        {...omit(field, 'ref')}
                         placeholder={f.placeholder}
                         emptyMessage={f.emptyMessage}
                         value={field.value as string | null}
@@ -91,16 +82,12 @@ const AddNewInstructorForm: FormComponentType<TFormValues> = ({
                       />
                     )}
 
-                    {field.name === "date" && (
-                      <DatePicker
-                        {...omit(field, "ref")}
-                        placeholder={f.placeholder}
-                        value={field.value as Date}
-                      />
+                    {field.name === 'date' && (
+                      <DatePicker {...omit(field, 'ref')} placeholder={f.placeholder} value={field.value as Date} />
                     )}
                   </>
                 </FormControl>
-                <FormMessage className="inline-block w-full text-[12px] px-1" />
+                <FormMessage className="inline-block w-full px-1 text-[12px]" />
               </FormItem>
             )}
           />

@@ -1,8 +1,7 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface StudentLicenseFilesTableProps {
   studentId: number;
 }
 
-export type StudentLicenseFilesTableComponentType =
-  FC<StudentLicenseFilesTableProps>;
+export type StudentLicenseFilesTableComponentType = FC<StudentLicenseFilesTableProps>;

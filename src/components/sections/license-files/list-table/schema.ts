@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { Category, LicenseFileStatus } from "@prisma/client";
+import { z } from 'zod';
+import { Category, LicenseFileStatus } from '@prisma/client';
 
 export type LicenseFile = {
   id: number;

@@ -1,33 +1,31 @@
-import { z } from "zod";
-import { TRPCError } from "@trpc/server";
+import { z } from 'zod';
+import { TRPCError } from '@trpc/server';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { examBackendInputSchema } from "@/schemas/exam-form-schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { examBackendInputSchema } from '@/base/schemas/exam-form-schema';
 
 export const mutationRouter = createTRPCRouter({
-  addToLicenseFile: orgAdminOnlyPrecedure
-    .input(examBackendInputSchema)
-    .mutation(async ({ ctx, input }) => {
-      const newExam = await ctx.prisma.exam.create({
-        data: {
-          type: input.type,
-          status: input.status,
-          date: input.date,
-          licenseFile: {
-            connect: {
-              id: input.licenseFileId,
-            },
+  addToLicenseFile: orgAdminOnlyPrecedure.input(examBackendInputSchema).mutation(async ({ ctx, input }) => {
+    const newExam = await ctx.prisma.exam.create({
+      data: {
+        type: input.type,
+        status: input.status,
+        date: input.date,
+        licenseFile: {
+          connect: {
+            id: input.licenseFileId,
           },
         },
-        select: {
-          id: true,
-        },
-      });
+      },
+      select: {
+        id: true,
+      },
+    });
 
-      if (!newExam) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
+    if (!newExam) throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
 
-      return newExam;
-    }),
+    return newExam;
+  }),
 
   delete: orgAdminOnlyPrecedure
     .input(
@@ -42,7 +40,7 @@ export const mutationRouter = createTRPCRouter({
         },
       });
 
-      if (!deletedExam) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
+      if (!deletedExam) throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
 
       return deletedExam;
     }),

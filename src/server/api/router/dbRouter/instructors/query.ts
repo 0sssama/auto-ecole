@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
-import type { Instructor } from "@/components/sections/instructors/list-table/schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/base/utils/client/count-pages';
+import type { Instructor } from '@/components/sections/instructors/list-table/schema';
 
-import { getWhereObjFromFilters } from "./utils";
+import { getWhereObjFromFilters } from './utils';
 
 export const queryRouter = createTRPCRouter({
   getManyForSelect: orgAdminOnlyPrecedure
@@ -29,7 +29,7 @@ export const queryRouter = createTRPCRouter({
           },
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         select: {
           id: true,
@@ -39,10 +39,12 @@ export const queryRouter = createTRPCRouter({
         take: input.count,
       });
 
-      return instructors.map((instructor) => ({
-        value: String(instructor.id),
-        label: `${instructor.firstName} ${instructor.lastName}`,
-      }));
+      return instructors.map((instructor) => {
+        return {
+          value: String(instructor.id),
+          label: `${instructor.firstName} ${instructor.lastName}`,
+        };
+      });
     }),
 
   list: orgAdminOnlyPrecedure
@@ -83,7 +85,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -98,15 +100,15 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedInstructors: Instructor[] = instructors.map(
-        (instructor) => ({
+      const formattedInstructors: Instructor[] = instructors.map((instructor) => {
+        return {
           id: instructor.id,
           fullName: `${instructor.firstName} ${instructor.lastName}`,
           phone: instructor.phone,
           licenseFilesCount: instructor.licenseFiles.length,
           lessonsCount: instructor.lessons.length,
-        }),
-      );
+        };
+      });
 
       return {
         data: formattedInstructors,

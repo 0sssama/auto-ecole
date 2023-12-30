@@ -1,5 +1,5 @@
-import { VehicleType } from "@prisma/client";
-import { z } from "zod";
+import { VehicleType } from '@prisma/client';
+import { z } from 'zod';
 
 export const vehicleSchema = z.object({
   id: z.number(),

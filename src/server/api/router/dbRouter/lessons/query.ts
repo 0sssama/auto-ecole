@@ -1,13 +1,13 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
-import type { Lesson } from "@/components/sections/lessons/list-table/schema";
-import type { InstructorLesson } from "@/components/sections/instructors/instructor-file/lessons-table/schema";
-import type { StudentLesson } from "@/components/sections/students/student-file/lessons-table/schema";
-import type { LicenseFileLesson } from "@/components/sections/license-files/license-file/lessons-table/schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/base/utils/client/count-pages';
+import type { Lesson } from '@/components/sections/lessons/list-table/schema';
+import type { InstructorLesson } from '@/components/sections/instructors/instructor-file/lessons-table/schema';
+import type { StudentLesson } from '@/components/sections/students/student-file/lessons-table/schema';
+import type { LicenseFileLesson } from '@/components/sections/license-files/license-file/lessons-table/schema';
 
-import { getWhereObjFromFilters } from "./utils";
+import { getWhereObjFromFilters } from './utils';
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -53,7 +53,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -68,21 +68,23 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedLessons: Lesson[] = lessons.map((lesson) => ({
-        id: lesson.id,
-        instructor: {
-          id: lesson.instructor.id,
-          fullName: `${lesson.instructor.firstName} ${lesson.instructor.lastName}`,
-        },
-        student: {
-          id: lesson.student.id,
-          fullName: `${lesson.student.firstNameFr} ${lesson.student.lastNameFr}`,
-        },
-        status: lesson.status,
-        price: lesson.price,
-        duration: lesson.duration,
-        scheduledDate: lesson.date,
-      }));
+      const formattedLessons: Lesson[] = lessons.map((lesson) => {
+        return {
+          id: lesson.id,
+          instructor: {
+            id: lesson.instructor.id,
+            fullName: `${lesson.instructor.firstName} ${lesson.instructor.lastName}`,
+          },
+          student: {
+            id: lesson.student.id,
+            fullName: `${lesson.student.firstNameFr} ${lesson.student.lastNameFr}`,
+          },
+          status: lesson.status,
+          price: lesson.price,
+          duration: lesson.duration,
+          scheduledDate: lesson.date,
+        };
+      });
 
       return {
         data: formattedLessons,
@@ -131,7 +133,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -147,8 +149,8 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedStudentLessons: StudentLesson[] = studentLessons.map(
-        (lesson) => ({
+      const formattedStudentLessons: StudentLesson[] = studentLessons.map((lesson) => {
+        return {
           id: lesson.id,
           instructorId: lesson.instructor.id,
           instructorName: `${lesson.instructor.firstName} ${lesson.instructor.lastName}`,
@@ -158,8 +160,8 @@ export const queryRouter = createTRPCRouter({
           price: lesson.price,
           duration: lesson.duration,
           scheduledDate: lesson.date,
-        }),
-      );
+        };
+      });
 
       return {
         data: formattedStudentLessons,
@@ -208,7 +210,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -224,8 +226,8 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedInstructorLessons: InstructorLesson[] =
-        instructorLessons.map((lesson) => ({
+      const formattedInstructorLessons: InstructorLesson[] = instructorLessons.map((lesson) => {
+        return {
           id: lesson.id,
           studentId: lesson.student.id,
           studentName: `${lesson.student.firstNameFr} ${lesson.student.lastNameFr}`,
@@ -235,7 +237,8 @@ export const queryRouter = createTRPCRouter({
           price: lesson.price,
           duration: lesson.duration,
           scheduledDate: lesson.date,
-        }));
+        };
+      });
 
       return {
         data: formattedInstructorLessons,
@@ -284,7 +287,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -300,8 +303,8 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedLicenseFileLessons: LicenseFileLesson[] =
-        licenseFileLessons.map((lesson) => ({
+      const formattedLicenseFileLessons: LicenseFileLesson[] = licenseFileLessons.map((lesson) => {
+        return {
           id: lesson.id,
           status: lesson.status,
           comment: lesson.comment,
@@ -309,7 +312,8 @@ export const queryRouter = createTRPCRouter({
           price: lesson.price,
           duration: lesson.duration,
           scheduledDate: lesson.date,
-        }));
+        };
+      });
 
       return {
         data: formattedLicenseFileLessons,

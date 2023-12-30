@@ -1,11 +1,11 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
 // import { getLesson } from "@/server/utils/lessons/getLesson";
 // import { Lesson } from "@/components/sections/lessons";
-import type { Locale } from "@/lib/locales";
+import type { Locale } from '@/base/data/locales';
 
-import LessonsPage from "./_components/lessons";
-import LessonNotFound from "./_components/not-found";
+import LessonsPage from './_components/lessons';
+import LessonNotFound from './_components/not-found';
 
 export default async function Lessons({
   searchParams: { lessonId },
@@ -18,7 +18,7 @@ export default async function Lessons({
 
   const id = Number(lessonId);
 
-  if (isNaN(id) || id <= 0) return <LessonNotFound />;
+  if (Number.isNaN(id) || id <= 0) return <LessonNotFound />;
 
   //   const lesson = await getLesson(id);
 
@@ -36,10 +36,10 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations({
     locale,
-    namespace: "Dashboard.Files.Lessons.Header",
+    namespace: 'Dashboard.Files.Lessons.Header',
   });
 
   return {
-    title: `${t("title")} / Dashboard`,
+    title: `${t('title')} / Dashboard`,
   };
 }

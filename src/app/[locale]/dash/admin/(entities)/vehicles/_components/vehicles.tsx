@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl';
 
 import {
   PageHeader,
   // AddCarModal
-} from "@/components/molecules";
-import { useModal } from "@/lib/hooks/useModal";
-import { VehiclesListTable } from "@/components/sections/vehicles";
-import { AddVehicleModal } from "@/components/molecules";
+  AddVehicleModal,
+} from '@/components/molecules';
+import { useModal } from '@/base/hooks/use-modal';
+import { VehiclesListTable } from '@/components/sections/vehicles';
 
 export default function VehiclesPage() {
-  const t = useTranslations("Dashboard.Entities.Vehicles.Header");
+  const t = useTranslations('Dashboard.Entities.Vehicles.Header');
   const addVehicleModal = useModal();
 
   return (

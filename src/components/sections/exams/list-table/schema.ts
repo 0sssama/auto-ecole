@@ -1,6 +1,5 @@
-import { z } from "zod";
-
-import { ExamStatus, ExamType } from "@prisma/client";
+import { z } from 'zod';
+import { ExamStatus, ExamType } from '@prisma/client';
 
 export type Exam = {
   id: number;

@@ -1,8 +1,8 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { instructorFormSchema } from "@/schemas/instructor-form-schema";
-import { createNewCredentials } from "@/utils/createNewCredentials";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { instructorFormSchema } from '@/base/schemas/instructor-form-schema';
+import { createNewCredentials } from '@/base/utils/client/create-new-credentials';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure
@@ -30,7 +30,7 @@ export const mutationRouter = createTRPCRouter({
             create: {
               username: credentials.username,
               fullName: `${input.firstName} ${input.lastName}`,
-              rank: "INSTRUCTOR",
+              rank: 'INSTRUCTOR',
               clerkId: input.clerkId,
               clerkOrgId: ctx.orgId,
             },

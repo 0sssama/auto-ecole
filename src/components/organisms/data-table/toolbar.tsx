@@ -1,28 +1,23 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import { Search, X } from "lucide-react";
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Search, X } from 'lucide-react';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
-import type { DataTableToolbarComponentType } from "./types";
+import type { DataTableToolbarComponentType } from './types';
 
-const DataTableToolbar: DataTableToolbarComponentType = ({
-  filters,
-  filtersAllowed,
-}) => {
-  const t = useTranslations("Dashboard.Tables");
-  const [search, setSearch] = useState("");
+const DataTableToolbar: DataTableToolbarComponentType = ({ filters, filtersAllowed }) => {
+  const t = useTranslations('Dashboard.Tables');
+  const [search, setSearch] = useState('');
 
-  const isFiltered = filters.get.search !== "";
+  const isFiltered = filters.get.search !== '';
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (search !== filters.get.search) {
-        filters.set.search(search);
-      }
+      if (search !== filters.get.search) filters.set.search(search);
     }, 200);
 
     return () => clearTimeout(timeout);
@@ -33,15 +28,15 @@ const DataTableToolbar: DataTableToolbarComponentType = ({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center flex-1 space-x-2">
+      <div className="flex flex-1 items-center space-x-2">
         {filtersAllowed.search && (
           <div className="relative">
-            <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-[50%] translate-y-[-50%]" />
+            <Search className="absolute left-3 top-[50%] h-4 w-4 translate-y-[-50%] text-muted-foreground" />
             <Input
-              placeholder={t("search")}
+              placeholder={t('search')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-10 w-[180px] lg:w-[300px] pl-10"
+              className="h-10 w-[180px] pl-10 lg:w-[300px]"
             />
           </div>
         )}
@@ -49,13 +44,13 @@ const DataTableToolbar: DataTableToolbarComponentType = ({
           <Button
             variant="ghost"
             onClick={() => {
-              setSearch("");
+              setSearch('');
               filters.helpers.resetAll();
             }}
             className="h-10 px-3 lg:px-6"
           >
-            {t("reset")}
-            <X className="w-4 h-4 ml-2" />
+            {t('reset')}
+            <X className="ml-2 h-4 w-4" />
           </Button>
         )}
       </div>

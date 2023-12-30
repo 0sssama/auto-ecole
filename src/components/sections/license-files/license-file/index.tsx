@@ -1,11 +1,10 @@
-import { Separator } from "@/components/ui/separator";
-import { InfoFile } from "@/components/organisms";
+import { Separator } from '@/components/ui/separator';
+import { InfoFile } from '@/components/organisms';
 
-import LicenseFileExamsTable from "./exams-table";
-import LicenseFileLessonsTable from "./lessons-table";
-import LicenseFilePaymentsTable from "./payments-table";
-
-import type { LicenseFileComponentType } from "./types";
+import LicenseFileExamsTable from './exams-table';
+import LicenseFileLessonsTable from './lessons-table';
+import LicenseFilePaymentsTable from './payments-table';
+import type { LicenseFileComponentType } from './types';
 
 const LicenseFile: LicenseFileComponentType = ({ licenseFile }) => {
   const { id, ...licenseFileNoId } = licenseFile;

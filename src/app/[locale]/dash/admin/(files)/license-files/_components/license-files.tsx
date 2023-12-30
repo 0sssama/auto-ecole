@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl';
 
-import { PageHeader, AddLicenseFileModal } from "@/components/molecules";
-import { useModal } from "@/lib/hooks/useModal";
-import { LicenseFilesListTable } from "@/components/sections/license-files";
+import { PageHeader, AddLicenseFileModal } from '@/components/molecules';
+import { useModal } from '@/base/hooks/use-modal';
+import { LicenseFilesListTable } from '@/components/sections/license-files';
 
 export default function LicenseFilesPage() {
-  const t = useTranslations("Dashboard.Files.LicenseFiles.Header");
+  const t = useTranslations('Dashboard.Files.LicenseFiles.Header');
   const addLicenseFileModal = useModal();
 
   return (

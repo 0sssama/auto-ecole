@@ -1,26 +1,21 @@
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from '@prisma/client';
 
-import type { TableFilters } from "@/components/organisms/data-table/types";
+import type { TableFilters } from '@/components/organisms/data-table/types';
 
-const searchFilters = (
-  search: TableFilters["get"]["search"],
-): Prisma.VehicleWhereInput[] => {
-  const searchableFields: (keyof Prisma.VehicleWhereInput)[] = [
-    "name",
-    "brand",
-  ];
+const searchFilters = (search: TableFilters['get']['search']): Prisma.VehicleWhereInput[] => {
+  const searchableFields: (keyof Prisma.VehicleWhereInput)[] = ['name', 'brand'];
 
-  return searchableFields.map((field) => ({
-    [field]: { contains: search },
-  }));
+  return searchableFields.map((field) => {
+    return {
+      [field]: { contains: search },
+    };
+  });
 };
 
-export const getWhereObjFromFilters = (
-  filters: TableFilters["get"],
-): Prisma.VehicleWhereInput => {
+export const getWhereObjFromFilters = (filters: TableFilters['get']): Prisma.VehicleWhereInput => {
   void filters;
 
-  let output: Prisma.VehicleWhereInput["OR"] = [];
+  let output: Prisma.VehicleWhereInput['OR'] = [];
 
   if (filters.search) output = [...output, ...searchFilters(filters.search)];
 

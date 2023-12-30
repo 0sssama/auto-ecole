@@ -1,46 +1,34 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import moment from "moment";
-import { Chip } from "@nextui-org/chip";
-import { useTranslations } from "next-intl";
-import type { ColumnDef } from "@tanstack/react-table";
+import Link from 'next/link';
+import moment from 'moment';
+import { Chip } from '@nextui-org/chip';
+import { useTranslations } from 'next-intl';
+import type { ColumnDef } from '@tanstack/react-table';
 
-import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
-import { Tooltip, TooltipConcat } from "@/components/atoms";
-import {
-  getLessonGradeChipColor,
-  getLessonStatusChipColor,
-} from "@/lib/getChipColors";
+import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
+import { Tooltip, TooltipConcat } from '@/components/atoms';
+import { getLessonGradeChipColor, getLessonStatusChipColor } from '@/base/utils/client/get-chip-colors';
 
-import ActionsColumn from "./actions-column";
-import { studentLessonSchema, type StudentLesson } from "./schema";
+import ActionsColumn from './actions-column';
+import { studentLessonSchema, type StudentLesson } from './schema';
 
 export const columns: ColumnDef<StudentLesson>[] = [
   {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.id" />
-    ),
-    cell: ({ row }) => <>{row.getValue("id")}</>,
+    accessorKey: 'id',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.id" />,
+    cell: ({ row }) => <>{row.getValue('id')}</>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "instructor-name",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="StudentLessons.instructor-name"
-      />
-    ),
+    accessorKey: 'instructor-name',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.instructor-name" />,
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
 
       return (
-        <Link
-          href={`/dash/admin/instructors?instructorId=${studentLesson.instructorId}`}
-        >
+        <Link href={`/dash/admin/instructors?instructorId=${studentLesson.instructorId}`}>
           <TooltipConcat text={studentLesson.instructorName} />
         </Link>
       );
@@ -49,21 +37,15 @@ export const columns: ColumnDef<StudentLesson>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.status" />
-    ),
+    accessorKey: 'status',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.status" />,
     cell: function Cell({ row }) {
-      const t = useTranslations(
-        "Dashboard.Dossier.Tables.StudentLessons.Status",
-      );
+      const t = useTranslations('Dashboard.Dossier.Tables.StudentLessons.Status');
       const studentLesson = studentLessonSchema.parse(row.original);
 
       return (
         <Chip color={getLessonStatusChipColor(studentLesson.status)} size="sm">
-          <span className="font-bold !text-[10px] md:text-sm">
-            {t(studentLesson.status)?.toUpperCase()}
-          </span>
+          <span className="!text-[10px] font-bold md:text-sm">{t(studentLesson.status)?.toUpperCase()}</span>
         </Chip>
       );
     },
@@ -71,19 +53,15 @@ export const columns: ColumnDef<StudentLesson>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "comment",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.comment" />
-    ),
-    cell: ({ row }) => <TooltipConcat text={row.getValue("comment") || "-"} />,
+    accessorKey: 'comment',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.comment" />,
+    cell: ({ row }) => <TooltipConcat text={row.getValue('comment') || '-'} />,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "grade",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.grade" />
-    ),
+    accessorKey: 'grade',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.grade" />,
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
 
@@ -91,9 +69,7 @@ export const columns: ColumnDef<StudentLesson>[] = [
 
       return (
         <Chip color={getLessonGradeChipColor(studentLesson.grade)} size="sm">
-          <span className="font-bold !text-[10px] md:text-sm">
-            {studentLesson.grade}
-          </span>
+          <span className="!text-[10px] font-bold md:text-sm">{studentLesson.grade}</span>
         </Chip>
       );
     },
@@ -101,31 +77,22 @@ export const columns: ColumnDef<StudentLesson>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "price",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.price" />
-    ),
-    cell: ({ row }) => <>{row.getValue("price")} DH</>,
+    accessorKey: 'price',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.price" />,
+    cell: ({ row }) => <>{row.getValue('price')} DH</>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "duration",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="StudentLessons.duration" />
-    ),
-    cell: ({ row }) => <>{row.getValue("duration")}h</>,
+    accessorKey: 'duration',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.duration" />,
+    cell: ({ row }) => <>{row.getValue('duration')}h</>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "scheduledDate",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="StudentLessons.scheduled-date"
-      />
-    ),
+    accessorKey: 'scheduledDate',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLessons.scheduled-date" />,
     cell: ({ row }) => {
       const studentLesson = studentLessonSchema.parse(row.original);
       const date = moment(studentLesson.scheduledDate);
@@ -136,7 +103,7 @@ export const columns: ColumnDef<StudentLesson>[] = [
     enableHiding: false,
   },
   {
-    id: "actions",
+    id: 'actions',
     cell: ({ row }) => (
       <div className="flex items-center justify-end">
         <ActionsColumn row={row} />

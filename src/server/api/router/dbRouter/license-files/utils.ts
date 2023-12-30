@@ -1,13 +1,11 @@
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from '@prisma/client';
 
-import type { TableFilters } from "@/components/organisms/data-table/types";
+import type { TableFilters } from '@/components/organisms/data-table/types';
 
-export const getWhereObjFromFilters = (
-  filters: TableFilters["get"],
-): Prisma.LicenseFileWhereInput => {
+export const getWhereObjFromFilters = (filters: TableFilters['get']): Prisma.LicenseFileWhereInput => {
   void filters;
 
-  let output: Prisma.LicenseFileWhereInput["OR"] = [];
+  const output: Prisma.LicenseFileWhereInput['OR'] = [];
 
   //   if (filters.search) output = [...output, ...searchFilters(filters.search)];
 

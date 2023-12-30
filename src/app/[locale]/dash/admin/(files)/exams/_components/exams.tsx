@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl';
 
-import { AddExamModalSike, PageHeader } from "@/components/molecules";
-import { useModal } from "@/lib/hooks/useModal";
-import { ExamsListTable } from "@/components/sections/exams";
+import { AddExamModalSike, PageHeader } from '@/components/molecules';
+import { useModal } from '@/base/hooks/use-modal';
+import { ExamsListTable } from '@/components/sections/exams';
 
 export default function ExamsPage() {
-  const t = useTranslations("Dashboard.Files.Exams.Header");
+  const t = useTranslations('Dashboard.Files.Exams.Header');
   const addExamModalSike = useModal();
 
   return (

@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
-const Home = () => redirect("/dash");
+const Home = () => redirect('/dash');
 
 export default Home;

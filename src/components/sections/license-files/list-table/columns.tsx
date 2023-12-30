@@ -1,47 +1,34 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Chip } from "@nextui-org/chip";
-import { useTranslations } from "next-intl";
-import type { ColumnDef } from "@tanstack/react-table";
+import Link from 'next/link';
+import { Chip } from '@nextui-org/chip';
+import { useTranslations } from 'next-intl';
+import type { ColumnDef } from '@tanstack/react-table';
 
-import DataTableColumnHeader from "@/components/organisms/data-table/column-header";
-import { TooltipConcat } from "@/components/atoms";
-import { getLicenseFileStatusChipColor } from "@/lib/getChipColors";
+import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
+import { TooltipConcat } from '@/components/atoms';
+import { getLicenseFileStatusChipColor } from '@/base/utils/client/get-chip-colors';
 
-import ActionsColumn from "./actions-column";
-import { licenseFileSchema, type LicenseFile } from "./schema";
+import ActionsColumn from './actions-column';
+import { licenseFileSchema, type LicenseFile } from './schema';
 
 export const columns: ColumnDef<LicenseFile>[] = [
   {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="LicenseFiles.id" />
-    ),
-    cell: ({ row }) => <>{row.getValue("id")}</>,
+    accessorKey: 'id',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFiles.id" />,
+    cell: ({ row }) => <>{row.getValue('id')}</>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "student-name",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="LicenseFiles.student-name"
-      />
-    ),
+    accessorKey: 'student-name',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFiles.student-name" />,
     cell: ({ row }) => {
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link
-          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
-          className="flex w-full h-full"
-        >
-          <TooltipConcat
-            className="text-left"
-            text={licenseFile.student.name}
-          />
+        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+          <TooltipConcat className="text-left" text={licenseFile.student.name} />
         </Link>
       );
     },
@@ -49,25 +36,14 @@ export const columns: ColumnDef<LicenseFile>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "instructor-name",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="LicenseFiles.instructor-name"
-      />
-    ),
+    accessorKey: 'instructor-name',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFiles.instructor-name" />,
     cell: ({ row }) => {
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link
-          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
-          className="flex w-full h-full"
-        >
-          <TooltipConcat
-            className="text-left"
-            text={licenseFile.instructor.name}
-          />
+        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+          <TooltipConcat className="text-left" text={licenseFile.instructor.name} />
         </Link>
       );
     },
@@ -75,22 +51,15 @@ export const columns: ColumnDef<LicenseFile>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "category",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="LicenseFiles.category" />
-    ),
+    accessorKey: 'category',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFiles.category" />,
     cell: function Cell({ row }) {
-      const t = useTranslations(
-        "Dashboard.Files.LicenseFiles.ListTable.Category",
-      );
+      const t = useTranslations('Dashboard.Files.LicenseFiles.ListTable.Category');
 
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link
-          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
-          className="flex w-full h-full"
-        >
+        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           {t(licenseFile.category)} ({licenseFile.category})
         </Link>
       );
@@ -99,19 +68,14 @@ export const columns: ColumnDef<LicenseFile>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "price",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="LicenseFiles.price" />
-    ),
+    accessorKey: 'price',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFiles.price" />,
     cell: function Cell({ row }) {
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link
-          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
-          className="flex w-full h-full"
-        >
-          {row.getValue("price")} DH
+        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+          {row.getValue('price')} DH
         </Link>
       );
     },
@@ -119,28 +83,16 @@ export const columns: ColumnDef<LicenseFile>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="LicenseFiles.status" />
-    ),
+    accessorKey: 'status',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFiles.status" />,
     cell: function Cell({ row }) {
-      const t = useTranslations(
-        "Dashboard.Files.LicenseFiles.ListTable.Status",
-      );
+      const t = useTranslations('Dashboard.Files.LicenseFiles.ListTable.Status');
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link
-          href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`}
-          className="flex w-full h-full"
-        >
-          <Chip
-            color={getLicenseFileStatusChipColor(licenseFile.status)}
-            size="sm"
-          >
-            <span className="font-bold !text-[10px] md:text-sm">
-              {t(licenseFile.status)?.toUpperCase()}
-            </span>
+        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+          <Chip color={getLicenseFileStatusChipColor(licenseFile.status)} size="sm">
+            <span className="!text-[10px] font-bold md:text-sm">{t(licenseFile.status)?.toUpperCase()}</span>
           </Chip>
         </Link>
       );
@@ -149,7 +101,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
     enableHiding: false,
   },
   {
-    id: "actions",
+    id: 'actions',
     cell: ({ row }) => (
       <div className="flex items-center justify-end">
         <ActionsColumn row={row} />

@@ -1,51 +1,40 @@
-"use client";
+'use client';
 
-import omit from "lodash/omit";
-import { z } from "zod";
-import { useTranslations } from "next-intl";
+import omit from 'lodash/omit';
+import type { z } from 'zod';
+import { useTranslations } from 'next-intl';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import type { TranslationFunction } from "@/types";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import type { TranslationFunction } from '@/base/types';
+import type { licenseFilePaymentFormSchema } from '@/base/schemas/license-file-payment-form-schema';
+import { Textarea } from '@/components/ui/textarea';
+import { DatePicker } from '@/components/ui/date-picker';
 
-import { licenseFilePaymentFormSchema } from "@/schemas/license-file-payment-form-schema";
-import type { FormComponentType } from "./types";
-import { Textarea } from "@/components/ui/textarea";
-import { DatePicker } from "@/components/ui/date-picker";
+import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
   {
-    name: "sum",
-    label: t("sum"),
-    placeholder: "1200",
+    name: 'sum',
+    label: t('sum'),
+    placeholder: '1200',
   },
   {
-    name: "comment",
-    label: t("comment"),
-    placeholder: "Avance de 1200 DH pour le permis de conduire",
+    name: 'comment',
+    label: t('comment'),
+    placeholder: 'Avance de 1200 DH pour le permis de conduire',
   },
   {
-    name: "date",
-    label: t("date"),
-    placeholder: "2021-07-13",
+    name: 'date',
+    label: t('date'),
+    placeholder: '2021-07-13',
   },
 ];
 
 type TFormValues = z.infer<typeof licenseFilePaymentFormSchema>;
 
-const AddNewLicenseFilePaymentForm: FormComponentType<TFormValues> = ({
-  form,
-  onSubmit,
-  className,
-}) => {
-  const t = useTranslations("Dashboard.Modals.AddLicenseFilePayment.Form");
+const AddNewLicenseFilePaymentForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+  const t = useTranslations('Dashboard.Modals.AddLicenseFilePayment.Form');
 
   return (
     <Form {...form}>
@@ -57,37 +46,23 @@ const AddNewLicenseFilePaymentForm: FormComponentType<TFormValues> = ({
             name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="inline-block w-full text-sm !text-left">
-                  {f.label}
-                </FormLabel>
+                <FormLabel className="inline-block w-full !text-left text-sm">{f.label}</FormLabel>
                 <FormControl>
                   <>
-                    {field.name === "sum" && (
-                      <Input
-                        {...field}
-                        placeholder={f.placeholder}
-                        value={field.value as string}
-                      />
+                    {field.name === 'sum' && (
+                      <Input {...field} placeholder={f.placeholder} value={field.value as string} />
                     )}
 
-                    {field.name === "comment" && (
-                      <Textarea
-                        {...field}
-                        placeholder={f.placeholder}
-                        value={field.value as string}
-                      />
+                    {field.name === 'comment' && (
+                      <Textarea {...field} placeholder={f.placeholder} value={field.value as string} />
                     )}
 
-                    {field.name === "date" && (
-                      <DatePicker
-                        {...omit(field, "ref")}
-                        placeholder={f.placeholder}
-                        value={field.value as Date}
-                      />
+                    {field.name === 'date' && (
+                      <DatePicker {...omit(field, 'ref')} placeholder={f.placeholder} value={field.value as Date} />
                     )}
                   </>
                 </FormControl>
-                <FormMessage className="inline-block w-full text-[12px] px-1 !text-right" />
+                <FormMessage className="inline-block w-full px-1 !text-right text-[12px]" />
               </FormItem>
             )}
           />

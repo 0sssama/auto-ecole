@@ -1,6 +1,7 @@
-import { createTRPCRouter } from "@/server/api/trpc";
-import { clerkRouter } from "./router/clerkRouter";
-import { dbRouter } from "./router/dbRouter";
+import { createTRPCRouter } from '@/server/api/trpc';
+
+import { clerkRouter } from './router/clerkRouter';
+import { dbRouter } from './router/dbRouter';
 
 /**
  * This is the primary router for your server.

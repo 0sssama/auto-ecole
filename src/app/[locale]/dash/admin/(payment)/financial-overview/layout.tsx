@@ -1,13 +1,9 @@
-import type { ReactNode } from "react";
-import { notFound } from "next/navigation";
+import type { ReactNode } from 'react';
+import { notFound } from 'next/navigation';
 
-import { enforceSuperAdmin } from "@/server/utils/auth/enforceSuperAdmin";
+import { enforceSuperAdmin } from '@/base/utils/server/auth/enforce-super-admin';
 
-export default async function FinancialOverviewLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default async function FinancialOverviewLayout({ children }: { children: ReactNode }) {
   const allowed = await enforceSuperAdmin();
 
   if (!allowed) notFound();

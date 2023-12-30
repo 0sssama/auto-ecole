@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { Logo, Spinner } from "@/components/atoms";
+import { Logo, Spinner } from '@/components/atoms';
 
 export default function DashboardPageLoading() {
   useEffect(() => {
@@ -15,9 +15,9 @@ export default function DashboardPageLoading() {
   }, []);
 
   return (
-    <main className="relative flex flex-col items-center justify-center w-full h-screen lg:flex-row">
+    <main className="relative flex h-screen w-full flex-col items-center justify-center lg:flex-row">
       <Spinner size="md" />
-      <div className="absolute -translate-x-1/2 bottom-8 lg:bottom-12 left-1/2">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 lg:bottom-12">
         <Logo size="sm" />
       </div>
     </main>

@@ -1,21 +1,19 @@
-"use client";
+'use client';
 
-import { DataTable } from "@/components/organisms";
-import { usePagination } from "@/lib/hooks/usePagination";
-import { useTableFilters } from "@/lib/hooks/useTableFilters";
-import { api } from "@/utils/api";
-import type { Paginated } from "@/components/organisms/data-table/types";
+import { DataTable } from '@/components/organisms';
+import { usePagination } from '@/base/hooks/use-pagination';
+import { useTableFilters } from '@/base/hooks/use-table-filters';
+import { api } from '@/base/utils/server/api';
+import type { Paginated } from '@/components/organisms/data-table/types';
 
-import { columns } from "./columns";
-import type { LicenseFile } from "./schema";
+import { columns } from './columns';
+import type { LicenseFile } from './schema';
 
 const LicenseFilesListTable = () => {
   const pagination = usePagination();
   const filters = useTableFilters();
 
-  const { data, isLoading, error } = api.db.licenseFiles.query.list.useQuery<
-    Paginated<LicenseFile>
-  >({
+  const { data, isLoading, error } = api.db.licenseFiles.query.list.useQuery<Paginated<LicenseFile>>({
     pageIndex: pagination.get.pageIndex,
     pageSize: pagination.get.pageSize,
     filters: filters.get,

@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
-import type { Vehicle } from "@/components/sections/vehicles/list-table/schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/base/utils/client/count-pages';
+import type { Vehicle } from '@/components/sections/vehicles/list-table/schema';
 
-import { getWhereObjFromFilters } from "./utils";
+import { getWhereObjFromFilters } from './utils';
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -46,7 +46,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           take: input.pageSize,
           skip: input.pageIndex * input.pageSize,
@@ -63,18 +63,20 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedVehicles: Vehicle[] = vehicles.map((vehicle) => ({
-        id: vehicle.id,
-        image: vehicle.image,
-        name: vehicle.name,
-        type: vehicle.type,
-        active: vehicle.active,
-        brand: vehicle.brand,
-        instructor: {
-          id: vehicle.instructor.id,
-          fullName: `${vehicle.instructor.firstName} ${vehicle.instructor.lastName}`,
-        },
-      }));
+      const formattedVehicles: Vehicle[] = vehicles.map((vehicle) => {
+        return {
+          id: vehicle.id,
+          image: vehicle.image,
+          name: vehicle.name,
+          type: vehicle.type,
+          active: vehicle.active,
+          brand: vehicle.brand,
+          instructor: {
+            id: vehicle.instructor.id,
+            fullName: `${vehicle.instructor.firstName} ${vehicle.instructor.lastName}`,
+          },
+        };
+      });
 
       return {
         data: formattedVehicles,

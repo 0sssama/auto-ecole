@@ -1,24 +1,18 @@
-"use client";
+'use client';
 
-import {
-  useCallback,
-  type Dispatch,
-  type SetStateAction,
-  type FC,
-  type ReactNode,
-} from "react";
-import { useTranslations } from "next-intl";
-import { generateClientDropzoneAccept } from "uploadthing/client";
-import { useDropzone } from "@uploadthing/react/hooks";
+import { useCallback, type Dispatch, type SetStateAction, type FC, type ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
+import { generateClientDropzoneAccept } from 'uploadthing/client';
+import { useDropzone } from '@uploadthing/react/hooks';
 
-import { concatFileName } from "@/utils/concatText";
-import { useUploadThing } from "@/utils/uploadthing";
-import { cn } from "@/lib/cn";
+import { concatFileName } from '@/base/utils/client/concat-text';
+import type { useUploadThing } from '@/base/utils/client/uploadthing';
+import { cn } from '@/base/utils/client/cn';
 
 export type FileUploadProps = {
   acceptMultiple: boolean;
   children: ReactNode;
-  permittedFileInfo: ReturnType<typeof useUploadThing>["permittedFileInfo"];
+  permittedFileInfo: ReturnType<typeof useUploadThing>['permittedFileInfo'];
   files: {
     get: File[];
     set: Dispatch<SetStateAction<File[]>>;
@@ -27,13 +21,8 @@ export type FileUploadProps = {
 
 export type FileUploadComponentType = FC<FileUploadProps>;
 
-const FileUpload: FileUploadComponentType = ({
-  acceptMultiple,
-  files,
-  permittedFileInfo,
-  children,
-}) => {
-  const t = useTranslations("Dashboard.Common.FileUpload");
+const FileUpload: FileUploadComponentType = ({ acceptMultiple, files, permittedFileInfo, children }) => {
+  const t = useTranslations('Dashboard.Common.FileUpload');
 
   const onDrop = useCallback(
     (newFiles: File[]) => files.set(newFiles),
@@ -41,9 +30,7 @@ const FileUpload: FileUploadComponentType = ({
     [files.set],
   );
 
-  const fileTypes = permittedFileInfo?.config
-    ? Object.keys(permittedFileInfo?.config)
-    : [];
+  const fileTypes = permittedFileInfo?.config ? Object.keys(permittedFileInfo?.config) : [];
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -53,25 +40,18 @@ const FileUpload: FileUploadComponentType = ({
   return (
     <div
       className={cn(
-        "w-full flex flex-col items-center justify-center min-h-[175px] cursor-pointer",
-        " border-1 border-dashed rounded-lg border-foreground-300",
-        "p-4 gap-1",
-        "transition-colors duration-400",
-        "bg-accent/30 hover:bg-accent/80",
+        'flex min-h-[175px] w-full cursor-pointer flex-col items-center justify-center',
+        ' rounded-lg border-1 border-dashed border-foreground-300',
+        'gap-1 p-4',
+        'transition-colors duration-400',
+        'bg-accent/30 hover:bg-accent/80',
       )}
       {...getRootProps()}
     >
-      <input
-        type="file"
-        accept={fileTypes.join(", ")}
-        multiple={acceptMultiple}
-        {...getInputProps()}
-      />
+      <input type="file" accept={fileTypes.join(', ')} multiple={acceptMultiple} {...getInputProps()} />
       <span className="text-sm font-semibold">{children}</span>
       <span className="text-xs text-foreground-400">
-        {files.get.length
-          ? files.get.map((file) => concatFileName(file.name, 20)).join(", ")
-          : t("idle")}
+        {files.get.length > 0 ? files.get.map((file) => concatFileName(file.name, 20)).join(', ') : t('idle')}
       </span>
     </div>
   );

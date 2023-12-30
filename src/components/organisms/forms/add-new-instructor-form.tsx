@@ -1,50 +1,37 @@
-"use client";
+'use client';
 
-import { z } from "zod";
-import { useTranslations } from "next-intl";
+import type { z } from 'zod';
+import { useTranslations } from 'next-intl';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import type { TranslationFunction } from "@/types";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import type { TranslationFunction } from '@/base/types';
+import type { instructorFormSchema } from '@/base/schemas/instructor-form-schema';
 
-import { instructorFormSchema } from "@/schemas/instructor-form-schema";
-import type { FormComponentType } from "./types";
+import type { FormComponentType } from './types';
 
 const fields = (t: TranslationFunction) => [
   {
-    name: "lastName",
-    label: t("lastName"),
-    placeholder: "Doe",
+    name: 'lastName',
+    label: t('lastName'),
+    placeholder: 'Doe',
   },
   {
-    name: "firstName",
-    label: t("firstName"),
-    placeholder: "John",
+    name: 'firstName',
+    label: t('firstName'),
+    placeholder: 'John',
   },
   {
-    name: "phone",
-    label: t("phone"),
-    placeholder: "06XXXXXXXX",
+    name: 'phone',
+    label: t('phone'),
+    placeholder: '06XXXXXXXX',
   },
 ];
 
 type TFormValues = z.infer<typeof instructorFormSchema>;
 
-const AddNewInstructorForm: FormComponentType<TFormValues> = ({
-  form,
-  onSubmit,
-  className,
-}) => {
-  const t = useTranslations(
-    "Dashboard.Users.Instructors.AddNewInstructorModal.AddNewInstructorForm",
-  );
+const AddNewInstructorForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+  const t = useTranslations('Dashboard.Users.Instructors.AddNewInstructorModal.AddNewInstructorForm');
 
   return (
     <Form {...form}>
@@ -56,17 +43,11 @@ const AddNewInstructorForm: FormComponentType<TFormValues> = ({
             name={f.name as keyof TFormValues}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="inline-block w-full text-sm">
-                  {f.label}
-                </FormLabel>
+                <FormLabel className="inline-block w-full text-sm">{f.label}</FormLabel>
                 <FormControl>
-                  <Input
-                    {...field}
-                    placeholder={f.placeholder}
-                    value={field.value as string}
-                  />
+                  <Input {...field} placeholder={f.placeholder} value={field.value as string} />
                 </FormControl>
-                <FormMessage className="inline-block w-full text-[12px] px-1" />
+                <FormMessage className="inline-block w-full px-1 text-[12px]" />
               </FormItem>
             )}
           />

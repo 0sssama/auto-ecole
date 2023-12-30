@@ -1,4 +1,6 @@
-"use client";
+'use client';
+
+import { useTranslations } from 'next-intl';
 
 import {
   Dialog,
@@ -7,35 +9,26 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { useTranslations } from "next-intl";
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 
-import { Button } from "@/components/ui/button";
-
-import type { ModalComponentType } from "./types";
+import type { ModalComponentType } from './types';
 
 const AddPaymentModalSike: ModalComponentType = ({ isOpen, close }) => {
-  const t = useTranslations("Dashboard.Modals.AddPaymentSike");
+  const t = useTranslations('Dashboard.Modals.AddPaymentSike');
 
   if (!isOpen) return null;
 
   return (
-    <Dialog
-      open={isOpen}
-      defaultOpen={isOpen}
-      modal
-      onOpenChange={(isOpen) => !isOpen && close()}
-    >
-      <DialogContent className="flex flex-col items-center w-full text-center">
+    <Dialog open={isOpen} defaultOpen={isOpen} modal onOpenChange={(isOpen) => !isOpen && close()}>
+      <DialogContent className="flex w-full flex-col items-center text-center">
         <DialogHeader>
-          <DialogTitle className="text-xl lg:text-2xl">
-            {t("title")}
-          </DialogTitle>
+          <DialogTitle className="text-xl lg:text-2xl">{t('title')}</DialogTitle>
         </DialogHeader>
-        <DialogDescription>{t("description")}</DialogDescription>
+        <DialogDescription>{t('description')}</DialogDescription>
         <DialogFooter className="w-full">
           <Button variant="outline" onClick={close} className="w-full">
-            {t("button-cancel")}
+            {t('button-cancel')}
           </Button>
         </DialogFooter>
       </DialogContent>

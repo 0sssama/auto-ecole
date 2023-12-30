@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/base/utils/client/count-pages';
+import type { Payment } from '@/components/sections/payments/list-table/schema';
+import type { StudentPayment } from '@/components/sections/students/student-file/payments-table/schema';
+import type { LicenseFilePayment } from '@/components/sections/license-files/license-file/payments-table/schema';
 
-import { getWhereObjFromFilters } from "./utils";
-import type { Payment } from "@/components/sections/payments/list-table/schema";
-import type { StudentPayment } from "@/components/sections/students/student-file/payments-table/schema";
-import { LicenseFilePayment } from "@/components/sections/license-files/license-file/payments-table/schema";
+import { getWhereObjFromFilters } from './utils';
 
 export const queryRouter = createTRPCRouter({
   list: orgAdminOnlyPrecedure
@@ -42,7 +42,7 @@ export const queryRouter = createTRPCRouter({
             createdAt: true,
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -57,13 +57,15 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedPayments: Payment[] = payments.map((payment) => ({
-        id: payment.id,
-        sum: payment.sum,
-        comment: payment.comment,
-        adminName: payment.createdBy.fullName,
-        date: payment.createdAt,
-      }));
+      const formattedPayments: Payment[] = payments.map((payment) => {
+        return {
+          id: payment.id,
+          sum: payment.sum,
+          comment: payment.comment,
+          adminName: payment.createdBy.fullName,
+          date: payment.createdAt,
+        };
+      });
 
       return {
         data: formattedPayments,
@@ -85,53 +87,52 @@ export const queryRouter = createTRPCRouter({
     .query(async ({ input, ctx }) => {
       const filtersObj = getWhereObjFromFilters(input.filters);
 
-      const [licenseFilePayments, totalLicenseFilePayments] = await Promise.all(
-        [
-          ctx.prisma.payment.findMany({
-            where: {
-              createdBy: {
-                clerkOrgId: ctx.orgId,
+      const [licenseFilePayments, totalLicenseFilePayments] = await Promise.all([
+        ctx.prisma.payment.findMany({
+          where: {
+            createdBy: {
+              clerkOrgId: ctx.orgId,
+            },
+            licenseFileId: input.licenseFileId,
+            ...filtersObj,
+          },
+          select: {
+            id: true,
+            sum: true,
+            comment: true,
+            createdBy: {
+              select: {
+                fullName: true,
               },
-              licenseFileId: input.licenseFileId,
-              ...filtersObj,
             },
-            select: {
-              id: true,
-              sum: true,
-              comment: true,
-              createdBy: {
-                select: {
-                  fullName: true,
-                },
-              },
-              createdAt: true,
+            createdAt: true,
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          skip: input.pageIndex * input.pageSize,
+          take: input.pageSize,
+        }),
+        ctx.prisma.payment.count({
+          where: {
+            createdBy: {
+              clerkOrgId: ctx.orgId,
             },
-            orderBy: {
-              createdAt: "desc",
-            },
-            skip: input.pageIndex * input.pageSize,
-            take: input.pageSize,
-          }),
-          ctx.prisma.payment.count({
-            where: {
-              createdBy: {
-                clerkOrgId: ctx.orgId,
-              },
-              licenseFileId: input.licenseFileId,
-              ...filtersObj,
-            },
-          }),
-        ],
-      );
+            licenseFileId: input.licenseFileId,
+            ...filtersObj,
+          },
+        }),
+      ]);
 
-      const formattedLicenseFilePayments: LicenseFilePayment[] =
-        licenseFilePayments.map((payment) => ({
+      const formattedLicenseFilePayments: LicenseFilePayment[] = licenseFilePayments.map((payment) => {
+        return {
           id: payment.id,
           sum: payment.sum,
           comment: payment.comment,
           adminName: payment.createdBy.fullName,
           date: payment.createdAt,
-        }));
+        };
+      });
 
       return {
         data: formattedLicenseFilePayments,
@@ -176,7 +177,7 @@ export const queryRouter = createTRPCRouter({
                       studentId: input.studentId,
                     },
                   },
-                  ...(filtersObj["OR"] ?? []),
+                  ...(filtersObj['OR'] ?? []),
                 ],
               },
             ],
@@ -193,7 +194,7 @@ export const queryRouter = createTRPCRouter({
             createdAt: true,
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -220,7 +221,7 @@ export const queryRouter = createTRPCRouter({
                       studentId: input.studentId,
                     },
                   },
-                  ...(filtersObj["OR"] ?? []),
+                  ...(filtersObj['OR'] ?? []),
                 ],
               },
             ],
@@ -228,15 +229,15 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedStudentPayments: StudentPayment[] = studentPayments.map(
-        (payment) => ({
+      const formattedStudentPayments: StudentPayment[] = studentPayments.map((payment) => {
+        return {
           id: payment.id,
           sum: payment.sum,
           comment: payment.comment,
           adminName: payment.createdBy.fullName,
           date: payment.createdAt,
-        }),
-      );
+        };
+      });
 
       return {
         data: formattedStudentPayments,

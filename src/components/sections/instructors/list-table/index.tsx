@@ -1,21 +1,19 @@
-"use client";
+'use client';
 
-import { DataTable } from "@/components/organisms";
-import { api } from "@/utils/api";
-import { columns } from "./columns";
-import { usePagination } from "@/lib/hooks/usePagination";
-import { useTableFilters } from "@/lib/hooks/useTableFilters";
+import { DataTable } from '@/components/organisms';
+import { api } from '@/base/utils/server/api';
+import { usePagination } from '@/base/hooks/use-pagination';
+import { useTableFilters } from '@/base/hooks/use-table-filters';
+import type { Paginated } from '@/components/organisms/data-table/types';
 
-import type { Instructor } from "./schema";
-import type { Paginated } from "@/components/organisms/data-table/types";
+import type { Instructor } from './schema';
+import { columns } from './columns';
 
 function InstructorsListTable() {
   const pagination = usePagination();
   const filters = useTableFilters();
 
-  const { data, isLoading, error } = api.db.instructors.query.list.useQuery<
-    Paginated<Instructor>
-  >({
+  const { data, isLoading, error } = api.db.instructors.query.list.useQuery<Paginated<Instructor>>({
     pageIndex: pagination.get.pageIndex,
     pageSize: pagination.get.pageSize,
     filters: filters.get,

@@ -1,14 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { createTRPCRouter, orgAdminOnlyPrecedure } from "@/server/api/trpc";
-import { countPages } from "@/utils/countPages";
-import type { Student } from "@/components/sections/students/list-table/schema";
+import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { countPages } from '@/base/utils/client/count-pages';
+import type { Student } from '@/components/sections/students/list-table/schema';
 
-import {
-  getStudentCategoryFromLicenseFiles,
-  getStudentStatusFromLicenseFiles,
-  getWhereObjFromFilters,
-} from "./utils";
+import { getStudentCategoryFromLicenseFiles, getStudentStatusFromLicenseFiles, getWhereObjFromFilters } from './utils';
 
 export const queryRouter = createTRPCRouter({
   getManyForSelect: orgAdminOnlyPrecedure
@@ -36,15 +32,17 @@ export const queryRouter = createTRPCRouter({
           lastNameFr: true,
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         take: input.count,
       });
 
-      return students.map((student) => ({
-        value: String(student.id),
-        label: `${student.firstNameFr} ${student.lastNameFr}`,
-      }));
+      return students.map((student) => {
+        return {
+          value: String(student.id),
+          label: `${student.firstNameFr} ${student.lastNameFr}`,
+        };
+      });
     }),
 
   list: orgAdminOnlyPrecedure
@@ -79,7 +77,7 @@ export const queryRouter = createTRPCRouter({
             },
           },
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           skip: input.pageIndex * input.pageSize,
           take: input.pageSize,
@@ -92,13 +90,15 @@ export const queryRouter = createTRPCRouter({
         }),
       ]);
 
-      const formattedStudents: Student[] = students.map((student) => ({
-        id: student.id,
-        name: `${student.firstNameFr} ${student.lastNameFr}`,
-        archived: student.archived,
-        status: getStudentStatusFromLicenseFiles(student.licenseFiles),
-        category: getStudentCategoryFromLicenseFiles(student.licenseFiles),
-      }));
+      const formattedStudents: Student[] = students.map((student) => {
+        return {
+          id: student.id,
+          name: `${student.firstNameFr} ${student.lastNameFr}`,
+          archived: student.archived,
+          status: getStudentStatusFromLicenseFiles(student.licenseFiles),
+          category: getStudentCategoryFromLicenseFiles(student.licenseFiles),
+        };
+      });
 
       return {
         data: formattedStudents,

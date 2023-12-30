@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface LicenseFilePaymentsTableProps {
   context: {
@@ -6,5 +6,4 @@ interface LicenseFilePaymentsTableProps {
   };
 }
 
-export type LicenseFilePaymentsTableComponentType =
-  FC<LicenseFilePaymentsTableProps>;
+export type LicenseFilePaymentsTableComponentType = FC<LicenseFilePaymentsTableProps>;

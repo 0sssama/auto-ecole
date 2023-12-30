@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useOrganization } from "@clerk/nextjs";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useOrganization } from '@clerk/nextjs';
 
-import { getSidebarLinks } from "@/components/sections/sidebar/utils";
+import { getSidebarLinks } from '@/components/sections/sidebar/utils';
 
 export default function DashboardHome() {
   const { membership } = useOrganization();
