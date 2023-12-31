@@ -162,6 +162,13 @@
           "admin-name": "Accordé à.",
           "date": "Date"
         },
+        "LicenseFileExpenses": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
+        },
         "Lessons": {
           "id": "ID",
           "instructor-name": "Moniteur",
@@ -194,6 +201,13 @@
           "instructor": "Moniteur"
         },
         "VehicleExpenses": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
+        },
+        "Expenses": {
           "id": "ID",
           "sum": "Somme",
           "comment": "Comment.",
@@ -569,6 +583,16 @@
               "view": "Voir dossier",
               "edit": "Modifier"
             }
+          },
+          "LicenseFileExpenses": {
+            "title": "Les dépenses",
+            "add-button": "Nouvelle dépense",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir détails",
+              "edit": "Modifier",
+              "delete": "Supprimer"
+            }
           }
         },
         "ListTable": {
@@ -668,6 +692,13 @@
           "title": "Paiements",
           "button": "Nouveau paiement"
         },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier"
+          }
+        },
         "NotFound": {
           "title": "Aucun paiement trouvé",
           "subtitle": "Aucun paiement n'a été trouvé avec l'ID spécifié."
@@ -675,7 +706,20 @@
       },
       "Expenses": {
         "Header": {
-          "title": "Les dépenses"
+          "title": "Les dépenses",
+          "button": "Nouvelle dépense"
+        },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier",
+            "delete": "Supprimer"
+          }
+        },
+        "NotFound": {
+          "title": "Aucun dépense trouvé",
+          "subtitle": "Aucun dépense n'a été trouvé avec l'ID spécifié."
         }
       },
       "FinancialOverview": {
@@ -804,6 +848,19 @@
         "button-cancel": "Annuler",
         "button-submit": "Ajouter paiement"
       },
+      "AddLicenseFileExpense": {
+        "title": "Ajouter une nouvelle dépense",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
+        "success": "Dépense ajouté avec succès",
+        "error": "Erreur lors de l'ajout du véhicule. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
+      },
       "AddVehicle": {
         "title": "Ajouter un nouveau véhicule",
         "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau véhicule",
@@ -833,6 +890,27 @@
         "button-submit": "Ajouter véhicule"
       },
       "AddVehicleExpense": {
+        "title": "Ajouter une nouvelle dépense",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
+        "success": "Dépense ajouté avec succès",
+        "error": "Erreur lors de l'ajout du véhicule. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
+      },
+      "DeleteExpense": {
+        "title": "Est-ce que vous êtes sûr ?",
+        "question": "Vous êtes sur le point de supprimer cet dépense. Cette action est irréversible.",
+        "button-cancel": "Annuler",
+        "button-submit": "Supprimer",
+        "expense-delete-success": "Dépense supprimé avec succès !",
+        "expense-delete-error": "Erreur lors de la suppression de l'dépense. Veuillez réessayer plus tard."
+      },
+      "AddExpense": {
         "title": "Ajouter une nouvelle dépense",
         "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
         "success": "Dépense ajouté avec succès",

@@ -46,7 +46,7 @@ const SidebarLinkGroup: SidebarLinkGroupComponentType = ({ title, links, classNa
 
   return (
     <div className={cn('px-3 py-2', className)}>
-      <h2 className="mb-2 px-4 text-xs font-bold uppercase tracking-tight text-muted-foreground">{title}</h2>
+      <h2 className="mb-2 px-4 text-[10px] font-bold uppercase tracking-tight text-muted-foreground">{title}</h2>
       <div className="flex flex-col gap-y-1">
         {links.map((link, i) => (
           <SidebarLink key={i} {...link} />

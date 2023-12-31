@@ -17,6 +17,7 @@ import { Spinner } from '@/components/atoms';
 import { useFileUpload } from '@/base/hooks/use-file-upload';
 import { useModal } from '@/base/hooks/use-modal';
 import { ShouldCreateLicenseFileModal } from '@/components/molecules';
+import { Separator } from '@/components/ui/separator';
 
 export default function CreateStudentPage() {
   const router = useRouter();
@@ -108,6 +109,7 @@ export default function CreateStudentPage() {
         <p className="lg:text-md text-sm text-muted-foreground">{t('subtitle')}</p>
       </div>
       <div className="mt-4 flex w-full flex-col items-end gap-8 lg:max-w-[60%]">
+        <Separator />
         {creationError && (
           <div className="w-full rounded bg-destructive/10 px-2 py-4 text-center">
             <p className="text-center text-sm font-bold text-destructive">{t('error')}</p>

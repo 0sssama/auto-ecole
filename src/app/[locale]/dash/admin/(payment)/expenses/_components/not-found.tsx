@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 
-export default function PaymentNotFound() {
-  const t = useTranslations('Dashboard.Payment.Payments.NotFound');
+export default function ExpenseNotFound() {
+  const t = useTranslations('Dashboard.Payment.Expenses.NotFound');
 
   return (
     <main className="flex min-h-[400px] items-center justify-center gap-4 p-12 md:p-24">

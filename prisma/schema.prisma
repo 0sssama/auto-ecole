@@ -138,6 +138,7 @@ model LicenseFile {
     lessons  Lesson[]
     exams    Exam[]
     payments Payment[]
+    expenses Expense[]
 
     student   Student @relation(fields: [studentId], references: [id])
     studentId Int
@@ -245,6 +246,9 @@ model Expense {
     vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
     vehicleId Int?
 
+    licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
+    licenseFileId Int?
+
     // cashFund   CashFund? @relation(fields: [cashFundId], references: [id])
     // cashFundId Int?
 
@@ -256,6 +260,7 @@ model Expense {
     // @@index([cashFundId])
 
     @@index([vehicleId])
+    @@index([licenseFileId])
     @@index([createdById])
 }
 
