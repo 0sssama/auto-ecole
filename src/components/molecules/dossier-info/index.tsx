@@ -82,7 +82,7 @@ function InfoData<InfoT extends InfoTypes>({ labelId, value }: InfoDataProps<Inf
     }
 
     default: {
-      return <p>{formatDistanceToNow(new Date(value))}</p>;
+      return <p>{formatDistanceToNow(new Date(value), { addSuffix: true })}</p>;
     }
   }
 }

@@ -1,6 +1,9 @@
 'use client';
 
-import { format, formatDistanceToNow } from 'date-fns';
+// eslint-disable-next-line import/no-duplicates
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// eslint-disable-next-line import/no-duplicates
+import format from 'date-fns/format';
 import { Chip } from '@nextui-org/chip';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
