@@ -1,6 +1,6 @@
 'use client';
 
-import moment from 'moment';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Chip } from '@nextui-org/chip';
@@ -85,7 +85,7 @@ function InfoData<InfoT extends InfoTypes>({ labelId, value }: InfoDataProps<Inf
     }
 
     default: {
-      return <p>{moment(value).calendar()}</p>;
+      return <p>{formatDistanceToNow(new Date(value), { addSuffix: true })}</p>;
     }
   }
 }
