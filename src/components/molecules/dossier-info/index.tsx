@@ -1,6 +1,6 @@
 'use client';
 
-import { formatDistanceToNow } from 'date-fns';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { User } from '@nextui-org/user';
