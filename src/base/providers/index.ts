@@ -7,4 +7,4 @@ export { default as RecoilProvider } from '@/base/providers/recoil-provider';
 export { default as ToastProvider } from '@/base/providers/sonner-provider';
 export { default as TRPCProvider } from '@/base/providers/trpc-provider';
 export { default as NextUIProvider } from '@/base/providers/nextui-provider';
-export { default as MomentProvider } from '@/base/providers/moment-provider';
+export { default as DateFnsProvider } from '@/base/providers/datefns-provider';

@@ -1,6 +1,9 @@
 'use client';
 
-import moment from 'moment';
+// eslint-disable-next-line import/no-duplicates
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// eslint-disable-next-line import/no-duplicates
+import format from 'date-fns/format';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
@@ -47,9 +50,10 @@ export const columns: ColumnDef<LicenseFilePayment>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="LicenseFilePayments.date" />,
     cell: ({ row }) => {
       const licenseFilePayment = licenseFilePaymentSchema.parse(row.original);
-      const date = moment(licenseFilePayment.date);
+      const date = new Date(licenseFilePayment.date);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,

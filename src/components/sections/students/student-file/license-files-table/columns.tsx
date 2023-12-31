@@ -1,7 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
+// eslint-disable-next-line import/no-duplicates
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// eslint-disable-next-line import/no-duplicates
+import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
 import { Chip } from '@nextui-org/chip';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -90,11 +93,12 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="StudentLicenseFiles.created-at" />,
     cell: ({ row }) => {
       const studentLicenseFile = studentLicenseFileSchema.parse(row.original);
-      const date = moment(studentLicenseFile.createdAt);
+      const date = new Date(studentLicenseFile.createdAt);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
       return (
         <Link href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`} className="flex h-full w-full">
-          <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>
+          <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>
         </Link>
       );
     },
