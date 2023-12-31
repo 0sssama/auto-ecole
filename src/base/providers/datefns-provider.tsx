@@ -1,7 +1,7 @@
 'use client';
+
+import setDefaultOptions, { fr, enUS } from 'date-fns/locale';
 import type { ReactNode } from 'react';
-import { fr, enUS } from 'date-fns/locale';
-import { setDefaultOptions } from 'date-fns';
 
 import type { Locale } from '@/base/data/locales';
 
