@@ -206,6 +206,13 @@
           "comment": "Comment",
           "admin-name": "Taken by",
           "date": "Date"
+        },
+        "Expenses": {
+          "id": "ID",
+          "sum": "Expense Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
         }
       }
     },
@@ -688,7 +695,20 @@
       },
       "Expenses": {
         "Header": {
-          "title": "Expenses"
+          "title": "Expenses",
+          "button": "New expense"
+        },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit",
+            "delete": "Delete"
+          }
+        },
+        "NotFound": {
+          "title": "No Expense Found",
+          "subtitle": "The expense you are looking for does not exist."
         }
       },
       "FinancialOverview": {
@@ -869,6 +889,27 @@
         },
         "button-cancel": "Annuler",
         "button-submit": "Ajouter dépense"
+      },
+      "DeleteExpense": {
+        "title": "Are you sure you want to delete this expense?",
+        "question": "This action cannot be undone.",
+        "button-cancel": "Cancel",
+        "button-submit": "Delete Expense",
+        "expense-delete-success": "Expense deleted successfully!",
+        "expense-delete-error": "An error has occurred. Please try again later."
+      },
+      "AddExpense": {
+        "title": "Add new expense",
+        "subtitle": "Fill in the form below to add a new expense",
+        "success": "Expense added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "sum": "Expense Sum:",
+          "comment": "Comment:",
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add expense"
       }
     },
     "Common": {

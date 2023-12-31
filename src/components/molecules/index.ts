@@ -19,6 +19,8 @@ const AddVehicleModal = dynamic(() => import('./modals/add-vehicle-modal'), { ss
 const AddVehicleExpenseModal = dynamic(() => import('./modals/add-vehicle-expense-modal'), { ssr: false });
 const AddLicenseFileExpenseModal = dynamic(() => import('./modals/add-license-file-expense-modal'), { ssr: false });
 const ShouldCreateLicenseFileModal = dynamic(() => import('./modals/should-create-license-file-modal'), { ssr: false });
+const AddExpenseModal = dynamic(() => import('./modals/add-expense-modal'), { ssr: false });
+const DeleteExpenseModal = dynamic(() => import('./modals/delete-expense-modal'), { ssr: false });
 
 export {
   AddStudentModal,
@@ -35,4 +37,6 @@ export {
   AddVehicleExpenseModal,
   AddLicenseFileExpenseModal,
   ShouldCreateLicenseFileModal,
+  DeleteExpenseModal,
+  AddExpenseModal,
 };

@@ -1,31 +1,25 @@
-import { getTranslations } from 'next-intl/server';
+// import { getExpense } from "@/server/utils/expenses/getExpense";
+// import { Expense } from "@/components/sections/expenses";
 
-import type { Locale } from '@/base/data/locales';
+import ExpensesPage from './_components/expenses';
+import ExpenseNotFound from './_components/not-found';
 
-export default function Expenses() {
-  return (
-    <div className="grid min-h-[300px] w-full place-items-center">
-      <div className="flex flex-col items-center gap-1">
-        <h1 className="text-2xl font-bold">Coming soon.</h1>
-        <p className="text-center text-sm opacity-70">Under construction {':)'}</p>
-      </div>
-    </div>
-  );
-}
-
-export async function generateMetadata({
-  params: { locale },
+export default async function Expenses({
+  searchParams: { expenseId },
 }: {
-  params: {
-    locale: Locale;
+  searchParams: {
+    expenseId: string | undefined;
   };
 }) {
-  const t = await getTranslations({
-    locale,
-    namespace: 'Dashboard.Payment.Expenses.Header',
-  });
+  if (expenseId === undefined) return <ExpensesPage />;
 
-  return {
-    title: `${t('title')} / Dashboard`,
-  };
+  const id = Number(expenseId);
+
+  if (Number.isNaN(id) || id <= 0) return <ExpenseNotFound />;
+
+  //   const expense = await getExpense(id);
+
+  //   if (!expense) return <ExpenseNotFound />;
+
+  //   return <Expense expense={expense} />;
 }
