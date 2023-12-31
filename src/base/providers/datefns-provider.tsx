@@ -1,7 +1,10 @@
 'use client';
 
-import setDefaultOptions, { fr, enUS } from 'date-fns/locale';
+// eslint-disable-next-line import/no-duplicates
+import { fr, enUS } from 'date-fns/locale';
 import type { ReactNode } from 'react';
+//eslint-disable-next-line import/no-duplicates
+import setDefaultOptions from 'date-fns/setDefaultOptions';
 
 import type { Locale } from '@/base/data/locales';
 
