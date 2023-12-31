@@ -10,6 +10,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { DeleteExpenseModal } from '@/components/molecules';
@@ -45,18 +46,21 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExpense> = ({ row }) 
           </Link>
         </DropdownMenuItem>
         {isSameDay(new Date(), licenseFileExpense.date) && (
-          <DropdownMenuItem
-            className="cursor-pointer bg-destructive/10 text-sm font-medium text-destructive/90 hover:!bg-destructive/20 hover:!text-destructive/100"
-            onClick={() => {
-              if (deleteExpenseModal.isOpen) return;
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="cursor-pointer bg-destructive/10 text-sm font-medium text-destructive/90 hover:!bg-destructive/20 hover:!text-destructive/100"
+              onClick={() => {
+                if (deleteExpenseModal.isOpen) return;
 
-              deleteExpenseModal.open();
-            }}
-            disabled={deleteExpenseModal.isOpen}
-          >
-            <Trash2 className="mr-2 h-3.5 w-3.5" />
-            {t('delete')}
-          </DropdownMenuItem>
+                deleteExpenseModal.open();
+              }}
+              disabled={deleteExpenseModal.isOpen}
+            >
+              <Trash2 className="mr-2 h-3.5 w-3.5" />
+              {t('delete')}
+            </DropdownMenuItem>
+          </>
         )}
       </DropdownMenuContent>
     </DropdownMenu>

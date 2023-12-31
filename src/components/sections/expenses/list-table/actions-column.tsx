@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Eye, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import isSameDay from 'date-fns/isSameDay';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -49,18 +50,22 @@ const ActionsColumn: ActionsColumnComponentType<Expense> = ({ row }) => {
           <Pencil className="mr-2 h-3.5 w-3.5" />
           {t('edit')}
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
-          className={cn(
-            'cursor-pointer bg-destructive/10 text-sm font-medium text-destructive/90 hover:!bg-destructive/20 hover:!text-destructive/100',
-            deleteExpenseModal.isOpen && '!cursor-not-allowed opacity-50',
-          )}
-          disabled={deleteExpenseModal.isOpen}
-          onClick={deleteExpenseModal.open}
-        >
-          <Trash2 className="mr-2 h-3.5 w-3.5 text-destructive" />
-          {t('delete')}
-        </DropdownMenuItem>
+        {isSameDay(new Date(), expense.date) && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className={cn(
+                'cursor-pointer bg-destructive/10 text-sm font-medium text-destructive/90 hover:!bg-destructive/20 hover:!text-destructive/100',
+                deleteExpenseModal.isOpen && '!cursor-not-allowed opacity-50',
+              )}
+              disabled={deleteExpenseModal.isOpen}
+              onClick={deleteExpenseModal.open}
+            >
+              <Trash2 className="mr-2 h-3.5 w-3.5 text-destructive" />
+              {t('delete')}
+            </DropdownMenuItem>
+          </>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
