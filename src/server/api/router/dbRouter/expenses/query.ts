@@ -23,7 +23,7 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.expense.findMany({
           where: {
             vehicleId: input.vehicleId,
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -45,7 +45,7 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.expense.count({
           where: {
             vehicleId: input.vehicleId,
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -84,7 +84,7 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.expense.findMany({
           where: {
             licenseFileId: input.licenseFileId,
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -106,7 +106,7 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.expense.count({
           where: {
             licenseFileId: input.licenseFileId,
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -143,7 +143,7 @@ export const queryRouter = createTRPCRouter({
       const [expenses, totalExpenses] = await Promise.all([
         ctx.prisma.expense.findMany({
           where: {
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
           },
@@ -164,7 +164,7 @@ export const queryRouter = createTRPCRouter({
         }),
         ctx.prisma.expense.count({
           where: {
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
           },

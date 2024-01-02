@@ -8,7 +8,7 @@ interface ContractProps {
     name: string;
     numRegistrePermis: string;
     address: string;
-    numRegistreTax: string;
+    numRegistreFiscale: string;
     numRegistreCommerce: string;
     city: string;
     fax: string;
@@ -26,7 +26,7 @@ export default function Contract({
     name,
     numRegistrePermis,
     address: schoolAddress,
-    numRegistreTax,
+    numRegistreFiscale,
     numRegistreCommerce,
     city: schoolCity,
     fax,
@@ -67,7 +67,7 @@ export default function Contract({
                 العنوان : <b>{schoolAddress}</b>
               </Text>
               <Text>
-                رقم القيد في سجل الضريبة المهنية : <b>{numRegistreTax}</b>
+                رقم القيد في سجل الضريبة المهنية : <b>{numRegistreFiscale}</b>
               </Text>
               <View style={styles.flexFullWidth}>
                 <Text style={styles.flex1}>

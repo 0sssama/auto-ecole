@@ -302,7 +302,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "StudentLessons": {
@@ -343,7 +343,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "InstructorLessons": {
@@ -426,7 +426,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "Folder": {
@@ -532,7 +532,7 @@
               "A": "Motorcycles",
               "B": "Cars",
               "C": "Trucks",
-              "D": "Buses"
+              "EC": "Trailers"
             }
           }
         },
@@ -607,7 +607,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "NotFound": {

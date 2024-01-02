@@ -13,6 +13,12 @@ export const mutationRouter = createTRPCRouter({
           comment: input.comment,
           date: input.date,
 
+          cashFund: {
+            connect: {
+              clerkOrgId: ctx.userId,
+            },
+          },
+
           licenseFile: {
             connect: {
               id: input.licenseFileId,
