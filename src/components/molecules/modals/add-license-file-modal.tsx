@@ -1,6 +1,5 @@
 'use client';
 
-import { Modal, ModalHeader, ModalBody, ModalFooter, ModalContent } from '@nextui-org/modal';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import type { z } from 'zod';
@@ -8,6 +7,14 @@ import { toast } from 'sonner';
 import { Category, LicenseFileStatus } from '@prisma/client';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { AddNewLicenseFileForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms';
@@ -62,19 +69,13 @@ const AddLicenseFileModal: ModalComponentType = ({ isOpen, close }) => {
   if (!isOpen) return null;
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={closeModal}
-      size="2xl"
-      className="max-h-[80vh] overflow-auto md:max-h-full"
-      scrollBehavior="inside"
-    >
-      <ModalContent>
-        <ModalHeader className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-semibold">{t('title')}</h1>
-          <p className="text-xs opacity-70">{t('subtitle')}</p>
-        </ModalHeader>
-        <ModalBody>
+    <Dialog open={isOpen} defaultOpen={isOpen} modal onOpenChange={(isOpen) => !isOpen && close()}>
+      <DialogContent>
+        <DialogHeader className="flex flex-col items-center gap-1 text-center">
+          <DialogTitle className="text-2xl font-semibold">{`t('title')porn`}</DialogTitle>
+          <DialogDescription className="text-xs opacity-70">{t('subtitle')}</DialogDescription>
+        </DialogHeader>
+        <div className="max-h-[80vh] overflow-auto md:max-h-full">
           {error && (
             <div className="mb-4 w-full rounded bg-destructive/10 px-2 py-4 text-center">
               <p className="text-center text-sm font-bold text-destructive">{t('no-user-instructor')}</p>
@@ -85,17 +86,17 @@ const AddLicenseFileModal: ModalComponentType = ({ isOpen, close }) => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="grid grid-cols-1 gap-x-6 gap-y-2 md:grid-cols-2"
           />
-        </ModalBody>
-        <ModalFooter className="flex items-center justify-end gap-1">
+        </div>
+        <DialogFooter className="flex items-center justify-end gap-1">
           <Button variant="ghost" onClick={closeModal}>
             {t('button-cancel')}
           </Button>
           <Button variant="default" onClick={form.handleSubmit(onSubmit)} disabled={isLoading}>
             {isLoading ? <Spinner size="xs" color="background" /> : t('button-submit')}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 
