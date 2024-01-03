@@ -7,7 +7,7 @@ import type { LicenseFileStatus } from '@prisma/client';
 
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/base/utils/client/cn';
-import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-chip-colors';
+import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import type { DossierInfoProps, InfoDataProps, InfoTypes } from './types';

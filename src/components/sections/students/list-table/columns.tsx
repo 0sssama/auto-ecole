@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { getStudentStatusBadgeVariant } from '@/base/utils/client/get-chip-colors';
+import { getStudentStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 

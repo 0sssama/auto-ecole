@@ -7,7 +7,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { TooltipConcat } from '@/components/atoms';
-import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-chip-colors';
+import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { licenseFileSchema, type LicenseFile } from './schema';

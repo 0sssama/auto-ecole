@@ -11,7 +11,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip, TooltipConcat } from '@/components/atoms';
-import { getLessonGradeBadgeVariant, getLessonStatusBadgeVariant } from '@/base/utils/client/get-chip-colors';
+import { getLessonGradeBadgeVariant, getLessonStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { instructorLessonSchema, type InstructorLesson } from './schema';

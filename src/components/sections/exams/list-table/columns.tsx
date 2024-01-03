@@ -11,7 +11,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip } from '@/components/atoms';
-import { getExamStatusBadgeVariant } from '@/base/utils/client/get-chip-colors';
+import { getExamStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { examSchema, type Exam } from './schema';
