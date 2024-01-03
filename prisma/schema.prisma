@@ -78,6 +78,9 @@ model Student {
     professionFr String
     professionAr String
 
+    birthplaceFr String
+    birthplaceAr String
+
     phone     String
     cin       String
     email     String

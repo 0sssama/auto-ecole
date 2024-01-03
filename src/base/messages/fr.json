@@ -395,6 +395,7 @@
             "upload-cin-file": "Télécharger une copie CIN en format PDF (max. 4MO)",
             "email": "E-mail:",
             "birthdate": "Date de naissance:",
+            "birthplace": "Lieu de naissance:",
             "profilePicture": "Photo de profil:",
             "upload-profile-picture": "Télécharger une photo de profil (max. 4MO)"
           }

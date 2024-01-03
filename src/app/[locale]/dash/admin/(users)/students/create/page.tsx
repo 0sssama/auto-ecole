@@ -38,6 +38,8 @@ export default function CreateStudentPage() {
       addressFr: '',
       professionAr: '',
       professionFr: '',
+      birthplaceFr: '',
+      birthplaceAr: '',
       phone: '',
       cin: '',
       email: '',
@@ -83,8 +85,7 @@ export default function CreateStudentPage() {
       .then(([{ url: pfpUrl }, { url: cinUrl }]) =>
         createStudent({ ...values, profilePicture: pfpUrl, cinFile: cinUrl }),
       )
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
         toast.error(t('error'));
       });
 

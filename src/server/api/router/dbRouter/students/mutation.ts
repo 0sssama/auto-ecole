@@ -29,6 +29,9 @@ export const mutationRouter = createTRPCRouter({
           professionAr: input.professionAr,
           professionFr: input.professionFr,
 
+          birthplaceFr: input.birthplaceFr,
+          birthplaceAr: input.birthplaceAr,
+
           email: input.email,
           phone: input.phone,
           cin: input.cin,

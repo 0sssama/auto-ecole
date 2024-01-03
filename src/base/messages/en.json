@@ -395,6 +395,7 @@
             "upload-cin-file": "Upload a file of the student's national ID (.PDF, max 4MB)",
             "email": "Email:",
             "birthdate": "Birthdate:",
+            "birthplace": "Birth place:",
             "profilePicture": "Profile Picture:",
             "upload-profile-picture": "Upload a profile picture for the student (max 4MB)"
           }
