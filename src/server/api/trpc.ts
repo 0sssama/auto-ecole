@@ -121,9 +121,7 @@ const enforceOrgAdminOnly = enforceUserAuthentication.unstable_pipe(async ({ ctx
  * Organization super admin only procedure
  */
 const enforceOrgSuperAdminOnly = enforceOrgAdminOnly.unstable_pipe(async ({ ctx, next }) => {
-  const { userId, orgId } = ctx;
-
-  const isSuperAdmin = await userIsSuperAdmin(userId, orgId);
+  const isSuperAdmin = await userIsSuperAdmin();
 
   if (!isSuperAdmin)
     throw new TRPCError({

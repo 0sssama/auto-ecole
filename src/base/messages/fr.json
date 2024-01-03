@@ -733,6 +733,13 @@
         }
       }
     },
+    "Settings": {
+      "title": "Paramètres de l'école",
+      "subtitle": "Veuillez remplir les champs suivants pour mettre à jour les paramètres de l'école",
+      "button-submit": "Mettre à jour",
+      "error": "Erreur lors de la mise à jour des paramètres de l'école. Veuillez réessayer plus tard.",
+      "success": "Paramètres de l'école mis à jour avec succès !"
+    },
     "Entities": {
       "Vehicles": {
         "Header": {

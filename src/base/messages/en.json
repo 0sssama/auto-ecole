@@ -749,6 +749,13 @@
         }
       }
     },
+    "Settings": {
+      "title": "School Settings",
+      "subtitle": "Update your school settings",
+      "button-submit": "Update Settings",
+      "error": "An error has occurred. Please try again later.",
+      "success": "School settings updated successfully!"
+    },
     "Modals": {
       "AddExamSike": {
         "title": "Add new exam",
