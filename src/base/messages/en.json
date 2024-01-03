@@ -230,6 +230,9 @@
           "professionFr": "Profession: ",
           "professionAr": "Profession (arabic): ",
 
+          "birthplaceFr": "Birth place: ",
+          "birthplaceAr": "Birth place (arabic): ",
+
           "phone": "Phone Number: ",
           "email": "Email: ",
           "cin": "National ID Number: ",
@@ -256,6 +259,7 @@
           "student": "Student:",
           "instructor": "Instructor:",
           "createdBy": "Created by:",
+          "print-contract": "Print contract",
           "UserDesc": {
             "instructor": "Instructor",
             "student": "Student",
@@ -302,7 +306,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "StudentLessons": {
@@ -343,7 +347,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "InstructorLessons": {
@@ -395,6 +399,7 @@
             "upload-cin-file": "Upload a file of the student's national ID (.PDF, max 4MB)",
             "email": "Email:",
             "birthdate": "Birthdate:",
+            "birthplace": "Birth place:",
             "profilePicture": "Profile Picture:",
             "upload-profile-picture": "Upload a profile picture for the student (max 4MB)"
           }
@@ -426,7 +431,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "Folder": {
@@ -532,7 +537,7 @@
               "A": "Motorcycles",
               "B": "Cars",
               "C": "Trucks",
-              "D": "Buses"
+              "EC": "Trailers"
             }
           }
         },
@@ -607,7 +612,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "NotFound": {
@@ -743,6 +748,13 @@
           "subtitle": "The vehicle you are looking for does not exist."
         }
       }
+    },
+    "Settings": {
+      "title": "School Settings",
+      "subtitle": "Update your school settings",
+      "button-submit": "Update Settings",
+      "error": "An error has occurred. Please try again later.",
+      "success": "School settings updated successfully!"
     },
     "Modals": {
       "AddExamSike": {

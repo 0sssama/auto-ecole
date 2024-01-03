@@ -33,6 +33,9 @@ export const getStudentFolder = async (studentId: number): Promise<StudentFolder
       professionAr: true,
       professionFr: true,
 
+      birthplaceAr: true,
+      birthplaceFr: true,
+
       phone: true,
       email: true,
       cin: true,
@@ -60,6 +63,9 @@ export const getStudentFolder = async (studentId: number): Promise<StudentFolder
 
       professionFr: student.professionFr,
       professionAr: student.professionAr,
+
+      birthplaceFr: student.birthplaceFr,
+      birthplaceAr: student.birthplaceAr,
 
       phone: student.phone,
       email: student.email,

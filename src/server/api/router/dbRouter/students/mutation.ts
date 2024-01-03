@@ -29,6 +29,9 @@ export const mutationRouter = createTRPCRouter({
           professionAr: input.professionAr,
           professionFr: input.professionFr,
 
+          birthplaceFr: input.birthplaceFr,
+          birthplaceAr: input.birthplaceAr,
+
           email: input.email,
           phone: input.phone,
           cin: input.cin,
@@ -40,6 +43,12 @@ export const mutationRouter = createTRPCRouter({
           createdBy: {
             connect: {
               clerkId: ctx.userId,
+            },
+          },
+
+          school: {
+            connect: {
+              clerkOrgId: ctx.orgId,
             },
           },
         },
@@ -54,6 +63,7 @@ export const mutationRouter = createTRPCRouter({
     await ctx.prisma.student.update({
       where: {
         id: input.studentId,
+        clerkOrgId: ctx.orgId,
       },
       data: {
         archived: false,
@@ -66,6 +76,7 @@ export const mutationRouter = createTRPCRouter({
     await ctx.prisma.student.update({
       where: {
         id: input.studentId,
+        clerkOrgId: ctx.orgId,
       },
       data: {
         archived: true,
@@ -78,6 +89,7 @@ export const mutationRouter = createTRPCRouter({
     const result = await ctx.prisma.student.delete({
       where: {
         id: input.studentId,
+        clerkOrgId: ctx.orgId,
       },
       select: {
         clerkUserId: true,

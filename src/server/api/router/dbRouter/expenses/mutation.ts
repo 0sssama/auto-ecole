@@ -13,6 +13,12 @@ export const mutationRouter = createTRPCRouter({
         comment: input.comment,
         date: input.date,
 
+        cashFund: {
+          connect: {
+            clerkOrgId: ctx.orgId,
+          },
+        },
+
         createdBy: {
           connect: { clerkId: ctx.userId },
         },
@@ -28,6 +34,12 @@ export const mutationRouter = createTRPCRouter({
         sum: input.sum,
         comment: input.comment,
         date: input.date,
+
+        cashFund: {
+          connect: {
+            clerkOrgId: ctx.orgId,
+          },
+        },
 
         vehicle: {
           connect: {
@@ -50,6 +62,12 @@ export const mutationRouter = createTRPCRouter({
         sum: input.sum,
         comment: input.comment,
         date: input.date,
+
+        cashFund: {
+          connect: {
+            clerkOrgId: ctx.orgId,
+          },
+        },
 
         licenseFile: {
           connect: {
@@ -76,6 +94,9 @@ export const mutationRouter = createTRPCRouter({
       await ctx.prisma.expense.delete({
         where: {
           id: input.expenseId,
+          cashFund: {
+            clerkOrgId: ctx.orgId,
+          },
         },
       });
 

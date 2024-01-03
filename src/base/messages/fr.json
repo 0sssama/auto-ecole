@@ -228,7 +228,10 @@
           "addressAr": "Addresse (Arabe): ",
 
           "professionFr": "Métier: ",
-          "professionAr": "Métier (Arabic): ",
+          "professionAr": "Métier (Arabe): ",
+
+          "birthplaceFr": "Lieu de naissance: ",
+          "birthplaceAr": "Lieu de naissance (Arabe): ",
 
           "phone": "Téléphone: ",
           "email": "Addresse E-mail: ",
@@ -256,6 +259,7 @@
           "student": "Étudiant :",
           "instructor": "Moniteur :",
           "createdBy": "Créé par :",
+          "print-contract": "Imprimer le contrat",
           "UserDesc": {
             "instructor": "Moniteur",
             "student": "Étudiant",
@@ -302,7 +306,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "StudentLessons": {
@@ -343,7 +347,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "InstructorLessons": {
@@ -395,6 +399,7 @@
             "upload-cin-file": "Télécharger une copie CIN en format PDF (max. 4MO)",
             "email": "E-mail:",
             "birthdate": "Date de naissance:",
+            "birthplace": "Lieu de naissance:",
             "profilePicture": "Photo de profil:",
             "upload-profile-picture": "Télécharger une photo de profil (max. 4MO)"
           }
@@ -426,13 +431,13 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "Folder": {
           "NotFound": {
-            "title": "Folder not found",
-            "subtitle": "The folder you are looking for does not exist."
+            "title": "La page que vous cherchez n'existe pas.",
+            "subtitle": "Aucun étudiant n'a été trouvé avec l'ID spécifié."
           }
         },
         "Create": {
@@ -537,7 +542,7 @@
               "A": "Motocyclettes",
               "B": "Voitures",
               "C": "Camions",
-              "D": "Bus"
+              "EC": "Remorques"
             }
           }
         },
@@ -612,7 +617,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "NotFound": {
@@ -727,6 +732,13 @@
           "title": "Finance"
         }
       }
+    },
+    "Settings": {
+      "title": "Paramètres de l'école",
+      "subtitle": "Veuillez remplir les champs suivants pour mettre à jour les paramètres de l'école",
+      "button-submit": "Mettre à jour",
+      "error": "Erreur lors de la mise à jour des paramètres de l'école. Veuillez réessayer plus tard.",
+      "success": "Paramètres de l'école mis à jour avec succès !"
     },
     "Entities": {
       "Vehicles": {

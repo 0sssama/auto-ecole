@@ -6,6 +6,7 @@ export const seedLicenseFiles = async (
   instructorIds: number[],
   studentIds: number[],
   superAdminId: number,
+  cashFundId: number,
 ) =>
   prisma.$transaction(
     faker.helpers.multiple(
@@ -48,6 +49,7 @@ export const seedLicenseFiles = async (
                     date: faker.date.past(),
                     createdAt: faker.date.past(),
                     createdById: superAdminId,
+                    cashFundId,
                   },
                 },
 
@@ -79,6 +81,7 @@ export const seedLicenseFiles = async (
                       date: faker.date.past(),
                       createdAt: faker.date.past(),
                       createdById: superAdminId,
+                      cashFundId,
                     };
                   },
                   { count: faker.helpers.rangeToNumber({ min: 1, max: 3 }) },
@@ -105,7 +108,7 @@ export const seedLicenseFiles = async (
         });
       },
       {
-        count: 20,
+        count: 12,
       },
     ),
   );

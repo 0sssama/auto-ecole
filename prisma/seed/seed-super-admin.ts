@@ -13,6 +13,12 @@ export const seedSuperAdmin = async (prisma: PrismaClient) =>
       clerkOrgId,
       fullName: 'ECPP SUPER ADMIN',
       rank: 'SUPER_ADMIN',
+
+      school: {
+        connect: {
+          clerkOrgId,
+        },
+      },
     },
     update: {},
   });
@@ -28,6 +34,12 @@ export const seedSecretary = async (prisma: PrismaClient) =>
       clerkOrgId,
       fullName: 'ECPP SECRETARY',
       rank: 'SECRETARY',
+
+      school: {
+        connect: {
+          clerkOrgId,
+        },
+      },
     },
     update: {},
   });

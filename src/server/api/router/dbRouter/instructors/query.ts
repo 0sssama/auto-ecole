@@ -24,7 +24,7 @@ export const queryRouter = createTRPCRouter({
       const instructors = await ctx.prisma.instructor.findMany({
         where: {
           ...filtersObj,
-          account: {
+          school: {
             clerkOrgId: ctx.orgId,
           },
         },
@@ -64,7 +64,7 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.instructor.findMany({
           where: {
             ...filtersObj,
-            account: {
+            school: {
               clerkOrgId: ctx.orgId,
             },
           },

@@ -29,14 +29,22 @@ export const seedStudents = async (prisma: PrismaClient, superAdminId: number) =
             cin: faker.string.alphanumeric(8),
             email: faker.internet.email(),
             birthdate: faker.date.past(),
+            birthplaceAr: fakerAR.location.city(),
+            birthplaceFr: faker.location.city(),
 
             createdBy: {
               connect: {
                 id: superAdminId,
               },
             },
+
+            school: {
+              connect: {
+                clerkOrgId,
+              },
+            },
           },
         }),
-      { count: 80 },
+      { count: 38 },
     ),
   );

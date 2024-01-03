@@ -6,6 +6,7 @@ import type { Locale } from '@/base/data/locales';
 export default function LicenseFilesLayout({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
+
 export async function generateMetadata({
   params: { locale },
 }: {
