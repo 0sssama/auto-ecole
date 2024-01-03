@@ -1,12 +1,15 @@
 import { prisma } from '@/server/db';
 import type { FetchedLicenseFile } from '@/components/sections/license-files/license-file/types';
 
-export const getLicenseFile = async (id: number): Promise<FetchedLicenseFile | null> => {
+export const getLicenseFile = async (id: number, orgId: string): Promise<FetchedLicenseFile | null> => {
   if (id <= 0) return null;
 
   const licenseFile = await prisma.licenseFile.findUnique({
     where: {
       id,
+      student: {
+        clerkOrgId: orgId,
+      },
     },
     select: {
       id: true,

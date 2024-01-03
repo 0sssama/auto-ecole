@@ -259,6 +259,7 @@
           "student": "Student:",
           "instructor": "Instructor:",
           "createdBy": "Created by:",
+          "print-contract": "Print contract",
           "UserDesc": {
             "instructor": "Instructor",
             "student": "Student",

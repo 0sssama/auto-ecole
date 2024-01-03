@@ -259,6 +259,7 @@
           "student": "Étudiant :",
           "instructor": "Moniteur :",
           "createdBy": "Créé par :",
+          "print-contract": "Imprimer le contrat",
           "UserDesc": {
             "instructor": "Moniteur",
             "student": "Étudiant",

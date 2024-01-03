@@ -24,6 +24,8 @@ model School {
     fax                 String @default("")
     phone               String @default("")
     email               String @default("")
+    theoryHours         String @default("0")
+    practiceHours       String @default("0")
 
     admins      Admin[]
     students    Student[]
