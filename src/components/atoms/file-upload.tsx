@@ -41,7 +41,7 @@ const FileUpload: FileUploadComponentType = ({ acceptMultiple, files, permittedF
     <div
       className={cn(
         'flex min-h-[175px] w-full cursor-pointer flex-col items-center justify-center',
-        'border-1 border-foreground-300 rounded-lg border-dashed',
+        'rounded-lg border border-dashed border-foreground/30',
         'gap-1 p-4',
         'duration-400 transition-colors`',
         'bg-accent/30 hover:bg-accent/80',
