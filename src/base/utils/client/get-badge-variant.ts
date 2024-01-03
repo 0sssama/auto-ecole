@@ -1,15 +1,16 @@
 import { ExamStatus, LessonStatus, LicenseFileStatus } from '@prisma/client';
-import type { ChipProps } from '@nextui-org/chip';
+import type { VariantProps } from 'class-variance-authority';
 
 import type { Student } from '@/components/sections/students/list-table/schema';
+import type { Badge } from '@/components/ui/badge';
 
-export const getLicenseFileStatusChipColor = (status: LicenseFileStatus): ChipProps['color'] => {
+export const getLicenseFileStatusBadgeVariant = (status: LicenseFileStatus): VariantProps<typeof Badge>['variant'] => {
   switch (status) {
     case LicenseFileStatus.ONGOING: {
       return 'secondary';
     }
     case LicenseFileStatus.REJECTED: {
-      return 'danger';
+      return 'destructive';
     }
     case LicenseFileStatus.VALIDATED: {
       return 'success';
@@ -18,63 +19,63 @@ export const getLicenseFileStatusChipColor = (status: LicenseFileStatus): ChipPr
       return 'warning';
     }
     default: {
-      return 'primary';
+      return 'default';
     }
   }
 };
 
-export const getExamStatusChipColor = (status: ExamStatus): ChipProps['color'] => {
+export const getExamStatusBadgeVariant = (status: ExamStatus): VariantProps<typeof Badge>['variant'] => {
   switch (status) {
     case ExamStatus.FAILED: {
-      return 'danger';
+      return 'destructive';
     }
     case ExamStatus.PENDING: {
-      return 'primary';
+      return 'default';
     }
     case ExamStatus.SUCCESS: {
       return 'success';
     }
     default: {
-      return 'primary';
+      return 'default';
     }
   }
 };
 
-export const getLessonStatusChipColor = (status: LessonStatus): ChipProps['color'] => {
+export const getLessonStatusBadgeVariant = (status: LessonStatus): VariantProps<typeof Badge>['variant'] => {
   switch (status) {
     case LessonStatus.RESERVED: {
       return 'secondary';
     }
     case LessonStatus.CANCELLED: {
-      return 'danger';
+      return 'destructive';
     }
     case LessonStatus.DONE: {
       return 'success';
     }
     default: {
-      return 'primary';
+      return 'default';
     }
   }
 };
 
-export const getLessonGradeChipColor = (grade: number): ChipProps['color'] => {
+export const getLessonGradeBadgeVariant = (grade: number): VariantProps<typeof Badge>['variant'] => {
   switch (true) {
     case grade < 30: {
-      return 'danger';
+      return 'destructive';
     }
     case grade >= 30 && grade < 60: {
-      return 'primary';
+      return 'default';
     }
     case grade >= 60: {
       return 'success';
     }
     default: {
-      return 'primary';
+      return 'default';
     }
   }
 };
 
-export const getStudentStatusChipColor = (status: Student['status']): ChipProps['color'] => {
+export const getStudentStatusBadgeVariant = (status: Student['status']): VariantProps<typeof Badge>['variant'] => {
   switch (status) {
     case 'active': {
       return 'secondary';
@@ -86,13 +87,13 @@ export const getStudentStatusChipColor = (status: Student['status']): ChipProps[
       return 'warning';
     }
     case 'not-started': {
-      return 'primary';
+      return 'default';
     }
     case 'rejected': {
-      return 'danger';
+      return 'destructive';
     }
     default: {
-      return 'primary';
+      return 'default';
     }
   }
 };

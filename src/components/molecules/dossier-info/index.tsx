@@ -5,11 +5,11 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import format from 'date-fns/format';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { Chip } from '@nextui-org/chip';
 import type { LicenseFileStatus } from '@prisma/client';
 
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/base/utils/client/cn';
-import { getLicenseFileStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import type { DossierInfoProps, InfoDataProps, InfoTypes } from './types';
@@ -23,11 +23,11 @@ function InfoData<InfoT extends InfoTypes>({ labelId, value }: InfoDataProps<Inf
     }
     case 'licenseFileStatus': {
       return (
-        <Chip color={getLicenseFileStatusChipColor(value as LicenseFileStatus)} size="sm">
+        <Badge variant={getLicenseFileStatusBadgeVariant(value as LicenseFileStatus)}>
           <span className="mt-2 !text-[10px] font-bold md:text-sm">
             {t('LicenseFile.Status.' + value).toUpperCase()}
           </span>
-        </Chip>
+        </Badge>
       );
     }
     case 'vehicleType': {

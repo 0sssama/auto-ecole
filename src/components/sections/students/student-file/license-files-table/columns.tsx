@@ -6,12 +6,12 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // eslint-disable-next-line import/no-duplicates
 import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
-import { Chip } from '@nextui-org/chip';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip, TooltipConcat } from '@/components/atoms';
-import { getLicenseFileStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { studentLicenseFileSchema, type StudentLicenseFile } from './schema';
@@ -79,9 +79,9 @@ export const columns: ColumnDef<StudentLicenseFile>[] = [
 
       return (
         <Link href={`/dash/admin/license-files?licenseFileId=${studentLicenseFile.id}`} className="flex h-full w-full">
-          <Chip color={getLicenseFileStatusChipColor(studentLicenseFile.status)} size="sm">
+          <Badge variant={getLicenseFileStatusBadgeVariant(studentLicenseFile.status)}>
             <span className="!text-[10px] font-bold md:text-sm">{t(studentLicenseFile.status)?.toUpperCase()}</span>
-          </Chip>
+          </Badge>
         </Link>
       );
     },

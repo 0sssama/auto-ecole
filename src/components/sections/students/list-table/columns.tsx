@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { Chip } from '@nextui-org/chip';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { getStudentStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getStudentStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 
 import ActionsColumn from './data-table-row-actions';
 import { studentSchema, type Student } from './schema';
@@ -38,9 +38,9 @@ export const columns: ColumnDef<Student>[] = [
             <p className="text-sm text-muted-foreground">{student.cin}</p>
           </div>
           {student.archived && (
-            <Chip color="default" size="sm" className="!py-0">
+            <Badge variant="default" className="!py-0">
               <span className="!text-[10px] font-bold md:text-sm">{t('archived')?.toUpperCase()}</span>
-            </Chip>
+            </Badge>
           )}
         </Link>
       );
@@ -56,9 +56,9 @@ export const columns: ColumnDef<Student>[] = [
       const student = studentSchema.parse(row.original);
 
       return (
-        <Chip color={getStudentStatusChipColor(student.status)} size="sm">
+        <Badge variant={getStudentStatusBadgeVariant(student.status)}>
           <span className="!text-[10px] font-bold md:text-sm">{t(student.status)?.toUpperCase()}</span>
-        </Chip>
+        </Badge>
       );
     },
     enableSorting: false,

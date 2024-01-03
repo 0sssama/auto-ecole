@@ -12,7 +12,6 @@ import {
   NprogressProvider,
   ToastProvider,
   TRPCProvider,
-  NextUIProvider,
   DateFnsProvider,
 } from '@/base/providers';
 import { locales, type Locale } from '@/base/data/locales';
@@ -63,17 +62,15 @@ export default function RootLayout({
             <body
               className={`min-h-screen bg-background text-foreground ${plusJakarta.variable} ${vazirmatn.variable}`}
             >
-              <NextUIProvider>
-                <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-                  <NprogressProvider>
-                    <RecoilProvider>
-                      <ToastProvider>
-                        <DateFnsProvider locale={locale}>{children}</DateFnsProvider>
-                      </ToastProvider>
-                    </RecoilProvider>
-                  </NprogressProvider>
-                </ThemeProvider>
-              </NextUIProvider>
+              <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+                <NprogressProvider>
+                  <RecoilProvider>
+                    <ToastProvider>
+                      <DateFnsProvider locale={locale}>{children}</DateFnsProvider>
+                    </ToastProvider>
+                  </RecoilProvider>
+                </NprogressProvider>
+              </ThemeProvider>
             </body>
           </html>
         </TRPCProvider>
