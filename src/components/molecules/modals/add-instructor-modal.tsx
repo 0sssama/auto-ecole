@@ -95,7 +95,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
       <DialogContent>
         <DialogHeader className="flex flex-col items-center gap-1 text-center">
           <DialogTitle className="text-2xl font-semibold">{t('title')}</DialogTitle>
-          <DialogDescription className="oDialogDescriptionacity-70 text-xs">{t('subtitle')}</DialogDescription>
+          <DialogDescription className="text-xs opacity-70">{t('subtitle')}</DialogDescription>
         </DialogHeader>
         <div className="max-h-[80vh] overflow-auto md:max-h-full">
           {(dbOperationError || clerkOperationError) && (
@@ -108,7 +108,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
           <AddNewInstructorForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
-            className="\md:grid-cols-2 grid grid-cols-1 gap-x-6 gap-y-2 p-2"
+            className="grid grid-cols-1 gap-x-6 gap-y-2 p-2 md:grid-cols-2"
           />
         </div>
         <DialogFooter className="flex items-center justify-end gap-1">
