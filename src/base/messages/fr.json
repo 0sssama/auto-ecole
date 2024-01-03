@@ -302,7 +302,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "StudentLessons": {
@@ -343,7 +343,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "InstructorLessons": {
@@ -426,13 +426,13 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "Folder": {
           "NotFound": {
-            "title": "Folder not found",
-            "subtitle": "The folder you are looking for does not exist."
+            "title": "La page que vous cherchez n'existe pas.",
+            "subtitle": "Aucun étudiant n'a été trouvé avec l'ID spécifié."
           }
         },
         "Create": {
@@ -537,7 +537,7 @@
               "A": "Motocyclettes",
               "B": "Voitures",
               "C": "Camions",
-              "D": "Bus"
+              "EC": "Remorques"
             }
           }
         },
@@ -612,7 +612,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "NotFound": {

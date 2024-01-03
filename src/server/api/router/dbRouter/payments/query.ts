@@ -25,7 +25,7 @@ export const queryRouter = createTRPCRouter({
       const [payments, totalPayments] = await Promise.all([
         ctx.prisma.payment.findMany({
           where: {
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
             ...filtersObj,
@@ -49,7 +49,7 @@ export const queryRouter = createTRPCRouter({
         }),
         ctx.prisma.payment.count({
           where: {
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
             ...filtersObj,
@@ -90,7 +90,7 @@ export const queryRouter = createTRPCRouter({
       const [licenseFilePayments, totalLicenseFilePayments] = await Promise.all([
         ctx.prisma.payment.findMany({
           where: {
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
             licenseFileId: input.licenseFileId,
@@ -115,7 +115,7 @@ export const queryRouter = createTRPCRouter({
         }),
         ctx.prisma.payment.count({
           where: {
-            createdBy: {
+            cashFund: {
               clerkOrgId: ctx.orgId,
             },
             licenseFileId: input.licenseFileId,
@@ -159,10 +159,8 @@ export const queryRouter = createTRPCRouter({
           where: {
             AND: [
               {
-                licenseFile: {
-                  student: {
-                    clerkOrgId: ctx.orgId,
-                  },
+                cashFund: {
+                  clerkOrgId: ctx.orgId,
                 },
               },
               {
@@ -203,10 +201,8 @@ export const queryRouter = createTRPCRouter({
           where: {
             AND: [
               {
-                licenseFile: {
-                  student: {
-                    clerkOrgId: ctx.orgId,
-                  },
+                cashFund: {
+                  clerkOrgId: ctx.orgId,
                 },
               },
               {

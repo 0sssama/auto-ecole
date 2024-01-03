@@ -24,10 +24,8 @@ export const queryRouter = createTRPCRouter({
         ctx.prisma.vehicle.findMany({
           where: {
             ...filtersObj,
-            instructor: {
-              account: {
-                clerkOrgId: ctx.orgId,
-              },
+            school: {
+              clerkOrgId: ctx.orgId,
             },
           },
           select: {

@@ -11,23 +11,29 @@ datasource db {
     relationMode = "prisma"
 }
 
-// model School {
-//     id Int @id @default(autoincrement())
+model School {
+    id Int @id @default(autoincrement())
 
-//     name String
+    name                String
+    clerkOrgId          String @unique
+    address             String @default("")
+    numRegistrePermis   String @default("")
+    numRegistreCommerce String @default("")
+    numRegistreFiscale  String @default("")
+    city                String @default("")
+    fax                 String @default("")
+    phone               String @default("")
+    email               String @default("")
 
-//     admins      Admin[]
-//     students    Student[]
-//     instructors Instructor[]
-//	   vehicles    Vehicle[]
+    admins      Admin[]
+    students    Student[]
+    instructors Instructor[]
+    vehicles    Vehicle[]
+    cashFund    CashFund?
 
-//     cashFund    CashFund
-
-//     createdAt DateTime @default(now())
-//     updatedAt DateTime @updatedAt
-
-//	   createdAt DateTime @default(now())
-// }
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
 
 model Admin {
     id Int @id @default(autoincrement())
@@ -38,9 +44,6 @@ model Admin {
     fullName   String
     rank       AdminRank
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
     licenseFilesCreated LicenseFile[]
     instructorsCreated  Instructor[]
     paymentsCreated     Payment[]
@@ -48,6 +51,14 @@ model Admin {
     studentsCreated     Student[]
     vehiclesCreated     Vehicle[]
     lessonsCreated      Lesson[]
+
+    school   School @relation(fields: [schoolId], references: [id])
+    schoolId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([schoolId])
 }
 
 model Student {
@@ -82,6 +93,9 @@ model Student {
     licenseFiles         LicenseFile[]
     lessons              Lesson[]
 
+    school   School @relation(fields: [schoolId], references: [id])
+    schoolId Int
+
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int
 
@@ -90,6 +104,7 @@ model Student {
 
     @@index([clerkOrgId])
     @@index([createdById])
+    @@index([schoolId])
 }
 
 model Instructor {
@@ -103,15 +118,18 @@ model Instructor {
     account   Admin @relation(fields: [accountId], references: [id])
     accountId Int
 
-    vehicles Vehicle[]
-
+    vehicles     Vehicle[]
     licenseFiles LicenseFile[]
     lessons      Lesson[]
+
+    school   School @relation(fields: [schoolId], references: [id])
+    schoolId Int
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@index([accountId])
+    @@index([schoolId])
 }
 
 model DummyLicenseFile {
@@ -215,8 +233,8 @@ model Payment {
     sum     Int
     comment String
 
-    // cashFund   CashFund? @relation(fields: [cashFundId], references: [id])
-    // cashFundId Int?
+    cashFund   CashFund @relation(fields: [cashFundId], references: [id])
+    cashFundId Int
 
     licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
@@ -232,7 +250,7 @@ model Payment {
 
     @@index([licenseFileId])
     @@index([lessonId])
-    // @@index([cashFundId])
+    @@index([cashFundId])
     @@index([createdById])
 }
 
@@ -249,16 +267,16 @@ model Expense {
     licenseFile   LicenseFile? @relation(fields: [licenseFileId], references: [id])
     licenseFileId Int?
 
-    // cashFund   CashFund? @relation(fields: [cashFundId], references: [id])
-    // cashFundId Int?
+    cashFund   CashFund @relation(fields: [cashFundId], references: [id])
+    cashFundId Int
 
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    // @@index([cashFundId])
 
+    @@index([cashFundId])
     @@index([vehicleId])
     @@index([licenseFileId])
     @@index([createdById])
@@ -273,34 +291,43 @@ model Vehicle {
     type   VehicleType
     active Boolean     @default(true)
 
+    expenses Expense[]
+
     instructor   Instructor @relation(fields: [instructorId], references: [id])
     instructorId Int
 
     createdBy   Admin @relation(fields: [createdById], references: [id])
     createdById Int
 
-    expenses Expense[]
+    school   School @relation(fields: [schoolId], references: [id])
+    schoolId Int
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@index([instructorId])
     @@index([createdById])
+    @@index([schoolId])
 }
 
-// model CashFund {
-//     id Int @id @default(autoincrement())
+model CashFund {
+    id Int @id @default(autoincrement())
 
-//     clerkOrgId String @unique
+    clerkOrgId String @unique
 
-//     payments Payment[]
-//     expenses Expense[]
+    payments Payment[]
+    expenses Expense[]
 
-//     sum Int @default(0)
+    amount Int @default(0)
 
-//     createdAt DateTime @default(now())
-//     updatedAt DateTime @updatedAt
-// }
+    school   School @relation(fields: [schoolId], references: [id])
+    schoolId Int    @unique
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([schoolId])
+}
 
 enum AdminRank {
     SUPER_ADMIN
@@ -343,15 +370,15 @@ enum Grade {
 }
 
 enum Category {
-    A
-    B
-    C
-    D
+    A // Moto
+    B // Voiture
+    C // Camions
+    EC // Remorque
 }
 
 enum VehicleType {
-    CAR
     MOTORCYCLE
+    CAR
     TRUCK // Camion
     TRAILER // Remorque
 }

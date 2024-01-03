@@ -35,8 +35,14 @@ export const seedStudents = async (prisma: PrismaClient, superAdminId: number) =
                 id: superAdminId,
               },
             },
+
+            school: {
+              connect: {
+                clerkOrgId,
+              },
+            },
           },
         }),
-      { count: 80 },
+      { count: 38 },
     ),
   );

@@ -49,7 +49,7 @@ export default function CreateLicenseFilePage() {
     onSuccess: () => {
       //   void ctx.users.getPage.invalidate();
       toast.success(t('success'));
-      router.back();
+      router.push('/dash/admin/license-files');
     },
     onError: (error) => {
       console.error(error);
@@ -93,7 +93,11 @@ export default function CreateLicenseFilePage() {
     <main className="relative w-full">
       <div className="flex w-full flex-col gap-2">
         <div>
-          <Button onClick={() => router.back()} variant="ghost" className="mb-6 px-0 hover:bg-transparent">
+          <Button
+            onClick={() => router.push('/dash/admin/license-files')}
+            variant="ghost"
+            className="mb-6 px-0 hover:bg-transparent"
+          >
             <ArrowLeft size={18} />
             <span className="ml-2">{t('back')}</span>
           </Button>

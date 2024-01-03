@@ -81,8 +81,10 @@
     @apply m-0 box-border p-0;
   }
 
-  *[dir='rtl'] {
+  *[dir='rtl'],
+  *[dir='rtl'] * {
     font-family: var(--font-vazirmatn);
+    writing-mode: horizontal-tb;
     @apply text-right;
   }
 
