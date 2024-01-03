@@ -24,7 +24,7 @@ export const mutationRouter = createTRPCRouter({
 
             cashFund: {
               connect: {
-                clerkOrgId: ctx.userId,
+                clerkOrgId: ctx.orgId,
               },
             },
 
