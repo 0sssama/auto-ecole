@@ -1,5 +1,6 @@
+import { default as snake } from 'lodash/snakeCase';
+
 import { cleanPhoneNumber } from './clean-phone-number';
-import { snakeCaseTransformer as snake } from './snake-case-transformer';
 
 interface CreateNewCredentialsOptions {
   firstName?: string;

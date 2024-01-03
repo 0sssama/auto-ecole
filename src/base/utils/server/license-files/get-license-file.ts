@@ -1,14 +1,15 @@
-import { clerkClient } from '@clerk/nextjs';
-
 import { prisma } from '@/server/db';
 import type { FetchedLicenseFile } from '@/components/sections/license-files/license-file/types';
 
-export const getLicenseFile = async (id: number): Promise<FetchedLicenseFile | null> => {
+export const getLicenseFile = async (id: number, orgId: string): Promise<FetchedLicenseFile | null> => {
   if (id <= 0) return null;
 
   const licenseFile = await prisma.licenseFile.findUnique({
     where: {
       id,
+      student: {
+        clerkOrgId: orgId,
+      },
     },
     select: {
       id: true,
@@ -22,6 +23,7 @@ export const getLicenseFile = async (id: number): Promise<FetchedLicenseFile | n
           firstNameFr: true,
           lastNameFr: true,
           clerkUserId: true,
+          profilePicture: true,
         },
       },
 
@@ -49,32 +51,25 @@ export const getLicenseFile = async (id: number): Promise<FetchedLicenseFile | n
   });
 
   if (!licenseFile) return null;
-
-  const [student, instructor, admin] = await clerkClient.users.getUserList({
-    userId: [licenseFile.student.clerkUserId, licenseFile.instructor.account.clerkId, licenseFile.createdBy.clerkId],
-  });
-
-  if (!student || !instructor || !admin) return null;
-
   const formattedLicenseFile: FetchedLicenseFile = {
     id: licenseFile.id,
 
     student: {
       id: licenseFile.student.id,
       fullName: `${licenseFile.student.firstNameFr} ${licenseFile.student.lastNameFr}`,
-      profilePictureUrl: student.hasImage ? student.imageUrl : '',
+      profilePicture: licenseFile.student.profilePicture,
     },
 
     instructor: {
       id: licenseFile.instructor.id,
       fullName: `${licenseFile.instructor.firstName} ${licenseFile.instructor.lastName}`,
-      profilePictureUrl: instructor.hasImage ? instructor.imageUrl : '',
+      profilePicture: '',
     },
 
     createdBy: {
       id: licenseFile.createdBy.id,
       fullName: licenseFile.createdBy.fullName,
-      profilePictureUrl: admin.hasImage ? admin.imageUrl : '',
+      profilePicture: '',
     },
 
     licenseFileStatus: licenseFile.status,

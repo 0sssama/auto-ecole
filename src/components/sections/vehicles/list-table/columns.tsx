@@ -23,7 +23,6 @@ export const columns: ColumnDef<Vehicle>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="Vehicles.name" />,
     cell: ({ row }) => {
       const vehicle = vehicleSchema.parse(row.original);
-      console.log(vehicle);
 
       return (
         <Link href={`/dash/admin/vehicles?vehicleId=${vehicle.id}`} className="flex items-center">

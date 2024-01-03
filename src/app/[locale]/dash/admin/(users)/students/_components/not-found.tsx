@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 export default function StudentNotFound() {
-  const t = useTranslations('Dashboard.Users.Folder.NotFound');
+  const t = useTranslations('Dashboard.Users.Students.Folder.NotFound');
 
   return (
     <main className="flex min-h-[400px] items-center justify-center gap-4 p-12 md:p-24">

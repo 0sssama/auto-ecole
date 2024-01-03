@@ -7,7 +7,7 @@ import type { InstructorComponentType } from './types';
 
 const Instructor: InstructorComponentType = ({ instructor }) => (
   <div className="flex flex-col">
-    <InfoFile data={instructor} type="instructor" />
+    <InfoFile data={{ ...instructor, cinFile: '' }} type="instructor" />
     <Separator className="mb-6 mt-14" />
     <InstructorLicenseFilesTable instructorId={instructor.id} />
     <Separator className="mb-6 mt-14" />

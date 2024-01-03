@@ -4,6 +4,8 @@ import { seedSuperAdmin, seedSecretary } from './seed/seed-super-admin';
 import { seedStudents } from './seed/seed-students';
 import { seedInstructors } from './seed/seed-instructors';
 import { seedLicenseFiles } from './seed/seed-license-files';
+import { seedSchool } from './seed/seed-school';
+import { seedCashFund } from './seed/seed-cash-fund';
 
 export const clerkOrgId = 'org_2Vr89LWYt1FRrhR7ALcBq5HqYhC';
 export const superAdminClerkId = 'user_2YBRtRz9u0fyELr5fus2ty0aOeo';
@@ -24,6 +26,14 @@ async function main() {
     const twirler = twirlTimer();
     console.time('Seeding database');
     const prisma = new PrismaClient();
+
+    console.time('Seeding School');
+    await seedSchool(prisma);
+    console.timeEnd('Seeding School');
+
+    console.time('Seeding Cash Fund');
+    const cashFund = await seedCashFund(prisma);
+    console.timeEnd('Seeding Cash Fund');
 
     console.time('Seeding SuperAdmin');
     const superAdmin = await seedSuperAdmin(prisma);
@@ -47,6 +57,7 @@ async function main() {
       instructors.map((instructor) => instructor.id),
       students.map((student) => student.id),
       superAdmin.id,
+      cashFund.id,
     );
     console.timeEnd('Seeding LicenseFiles');
 
@@ -57,4 +68,4 @@ async function main() {
   }
 }
 
-await main();
+main();

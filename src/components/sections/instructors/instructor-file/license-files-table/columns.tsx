@@ -1,14 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
+// eslint-disable-next-line import/no-duplicates
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// eslint-disable-next-line import/no-duplicates
+import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
-import { Chip } from '@nextui-org/chip';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip, TooltipConcat } from '@/components/atoms';
-import { getLicenseFileStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { instructorLicenseFileSchema, type InstructorLicenseFile } from './schema';
@@ -76,9 +79,9 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
 
       return (
         <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
-          <Chip color={getLicenseFileStatusChipColor(licenseFile.status)} size="sm">
+          <Badge variant={getLicenseFileStatusBadgeVariant(licenseFile.status)}>
             <span className="!text-[10px] font-bold md:text-sm">{t(licenseFile.status)?.toUpperCase()}</span>
-          </Chip>
+          </Badge>
         </Link>
       );
     },
@@ -90,12 +93,11 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="InstructorLicenseFiles.created-at" />,
     cell: ({ row }) => {
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
-
-      const date = moment(licenseFile.createdAt);
-
+      const date = new Date(licenseFile.createdAt);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
       return (
         <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
-          <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>
+          <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>
         </Link>
       );
     },

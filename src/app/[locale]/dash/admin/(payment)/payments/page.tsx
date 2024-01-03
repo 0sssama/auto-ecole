@@ -1,8 +1,5 @@
-import { getTranslations } from 'next-intl/server';
-
 // import { getPayment } from "@/server/utils/payments/getPayment";
 // import { Payment } from "@/components/sections/payments";
-import type { Locale } from '@/base/data/locales';
 
 import PaymentsPage from './_components/payments';
 import PaymentNotFound from './_components/not-found';
@@ -25,21 +22,4 @@ export default async function Payments({
   //   if (!payment) return <PaymentNotFound />;
 
   //   return <Payment payment={payment} />;
-}
-
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: {
-    locale: Locale;
-  };
-}) {
-  const t = await getTranslations({
-    locale,
-    namespace: 'Dashboard.Payment.Payments.Header',
-  });
-
-  return {
-    title: `${t('title')} / Dashboard`,
-  };
 }

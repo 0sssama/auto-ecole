@@ -26,6 +26,12 @@ export const mutationRouter = createTRPCRouter({
           lastName: input.lastName,
           phone: input.phone,
 
+          school: {
+            connect: {
+              clerkOrgId: ctx.orgId,
+            },
+          },
+
           account: {
             create: {
               username: credentials.username,
@@ -33,6 +39,12 @@ export const mutationRouter = createTRPCRouter({
               rank: 'INSTRUCTOR',
               clerkId: input.clerkId,
               clerkOrgId: ctx.orgId,
+
+              school: {
+                connect: {
+                  clerkOrgId: ctx.orgId,
+                },
+              },
             },
           },
         },

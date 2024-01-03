@@ -1,14 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
-import { Chip } from '@nextui-org/chip';
+// eslint-disable-next-line import/no-duplicates
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// eslint-disable-next-line import/no-duplicates
+import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip, TooltipConcat } from '@/components/atoms';
-import { getLessonStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getLessonStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { lessonSchema, type Lesson } from './schema';
@@ -59,9 +62,9 @@ export const columns: ColumnDef<Lesson>[] = [
       const lesson = lessonSchema.parse(row.original);
 
       return (
-        <Chip color={getLessonStatusChipColor(lesson.status)} size="sm">
+        <Badge variant={getLessonStatusBadgeVariant(lesson.status)}>
           <span className="!text-[10px] font-bold md:text-sm">{t(lesson.status)?.toUpperCase()}</span>
-        </Chip>
+        </Badge>
       );
     },
     enableSorting: false,
@@ -86,9 +89,10 @@ export const columns: ColumnDef<Lesson>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="Lessons.scheduled-date" />,
     cell: ({ row }) => {
       const lesson = lessonSchema.parse(row.original);
-      const date = moment(lesson.scheduledDate);
+      const date = new Date(lesson.scheduledDate);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,

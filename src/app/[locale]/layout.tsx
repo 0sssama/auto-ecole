@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Vazirmatn } from 'next/font/google';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
@@ -12,8 +12,7 @@ import {
   NprogressProvider,
   ToastProvider,
   TRPCProvider,
-  NextUIProvider,
-  MomentProvider,
+  DateFnsProvider,
 } from '@/base/providers';
 import { locales, type Locale } from '@/base/data/locales';
 
@@ -51,7 +50,6 @@ export default function RootLayout({
   if (!locales.includes(locale as any)) notFound();
 
   unstable_setRequestLocale(locale);
-
   // TODO: ONLY PASS NECESSARY MESSAGES (THIS FUCKS UP PERFORMANCE)
   const messages = useMessages();
 
@@ -64,17 +62,15 @@ export default function RootLayout({
             <body
               className={`min-h-screen bg-background text-foreground ${plusJakarta.variable} ${vazirmatn.variable}`}
             >
-              <NextUIProvider>
-                <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-                  <NprogressProvider>
-                    <RecoilProvider>
-                      <ToastProvider>
-                        <MomentProvider locale={locale}>{children}</MomentProvider>
-                      </ToastProvider>
-                    </RecoilProvider>
-                  </NprogressProvider>
-                </ThemeProvider>
-              </NextUIProvider>
+              <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+                <NprogressProvider>
+                  <RecoilProvider>
+                    <ToastProvider>
+                      <DateFnsProvider locale={locale}>{children}</DateFnsProvider>
+                    </ToastProvider>
+                  </RecoilProvider>
+                </NprogressProvider>
+              </ThemeProvider>
             </body>
           </html>
         </TRPCProvider>

@@ -1,6 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import { Header, Sidebar } from '@/components/sections';
 import { useSetActiveOrganization } from '@/base/hooks/use-set-active-organization';
@@ -8,6 +9,10 @@ import { DashPageError, DashPageLoading } from '@/components/pages';
 
 export default function DashPageUILayout({ children }: { children: ReactNode }) {
   const { loading, noOrgFound } = useSetActiveOrganization();
+
+  const searchParams = useSearchParams();
+
+  if (searchParams.get('licenseFileId') && searchParams.get('renderContract') === 'true') return <>{children}</>;
 
   if (loading) return <DashPageLoading />;
 

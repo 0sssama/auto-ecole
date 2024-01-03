@@ -43,6 +43,7 @@
 
       "payment": "Payment",
       "payments": "Payments",
+      "expenses": "Expenses",
       "financial-overview": "Financial Overview",
 
       "entities": "Entities",
@@ -161,6 +162,13 @@
           "admin-name": "Taken by",
           "date": "Date"
         },
+        "LicenseFileExpenses": {
+          "id": "ID",
+          "sum": "Expense Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
+        },
         "Lessons": {
           "id": "ID",
           "instructor-name": "Instructor",
@@ -198,6 +206,13 @@
           "comment": "Comment",
           "admin-name": "Taken by",
           "date": "Date"
+        },
+        "Expenses": {
+          "id": "ID",
+          "sum": "Expense Sum",
+          "comment": "Comment",
+          "admin-name": "Taken by",
+          "date": "Date"
         }
       }
     },
@@ -214,6 +229,9 @@
 
           "professionFr": "Profession: ",
           "professionAr": "Profession (arabic): ",
+
+          "birthplaceFr": "Birth place: ",
+          "birthplaceAr": "Birth place (arabic): ",
 
           "phone": "Phone Number: ",
           "email": "Email: ",
@@ -241,6 +259,7 @@
           "student": "Student:",
           "instructor": "Instructor:",
           "createdBy": "Created by:",
+          "print-contract": "Print contract",
           "UserDesc": {
             "instructor": "Instructor",
             "student": "Student",
@@ -287,7 +306,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "StudentLessons": {
@@ -328,7 +347,7 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "InstructorLessons": {
@@ -376,8 +395,13 @@
             "profession": "Profession:",
             "phone": "Phone Number:",
             "cin": "National ID Number:",
+            "cinFile": "National ID File:",
+            "upload-cin-file": "Upload a file of the student's national ID (.PDF, max 4MB)",
             "email": "Email:",
-            "birthdate": "Birthdate:"
+            "birthdate": "Birthdate:",
+            "birthplace": "Birth place:",
+            "profilePicture": "Profile Picture:",
+            "upload-profile-picture": "Upload a profile picture for the student (max 4MB)"
           }
         },
         "ListStudentsTable": {
@@ -388,6 +412,7 @@
             "active": "Active",
             "rejected": "Rejected",
             "finished": "Finished",
+            "undeposited": "Undeposited",
             "not-started": "Not started"
           },
           "Actions": {
@@ -406,13 +431,27 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "Folder": {
           "NotFound": {
             "title": "Folder not found",
             "subtitle": "The folder you are looking for does not exist."
+          }
+        },
+        "Create": {
+          "title": "Add new student",
+          "subtitle": "Fill in the form below to add a new student.",
+          "back": "Back to students",
+          "button-submit": "Add Student",
+          "error": "An error has occurred. Please try again later.",
+          "success": "Student added successfully!",
+          "RedirectModal": {
+            "title": "Student created!",
+            "question": "Would you like to create a license file for this student now?",
+            "yes": "Yes, take me there",
+            "no": "I'll do it later"
           }
         }
       },
@@ -498,7 +537,7 @@
               "A": "Motorcycles",
               "B": "Cars",
               "C": "Trucks",
-              "D": "Buses"
+              "EC": "Trailers"
             }
           }
         },
@@ -544,6 +583,16 @@
               "view": "View details",
               "edit": "Edit"
             }
+          },
+          "LicenseFileExpenses": {
+            "title": "Expenses",
+            "add-button": "Add Expense",
+            "Actions": {
+              "open-menu": "Open menu",
+              "view": "View details",
+              "edit": "Edit",
+              "delete": "Delete"
+            }
           }
         },
         "ListTable": {
@@ -563,12 +612,20 @@
             "A": "Motorcycles",
             "B": "Cars",
             "C": "Trucks",
-            "D": "Buses"
+            "EC": "Trailers"
           }
         },
         "NotFound": {
           "title": "No License File Found",
           "subtitle": "The license file you are looking for does not exist."
+        },
+        "Create": {
+          "title": "Add new license file",
+          "subtitle": "Fill in the form below to add a new license file.",
+          "back": "Back to license files",
+          "button-submit": "Add License File",
+          "error": "An error has occurred. Please try again later.",
+          "success": "License file added successfully!"
         }
       },
       "Lessons": {
@@ -641,6 +698,24 @@
           "subtitle": "The payment you are looking for does not exist."
         }
       },
+      "Expenses": {
+        "Header": {
+          "title": "Expenses",
+          "button": "New expense"
+        },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Open menu",
+            "view": "View details",
+            "edit": "Edit",
+            "delete": "Delete"
+          }
+        },
+        "NotFound": {
+          "title": "No Expense Found",
+          "subtitle": "The expense you are looking for does not exist."
+        }
+      },
       "FinancialOverview": {
         "Header": {
           "title": "Financial Overview"
@@ -673,6 +748,13 @@
           "subtitle": "The vehicle you are looking for does not exist."
         }
       }
+    },
+    "Settings": {
+      "title": "School Settings",
+      "subtitle": "Update your school settings",
+      "button-submit": "Update Settings",
+      "error": "An error has occurred. Please try again later.",
+      "success": "School settings updated successfully!"
     },
     "Modals": {
       "AddExamSike": {
@@ -766,6 +848,19 @@
         "button-cancel": "Cancel",
         "button-submit": "Add Payment"
       },
+      "AddLicenseFileExpense": {
+        "title": "Add new expense",
+        "subtitle": "Fill in the form below to add a new expense",
+        "success": "Expense added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "sum": "Expense Sum:",
+          "comment": "Comment:",
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add expense"
+      },
       "AddVehicle": {
         "title": "Add new vehicle",
         "subtitle": "Fill in the form below to add a new vehicle",
@@ -806,6 +901,27 @@
         },
         "button-cancel": "Annuler",
         "button-submit": "Ajouter dépense"
+      },
+      "DeleteExpense": {
+        "title": "Are you sure you want to delete this expense?",
+        "question": "This action cannot be undone.",
+        "button-cancel": "Cancel",
+        "button-submit": "Delete Expense",
+        "expense-delete-success": "Expense deleted successfully!",
+        "expense-delete-error": "An error has occurred. Please try again later."
+      },
+      "AddExpense": {
+        "title": "Add new expense",
+        "subtitle": "Fill in the form below to add a new expense",
+        "success": "Expense added successfully",
+        "error": "An error has occurred. Please try again later.",
+        "Form": {
+          "sum": "Expense Sum:",
+          "comment": "Comment:",
+          "date": "Date:"
+        },
+        "button-cancel": "Cancel",
+        "button-submit": "Add expense"
       }
     },
     "Common": {

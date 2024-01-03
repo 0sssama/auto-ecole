@@ -43,6 +43,7 @@
 
       "payment": "Paiements",
       "payments": "Paiements",
+      "expenses": "Dépenses",
       "financial-overview": "Finance",
 
       "entities": "Entités",
@@ -161,6 +162,13 @@
           "admin-name": "Accordé à.",
           "date": "Date"
         },
+        "LicenseFileExpenses": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
+        },
         "Lessons": {
           "id": "ID",
           "instructor-name": "Moniteur",
@@ -198,6 +206,13 @@
           "comment": "Comment.",
           "admin-name": "Accordé à.",
           "date": "Date"
+        },
+        "Expenses": {
+          "id": "ID",
+          "sum": "Somme",
+          "comment": "Comment.",
+          "admin-name": "Accordé à.",
+          "date": "Date"
         }
       }
     },
@@ -213,7 +228,10 @@
           "addressAr": "Addresse (Arabe): ",
 
           "professionFr": "Métier: ",
-          "professionAr": "Métier (Arabic): ",
+          "professionAr": "Métier (Arabe): ",
+
+          "birthplaceFr": "Lieu de naissance: ",
+          "birthplaceAr": "Lieu de naissance (Arabe): ",
 
           "phone": "Téléphone: ",
           "email": "Addresse E-mail: ",
@@ -241,6 +259,7 @@
           "student": "Étudiant :",
           "instructor": "Moniteur :",
           "createdBy": "Créé par :",
+          "print-contract": "Imprimer le contrat",
           "UserDesc": {
             "instructor": "Moniteur",
             "student": "Étudiant",
@@ -287,7 +306,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "StudentLessons": {
@@ -328,7 +347,7 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "InstructorLessons": {
@@ -376,8 +395,13 @@
             "profession": "Profession:",
             "phone": "Téléphone:",
             "cin": "N° CIN:",
+            "cinFile": "Copie CIN:",
+            "upload-cin-file": "Télécharger une copie CIN en format PDF (max. 4MO)",
             "email": "E-mail:",
-            "birthdate": "Date de naissance:"
+            "birthdate": "Date de naissance:",
+            "birthplace": "Lieu de naissance:",
+            "profilePicture": "Photo de profil:",
+            "upload-profile-picture": "Télécharger une photo de profil (max. 4MO)"
           }
         },
         "ListStudentsTable": {
@@ -388,6 +412,7 @@
             "active": "Actif",
             "rejected": "Rejeté",
             "finished": "Terminé",
+            "undeposited": "Non déposé",
             "not-started": "Non commencé"
           },
           "Actions": {
@@ -406,7 +431,27 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
+          }
+        },
+        "Folder": {
+          "NotFound": {
+            "title": "La page que vous cherchez n'existe pas.",
+            "subtitle": "Aucun étudiant n'a été trouvé avec l'ID spécifié."
+          }
+        },
+        "Create": {
+          "title": "Nouveau étudiant",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau étudiant",
+          "back": "Retour",
+          "button-submit": "Ajouter Étudiant",
+          "error": "Erreur lors de l'ajout du étudiant. Veuillez réessayer plus tard.",
+          "success": "Étudiant ajouté avec succès !",
+          "RedirectModal": {
+            "title": "L'étudiant est ajouté!",
+            "question": "Est-ce que vous voulez créer un dossier pour cet étudiant?",
+            "yes": "Oui, emmènez-moi!",
+            "no": "Non, au plus tard."
           }
         }
       },
@@ -497,7 +542,7 @@
               "A": "Motocyclettes",
               "B": "Voitures",
               "C": "Camions",
-              "D": "Bus"
+              "EC": "Remorques"
             }
           }
         },
@@ -543,6 +588,16 @@
               "view": "Voir dossier",
               "edit": "Modifier"
             }
+          },
+          "LicenseFileExpenses": {
+            "title": "Les dépenses",
+            "add-button": "Nouvelle dépense",
+            "Actions": {
+              "open-menu": "Ouvrir le menu",
+              "view": "Voir détails",
+              "edit": "Modifier",
+              "delete": "Supprimer"
+            }
           }
         },
         "ListTable": {
@@ -562,12 +617,20 @@
             "A": "Motocyclettes",
             "B": "Voitures",
             "C": "Camions",
-            "D": "Bus"
+            "EC": "Remorques"
           }
         },
         "NotFound": {
           "title": "Aucun dossier de permis trouvé",
           "subtitle": "Aucun dossier de permis n'a été trouvé avec l'ID spécifié."
+        },
+        "Create": {
+          "title": "Nouveau dossier",
+          "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau dossier",
+          "back": "Retour",
+          "button-submit": "Ajouter Dossier",
+          "error": "Erreur lors de l'ajout du dossier. Veuillez réessayer plus tard.",
+          "success": "Dossier ajouté avec succès !"
         }
       },
       "Lessons": {
@@ -634,9 +697,34 @@
           "title": "Paiements",
           "button": "Nouveau paiement"
         },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier"
+          }
+        },
         "NotFound": {
           "title": "Aucun paiement trouvé",
           "subtitle": "Aucun paiement n'a été trouvé avec l'ID spécifié."
+        }
+      },
+      "Expenses": {
+        "Header": {
+          "title": "Les dépenses",
+          "button": "Nouvelle dépense"
+        },
+        "ListTable": {
+          "Actions": {
+            "open-menu": "Ouvrir le menu",
+            "view": "Voir détails",
+            "edit": "Modifier",
+            "delete": "Supprimer"
+          }
+        },
+        "NotFound": {
+          "title": "Aucun dépense trouvé",
+          "subtitle": "Aucun dépense n'a été trouvé avec l'ID spécifié."
         }
       },
       "FinancialOverview": {
@@ -644,6 +732,13 @@
           "title": "Finance"
         }
       }
+    },
+    "Settings": {
+      "title": "Paramètres de l'école",
+      "subtitle": "Veuillez remplir les champs suivants pour mettre à jour les paramètres de l'école",
+      "button-submit": "Mettre à jour",
+      "error": "Erreur lors de la mise à jour des paramètres de l'école. Veuillez réessayer plus tard.",
+      "success": "Paramètres de l'école mis à jour avec succès !"
     },
     "Entities": {
       "Vehicles": {
@@ -765,6 +860,19 @@
         "button-cancel": "Annuler",
         "button-submit": "Ajouter paiement"
       },
+      "AddLicenseFileExpense": {
+        "title": "Ajouter une nouvelle dépense",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
+        "success": "Dépense ajouté avec succès",
+        "error": "Erreur lors de l'ajout du véhicule. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
+      },
       "AddVehicle": {
         "title": "Ajouter un nouveau véhicule",
         "subtitle": "Veuillez remplir les champs suivants pour ajouter un nouveau véhicule",
@@ -774,7 +882,7 @@
           "name": "Nom du véhicule :",
           "brand": "Nom de marque :",
           "image": "Photo du véhicule :",
-          "upload-image": "Télécharger une photo du véhicule (max. 4MB)",
+          "upload-image": "Télécharger une photo du véhicule (max. 4MO)",
           "Type": {
             "label": "Type du véhicule :",
             "empty": "Aucun type trouvé",
@@ -794,6 +902,27 @@
         "button-submit": "Ajouter véhicule"
       },
       "AddVehicleExpense": {
+        "title": "Ajouter une nouvelle dépense",
+        "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
+        "success": "Dépense ajouté avec succès",
+        "error": "Erreur lors de l'ajout du véhicule. Veuillez réessayer plus tard.",
+        "Form": {
+          "sum": "Somme :",
+          "comment": "Commentaire :",
+          "date": "Date :"
+        },
+        "button-cancel": "Annuler",
+        "button-submit": "Ajouter dépense"
+      },
+      "DeleteExpense": {
+        "title": "Est-ce que vous êtes sûr ?",
+        "question": "Vous êtes sur le point de supprimer cet dépense. Cette action est irréversible.",
+        "button-cancel": "Annuler",
+        "button-submit": "Supprimer",
+        "expense-delete-success": "Dépense supprimé avec succès !",
+        "expense-delete-error": "Erreur lors de la suppression de l'dépense. Veuillez réessayer plus tard."
+      },
+      "AddExpense": {
         "title": "Ajouter une nouvelle dépense",
         "subtitle": "Veuillez remplir les champs suivants pour ajouter une nouvelle dépense",
         "success": "Dépense ajouté avec succès",

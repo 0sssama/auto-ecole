@@ -1,5 +1,3 @@
-import { clerkClient } from '@clerk/nextjs';
-
 import { prisma } from '@/server/db';
 import type { FetchedExam } from '@/components/sections/exams/exam-file/types';
 
@@ -19,7 +17,11 @@ export const getExam = async (id: number): Promise<FetchedExam | null> => {
         select: {
           student: {
             select: {
+              id: true,
               clerkUserId: true,
+              profilePicture: true,
+              firstNameFr: true,
+              lastNameFr: true,
             },
           },
         },
@@ -29,19 +31,15 @@ export const getExam = async (id: number): Promise<FetchedExam | null> => {
 
   if (!exam) return null;
 
-  const student = await clerkClient.users.getUser(exam.licenseFile.student.clerkUserId);
-
-  if (!student) return null;
-
   const formattedExam: FetchedExam = {
     id: exam.id,
     status: exam.status,
     type: exam.type,
     date: exam.date,
     student: {
-      id: student.id,
-      fullName: `${student.firstName} ${student.lastName}`,
-      profilePictureUrl: student.hasImage ? student.imageUrl : '',
+      id: exam.licenseFile.student.clerkUserId,
+      fullName: `${exam.licenseFile.student.firstNameFr} ${exam.licenseFile.student.lastNameFr}`,
+      profilePicture: exam.licenseFile.student.profilePicture,
     },
   };
 

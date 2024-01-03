@@ -57,9 +57,6 @@ export const studentFormSchema = z.object({
     })
     .max(255, {
       message: 'يجب أن يكون العنوان 255 حرفًا على الأكثر.',
-    })
-    .refine(isArabicString, {
-      message: 'يجب أن يحتوي العنوان على أحرف عربية فقط.',
     }),
   professionFr: z
     .string()
@@ -97,7 +94,7 @@ export const studentFormSchema = z.object({
       message: 'La CIN doit comporter au moins 8 caractères.',
     })
     .max(10, {
-      message: 'Le CIN doit comporter au maximum 10 caractères.',
+      message: 'La CIN doit comporter au maximum 10 caractères.',
     }),
   email: z.string().email({
     message: "L'adresse électronique n'est pas valide.",
@@ -112,4 +109,25 @@ export const studentFormSchema = z.object({
       message: "L'étudiant doit être âgé d'au moins 18 ans.",
     },
   ),
+  birthplaceAr: z
+    .string()
+    .min(2, {
+      message: 'يجب أنيتكون مكان الإزدياد من 2 أحرف على الأقل.',
+    })
+    .max(255, {
+      message: 'يجب أن يتكون مكان الإزدياد من 255 حرفًا على الأكثر.',
+    })
+    .refine(isArabicString, {
+      message: 'يجب أن يحتوي مكان الإزدياد على أحرف عربية فقط.',
+    }),
+  birthplaceFr: z
+    .string()
+    .min(2, {
+      message: 'Le lieu de naissance doit comporter au moins 2 caractères.',
+    })
+    .max(10, {
+      message: 'Le Lieu de naissance doit comporter au maximum 10 caractères.',
+    }),
+  cinFile: z.string().default(''),
+  profilePicture: z.string().default(''),
 });

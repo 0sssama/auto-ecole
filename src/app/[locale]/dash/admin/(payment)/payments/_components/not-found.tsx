@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-export default function LessonNotFound() {
+export default function PaymentNotFound() {
   const t = useTranslations('Dashboard.Payment.Payments.NotFound');
 
   return (

@@ -24,6 +24,18 @@ export const seedInstructors = async (prisma: PrismaClient) =>
                 clerkOrgId,
                 fullName: `${instructorFirstName} ${instructorLastName}`,
                 rank: 'INSTRUCTOR',
+
+                school: {
+                  connect: {
+                    clerkOrgId,
+                  },
+                },
+              },
+            },
+
+            school: {
+              connect: {
+                clerkOrgId,
               },
             },
           },

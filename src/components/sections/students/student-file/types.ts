@@ -2,7 +2,9 @@ import type { FC } from 'react';
 
 export type StudentFolder = {
   id: number;
-  profilePictureUrl: string | null;
+  profilePicture: string;
+  cinFile: string;
+
   info: {
     fullName: string;
     nameAr: string;
@@ -12,6 +14,9 @@ export type StudentFolder = {
 
     professionFr: string;
     professionAr: string;
+
+    birthplaceFr: string;
+    birthplaceAr: string;
 
     phone: string;
     email: string;

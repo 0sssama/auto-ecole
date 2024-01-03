@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { Modal, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/modal';
 
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Spinner } from '@/components/atoms';
 import { Button } from '@/components/ui/button';
 import { useDeleteExam } from '@/base/hooks/exams/use-delete-exam';
@@ -26,28 +26,22 @@ const DeleteExamConfirm: ModalComponentType<{ examId: number }> = ({ isOpen, clo
   if (!isOpen) return null;
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={close}
-      size="sm"
-      className="max-h-[80vh] overflow-auto md:max-h-full"
-      scrollBehavior="inside"
-    >
-      <ModalContent>
-        <ModalHeader className="flex flex-col items-center gap-1 pt-4 text-center">
-          <h1 className="text-2xl font-semibold">{t('title')}</h1>
-          <p className="text-xs opacity-70">{t('description')}</p>
-        </ModalHeader>
-        <ModalFooter className="flex w-full flex-col gap-1">
-          <Button variant="destructive" onClick={deleteExam} disabled={isDeletingExam}>
+    <Dialog open={isOpen} defaultOpen={isOpen} modal onOpenChange={(isOpen) => !isOpen && close()}>
+      <DialogContent>
+        <DialogHeader className="flex flex-col items-center gap-1 pt-4 text-center">
+          <DialogTitle className="text-2xl font-semibold">{t('title')}</DialogTitle>
+          <DialogDescription className="text-xs opacity-70">{t('description')}</DialogDescription>
+        </DialogHeader>
+        <div className="flex w-full flex-col items-center justify-center gap-1">
+          <Button className="w-full" variant="destructive" onClick={deleteExam} disabled={isDeletingExam}>
             {isDeletingExam ? <Spinner size="xs" color="background" /> : t('button-submit')}
           </Button>
-          <Button variant="ghost" onClick={close} className="!text-destructive">
+          <Button variant="ghost" onClick={close} className="w-full !text-destructive">
             {t('button-cancel')}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 

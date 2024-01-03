@@ -37,6 +37,7 @@ export const getLesson = async (id: number): Promise<FetchedLesson | null> => {
           lastNameFr: true,
           firstNameFr: true,
           clerkUserId: true,
+          profilePicture: true,
         },
       },
     },
@@ -55,12 +56,12 @@ export const getLesson = async (id: number): Promise<FetchedLesson | null> => {
     instructor: {
       id: lesson.instructor.id,
       fullName: `${lesson.instructor.firstName} ${lesson.instructor.lastName}`,
-      profilePictureUrl: instructor.hasImage ? instructor.imageUrl : '',
+      profilePicture: '',
     },
     student: {
       id: lesson.student.id,
       fullName: `${lesson.student.firstNameFr} ${lesson.student.lastNameFr}`,
-      profilePictureUrl: student.hasImage ? student.imageUrl : '',
+      profilePicture: lesson.student.profilePicture,
     },
     status: lesson.status,
     comment: lesson.comment,

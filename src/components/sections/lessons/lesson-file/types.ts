@@ -5,12 +5,12 @@ export type FetchedLesson = {
   instructor: {
     id: number;
     fullName: string;
-    profilePictureUrl: string;
+    profilePicture: string;
   };
   student: {
     id: number;
     fullName: string;
-    profilePictureUrl: string;
+    profilePicture: string;
   };
   status: LessonStatus;
   comment: string;

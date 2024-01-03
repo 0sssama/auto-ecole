@@ -2,18 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 
-import { PageHeader, AddStudentModal } from '@/components/molecules';
-import { useModal } from '@/base/hooks/use-modal';
+import { PageHeader } from '@/components/molecules';
 import { StudentsListTable } from '@/components/sections/students';
 
 export default function StudentsPage() {
   const t = useTranslations('Dashboard.Users.Students.Header');
-  const addStudentModal = useModal();
 
   return (
     <main>
-      <PageHeader openModal={addStudentModal.open} t={t} />
-      <AddStudentModal {...addStudentModal} />
+      <PageHeader href="/dash/admin/students/create" t={t} />
       <div className="w-full">
         <StudentsListTable />
       </div>

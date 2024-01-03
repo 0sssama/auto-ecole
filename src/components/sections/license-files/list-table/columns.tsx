@@ -1,13 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { Chip } from '@nextui-org/chip';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { TooltipConcat } from '@/components/atoms';
-import { getLicenseFileStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { licenseFileSchema, type LicenseFile } from './schema';
@@ -91,9 +91,9 @@ export const columns: ColumnDef<LicenseFile>[] = [
 
       return (
         <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
-          <Chip color={getLicenseFileStatusChipColor(licenseFile.status)} size="sm">
+          <Badge variant={getLicenseFileStatusBadgeVariant(licenseFile.status)}>
             <span className="!text-[10px] font-bold md:text-sm">{t(licenseFile.status)?.toUpperCase()}</span>
-          </Chip>
+          </Badge>
         </Link>
       );
     },

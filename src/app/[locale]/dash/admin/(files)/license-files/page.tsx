@@ -1,17 +1,19 @@
-import { getTranslations } from 'next-intl/server';
+import { auth } from '@clerk/nextjs';
 
 import { getLicenseFile } from '@/base/utils/server/license-files/get-license-file';
 import { LicenseFile } from '@/components/sections/license-files';
-import type { Locale } from '@/base/data/locales';
+import { getContract } from '@/base/utils/server/contract/get-contract';
+import { Contract } from '@/components/pages';
 
 import LicenseFilesPage from './_components/license-files';
 import LicenseFileNotFound from './_components/not-found';
 
 export default async function LicenseFiles({
-  searchParams: { licenseFileId },
+  searchParams: { licenseFileId, renderContract },
 }: {
   searchParams: {
     licenseFileId: string | undefined;
+    renderContract: string | undefined;
   };
 }) {
   if (licenseFileId === undefined) return <LicenseFilesPage />;
@@ -20,26 +22,21 @@ export default async function LicenseFiles({
 
   if (Number.isNaN(id) || id <= 0) return <LicenseFileNotFound />;
 
-  const licenseFile = await getLicenseFile(id);
+  const contract = renderContract === 'true';
+
+  const { orgId } = auth();
+
+  if (contract) {
+    const contract = await getContract(id, orgId!);
+
+    if (!contract) return 'No contract for you.';
+
+    return <Contract {...contract} />;
+  }
+
+  const licenseFile = await getLicenseFile(id, orgId!);
 
   if (!licenseFile) return <LicenseFileNotFound />;
 
   return <LicenseFile licenseFile={licenseFile} />;
-}
-
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: {
-    locale: Locale;
-  };
-}) {
-  const t = await getTranslations({
-    locale,
-    namespace: 'Dashboard.Files.LicenseFiles.Header',
-  });
-
-  return {
-    title: `${t('title')} / Dashboard`,
-  };
 }

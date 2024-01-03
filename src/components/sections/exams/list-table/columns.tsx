@@ -1,14 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
-import { Chip } from '@nextui-org/chip';
+// eslint-disable-next-line import/no-duplicates
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// eslint-disable-next-line import/no-duplicates
+import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip } from '@/components/atoms';
-import { getExamStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getExamStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';
 import { examSchema, type Exam } from './schema';
@@ -52,9 +55,9 @@ export const columns: ColumnDef<Exam>[] = [
       const t = useTranslations('Dashboard.Files.Exams.ListTable.Status');
 
       return (
-        <Chip color={getExamStatusChipColor(exam.status)} size="sm">
+        <Badge variant={getExamStatusBadgeVariant(exam.status)}>
           <span className="!text-[10px] font-bold md:text-sm">{t(exam.status)}</span>
-        </Chip>
+        </Badge>
       );
     },
     enableSorting: false,
@@ -65,9 +68,10 @@ export const columns: ColumnDef<Exam>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="Exams.date" />,
     cell: ({ row }) => {
       const exam = examSchema.parse(row.original);
-      const date = moment(exam.date);
+      const date = new Date(exam.date);
+      const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
-      return <Tooltip content={date.calendar()}>{date.fromNow()}</Tooltip>;
+      return <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>;
     },
     enableSorting: false,
     enableHiding: false,

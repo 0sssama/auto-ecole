@@ -42,6 +42,8 @@ export const getStudentStatusFromLicenseFiles = (licenseFiles: { status: License
 
   if (statuses.has('ONGOING')) return 'active';
 
+  if (statuses.has('UNDEPOSITED')) return 'undeposited';
+
   if (statuses.has('VALIDATED')) return 'finished';
 
   if (statuses.has('REJECTED')) return 'rejected';
@@ -57,6 +59,10 @@ export const getStudentCategoryFromLicenseFiles = (
   const onGoingLicenseFile = licenseFiles.find((licenseFile) => licenseFile.status === 'ONGOING');
 
   if (onGoingLicenseFile) return onGoingLicenseFile.category;
+
+  const undepositedLicenseFile = licenseFiles.find((licenseFile) => licenseFile.status === 'UNDEPOSITED');
+
+  if (undepositedLicenseFile) return undepositedLicenseFile.category;
 
   const validatedLicenseFile = licenseFiles.find((licenseFile) => licenseFile.status === 'VALIDATED');
 
