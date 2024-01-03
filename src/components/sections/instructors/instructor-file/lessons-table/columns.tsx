@@ -5,13 +5,13 @@ import Link from 'next/link';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // eslint-disable-next-line import/no-duplicates
 import format from 'date-fns/format';
-import { Chip } from '@nextui-org/chip';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip, TooltipConcat } from '@/components/atoms';
-import { getLessonGradeChipColor, getLessonStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getLessonGradeBadgeVariant, getLessonStatusBadgeVariant } from '@/base/utils/client/get-chip-colors';
 
 import ActionsColumn from './actions-column';
 import { instructorLessonSchema, type InstructorLesson } from './schema';
@@ -47,9 +47,9 @@ export const columns: ColumnDef<InstructorLesson>[] = [
       const instructorLesson = instructorLessonSchema.parse(row.original);
 
       return (
-        <Chip color={getLessonStatusChipColor(instructorLesson.status)} size="sm">
+        <Badge variant={getLessonStatusBadgeVariant(instructorLesson.status)}>
           <span className="!text-[10px] font-bold md:text-sm">{t(instructorLesson.status)?.toUpperCase()}</span>
-        </Chip>
+        </Badge>
       );
     },
     enableSorting: false,
@@ -71,9 +71,9 @@ export const columns: ColumnDef<InstructorLesson>[] = [
       if (instructorLesson.grade === -1) return <>-</>;
 
       return (
-        <Chip color={getLessonGradeChipColor(instructorLesson.grade)} size="sm">
+        <Badge variant={getLessonGradeBadgeVariant(instructorLesson.grade)}>
           <span className="!text-[10px] font-bold md:text-sm">{instructorLesson.grade}</span>
-        </Chip>
+        </Badge>
       );
     },
     enableSorting: false,

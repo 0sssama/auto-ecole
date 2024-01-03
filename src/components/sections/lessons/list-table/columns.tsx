@@ -5,13 +5,13 @@ import Link from 'next/link';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // eslint-disable-next-line import/no-duplicates
 import format from 'date-fns/format';
-import { Chip } from '@nextui-org/chip';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 import { Tooltip, TooltipConcat } from '@/components/atoms';
-import { getLessonStatusChipColor } from '@/base/utils/client/get-chip-colors';
+import { getLessonStatusBadgeVariant } from '@/base/utils/client/get-chip-colors';
 
 import ActionsColumn from './actions-column';
 import { lessonSchema, type Lesson } from './schema';
@@ -62,9 +62,9 @@ export const columns: ColumnDef<Lesson>[] = [
       const lesson = lessonSchema.parse(row.original);
 
       return (
-        <Chip color={getLessonStatusChipColor(lesson.status)} size="sm">
+        <Badge variant={getLessonStatusBadgeVariant(lesson.status)}>
           <span className="!text-[10px] font-bold md:text-sm">{t(lesson.status)?.toUpperCase()}</span>
-        </Chip>
+        </Badge>
       );
     },
     enableSorting: false,
