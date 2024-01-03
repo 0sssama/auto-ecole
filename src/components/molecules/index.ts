@@ -5,9 +5,7 @@ export { default as ProfileImageColumn } from './profile-image-column';
 export { default as DossierInfo } from './dossier-info';
 export { default as PageHeader } from './page-header';
 
-const AddStudentModal = dynamic(() => import('./modals/add-student-modal'), { ssr: false });
 const AddInstructorModal = dynamic(() => import('./modals/add-instructor-modal'), { ssr: false });
-const AddLicenseFileModal = dynamic(() => import('./modals/add-license-file-modal'), { ssr: false });
 const AddExamModalSike = dynamic(() => import('./modals/add-exam-modal-sike'), { ssr: false });
 const AddExamModal = dynamic(() => import('./modals/add-exam-modal'), { ssr: false });
 const DeleteExamConfirmModal = dynamic(() => import('./modals/delete-exam-confirm'), { ssr: false });
@@ -23,9 +21,7 @@ const AddExpenseModal = dynamic(() => import('./modals/add-expense-modal'), { ss
 const DeleteExpenseModal = dynamic(() => import('./modals/delete-expense-modal'), { ssr: false });
 
 export {
-  AddStudentModal,
   AddInstructorModal,
-  AddLicenseFileModal,
   AddLicenseFileLessonModal,
   AddLicenseFilePaymentModal,
   AddPaymentModalSike,
