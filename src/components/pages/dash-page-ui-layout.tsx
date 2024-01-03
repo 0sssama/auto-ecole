@@ -12,7 +12,7 @@ export default function DashPageUILayout({ children }: { children: ReactNode }) 
 
   const searchParams = useSearchParams();
 
-  if (searchParams.get('renderContract') === 'true') return <>{children}</>;
+  if (searchParams.get('licenseFileId') && searchParams.get('renderContract') === 'true') return <>{children}</>;
 
   if (loading) return <DashPageLoading />;
 
