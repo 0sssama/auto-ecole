@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import snakeCase from 'lodash/snakeCase';
 import { useTranslations } from 'next-intl';
-import { FolderDown, ImageDown, UploadCloud, UserCircle2 } from 'lucide-react';
+import { ImageDown, UploadCloud, UserCircle2 } from 'lucide-react';
 import type { FC } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -34,13 +34,13 @@ const ProfileImageColumn: FC<ProfileImageColumnProps> = ({ profilePicture, cinFi
       </div>
       {type === 'student' && (
         <div className="flex w-full flex-col gap-2">
-          <Button className="w-full text-sm" variant="default" size="sm">
+          {/* <Button className="w-full text-sm" variant="default" size="sm">
             <FolderDown size={16} className="mr-2" />
             {t(`${type}-file`)}
-          </Button>
+          </Button> */}
           {cinFile && (
             <Link download={`${snakeCase(fullName)}_cin.pdf`} href={cinFile}>
-              <Button className="w-full text-sm" variant="outline" size="sm">
+              <Button className="w-full text-sm" size="sm">
                 <ImageDown size={16} className="mr-2" />
                 {t(`${type}-cin`)}
               </Button>

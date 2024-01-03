@@ -228,7 +228,10 @@
           "addressAr": "Addresse (Arabe): ",
 
           "professionFr": "Métier: ",
-          "professionAr": "Métier (Arabic): ",
+          "professionAr": "Métier (Arabe): ",
+
+          "birthplaceFr": "Lieu de naissance: ",
+          "birthplaceAr": "Lieu de naissance (Arabe): ",
 
           "phone": "Téléphone: ",
           "email": "Addresse E-mail: ",
@@ -256,6 +259,7 @@
           "student": "Étudiant :",
           "instructor": "Moniteur :",
           "createdBy": "Créé par :",
+          "print-contract": "Imprimer le contrat",
           "UserDesc": {
             "instructor": "Moniteur",
             "student": "Étudiant",
@@ -395,6 +399,7 @@
             "upload-cin-file": "Télécharger une copie CIN en format PDF (max. 4MO)",
             "email": "E-mail:",
             "birthdate": "Date de naissance:",
+            "birthplace": "Lieu de naissance:",
             "profilePicture": "Photo de profil:",
             "upload-profile-picture": "Télécharger une photo de profil (max. 4MO)"
           }

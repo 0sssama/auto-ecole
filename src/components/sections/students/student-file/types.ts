@@ -15,6 +15,9 @@ export type StudentFolder = {
     professionFr: string;
     professionAr: string;
 
+    birthplaceFr: string;
+    birthplaceAr: string;
+
     phone: string;
     email: string;
     cin: string;
