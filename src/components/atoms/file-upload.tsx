@@ -41,16 +41,16 @@ const FileUpload: FileUploadComponentType = ({ acceptMultiple, files, permittedF
     <div
       className={cn(
         'flex min-h-[175px] w-full cursor-pointer flex-col items-center justify-center',
-        'border-1·border-foreground-300·rounded-lg·border-dashed',
+        'border-1 border-foreground-300 rounded-lg border-dashed',
         'gap-1 p-4',
-        'duration-400·transition-colors`',
+        'duration-400 transition-colors`',
         'bg-accent/30 hover:bg-accent/80',
       )}
       {...getRootProps()}
     >
       <input type="file" accept={fileTypes.join(', ')} multiple={acceptMultiple} {...getInputProps()} />
       <span className="text-sm font-semibold">{children}</span>
-      <span className="foreground-400·text-xs">
+      <span className="foreground-400 text-xs">
         {files.get.length > 0 ? files.get.map((file) => concatFileName(file.name, 20)).join(', ') : t('idle')}
       </span>
     </div>

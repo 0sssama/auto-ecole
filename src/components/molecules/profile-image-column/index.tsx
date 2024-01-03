@@ -18,7 +18,7 @@ const ProfileImageColumn: FC<ProfileImageColumnProps> = ({ profilePicture, cinFi
     <div className="flex w-full max-w-[calc(100vw-3rem)] items-center gap-4 md:flex-col">
       <div className="flex w-full flex-col items-center gap-2">
         <div className="group relative flex aspect-square w-full max-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-muted">
-          <div className="duration-400·absolute·bottom-0·left-0·right-0·flex·items-center·justify-center·bg-gray-600/40·p-1·transition-all">
+          <div className="duration-400 absolute bottom-0 left-0 right-0 flex items-center justify-center bg-gray-600/40 p-1 transition-all">
             <UploadCloud className="text-white" size={16} />
           </div>
           {profilePicture ? (
