@@ -230,6 +230,9 @@
           "professionFr": "Profession: ",
           "professionAr": "Profession (arabic): ",
 
+          "birthplaceFr": "Birth place: ",
+          "birthplaceAr": "Birth place (arabic): ",
+
           "phone": "Phone Number: ",
           "email": "Email: ",
           "cin": "National ID Number: ",

@@ -228,7 +228,10 @@
           "addressAr": "Addresse (Arabe): ",
 
           "professionFr": "Métier: ",
-          "professionAr": "Métier (Arabic): ",
+          "professionAr": "Métier (Arabe): ",
+
+          "birthplaceFr": "Lieu de naissance: ",
+          "birthplaceAr": "Lieu de naissance (Arabe): ",
 
           "phone": "Téléphone: ",
           "email": "Addresse E-mail: ",
