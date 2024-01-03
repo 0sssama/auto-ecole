@@ -16,14 +16,14 @@ model School {
 
     name                String
     clerkOrgId          String @unique
+    city                String @default("")
     address             String @default("")
+    phone               String @default("")
+    fax                 String @default("")
+    email               String @default("")
     numRegistrePermis   String @default("")
     numRegistreCommerce String @default("")
     numRegistreFiscale  String @default("")
-    city                String @default("")
-    fax                 String @default("")
-    phone               String @default("")
-    email               String @default("")
     theoryHours         String @default("0")
     practiceHours       String @default("0")
 
