@@ -1,6 +1,8 @@
 'use client';
+/* eslint-disable import/no-duplicates  */
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import format from 'date-fns/format';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Chip } from '@nextui-org/chip';
@@ -30,6 +32,9 @@ function InfoData<InfoT extends InfoTypes>({ labelId, value }: InfoDataProps<Inf
     }
     case 'vehicleType': {
       return <p>{t('Vehicle.Type.' + value)}</p>;
+    }
+    case 'birthdate': {
+      return <p>{format(value as Date, 'dd/MM/yyyy')}</p>;
     }
     default: {
       break;
