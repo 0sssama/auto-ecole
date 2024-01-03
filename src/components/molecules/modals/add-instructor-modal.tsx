@@ -108,7 +108,7 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
           <AddNewInstructorForm
             form={form}
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-1 gap-x-6 gap-y-2 p-2 md:grid-cols-2"
+            className="grid grid-cols-1 gap-4 p-2"
           />
         </div>
         <DialogFooter className="flex items-center justify-end gap-1">
