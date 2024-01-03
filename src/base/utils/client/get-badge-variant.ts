@@ -16,7 +16,7 @@ export const getLicenseFileStatusBadgeVariant = (status: LicenseFileStatus): Var
       return 'success';
     }
     case LicenseFileStatus.UNDEPOSITED: {
-      return 'destructive';
+      return 'warning';
     }
     default: {
       return 'default';
@@ -84,7 +84,7 @@ export const getStudentStatusBadgeVariant = (status: Student['status']): Variant
       return 'success';
     }
     case 'undeposited': {
-      return 'destructive';
+      return 'warning';
     }
     case 'not-started': {
       return 'default';
