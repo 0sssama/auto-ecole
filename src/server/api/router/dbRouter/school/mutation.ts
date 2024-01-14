@@ -1,4 +1,4 @@
-import { schoolSettingsFormSchema } from '@/base/schemas/school-settings-form-schema';
+import { schoolSettingsFormSchema } from '@/base/schemas/school-settings-form.schema';
 import { createTRPCRouter, orgSuperAdminOnlyPrecedure } from '@/server/api/trpc';
 
 export const mutationRouter = createTRPCRouter({

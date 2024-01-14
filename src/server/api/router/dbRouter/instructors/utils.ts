@@ -1,6 +1,6 @@
 import type { Prisma } from '@prisma/client';
 
-import type { TableFilters } from '@/components/organisms/data-table/types';
+import type { TableFilters } from '@/components/organisms/data-table/data-table.types';
 
 const searchFilters = (search: TableFilters['get']['search']): Prisma.InstructorWhereInput[] => {
   const searchableFields: (keyof Prisma.InstructorWhereInput)[] = ['firstName', 'lastName', 'phone'];

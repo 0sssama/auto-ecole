@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server';
 
-import { lessonFormBackendInputSchema } from '@/base/schemas/lesson-form-schema';
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { lessonFormBackendInputSchema } from '@/base/schemas/lesson-form.schema';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure.input(lessonFormBackendInputSchema).mutation(async ({ input, ctx }) => {

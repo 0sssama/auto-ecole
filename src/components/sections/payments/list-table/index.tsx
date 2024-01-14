@@ -1,10 +1,10 @@
 'use client';
 
-import { DataTable } from '@/components/organisms';
+import { DataTable } from '@/components/organisms/data-table';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { api } from '@/base/utils/server/api';
-import type { Paginated } from '@/components/organisms/data-table/types';
+import type { Paginated } from '@/components/organisms/data-table/data-table.types';
 
 import { columns } from './columns';
 import type { Payment } from './schema';

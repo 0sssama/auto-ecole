@@ -7,16 +7,16 @@ import { toast } from 'sonner';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { Category, LicenseFileStatus } from '@prisma/client';
-import type { z } from 'zod';
 import { useEffect } from 'react';
 
-import { AddNewLicenseFileForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/atoms';
-import { licenseFileFormSchema } from '@/base/schemas/license-file-form-schema';
-import { api } from '@/base/utils/server/api';
+import { Spinner } from '@/components/atoms/spinner';
+import { licenseFileFormSchema, type LicenseFileFormValues } from '@/base/schemas/license-file-form.schema';
 import { createQueryString } from '@/base/utils/client/create-query-string';
 import { Separator } from '@/components/ui/separator';
+import { AddNewLicenseFileForm } from '@/components/organisms/forms/license-files/add';
+import { useAddLicenseFile } from '@/base/hooks/license-files/add/use-add-license-file';
+import { DASH_LICENSE_FILES_PATH } from '@/base/data/paths';
 
 export default function CreateLicenseFilePage() {
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function CreateLicenseFilePage() {
 
   const t = useTranslations('Dashboard.Files.LicenseFiles.Create');
 
-  const form = useForm<z.infer<typeof licenseFileFormSchema>>({
+  const form = useForm<LicenseFileFormValues>({
     resolver: zodResolver(licenseFileFormSchema),
     defaultValues: {
       studentId: searchParams.get('studentId') ?? '0',
@@ -37,33 +37,17 @@ export default function CreateLicenseFilePage() {
     },
   });
 
-  const data = useWatch({
-    control: form.control,
-  });
+  const data = useWatch({ control: form.control });
 
-  const {
-    mutate: addLicenseFile,
-    isLoading,
-    error,
-  } = api.db.licenseFiles.mutation.add.useMutation({
+  const { addLicenseFile, isAdding, additionError } = useAddLicenseFile({
     onSuccess: () => {
-      //   void ctx.users.getPage.invalidate();
       toast.success(t('success'));
-      router.push('/dash/admin/license-files');
+      router.push(DASH_LICENSE_FILES_PATH);
     },
-    onError: (error) => {
-      console.error(error);
+    onError: () => {
       toast.error(t('error'));
     },
   });
-
-  const onSubmit = (values: z.infer<typeof licenseFileFormSchema>) =>
-    addLicenseFile({
-      ...values,
-      studentId: Number(values.studentId),
-      instructorId: Number(values.instructorId),
-      price: Number(values.price),
-    });
 
   useEffect(() => {
     if (!data.studentId || data.studentId === '0') return;
@@ -90,7 +74,7 @@ export default function CreateLicenseFilePage() {
   }, [data.instructorId]);
 
   return (
-    <main className="relative w-full">
+    <>
       <div className="flex w-full flex-col gap-2">
         <div>
           <Button
@@ -107,27 +91,27 @@ export default function CreateLicenseFilePage() {
       </div>
       <div className="mt-4 flex w-full flex-col items-end gap-8 lg:max-w-[60%]">
         <Separator />
-        {error && (
+        {additionError && (
           <div className="w-full rounded bg-destructive/10 px-2 py-4 text-center">
             <p className="text-center text-sm font-bold text-destructive">{t('error')}</p>
           </div>
         )}
         <AddNewLicenseFileForm
           form={form}
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(addLicenseFile)}
           className="flex w-full flex-col gap-4"
         />
         <div className="w-full md:w-fit">
           <Button
             variant="default"
-            onClick={form.handleSubmit(onSubmit)}
-            disabled={isLoading}
+            onClick={form.handleSubmit(addLicenseFile)}
+            disabled={isAdding}
             className="w-full md:w-fit"
           >
-            {isLoading ? <Spinner size="xs" color="background" /> : t('button-submit')}
+            {isAdding ? <Spinner size="xs" color="background" /> : t('button-submit')}
           </Button>
         </div>
       </div>
-    </main>
+    </>
   );
 }

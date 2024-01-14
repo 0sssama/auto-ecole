@@ -7,17 +7,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import type { z } from 'zod';
 
-import { studentFormSchema } from '@/base/schemas/student-form-schema';
 import { useAddStudent } from '@/base/hooks/students/create/use-add-student';
-import { AddNewStudentForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { useFileUpload } from '@/base/hooks/use-file-upload';
 import { useModal } from '@/base/hooks/use-modal';
-import { ShouldCreateLicenseFileModal } from '@/components/molecules';
 import { Separator } from '@/components/ui/separator';
+import { LicenseFileRedirectModal } from '@/components/molecules/modal/license-files/add/student-creation-redirect';
+import { AddNewStudentForm } from '@/components/organisms/forms/students/add';
+import { studentFormSchema, type StudentFormValues } from '@/base/schemas/student-form.schema';
 
 export default function CreateStudentPage() {
   const router = useRouter();
@@ -27,7 +26,7 @@ export default function CreateStudentPage() {
   const [studentId, setStudentId] = useState<number | null>(null);
   const licenseFileModal = useModal();
 
-  const form = useForm<z.infer<typeof studentFormSchema>>({
+  const form = useForm<StudentFormValues>({
     resolver: zodResolver(studentFormSchema),
     defaultValues: {
       firstNameAr: '',
@@ -79,7 +78,7 @@ export default function CreateStudentPage() {
 
   const isUploading = isUploading1 || isUploading2;
 
-  const onSubmit = (values: z.infer<typeof studentFormSchema>) =>
+  const onSubmit = (values: StudentFormValues) =>
     Promise.all([uploadPFP(), uploadCIN()])
       .then(([{ response: response1 }, { response: response2 }]) => [response1[0], response2[0]])
       .then(([{ url: pfpUrl }, { url: cinUrl }]) =>
@@ -90,9 +89,9 @@ export default function CreateStudentPage() {
       });
 
   return (
-    <main className="relative w-full">
+    <>
       {studentId && (
-        <ShouldCreateLicenseFileModal
+        <LicenseFileRedirectModal
           {...licenseFileModal}
           context={{
             studentId,
@@ -136,6 +135,6 @@ export default function CreateStudentPage() {
           </Button>
         </div>
       </div>
-    </main>
+    </>
   );
 }

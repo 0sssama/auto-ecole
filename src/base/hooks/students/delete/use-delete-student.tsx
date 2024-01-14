@@ -1,16 +1,16 @@
+import { useDeleteClerkUser } from '@/base/hooks/clerk/use-delete-clerk-user';
 import type { TRPCOptions } from '@/base/types';
 
-import { useDeleteStudentFromClerk } from './use-delete-student-from-clerk';
 import { useDeleteStudentFromDb } from './use-delete-student-from-db';
 
 export const useDeleteStudent = (studentId: number, options?: TRPCOptions) => {
   const { onSuccess, onError } = options ?? {};
 
   const {
-    deleteStudent: deleteStudentFromClerk,
+    deleteClerkUser: deleteStudentFromClerk,
     isDeleting: isDeletingStudentFromClerk,
     deletionError: clerkDeletionError,
-  } = useDeleteStudentFromClerk({
+  } = useDeleteClerkUser({
     ...(onSuccess ? { onSuccess } : {}),
     ...(onError ? { onError } : {}),
   });

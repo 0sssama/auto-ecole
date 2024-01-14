@@ -1,6 +1,6 @@
 import type { Prisma } from '@prisma/client';
 
-import type { TableFilters } from '@/components/organisms/data-table/types';
+import type { TableFilters } from '@/components/organisms/data-table/data-table.types';
 
 export const getWhereObjFromFilters = (filters: TableFilters['get']): Prisma.ExamWhereInput => {
   void filters;

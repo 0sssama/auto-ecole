@@ -6,8 +6,9 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import format from 'date-fns/format';
 import type { ColumnDef } from '@tanstack/react-table';
 
-import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { Tooltip, TooltipConcat } from '@/components/atoms';
+import DataTableColumnHeader from '@/components/organisms/data-table/components/column-header';
+import { Tooltip } from '@/components/atoms/tooltip';
+import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 
 import ActionsColumn from './actions-column';
 import { vehicleExpenseSchema, type VehicleExpense } from './schema';

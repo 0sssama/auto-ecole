@@ -2,15 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 
-import { PageContentHeader } from '@/components/molecules';
+import { PageContentHeader } from '@/components/molecules/page-content-header';
 
 export default function StudentFolder() {
   const t = useTranslations('Dashboard.Student.Folder');
 
   return (
-    <main>
+    <>
       <PageContentHeader title={t('title')} />
       <div className="w-full"></div>
-    </main>
+    </>
   );
 }

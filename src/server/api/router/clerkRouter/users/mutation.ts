@@ -3,9 +3,9 @@ import { clerkClient } from '@clerk/nextjs';
 import { TRPCError } from '@trpc/server';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { studentFormSchema } from '@/base/schemas/student-form-schema';
-import { instructorFormSchema } from '@/base/schemas/instructor-form-schema';
+import { studentFormSchema } from '@/base/schemas/student-form.schema';
 import { createNewCredentials } from '@/base/utils/client/create-new-credentials';
+import { instructorFormSchema } from '@/components/molecules/modal/instructors/add/add.types';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure

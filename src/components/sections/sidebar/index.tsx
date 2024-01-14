@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+import { Link } from '@/components/atoms/link';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/base/utils/client/cn';
 import { useMedia } from '@/base/hooks/use-media';

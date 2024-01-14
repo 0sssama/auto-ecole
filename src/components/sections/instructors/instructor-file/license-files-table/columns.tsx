@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 // eslint-disable-next-line import/no-duplicates
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // eslint-disable-next-line import/no-duplicates
@@ -8,10 +7,13 @@ import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Link } from '@/components/atoms/link';
 import { Badge } from '@/components/ui/badge';
-import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { Tooltip, TooltipConcat } from '@/components/atoms';
+import DataTableColumnHeader from '@/components/organisms/data-table/components/column-header';
+import { Tooltip } from '@/components/atoms/tooltip';
+import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
+import { DASH_LICENSE_FILES_PATH } from '@/base/data/paths';
 
 import ActionsColumn from './actions-column';
 import { instructorLicenseFileSchema, type InstructorLicenseFile } from './schema';
@@ -31,7 +33,7 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           <TooltipConcat className="text-left" text={licenseFile.studentName} />
         </Link>
       );
@@ -47,7 +49,7 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           {t(licenseFile.category)} ({licenseFile.category})
         </Link>
       );
@@ -62,7 +64,7 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           {row.getValue('price')} DH
         </Link>
       );
@@ -78,7 +80,7 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const licenseFile = instructorLicenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           <Badge variant={getLicenseFileStatusBadgeVariant(licenseFile.status)}>
             <span className="!text-[10px] font-bold md:text-sm">{t(licenseFile.status)?.toUpperCase()}</span>
           </Badge>
@@ -96,7 +98,7 @@ export const columns: ColumnDef<InstructorLicenseFile>[] = [
       const date = new Date(licenseFile.createdAt);
       const relativeTime = formatDistanceToNow(date, { addSuffix: true });
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           <Tooltip content={format(date, "EEEE, LLLL do, yyyy 'at' h:mm a")}>{relativeTime}</Tooltip>
         </Link>
       );

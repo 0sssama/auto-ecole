@@ -7,7 +7,7 @@ import { Check, ChevronsUpDown } from 'lucide-react';
 
 import { cn } from '@/base/utils/client/cn';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 

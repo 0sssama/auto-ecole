@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
-import { instructorFormSchema } from '@/base/schemas/instructor-form-schema';
 import { createNewCredentials } from '@/base/utils/client/create-new-credentials';
+import { instructorFormSchema } from '@/components/molecules/modal/instructors/add';
 
 export const mutationRouter = createTRPCRouter({
   add: orgAdminOnlyPrecedure

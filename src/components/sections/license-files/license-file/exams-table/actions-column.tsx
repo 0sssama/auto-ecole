@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { Eye, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+import { Link } from '@/components/atoms/link';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,8 +14,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/base/utils/client/cn';
 import { useModal } from '@/base/hooks/use-modal';
-import { DeleteExamConfirmModal } from '@/components/molecules';
-import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
+import { ExamDeleteConfirmModal } from '@/components/molecules/modal/exams/delete-confirm';
+import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
+import { DASH_EXAMS_PATH } from '@/base/data/paths';
 
 import { type LicenseFileExam, licenseFileExamSchema } from './schema';
 
@@ -28,7 +29,7 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExam> = ({ row }) => 
 
   return (
     <DropdownMenu>
-      <DeleteExamConfirmModal {...deleteExamModal} context={{ examId: exam.id }} />
+      <ExamDeleteConfirmModal {...deleteExamModal} context={{ examId: exam.id }} />
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="flex h-8 w-8 p-0 data-[state=open]:bg-muted">
           <MoreHorizontal className="h-4 w-4" />
@@ -37,7 +38,7 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExam> = ({ row }) => 
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-[160px]">
         <DropdownMenuItem className="cursor-pointer text-sm font-medium text-muted-foreground/90">
-          <Link className="flex h-full w-full items-center" href={`/dash/admin/exams?examId=${exam.id}`}>
+          <Link className="flex h-full w-full items-center" href={`${DASH_EXAMS_PATH}?examId=${exam.id}`}>
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t('view')}
           </Link>
