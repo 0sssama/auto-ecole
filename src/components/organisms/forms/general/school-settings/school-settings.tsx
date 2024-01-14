@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import type { SchoolSettingsFormValues } from '@/base/schemas/school-settings-form-schema';
+import type { SchoolSettingsFormValues } from '@/base/schemas/school-settings-form.schema';
 
 import type { FormComponentType } from '../../forms.types';
 

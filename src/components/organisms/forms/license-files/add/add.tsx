@@ -9,7 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Combobox } from '@/components/ui/combobox';
 import { api } from '@/base/utils/server/api';
-import type { licenseFileFormSchema } from '@/base/schemas/license-file-form-schema';
+import type { licenseFileFormSchema } from '@/base/schemas/license-file-form.schema';
 
 import type { FormComponentType } from '../../forms.types';
 

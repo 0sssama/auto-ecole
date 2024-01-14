@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { useEffect } from 'react';
 
-import { schoolSettingsFormSchema, type SchoolSettingsFormValues } from '@/base/schemas/school-settings-form-schema';
+import { schoolSettingsFormSchema, type SchoolSettingsFormValues } from '@/base/schemas/school-settings-form.schema';
 import { useGetSchool } from '@/base/hooks/school/use-get-school';
 import { useUpdateSchool } from '@/base/hooks/school/use-update-school';
 import { Separator } from '@/components/ui/separator';

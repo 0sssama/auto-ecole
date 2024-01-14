@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { DatePicker } from '@/components/ui/date-picker';
-import type { StudentFormValues } from '@/base/schemas/student-form-schema';
+import type { StudentFormValues } from '@/base/schemas/student-form.schema';
 import type { UseFileUploadHook } from '@/base/hooks/use-file-upload/types';
 
 import type { FormComponentType } from '../../forms.types';

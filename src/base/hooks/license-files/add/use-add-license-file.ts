@@ -1,6 +1,6 @@
 import { api } from '@/base/utils/server/api';
 import type { TRPCOptions } from '@/base/types';
-import type { LicenseFileFormValues } from '@/base/schemas/license-file-form-schema';
+import type { LicenseFileFormValues } from '@/base/schemas/license-file-form.schema';
 
 export const useAddLicenseFile = (options?: TRPCOptions) => {
   const { onSuccess, onError } = options ?? {};

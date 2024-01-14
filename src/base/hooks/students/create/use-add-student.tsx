@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { z } from 'zod';
 
 import type { TRPCOptions } from '@/base/types';
-import type { studentFormSchema } from '@/base/schemas/student-form-schema';
+import type { studentFormSchema } from '@/base/schemas/student-form.schema';
 
 import { useDeleteClerkUser } from '../../clerk/use-delete-clerk-user';
 

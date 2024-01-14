@@ -16,7 +16,7 @@ import { useModal } from '@/base/hooks/use-modal';
 import { Separator } from '@/components/ui/separator';
 import { LicenseFileRedirectModal } from '@/components/molecules/modal/license-files/add/student-creation-redirect';
 import { AddNewStudentForm } from '@/components/organisms/forms/students/add';
-import { studentFormSchema, type StudentFormValues } from '@/base/schemas/student-form-schema';
+import { studentFormSchema, type StudentFormValues } from '@/base/schemas/student-form.schema';
 
 export default function CreateStudentPage() {
   const router = useRouter();

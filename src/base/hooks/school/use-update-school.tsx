@@ -1,4 +1,4 @@
-import type { SchoolSettingsFormValues } from '@/base/schemas/school-settings-form-schema';
+import type { SchoolSettingsFormValues } from '@/base/schemas/school-settings-form.schema';
 import type { TRPCOptions } from '@/base/types';
 import { api } from '@/base/utils/server/api';
 

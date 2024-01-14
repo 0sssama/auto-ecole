@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms/spinner';
-import { licenseFileFormSchema, type LicenseFileFormValues } from '@/base/schemas/license-file-form-schema';
+import { licenseFileFormSchema, type LicenseFileFormValues } from '@/base/schemas/license-file-form.schema';
 import { createQueryString } from '@/base/utils/client/create-query-string';
 import { Separator } from '@/components/ui/separator';
 import { AddNewLicenseFileForm } from '@/components/organisms/forms/license-files/add';
