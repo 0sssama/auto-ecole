@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
+import { DASH_LICENSE_FILES_PATH } from '@/base/data/paths';
 
 import { paymentSchema, type Payment } from './schema';
 
@@ -32,7 +33,7 @@ const ActionsColumn: ActionsColumnComponentType<Payment> = ({ row }) => {
         <DropdownMenuItem className="cursor-pointer text-sm font-medium text-muted-foreground/90">
           <Link
             className="flex h-full w-full items-center"
-            href={`/dash/admin/license-files?licenseFileId=${payment.id}`}
+            href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${payment.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t('view')}

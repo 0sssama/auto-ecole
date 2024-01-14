@@ -8,6 +8,7 @@ import DataTableColumnHeader from '@/components/organisms/data-table/components/
 import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 import { Link } from '@/components/atoms/link';
+import { DASH_LICENSE_FILES_PATH } from '@/base/data/paths';
 
 import ActionsColumn from './actions-column';
 import { licenseFileSchema, type LicenseFile } from './schema';
@@ -27,7 +28,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           <TooltipConcat className="text-left" text={licenseFile.student.name} />
         </Link>
       );
@@ -42,7 +43,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           <TooltipConcat className="text-left" text={licenseFile.instructor.name} />
         </Link>
       );
@@ -59,7 +60,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           {t(licenseFile.category)} ({licenseFile.category})
         </Link>
       );
@@ -74,7 +75,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           {row.getValue('price')} DH
         </Link>
       );
@@ -90,7 +91,7 @@ export const columns: ColumnDef<LicenseFile>[] = [
       const licenseFile = licenseFileSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/license-files?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
+        <Link href={`${DASH_LICENSE_FILES_PATH}?licenseFileId=${licenseFile.id}`} className="flex h-full w-full">
           <Badge variant={getLicenseFileStatusBadgeVariant(licenseFile.status)}>
             <span className="!text-[10px] font-bold md:text-sm">{t(licenseFile.status)?.toUpperCase()}</span>
           </Badge>

@@ -16,6 +16,7 @@ import { useModal } from '@/base/hooks/use-modal';
 import { cn } from '@/base/utils/client/cn';
 import { ExamDeleteConfirmModal } from '@/components/molecules/modal/exams/delete-confirm';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
+import { DASH_EXAMS_PATH } from '@/base/data/paths';
 
 import { type Exam, examSchema } from './schema';
 
@@ -37,7 +38,7 @@ const ActionsColumn: ActionsColumnComponentType<Exam> = ({ row }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-[160px]">
         <DropdownMenuItem className="cursor-pointer text-sm font-medium text-muted-foreground/90">
-          <Link className="flex h-full w-full items-center" href={`/dash/admin/exams?examId=${exam.id}`}>
+          <Link className="flex h-full w-full items-center" href={`${DASH_EXAMS_PATH}?examId=${exam.id}`}>
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t('view')}
           </Link>

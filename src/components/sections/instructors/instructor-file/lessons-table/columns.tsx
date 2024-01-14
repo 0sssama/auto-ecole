@@ -13,6 +13,7 @@ import DataTableColumnHeader from '@/components/organisms/data-table/components/
 import { Tooltip } from '@/components/atoms/tooltip';
 import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 import { getLessonGradeBadgeVariant, getLessonStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
+import { DASH_STUDENTS_PATH } from '@/base/data/paths';
 
 import ActionsColumn from './actions-column';
 import { instructorLessonSchema, type InstructorLesson } from './schema';
@@ -32,7 +33,7 @@ export const columns: ColumnDef<InstructorLesson>[] = [
       const instructorLesson = instructorLessonSchema.parse(row.original);
 
       return (
-        <Link href={`/dash/admin/students?studentId=${instructorLesson.studentId}`}>
+        <Link href={`${DASH_STUDENTS_PATH}?studentId=${instructorLesson.studentId}`}>
           <TooltipConcat className="text-left" text={instructorLesson.studentName} />
         </Link>
       );

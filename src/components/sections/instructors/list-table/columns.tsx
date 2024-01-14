@@ -4,6 +4,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 
 import { Link } from '@/components/atoms/link';
 import DataTableColumnHeader from '@/components/organisms/data-table/components/column-header';
+import { DASH_INSTRUCTORS_PATH } from '@/base/data/paths';
 
 import { ActionsColumn } from './actions-column';
 import { instructorSchema, type Instructor } from './schema';
@@ -23,7 +24,7 @@ export const columns: ColumnDef<Instructor>[] = [
       const instructor = instructorSchema.parse(row.original);
 
       return (
-        <Link className="flex space-x-2" href={`/dash/admin/instructors?instructorId=${instructor.id}`}>
+        <Link className="flex space-x-2" href={`${DASH_INSTRUCTORS_PATH}?instructorId=${instructor.id}`}>
           <span className="max-w-[500px] truncate font-medium">{instructor.fullName}</span>
         </Link>
       );

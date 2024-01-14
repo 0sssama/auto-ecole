@@ -16,6 +16,21 @@ import {
 import type { OrganizationCustomRoleKey } from '@clerk/types';
 
 import type { TranslationFunction } from '@/base/types';
+import {
+  DASH_EDITORS_PATH,
+  DASH_EXAMS_PATH,
+  DASH_EXPENSES_PATH,
+  DASH_FINANCIAL_OVERVIEW_PATH,
+  DASH_INSTRUCTORS_PATH,
+  DASH_LESSONS_PATH,
+  DASH_LICENSE_FILES_PATH,
+  DASH_LOGOUT_PATH,
+  DASH_MEMBER_FOLDER_PATH,
+  DASH_PAYMENTS_PATH,
+  DASH_SETTINGS_PATH,
+  DASH_STUDENTS_PATH,
+  DASH_VEHICLES_PATH,
+} from '@/base/data/paths';
 
 import type { SidebarLinkGroupProps } from './types';
 
@@ -30,8 +45,7 @@ export const getFallbackSidebarLinks = (t: TranslationFunction = () => ''): Side
     links: [
       {
         name: t('logout'),
-        // eslint-disable-next-line sonarjs/no-duplicate-string
-        href: '/dash/logout',
+        href: DASH_LOGOUT_PATH,
         icon: <LogOut {...sidebarIconProps} />,
         isSignOut: true,
       },
@@ -51,17 +65,17 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('clients'),
-            href: '/dash/admin/students',
+            href: DASH_STUDENTS_PATH,
             icon: <User2 {...sidebarIconProps} />,
           },
           {
             name: t('monitors'),
-            href: '/dash/admin/instructors',
+            href: DASH_INSTRUCTORS_PATH,
             icon: <Users2 {...sidebarIconProps} />,
           },
           {
             name: t('editors'),
-            href: '/dash/admin/editors',
+            href: DASH_EDITORS_PATH,
             icon: <Building {...sidebarIconProps} />,
           },
         ],
@@ -71,17 +85,17 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('license-files'),
-            href: '/dash/admin/license-files',
+            href: DASH_LICENSE_FILES_PATH,
             icon: <Folders {...sidebarIconProps} />,
           },
           {
             name: t('lessons'),
-            href: '/dash/admin/lessons',
+            href: DASH_LESSONS_PATH,
             icon: <BookOpenCheck {...sidebarIconProps} />,
           },
           {
             name: t('exams'),
-            href: '/dash/admin/exams',
+            href: DASH_EXAMS_PATH,
             icon: <GraduationCap {...sidebarIconProps} />,
           },
         ],
@@ -91,17 +105,17 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('payments'),
-            href: '/dash/admin/payments',
+            href: DASH_PAYMENTS_PATH,
             icon: <Wallet2 {...sidebarIconProps} />,
           },
           {
             name: t('expenses'),
-            href: '/dash/admin/expenses',
+            href: DASH_EXPENSES_PATH,
             icon: <Banknote {...sidebarIconProps} />,
           },
           {
             name: t('financial-overview'),
-            href: '/dash/admin/financial-overview',
+            href: DASH_FINANCIAL_OVERVIEW_PATH,
             icon: <CircleDollarSign {...sidebarIconProps} />,
           },
         ],
@@ -111,7 +125,7 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('vehicles'),
-            href: '/dash/admin/vehicles',
+            href: DASH_VEHICLES_PATH,
             icon: <CarFront {...sidebarIconProps} />,
           },
         ],
@@ -121,13 +135,12 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('settings'),
-            // eslint-disable-next-line sonarjs/no-duplicate-string
-            href: '/dash/settings',
+            href: DASH_SETTINGS_PATH,
             icon: <Settings {...sidebarIconProps} />,
           },
           {
             name: t('logout'),
-            href: '/dash/logout',
+            href: DASH_LOGOUT_PATH,
             icon: <LogOut {...sidebarIconProps} />,
             isSignOut: true,
           },
@@ -140,12 +153,12 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('clients'),
-            href: '/dash/admin/students',
+            href: DASH_STUDENTS_PATH,
             icon: <User2 {...sidebarIconProps} />,
           },
           {
             name: t('monitors'),
-            href: '/dash/admin/instructors',
+            href: DASH_INSTRUCTORS_PATH,
             icon: <Users2 {...sidebarIconProps} />,
           },
         ],
@@ -155,17 +168,17 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('license-files'),
-            href: '/dash/admin/license-files',
+            href: DASH_LICENSE_FILES_PATH,
             icon: <Folders {...sidebarIconProps} />,
           },
           {
             name: t('lessons'),
-            href: '/dash/admin/lessons',
+            href: DASH_LESSONS_PATH,
             icon: <BookOpenCheck {...sidebarIconProps} />,
           },
           {
             name: t('exams'),
-            href: '/dash/admin/exams',
+            href: DASH_EXAMS_PATH,
             icon: <GraduationCap {...sidebarIconProps} />,
           },
         ],
@@ -175,7 +188,7 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('payments'),
-            href: '/dash/admin/payments',
+            href: DASH_PAYMENTS_PATH,
             icon: <Banknote {...sidebarIconProps} />,
           },
         ],
@@ -185,7 +198,7 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('vehicles'),
-            href: '/dash/admin/vehicles',
+            href: DASH_VEHICLES_PATH,
             icon: <CarFront {...sidebarIconProps} />,
           },
         ],
@@ -195,12 +208,12 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('settings'),
-            href: '/dash/settings',
+            href: DASH_SETTINGS_PATH,
             icon: <Settings {...sidebarIconProps} />,
           },
           {
             name: t('logout'),
-            href: '/dash/logout',
+            href: DASH_LOGOUT_PATH,
             icon: <LogOut {...sidebarIconProps} />,
             isSignOut: true,
           },
@@ -213,17 +226,17 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('folder'),
-            href: '/dash/member/folder',
+            href: DASH_MEMBER_FOLDER_PATH,
             icon: <Folder {...sidebarIconProps} />,
           },
           {
             name: t('settings'),
-            href: '/dash/settings',
+            href: DASH_SETTINGS_PATH,
             icon: <Settings {...sidebarIconProps} />,
           },
           {
             name: t('logout'),
-            href: '/dash/logout',
+            href: DASH_LOGOUT_PATH,
             icon: <LogOut {...sidebarIconProps} />,
             isSignOut: true,
           },
@@ -236,7 +249,7 @@ export const getSidebarLinks = (
         links: [
           {
             name: t('logout'),
-            href: '/dash/logout',
+            href: DASH_LOGOUT_PATH,
             icon: <LogOut {...sidebarIconProps} />,
             isSignOut: true,
           },

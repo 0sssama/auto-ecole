@@ -8,6 +8,7 @@ import DataTableColumnHeader from '@/components/organisms/data-table/components/
 import { getStudentStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { DASH_STUDENTS_PATH } from '@/base/data/paths';
 
 import ActionsColumn from './data-table-row-actions';
 import { studentSchema, type Student } from './schema';
@@ -28,7 +29,7 @@ export const columns: ColumnDef<Student>[] = [
       const student = studentSchema.parse(row.original);
 
       return (
-        <Link className="flex items-center space-x-2" href={`/dash/admin/students?studentId=${student.id}`}>
+        <Link className="flex items-center space-x-2" href={`${DASH_STUDENTS_PATH}?studentId=${student.id}`}>
           <Avatar className="h-9 w-9">
             <AvatarImage src={student.profilePicture} alt={student.name} />
             <AvatarFallback>{student.name.slice(0, 2).toUpperCase()}</AvatarFallback>

@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/components/column-header';
 import { Tooltip } from '@/components/atoms/tooltip';
 import { getExamStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
+import { DASH_STUDENTS_PATH } from '@/base/data/paths';
 
 import ActionsColumn from './actions-column';
 import { examSchema, type Exam } from './schema';
@@ -30,7 +31,7 @@ export const columns: ColumnDef<Exam>[] = [
     cell: ({ row }) => {
       const exam = examSchema.parse(row.original);
 
-      return <Link href={`/dash/admin/students?studentId=${exam.student.id}`}>{exam.student.fullName}</Link>;
+      return <Link href={`${DASH_STUDENTS_PATH}?studentId=${exam.student.id}`}>{exam.student.fullName}</Link>;
     },
     enableSorting: false,
     enableHiding: false,

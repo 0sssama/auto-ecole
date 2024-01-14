@@ -16,6 +16,7 @@ import {
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
 import { useModal } from '@/base/hooks/use-modal';
 import { DeleteExpenseModal } from '@/components/molecules/modal/expenses/delete';
+import { DASH_EXPENSES_PATH } from '@/base/data/paths';
 
 import { licenseFileExpenseSchema, type LicenseFileExpense } from './schema';
 
@@ -39,7 +40,7 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExpense> = ({ row }) 
         <DropdownMenuItem className="cursor-pointer text-sm font-medium text-muted-foreground/90">
           <Link
             className="flex h-full w-full items-center"
-            href={`/dash/admin/expenses?expenseId=${licenseFileExpense.id}`}
+            href={`${DASH_EXPENSES_PATH}?expenseId=${licenseFileExpense.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t('view')}

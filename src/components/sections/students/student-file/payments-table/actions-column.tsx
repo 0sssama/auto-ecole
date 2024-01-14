@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
+import { DASH_PAYMENTS_PATH } from '@/base/data/paths';
 
 import { studentPaymentSchema, type StudentPayment } from './schema';
 
@@ -32,7 +33,7 @@ const ActionsColumn: ActionsColumnComponentType<StudentPayment> = ({ row }) => {
         <DropdownMenuItem className="cursor-pointer text-sm font-medium text-muted-foreground/90">
           <Link
             className="flex h-full w-full items-center"
-            href={`/dash/admin/payments?paymentId=${studentPayment.id}`}
+            href={`${DASH_PAYMENTS_PATH}?paymentId=${studentPayment.id}`}
           >
             <Eye className="mr-2 h-3.5 w-3.5" />
             {t('view')}
