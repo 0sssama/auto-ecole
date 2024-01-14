@@ -5,7 +5,9 @@ import { useSearchParams } from 'next/navigation';
 
 import { Header, Sidebar } from '@/components/sections';
 import { useSetActiveOrganization } from '@/base/hooks/use-set-active-organization';
-import { DashPageError, DashPageLoading } from '@/components/pages';
+
+import { DashboardLoading } from '../loading';
+import { DashboardError } from '../error';
 
 export default function DashPageUILayout({ children }: { children: ReactNode }) {
   const { loading, noOrgFound } = useSetActiveOrganization();
@@ -14,9 +16,9 @@ export default function DashPageUILayout({ children }: { children: ReactNode }) 
 
   if (searchParams.get('licenseFileId') && searchParams.get('renderContract') === 'true') return <>{children}</>;
 
-  if (loading) return <DashPageLoading />;
+  if (loading) return <DashboardLoading />;
 
-  if (noOrgFound) return <DashPageError />;
+  if (noOrgFound) return <DashboardError />;
 
   return (
     <div className="mx-auto grid h-full min-h-screen w-full max-w-screen-xl bg-background lg:grid-cols-5">

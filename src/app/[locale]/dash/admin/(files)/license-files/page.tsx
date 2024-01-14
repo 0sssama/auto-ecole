@@ -3,7 +3,7 @@ import { auth } from '@clerk/nextjs';
 import { getLicenseFile } from '@/base/utils/server/license-files/get-license-file';
 import { LicenseFile } from '@/components/sections/license-files';
 import { getContract } from '@/base/utils/server/contract/get-contract';
-import { Contract } from '@/components/pages';
+import { Contract } from '@/components/sections/contract';
 
 import LicenseFilesPage from './_components/license-files';
 import LicenseFileNotFound from './_components/not-found';

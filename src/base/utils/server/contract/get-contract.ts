@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
 
-import type { ContractProps } from '@/components/pages/contract';
 import { prisma } from '@/server/db';
+import type { ContractProps } from '@/components/sections/contract/contract.types';
 
 import { getArabicLicenseFileCategory } from '../license-files/get-arabic-license-file-category';
 
