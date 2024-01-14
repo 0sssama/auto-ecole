@@ -7,7 +7,8 @@ import format from 'date-fns/format';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { Tooltip, TooltipConcat } from '@/components/atoms';
+import { Tooltip } from '@/components/atoms/tooltip';
+import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 
 import ActionsColumn from './actions-column';
 import { studentPaymentSchema, type StudentPayment } from './schema';

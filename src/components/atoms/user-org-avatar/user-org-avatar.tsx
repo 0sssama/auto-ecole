@@ -1,13 +1,15 @@
 'use client';
 
-import Link from 'next/link';
 import { useOrganization } from '@clerk/nextjs';
 
+import { Link } from '@/components/atoms/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn } from '@/base/utils/client/cn';
 import { useScroll } from '@/base/hooks/use-scroll';
 
-export default function UserOrgAvatar() {
+import type { UserOrgAvatarComponentType } from './user-org-avatar.types';
+
+const UserOrgAvatar: UserOrgAvatarComponentType = (className) => {
   const { scrolled } = useScroll({ threshold: 50 });
 
   const { organization } = useOrganization();
@@ -15,7 +17,7 @@ export default function UserOrgAvatar() {
   if (!organization) return null;
 
   return (
-    <Link href="/dash" className="inline-flex h-8 items-center">
+    <Link href="/dash" className={cn('inline-flex h-8 items-center', className)}>
       <Avatar className={cn('h-10 w-10 rounded-md shadow-lg transition-all', scrolled && 'h-8 w-8')}>
         <AvatarImage src={organization.imageUrl} alt={organization.name} />
         <AvatarFallback>{organization.name.slice(0, 2).toUpperCase()}</AvatarFallback>
@@ -25,4 +27,6 @@ export default function UserOrgAvatar() {
       </p>
     </Link>
   );
-}
+};
+
+export default UserOrgAvatar;

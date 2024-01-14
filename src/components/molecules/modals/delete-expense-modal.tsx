@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

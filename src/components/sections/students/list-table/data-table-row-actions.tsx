@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { Archive, ArchiveRestore, Eye, MoreHorizontal, Pencil } from 'lucide-react';
 
+import { Link } from '@/components/atoms/link';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

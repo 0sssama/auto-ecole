@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 // eslint-disable-next-line import/no-duplicates
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // eslint-disable-next-line import/no-duplicates
@@ -8,9 +7,11 @@ import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Link } from '@/components/atoms/link';
 import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { Tooltip, TooltipConcat } from '@/components/atoms';
+import { Tooltip } from '@/components/atoms/tooltip';
+import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 import { getLessonStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 
 import ActionsColumn from './actions-column';

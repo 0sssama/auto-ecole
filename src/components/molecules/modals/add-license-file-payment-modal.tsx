@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { AddNewLicenseFilePaymentForm } from '@/components/organisms';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { api } from '@/base/utils/server/api';
 import { licenseFilePaymentFormSchema } from '@/base/schemas/license-file-payment-form-schema';
 

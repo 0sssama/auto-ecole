@@ -10,7 +10,7 @@ import { schoolSettingsFormSchema, type SchoolSettingsFormType } from '@/base/sc
 import { useGetSchool } from '@/base/hooks/school/use-get-school';
 import { useUpdateSchool } from '@/base/hooks/school/use-update-school';
 import { Separator } from '@/components/ui/separator';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { Button } from '@/components/ui/button';
 import SchoolSettingsForm from '@/components/organisms/forms/school-settings-form';
 import { cn } from '@/base/utils/client/cn';

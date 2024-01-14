@@ -7,7 +7,7 @@ import DossierInfo from '@/components/molecules/dossier-info';
 import { ProfileImageColumn } from '@/components/molecules';
 import { cn } from '@/base/utils/client/cn';
 import { Button } from '@/components/ui/button';
-import { Link } from '@/components/atoms';
+import { Link } from '@/components/atoms/link';
 
 import type { InfoFileComponentType, InfoFileType } from './types';
 

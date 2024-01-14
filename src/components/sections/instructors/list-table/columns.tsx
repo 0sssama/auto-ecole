@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Link } from '@/components/atoms/link';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
 
 import { ActionsColumn } from './actions-column';

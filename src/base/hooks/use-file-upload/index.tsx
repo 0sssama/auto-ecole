@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { extension } from 'mime-types';
 
-import { FileUpload } from '@/components/atoms';
+import { FileUpload } from '@/components/atoms/file-upload';
 import { useUploadThing } from '@/base/utils/client/uploadthing';
 
 import type { UseFileUploadComponentProps, UseFileUploadHook } from './types';

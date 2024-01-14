@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Link } from '@/components/atoms';
+import { Link } from '@/components/atoms/link';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

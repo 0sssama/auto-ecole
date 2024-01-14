@@ -7,7 +7,7 @@ import { ImageDown, UploadCloud, UserCircle2 } from 'lucide-react';
 import type { FC } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { Link } from '@/components/atoms';
+import { Link } from '@/components/atoms/link';
 
 import type { ProfileImageColumnProps } from './types';
 

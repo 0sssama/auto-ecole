@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 import { AddNewLicenseFileForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { licenseFileFormSchema } from '@/base/schemas/license-file-form-schema';
 import { api } from '@/base/utils/server/api';
 import { createQueryString } from '@/base/utils/client/create-query-string';

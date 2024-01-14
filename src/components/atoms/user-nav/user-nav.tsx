@@ -1,15 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Cookie from 'js-cookie';
 import { MoonStar, Sun } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { SignOutButton, useOrganization, useUser } from '@clerk/nextjs';
-import type { OrganizationCustomRoleKey } from '@clerk/types';
 
+import { Link } from '@/components/atoms/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -23,47 +22,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/base/utils/client/cn';
 import { locales, type Locale } from '@/base/data/locales';
-import type { TranslationFunction } from '@/base/types';
-import frIcon from '@/assets/fr-icon.png';
-import enIcon from '@/assets/en-icon.png';
 
-const langIcons = {
-  fr: frIcon,
-  en: enIcon,
-};
+import { LOCALE_COOKIE_NAME, UserNavLinks, langIcons, parseRoleToClient } from './user-nav.helpers';
+import type { UserNavComponentType } from './user-nav.types';
 
-const LOCALE_COOKIE_NAME = 'NEXT_LOCALE';
-
-const UserNavLinks = (t: TranslationFunction) => [
-  {
-    name: t('profile'),
-    href: '#',
-  },
-  {
-    name: t('billing'),
-    href: '#',
-  },
-  {
-    name: t('settings'),
-    href: '#',
-  },
-];
-
-export const parseRoleToClient = (role: OrganizationCustomRoleKey, t: TranslationFunction) => {
-  switch (role) {
-    case 'admin': {
-      return t('admin');
-    }
-    case 'basic_member': {
-      return t('student');
-    }
-    default: {
-      return t('unknown');
-    }
-  }
-};
-
-export default function UserNav() {
+const UserNav: UserNavComponentType = () => {
   const t = useTranslations('Dashboard.Header.UserNav');
 
   const router = useRouter();
@@ -149,13 +112,7 @@ export default function UserNav() {
                     }, 100);
                   }}
                 >
-                  <Image
-                    src={langIcons[locale as keyof typeof langIcons]}
-                    alt={visibleName}
-                    height={18}
-                    width={18}
-                    loading="lazy"
-                  />
+                  <Image src={langIcons[locale as keyof typeof langIcons]} alt={visibleName} height={18} width={18} />
                   {visibleName}
                 </button>
               </DropdownMenuItem>
@@ -171,4 +128,6 @@ export default function UserNav() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default UserNav;

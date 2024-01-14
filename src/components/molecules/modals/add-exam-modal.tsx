@@ -16,7 +16,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { AddNewExamForm } from '@/components/organisms';
 import { examFormSchema } from '@/base/schemas/exam-form-schema';
 import { api } from '@/base/utils/server/api';

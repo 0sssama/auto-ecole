@@ -1,25 +1,14 @@
 'use client';
 
-import { useCallback, type Dispatch, type SetStateAction, type FC, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { generateClientDropzoneAccept } from 'uploadthing/client';
 import { useDropzone } from '@uploadthing/react/hooks';
+import { useCallback } from 'react';
 
 import { concatFileName } from '@/base/utils/client/concat-text';
-import type { useUploadThing } from '@/base/utils/client/uploadthing';
 import { cn } from '@/base/utils/client/cn';
 
-export type FileUploadProps = {
-  acceptMultiple: boolean;
-  children: ReactNode;
-  permittedFileInfo: ReturnType<typeof useUploadThing>['permittedFileInfo'];
-  files: {
-    get: File[];
-    set: Dispatch<SetStateAction<File[]>>;
-  };
-};
-
-export type FileUploadComponentType = FC<FileUploadProps>;
+import type { FileUploadComponentType } from './file-upload.types';
 
 const FileUpload: FileUploadComponentType = ({ acceptMultiple, files, permittedFileInfo, children }) => {
   const t = useTranslations('Dashboard.Common.FileUpload');

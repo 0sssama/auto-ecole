@@ -3,10 +3,10 @@
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import format from 'date-fns/format';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { LicenseFileStatus } from '@prisma/client';
 
+import { Link } from '@/components/atoms/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/base/utils/client/cn';
 import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';

@@ -16,7 +16,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { AddNewVehicleForm } from '@/components/organisms';
 import { api } from '@/base/utils/server/api';
 import { useFileUpload } from '@/base/hooks/use-file-upload';

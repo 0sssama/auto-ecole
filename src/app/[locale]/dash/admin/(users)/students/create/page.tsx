@@ -13,7 +13,7 @@ import { studentFormSchema } from '@/base/schemas/student-form-schema';
 import { useAddStudent } from '@/base/hooks/students/create/use-add-student';
 import { AddNewStudentForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/atoms';
+import { Spinner } from '@/components/atoms/spinner';
 import { useFileUpload } from '@/base/hooks/use-file-upload';
 import { useModal } from '@/base/hooks/use-modal';
 import { ShouldCreateLicenseFileModal } from '@/components/molecules';

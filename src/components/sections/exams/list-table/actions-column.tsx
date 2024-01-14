@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { Eye, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+import { Link } from '@/components/atoms/link';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

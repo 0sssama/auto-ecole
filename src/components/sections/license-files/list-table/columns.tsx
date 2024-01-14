@@ -1,13 +1,13 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import { Badge } from '@/components/ui/badge';
 import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
-import { TooltipConcat } from '@/components/atoms';
+import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
+import { Link } from '@/components/atoms/link';
 
 import ActionsColumn from './actions-column';
 import { licenseFileSchema, type LicenseFile } from './schema';

@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 
 import { PageContentHeader } from '@/components/molecules';
 import { Button } from '@/components/ui/button';
-import { Link } from '@/components/atoms';
+import { Link } from '@/components/atoms/link';
 
 import type { PageHeaderComponentType } from './types';
 

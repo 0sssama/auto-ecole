@@ -2,7 +2,8 @@
 
 import { useEffect } from 'react';
 
-import { Logo, Spinner } from '@/components/atoms';
+import { Logo } from '@/components/atoms/logo';
+import { Spinner } from '@/components/atoms/spinner';
 
 export default function DashboardPageLoading() {
   useEffect(() => {

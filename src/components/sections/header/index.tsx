@@ -2,9 +2,13 @@
 
 import { useTranslations } from 'next-intl';
 
-import { HamburgerButton, HelpButton, Logo, UserNav, UserOrgAvatar } from '@/components/atoms';
 import { cn } from '@/base/utils/client/cn';
 import { useScroll } from '@/base/hooks/use-scroll';
+import { Logo } from '@/components/atoms/logo';
+import { UserOrgAvatar } from '@/components/atoms/user-org-avatar';
+import { HelpButton } from '@/components/atoms/help-button';
+import { UserNav } from '@/components/atoms/user-nav';
+import { HamburgerButton } from '@/components/atoms/hamburger-button';
 
 const Header = () => {
   const t = useTranslations('Dashboard.Header');
