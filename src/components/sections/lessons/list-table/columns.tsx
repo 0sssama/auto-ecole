@@ -9,7 +9,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 
 import { Link } from '@/components/atoms/link';
 import { Badge } from '@/components/ui/badge';
-import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
+import DataTableColumnHeader from '@/components/organisms/data-table/components/column-header';
 import { Tooltip } from '@/components/atoms/tooltip';
 import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 import { getLessonStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';

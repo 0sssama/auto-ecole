@@ -15,10 +15,10 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { AddNewLessonForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms/spinner';
 import { useAddLesson } from '@/base/hooks/lessons/add/use-add-lesson';
 import { lessonFormSchema, type LessonFormValues } from '@/base/schemas/lesson-form.schema';
+import { AddNewLessonForm } from '@/components/organisms/forms/lessons/add';
 
 import type { ModalComponentType } from '../../modal.types';
 

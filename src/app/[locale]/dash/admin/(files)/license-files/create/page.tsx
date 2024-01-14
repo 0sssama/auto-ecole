@@ -7,16 +7,15 @@ import { toast } from 'sonner';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { Category, LicenseFileStatus } from '@prisma/client';
-import type { z } from 'zod';
 import { useEffect } from 'react';
 
-import { AddNewLicenseFileForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms/spinner';
-import { licenseFileFormSchema } from '@/base/schemas/license-file-form-schema';
+import { licenseFileFormSchema, type LicenseFileFormValues } from '@/base/schemas/license-file-form-schema';
 import { api } from '@/base/utils/server/api';
 import { createQueryString } from '@/base/utils/client/create-query-string';
 import { Separator } from '@/components/ui/separator';
+import { AddNewLicenseFileForm } from '@/components/organisms/forms/license-files/add';
 
 export default function CreateLicenseFilePage() {
   const router = useRouter();
@@ -26,7 +25,7 @@ export default function CreateLicenseFilePage() {
 
   const t = useTranslations('Dashboard.Files.LicenseFiles.Create');
 
-  const form = useForm<z.infer<typeof licenseFileFormSchema>>({
+  const form = useForm<LicenseFileFormValues>({
     resolver: zodResolver(licenseFileFormSchema),
     defaultValues: {
       studentId: searchParams.get('studentId') ?? '0',
@@ -51,13 +50,12 @@ export default function CreateLicenseFilePage() {
       toast.success(t('success'));
       router.push('/dash/admin/license-files');
     },
-    onError: (error) => {
-      console.error(error);
+    onError: () => {
       toast.error(t('error'));
     },
   });
 
-  const onSubmit = (values: z.infer<typeof licenseFileFormSchema>) =>
+  const onSubmit = (values: LicenseFileFormValues) =>
     addLicenseFile({
       ...values,
       studentId: Number(values.studentId),

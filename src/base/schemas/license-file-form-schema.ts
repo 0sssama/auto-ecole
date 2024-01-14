@@ -17,3 +17,7 @@ export const licenseFileBackendInputSchema = z.object({
   instructorId: z.number().min(1),
   price: z.number().min(0),
 });
+
+export type LicenseFileFormValues = z.infer<typeof licenseFileFormSchema>;
+
+export type LicenseFileBackendInput = z.infer<typeof licenseFileBackendInputSchema>;

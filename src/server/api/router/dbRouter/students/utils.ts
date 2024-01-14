@@ -1,6 +1,6 @@
 import type { Prisma, LicenseFileStatus, Category } from '@prisma/client';
 
-import type { TableFilters } from '@/components/organisms/data-table/types';
+import type { TableFilters } from '@/components/organisms/data-table/data-table.types';
 import type { Student } from '@/components/sections/students/list-table/schema';
 
 const searchFilters = (search: TableFilters['get']['search']): Prisma.StudentWhereInput[] => {

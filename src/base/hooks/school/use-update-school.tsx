@@ -1,4 +1,4 @@
-import type { SchoolSettingsFormType } from '@/base/schemas/school-settings-form-schema';
+import type { SchoolSettingsFormValues } from '@/base/schemas/school-settings-form-schema';
 import type { TRPCOptions } from '@/base/types';
 import { api } from '@/base/utils/server/api';
 
@@ -11,7 +11,7 @@ export const useUpdateSchool = (options?: TRPCOptions) => {
   });
 
   return {
-    updateSchool: (data: SchoolSettingsFormType) => mutate(data),
+    updateSchool: (data: SchoolSettingsFormValues) => mutate(data),
     isUpdating: isLoading,
     updateError: error,
   };

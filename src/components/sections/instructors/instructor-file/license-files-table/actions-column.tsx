@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
+import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
 
 import { type InstructorLicenseFile, instructorLicenseFileSchema } from './schema';
 

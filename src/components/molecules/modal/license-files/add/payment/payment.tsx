@@ -14,11 +14,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { AddNewLicenseFilePaymentForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms/spinner';
 import { paymentFormSchema } from '@/base/schemas/payment-form.schema';
 import { useAddPayment } from '@/base/hooks/payments/add/use-add-payment';
 import type { PaymentFormValues } from '@/base/schemas/payment-form.schema';
+import AddNewLicenseFilePaymentForm from '@/components/organisms/forms/license-files/payment/payment';
 
 import type { ModalComponentType } from '../../../modal.types';
 

@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import { Badge } from '@/components/ui/badge';
-import DataTableColumnHeader from '@/components/organisms/data-table/column-header';
+import DataTableColumnHeader from '@/components/organisms/data-table/components/column-header';
 import { TooltipConcat } from '@/components/atoms/tooltip-concat';
 import { getLicenseFileStatusBadgeVariant } from '@/base/utils/client/get-badge-variant';
 import { Link } from '@/components/atoms/link';

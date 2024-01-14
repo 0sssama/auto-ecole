@@ -14,11 +14,10 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { AddNewExpenseForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms/spinner';
-import { expenseFormSchema } from '@/base/schemas/expense-form.schema';
+import { expenseFormSchema, type ExpenseFormValues } from '@/base/schemas/expense-form.schema';
 import { useAddExpense } from '@/base/hooks/expenses/add/use-add-expense';
-import type { ExpenseFormValues } from '@/base/schemas/expense-form.schema';
+import { AddNewExpenseForm } from '@/components/organisms/forms/expenses/add';
 
 import type { ModalComponentType } from '../../modal.types';
 

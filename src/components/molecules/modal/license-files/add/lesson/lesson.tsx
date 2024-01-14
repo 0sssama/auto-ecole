@@ -16,9 +16,9 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms/spinner';
-import { AddNewLessonForm } from '@/components/organisms';
 import { type LessonFormValues, lessonFormSchema } from '@/base/schemas/lesson-form.schema';
 import { useAddLesson } from '@/base/hooks/lessons/add/use-add-lesson';
+import { AddNewLessonForm } from '@/components/organisms/forms/lessons/add';
 
 import type { ModalComponentType } from '../../../modal.types';
 

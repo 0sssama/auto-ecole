@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 
-import { DataTable } from '@/components/organisms';
-import type { Paginated } from '@/components/organisms/data-table/types';
+import { DataTable } from '@/components/organisms/data-table';
+import type { Paginated } from '@/components/organisms/data-table/data-table.types';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { api } from '@/base/utils/server/api';

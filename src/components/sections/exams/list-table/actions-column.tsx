@@ -15,7 +15,7 @@ import {
 import { useModal } from '@/base/hooks/use-modal';
 import { cn } from '@/base/utils/client/cn';
 import { ExamDeleteConfirmModal } from '@/components/molecules/modal/exams/delete-confirm';
-import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
+import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
 
 import { type Exam, examSchema } from './schema';
 

@@ -6,15 +6,15 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { useEffect } from 'react';
 
-import { schoolSettingsFormSchema, type SchoolSettingsFormType } from '@/base/schemas/school-settings-form-schema';
+import { schoolSettingsFormSchema, type SchoolSettingsFormValues } from '@/base/schemas/school-settings-form-schema';
 import { useGetSchool } from '@/base/hooks/school/use-get-school';
 import { useUpdateSchool } from '@/base/hooks/school/use-update-school';
 import { Separator } from '@/components/ui/separator';
 import { Spinner } from '@/components/atoms/spinner';
 import { Button } from '@/components/ui/button';
-import SchoolSettingsForm from '@/components/organisms/forms/school-settings-form';
 import { cn } from '@/base/utils/client/cn';
 import { useUserIsSuperAdmin } from '@/base/hooks/auth/use-user-is-super-admin';
+import { SchoolSettingsForm } from '@/components/organisms/forms/general/school-settings';
 
 export default function SchoolSettings() {
   const t = useTranslations('Dashboard.Settings');
@@ -33,16 +33,16 @@ export default function SchoolSettings() {
 
   const loading = isLoading || !isLoaded;
 
-  const form = useForm<SchoolSettingsFormType>({
+  const form = useForm<SchoolSettingsFormValues>({
     resolver: zodResolver(schoolSettingsFormSchema),
   });
 
-  const onSubmit = (values: SchoolSettingsFormType) => updateSchool(values);
+  const onSubmit = (values: SchoolSettingsFormValues) => updateSchool(values);
 
   useEffect(() => {
     if (schoolData)
       Object.keys(schoolData).forEach((key) => {
-        const formKey = key as keyof SchoolSettingsFormType;
+        const formKey = key as keyof SchoolSettingsFormValues;
         const schoolDataKey = key as keyof typeof schoolData;
 
         form.setValue(formKey, schoolData[schoolDataKey] ?? '');

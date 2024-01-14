@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useModal } from '@/base/hooks/use-modal';
 import { cn } from '@/base/utils/client/cn';
-import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
+import type { ActionsColumnComponentType } from '@/components/organisms/data-table/data-table.types';
 import { DeleteExpenseModal } from '@/components/molecules/modal/expenses/delete';
 
 import { type Expense, expenseSchema } from './schema';

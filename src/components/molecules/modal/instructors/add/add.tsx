@@ -14,14 +14,13 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { AddNewInstructorForm } from '@/components/organisms';
 import { Spinner } from '@/components/atoms/spinner';
 import { useAddInstructor } from '@/base/hooks/instructors/add/use-add-instructor';
+import { AddNewInstructorForm } from '@/components/organisms/forms/instructors/add';
 
 import type { ModalComponentType } from '../../modal.types';
 
-import { instructorFormSchema } from './add.types';
-import type { InstructorFormValues } from './add.types';
+import { instructorFormSchema, type InstructorFormValues } from './add.types';
 
 const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
   const t = useTranslations('Dashboard.Users.Instructors.AddNewInstructorModal');
@@ -42,7 +41,6 @@ const AddInstructorModal: ModalComponentType = ({ isOpen, close }) => {
 
   const { createInstructor, isCreating, creationError } = useAddInstructor({
     onSuccess: () => {
-      //   void ctx.users.getPage.invalidate();
       toast.success(t('success'));
       closeModal();
     },

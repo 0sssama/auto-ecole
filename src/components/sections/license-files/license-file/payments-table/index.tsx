@@ -4,13 +4,13 @@ import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/organisms';
+import { DataTable } from '@/components/organisms/data-table';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { useModal } from '@/base/hooks/use-modal';
 import { api } from '@/base/utils/server/api';
 import { AddLicenseFilePaymentModal } from '@/components/molecules/modal/license-files/add/payment';
-import type { Paginated } from '@/components/organisms/data-table/types';
+import type { Paginated } from '@/components/organisms/data-table/data-table.types';
 
 import { columns } from './columns';
 import type { LicenseFilePayment } from './schema';

@@ -5,11 +5,11 @@ import { Plus } from 'lucide-react';
 
 import { useModal } from '@/base/hooks/use-modal';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/organisms';
+import { DataTable } from '@/components/organisms/data-table';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { api } from '@/base/utils/server/api';
-import type { Paginated } from '@/components/organisms/data-table/types';
+import type { Paginated } from '@/components/organisms/data-table/data-table.types';
 import { AddVehicleExpenseModal } from '@/components/molecules/modal/vehicles/add/expense';
 
 import { columns } from './columns';

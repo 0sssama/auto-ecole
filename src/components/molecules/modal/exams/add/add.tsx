@@ -16,8 +16,8 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms/spinner';
-import { AddNewExamForm } from '@/components/organisms';
 import { useAddExamToLicenseFile } from '@/base/hooks/exams/add/use-add-exam-to-license-file';
+import AddNewExamForm from '@/components/organisms/forms/exams/add/add';
 
 import type { ModalComponentType } from '../../modal.types';
 

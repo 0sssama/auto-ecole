@@ -131,3 +131,5 @@ export const studentFormSchema = z.object({
   cinFile: z.string().default(''),
   profilePicture: z.string().default(''),
 });
+
+export type StudentFormValues = z.infer<typeof studentFormSchema>;

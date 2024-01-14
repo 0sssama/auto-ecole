@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import type { TableFilters } from '@/components/organisms/data-table/types';
+import type { TableFilters } from '@/components/organisms/data-table/data-table.types';
 
 export const useTableFilters = (initialState?: TableFilters['get']): TableFilters => {
   const [filters, setFilters] = useState(

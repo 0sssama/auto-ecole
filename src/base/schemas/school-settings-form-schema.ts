@@ -21,4 +21,4 @@ export const schoolSettingsFormSchema = z.object({
   city: z.string().max(255),
 });
 
-export type SchoolSettingsFormType = z.infer<typeof schoolSettingsFormSchema>;
+export type SchoolSettingsFormValues = z.infer<typeof schoolSettingsFormSchema>;
