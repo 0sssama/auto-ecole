@@ -1,38 +1,40 @@
 import { TRPCError } from '@trpc/server';
 
-import { licenseFilePaymentBackendInputSchema } from '@/base/schemas/license-file-payment-form-schema';
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { paymentBackendInputSchema } from '@/base/schemas/payment-form.schema';
 
 export const mutationRouter = createTRPCRouter({
-  addToLicenseFile: orgAdminOnlyPrecedure
-    .input(licenseFilePaymentBackendInputSchema)
-    .mutation(async ({ ctx, input }) => {
-      const payment = await ctx.prisma.payment.create({
-        data: {
-          sum: input.sum,
-          comment: input.comment,
-          date: input.date,
+  add: orgAdminOnlyPrecedure.input(paymentBackendInputSchema).mutation(async ({ ctx, input }) => {
+    const payment = await ctx.prisma.payment.create({
+      data: {
+        sum: input.sum,
+        comment: input.comment,
+        date: input.date,
 
-          cashFund: {
-            connect: {
-              clerkOrgId: ctx.orgId,
-            },
-          },
-
-          licenseFile: {
-            connect: {
-              id: input.licenseFileId,
-            },
-          },
-
-          createdBy: {
-            connect: { clerkId: ctx.userId },
+        cashFund: {
+          connect: {
+            clerkOrgId: ctx.orgId,
           },
         },
-      });
 
-      if (!payment) throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
+        ...(input.licenseFileId
+          ? {
+              licenseFile: {
+                connect: {
+                  id: input.licenseFileId,
+                },
+              },
+            }
+          : {}),
 
-      return { id: payment.id };
-    }),
+        createdBy: {
+          connect: { clerkId: ctx.userId },
+        },
+      },
+    });
+
+    if (!payment) throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
+
+    return { id: payment.id };
+  }),
 });

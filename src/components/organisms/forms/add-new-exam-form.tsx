@@ -1,6 +1,5 @@
 'use client';
 
-import type { z } from 'zod';
 import omit from 'lodash/omit';
 import { useTranslations } from 'next-intl';
 import { ExamStatus, ExamType } from '@prisma/client';
@@ -8,8 +7,8 @@ import { ExamStatus, ExamType } from '@prisma/client';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Combobox } from '@/components/ui/combobox';
 import { DatePicker } from '@/components/ui/date-picker';
-import type { examFormSchema } from '@/base/schemas/exam-form-schema';
 import type { TranslationFunction } from '@/base/types';
+import type { ExamFormValues } from '@/components/molecules/modal/exams/add';
 
 import type { FormComponentType } from './types';
 
@@ -44,10 +43,7 @@ const fields = (t: TranslationFunction) => [
     }),
   },
 ];
-
-type TFormValues = z.infer<typeof examFormSchema>;
-
-const AddNewInstructorForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+const AddNewInstructorForm: FormComponentType<ExamFormValues> = ({ form, onSubmit, className }) => {
   const t = useTranslations('Dashboard.Modals.AddExam.Form');
 
   return (
@@ -57,7 +53,7 @@ const AddNewInstructorForm: FormComponentType<TFormValues> = ({ form, onSubmit, 
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof TFormValues}
+            name={f.name as keyof ExamFormValues}
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="inline-block w-full text-sm">{f.label}</FormLabel>

@@ -1,7 +1,6 @@
 'use client';
 
 import omit from 'lodash/omit';
-import type { z } from 'zod';
 import { useTranslations } from 'next-intl';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -9,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { DatePicker } from '@/components/ui/date-picker';
 import type { TranslationFunction } from '@/base/types';
-import type { vehicleExpenseFormSchema } from '@/base/schemas/vehicle-expense-form-schema';
+import type { ExpenseFormValues } from '@/base/schemas/expense-form.schema';
 
 import type { FormComponentType } from './types';
 
@@ -31,9 +30,7 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-type TFormValues = z.infer<typeof vehicleExpenseFormSchema>;
-
-const AddNewVehicleExpenseForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+const AddNewVehicleExpenseForm: FormComponentType<ExpenseFormValues> = ({ form, onSubmit, className }) => {
   const t = useTranslations('Dashboard.Modals.AddVehicleExpense.Form');
 
   return (
@@ -43,7 +40,7 @@ const AddNewVehicleExpenseForm: FormComponentType<TFormValues> = ({ form, onSubm
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof TFormValues}
+            name={f.name as keyof ExpenseFormValues}
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="inline-block w-full !text-left text-sm">{f.label}</FormLabel>

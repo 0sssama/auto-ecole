@@ -90,7 +90,7 @@ export default function CreateLicenseFilePage() {
   }, [data.instructorId]);
 
   return (
-    <main className="relative w-full">
+    <>
       <div className="flex w-full flex-col gap-2">
         <div>
           <Button
@@ -128,6 +128,6 @@ export default function CreateLicenseFilePage() {
           </Button>
         </div>
       </div>
-    </main>
+    </>
   );
 }

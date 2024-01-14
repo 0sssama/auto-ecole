@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/base/utils/client/cn';
 import { useModal } from '@/base/hooks/use-modal';
-import { DeleteExamConfirmModal } from '@/components/molecules';
+import { ExamDeleteConfirmModal } from '@/components/molecules/modal/exams/delete-confirm';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
 
 import { type LicenseFileExam, licenseFileExamSchema } from './schema';
@@ -28,7 +28,7 @@ const ActionsColumn: ActionsColumnComponentType<LicenseFileExam> = ({ row }) => 
 
   return (
     <DropdownMenu>
-      <DeleteExamConfirmModal {...deleteExamModal} context={{ examId: exam.id }} />
+      <ExamDeleteConfirmModal {...deleteExamModal} context={{ examId: exam.id }} />
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="flex h-8 w-8 p-0 data-[state=open]:bg-muted">
           <MoreHorizontal className="h-4 w-4" />

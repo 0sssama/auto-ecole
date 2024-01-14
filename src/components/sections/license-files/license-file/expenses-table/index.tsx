@@ -9,7 +9,7 @@ import { DataTable } from '@/components/organisms';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { api } from '@/base/utils/server/api';
-import { AddLicenseFileExpenseModal } from '@/components/molecules';
+import { AddLicenseFileExpenseModal } from '@/components/molecules/modal/license-files/add/expense';
 import type { Paginated } from '@/components/organisms/data-table/types';
 
 import { columns } from './columns';

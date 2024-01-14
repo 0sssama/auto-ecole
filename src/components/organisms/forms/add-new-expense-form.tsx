@@ -2,14 +2,13 @@
 
 import omit from 'lodash/omit';
 import { useTranslations } from 'next-intl';
-import type { z } from 'zod';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { DatePicker } from '@/components/ui/date-picker';
 import type { TranslationFunction } from '@/base/types';
-import type { expenseFormSchema } from '@/base/schemas/expense-form-schema';
+import type { ExpenseFormValues } from '@/base/schemas/expense-form.schema';
 
 import type { FormComponentType } from './types';
 
@@ -31,9 +30,7 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-type TFormValues = z.infer<typeof expenseFormSchema>;
-
-const AddNewExpenseForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+const AddNewExpenseForm: FormComponentType<ExpenseFormValues> = ({ form, onSubmit, className }) => {
   const t = useTranslations('Dashboard.Modals.AddExpense.Form');
 
   return (
@@ -43,7 +40,7 @@ const AddNewExpenseForm: FormComponentType<TFormValues> = ({ form, onSubmit, cla
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof TFormValues}
+            name={f.name as keyof ExpenseFormValues}
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="inline-block w-full !text-left text-sm">{f.label}</FormLabel>

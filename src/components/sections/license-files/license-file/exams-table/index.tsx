@@ -3,13 +3,13 @@
 import { useTranslations } from 'next-intl';
 import { Plus } from 'lucide-react';
 
-import { AddExamModal } from '@/components/molecules';
 import { DataTable } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { useModal } from '@/base/hooks/use-modal';
 import { api } from '@/base/utils/server/api';
+import { AddExamModal } from '@/components/molecules/modal/exams/add';
 import type { Paginated } from '@/components/organisms/data-table/types';
 
 import { columns } from './columns';

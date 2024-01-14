@@ -1,15 +1,14 @@
 'use client';
 
 import omit from 'lodash/omit';
-import type { z } from 'zod';
 import { useTranslations } from 'next-intl';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import type { TranslationFunction } from '@/base/types';
-import type { licenseFilePaymentFormSchema } from '@/base/schemas/license-file-payment-form-schema';
 import { Textarea } from '@/components/ui/textarea';
 import { DatePicker } from '@/components/ui/date-picker';
+import { Input } from '@/components/ui/input';
+import type { TranslationFunction } from '@/base/types';
+import type { PaymentFormValues } from '@/base/schemas/payment-form.schema';
 
 import type { FormComponentType } from './types';
 
@@ -31,9 +30,7 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-type TFormValues = z.infer<typeof licenseFilePaymentFormSchema>;
-
-const AddNewLicenseFilePaymentForm: FormComponentType<TFormValues> = ({ form, onSubmit, className }) => {
+const AddNewLicenseFilePaymentForm: FormComponentType<PaymentFormValues> = ({ form, onSubmit, className }) => {
   const t = useTranslations('Dashboard.Modals.AddLicenseFilePayment.Form');
 
   return (
@@ -43,7 +40,7 @@ const AddNewLicenseFilePaymentForm: FormComponentType<TFormValues> = ({ form, on
           <FormField
             key={key}
             control={form.control}
-            name={f.name as keyof TFormValues}
+            name={f.name as keyof PaymentFormValues}
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="inline-block w-full !text-left text-sm">{f.label}</FormLabel>

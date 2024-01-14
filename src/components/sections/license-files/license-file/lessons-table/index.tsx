@@ -4,12 +4,12 @@ import { useTranslations } from 'next-intl';
 import { Plus } from 'lucide-react';
 
 import { DataTable } from '@/components/organisms';
-import { AddLicenseFileLessonModal } from '@/components/molecules';
 import { Button } from '@/components/ui/button';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { useModal } from '@/base/hooks/use-modal';
 import { api } from '@/base/utils/server/api';
+import { AddLicenseFileLessonModal } from '@/components/molecules/modal/license-files/add/lesson';
 import type { Paginated } from '@/components/organisms/data-table/types';
 
 import { columns } from './columns';

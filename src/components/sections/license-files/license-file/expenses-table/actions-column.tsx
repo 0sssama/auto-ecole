@@ -13,9 +13,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { DeleteExpenseModal } from '@/components/molecules';
 import type { ActionsColumnComponentType } from '@/components/organisms/data-table/types';
 import { useModal } from '@/base/hooks/use-modal';
+import { DeleteExpenseModal } from '@/components/molecules/modal/expenses/delete';
 
 import { licenseFileExpenseSchema, type LicenseFileExpense } from './schema';
 

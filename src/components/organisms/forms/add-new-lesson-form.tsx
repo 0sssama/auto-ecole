@@ -12,7 +12,7 @@ import { Combobox } from '@/components/ui/combobox';
 import { DatePicker } from '@/components/ui/date-picker';
 import { api } from '@/base/utils/server/api';
 import type { TranslationFunction } from '@/base/types';
-import type { lessonFormSchema } from '@/base/schemas/lesson-form-schema';
+import type { lessonFormSchema } from '@/base/schemas/lesson-form.schema';
 
 import type { FormComponentType } from './types';
 

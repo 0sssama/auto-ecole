@@ -1,5 +1,5 @@
 import { Separator } from '@/components/ui/separator';
-import { InfoFile } from '@/components/organisms';
+import { InfoFile } from '@/components/organisms/info-file';
 
 import StudentLicenseFilesTable from './license-files-table';
 import StudentLessonsTable from './lessons-table';

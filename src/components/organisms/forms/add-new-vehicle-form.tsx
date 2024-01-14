@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import omit from 'lodash/omit';
-import type { z } from 'zod';
 import { useTranslations } from 'next-intl';
 import { VehicleType } from '@prisma/client';
 
@@ -10,10 +9,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Combobox } from '@/components/ui/combobox';
 import { api } from '@/base/utils/server/api';
-// import { useFileUpload } from "@/lib/hooks/useFileUpload";
 import type { TranslationFunction } from '@/base/types';
 import type { UseFileUploadHook } from '@/base/hooks/use-file-upload/types';
-import type { vehicleFormSchema } from '@/base/schemas/vehicle-form-schema';
+import type { VehicleFormValues } from '@/components/molecules/modal/vehicles/add/vehicle';
 
 import type { FormComponentType } from './types';
 
@@ -53,7 +51,7 @@ const fields = (t: TranslationFunction) => [
   },
 ];
 
-type TFormValues = z.infer<typeof vehicleFormSchema>;
+type TFormValues = VehicleFormValues;
 type TContext = {
   FileUpload?: ReturnType<UseFileUploadHook>['FileUpload'];
 };
@@ -65,9 +63,6 @@ const AddNewVehicleForm: FormComponentType<TFormValues, TContext> = ({
   context: { FileUpload } = {},
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  //   const { startUpload, FileUpload } = useFileUpload({
-  //     endpoint: "imageUploader",
-  //   });
 
   const t = useTranslations('Dashboard.Modals.AddVehicle.Form');
 

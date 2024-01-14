@@ -16,8 +16,8 @@ import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/atoms/spinner';
 import { useFileUpload } from '@/base/hooks/use-file-upload';
 import { useModal } from '@/base/hooks/use-modal';
-import { ShouldCreateLicenseFileModal } from '@/components/molecules';
 import { Separator } from '@/components/ui/separator';
+import { LicenseFileRedirectModal } from '@/components/molecules/modal/license-files/add/student-creation-redirect';
 
 export default function CreateStudentPage() {
   const router = useRouter();
@@ -90,9 +90,9 @@ export default function CreateStudentPage() {
       });
 
   return (
-    <main className="relative w-full">
+    <>
       {studentId && (
-        <ShouldCreateLicenseFileModal
+        <LicenseFileRedirectModal
           {...licenseFileModal}
           context={{
             studentId,
@@ -136,6 +136,6 @@ export default function CreateStudentPage() {
           </Button>
         </div>
       </div>
-    </main>
+    </>
   );
 }

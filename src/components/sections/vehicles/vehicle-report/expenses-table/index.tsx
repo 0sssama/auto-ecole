@@ -9,8 +9,8 @@ import { DataTable } from '@/components/organisms';
 import { usePagination } from '@/base/hooks/use-pagination';
 import { useTableFilters } from '@/base/hooks/use-table-filters';
 import { api } from '@/base/utils/server/api';
-import { AddVehicleExpenseModal } from '@/components/molecules';
 import type { Paginated } from '@/components/organisms/data-table/types';
+import { AddVehicleExpenseModal } from '@/components/molecules/modal/vehicles/add/expense';
 
 import { columns } from './columns';
 import type { VehicleExpense } from './schema';

@@ -50,7 +50,7 @@ export default function SchoolSettings() {
   }, [schoolData]);
 
   return (
-    <main className="relative h-full w-full">
+    <>
       <div className="flex w-full flex-col gap-2">
         <h1 className="text-xl font-bold tracking-tight lg:text-3xl">{t('title')}</h1>
         <p className="lg:text-md text-sm text-muted-foreground">{t('subtitle')}</p>
@@ -80,6 +80,6 @@ export default function SchoolSettings() {
           </>
         )}
       </div>
-    </main>
+    </>
   );
 }

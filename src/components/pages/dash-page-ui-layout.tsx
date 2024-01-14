@@ -22,9 +22,9 @@ export default function DashPageUILayout({ children }: { children: ReactNode }) 
     <div className="mx-auto grid h-full min-h-screen w-full max-w-screen-xl bg-background lg:grid-cols-5">
       <Header />
       <Sidebar />
-      <div className="col-span-3 mt-[var(--header-height)] h-full w-full bg-background p-6 pt-10 lg:col-span-4 lg:border-l">
+      <main className="col-span-3 mt-[var(--header-height)] h-full w-full bg-background p-6 pt-10 lg:col-span-4 lg:border-l">
         {children}
-      </div>
+      </main>
     </div>
   );
 }

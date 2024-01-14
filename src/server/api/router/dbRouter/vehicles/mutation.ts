@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { vehicleFormSchemaBackend } from '@/base/schemas/vehicle-form-schema';
 import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
+import { vehicleFormSchemaBackend } from '@/components/molecules/modal/vehicles/add/vehicle';
 
 export const mutationRouter = createTRPCRouter({
   create: orgAdminOnlyPrecedure.input(vehicleFormSchemaBackend).mutation(

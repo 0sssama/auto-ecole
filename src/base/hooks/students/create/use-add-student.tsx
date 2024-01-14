@@ -4,7 +4,7 @@ import type { z } from 'zod';
 import type { TRPCOptions } from '@/base/types';
 import type { studentFormSchema } from '@/base/schemas/student-form-schema';
 
-import { useDeleteStudentFromClerk } from '../delete/use-delete-student-from-clerk';
+import { useDeleteClerkUser } from '../../clerk/use-delete-clerk-user';
 
 import { useAddStudentToClerk } from './use-add-student-to-clerk';
 import { useAddStudentToDb } from './use-add-student-to-db';
@@ -18,10 +18,10 @@ export const useAddStudent = (options?: TRPCOptions) => {
   const { onSuccess, onError } = options ?? {};
 
   const {
-    deleteStudent: deleteStudentFromClerk,
+    deleteClerkUser: deleteStudentFromClerk,
     isDeleting,
     deletionError,
-  } = useDeleteStudentFromClerk({
+  } = useDeleteClerkUser({
     ...(onError ? { onError, onSuccess: onError } : {}),
   });
 
