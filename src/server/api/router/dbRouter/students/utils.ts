@@ -1,6 +1,6 @@
 import type { Prisma, LicenseFileStatus, Category } from '@prisma/client';
 
-import type { TableFilters } from '@/components/organisms/data-table/types';
+import type { TableFilters, TableStatus } from '@/components/organisms/data-table/types';
 import type { Student } from '@/components/sections/students/list-table/schema';
 
 const searchFilters = (search: TableFilters['get']['search']): Prisma.StudentWhereInput[] => {
@@ -25,6 +25,24 @@ const searchFilters = (search: TableFilters['get']['search']): Prisma.StudentWhe
   });
 };
 
+const licenseFilesFilter = (status: string[]): LicenseFileStatus[] =>
+  status.map((status) => {
+    switch (status) {
+      case 'Undeposited': {
+        return 'UNDEPOSITED';
+      }
+      case 'Finished': {
+        return 'VALIDATED';
+      }
+      case 'Rejected': {
+        return 'REJECTED';
+      }
+      default: {
+        return 'ONGOING';
+      }
+    }
+  });
+
 export const getWhereObjFromFilters = (filters: TableFilters['get']): Prisma.StudentWhereInput => {
   let output: Prisma.StudentWhereInput['OR'] = [];
 
@@ -33,6 +51,20 @@ export const getWhereObjFromFilters = (filters: TableFilters['get']): Prisma.Stu
   if (output.length === 0) return {};
 
   return { OR: output };
+};
+
+export const getWhereObjFromFiltersAndStatus = (
+  filters: TableFilters['get'],
+  status: TableStatus['get'],
+): Prisma.StudentWhereInput => {
+  let output: Prisma.StudentWhereInput['AND'] = [];
+
+  if (filters.search) output = [...output, { OR: searchFilters(filters.search) }];
+  if (status.status.length > 0) {
+    const licenseFileStatuses = licenseFilesFilter(status.status);
+    output = [...output, { licenseFiles: { some: { status: { in: licenseFileStatuses } } } }];
+  }
+  return { AND: output };
 };
 
 export const getStudentStatusFromLicenseFiles = (licenseFiles: { status: LicenseFileStatus }[]): Student['status'] => {

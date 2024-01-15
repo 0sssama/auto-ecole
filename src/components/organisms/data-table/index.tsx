@@ -20,12 +20,14 @@ import { Spinner } from '@/components/atoms';
 import DataTablePagination from './pagination';
 import DataTableToolbar from './toolbar';
 import type { TableProps } from './types';
+import DataTableStatus from './status';
 
 function DataTable<TData, TValue>({
   data,
   columns,
   pagination,
   filters,
+  status,
   error,
   isLoading,
   filtersAllowed,
@@ -58,7 +60,7 @@ function DataTable<TData, TValue>({
     // when filters are changed, reset page to 0
     pagination.set.pageIndex(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.get]);
+  }, [filters.get, status?.get]);
 
   useEffect(() => {
     if (!data) return;
@@ -69,7 +71,10 @@ function DataTable<TData, TValue>({
 
   return (
     <div className="w-full max-w-[calc(100vw-3rem)] space-y-4">
-      <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
+      <div className="flex flex-row gap-1">
+        <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
+        <DataTableStatus status={status ?? undefined} />
+      </div>
       <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>

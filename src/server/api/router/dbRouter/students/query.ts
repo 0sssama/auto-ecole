@@ -4,7 +4,12 @@ import { createTRPCRouter, orgAdminOnlyPrecedure } from '@/server/api/trpc';
 import { countPages } from '@/base/utils/client/count-pages';
 import type { Student } from '@/components/sections/students/list-table/schema';
 
-import { getStudentCategoryFromLicenseFiles, getStudentStatusFromLicenseFiles, getWhereObjFromFilters } from './utils';
+import {
+  getStudentCategoryFromLicenseFiles,
+  getStudentStatusFromLicenseFiles,
+  getWhereObjFromFilters,
+  getWhereObjFromFiltersAndStatus,
+} from './utils';
 
 export const queryRouter = createTRPCRouter({
   getManyForSelect: orgAdminOnlyPrecedure
@@ -50,13 +55,16 @@ export const queryRouter = createTRPCRouter({
       z.object({
         pageIndex: z.number().default(0),
         pageSize: z.number().default(10),
+        status: z.object({
+          status: z.array(z.string()),
+        }),
         filters: z.object({
           search: z.string(),
         }),
       }),
     )
     .query(async ({ input, ctx }) => {
-      const filtersObj = getWhereObjFromFilters(input.filters);
+      const filtersObj = getWhereObjFromFiltersAndStatus(input.filters, input.status);
 
       const [students, totalStudents] = await Promise.all([
         ctx.prisma.student.findMany({

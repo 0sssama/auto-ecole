@@ -64,6 +64,7 @@
       "no-data": "No results found",
       "search": "Search...",
       "reset": "Reset",
+      "status": "License File Status",
       "Pagination": {
         "rows-per-page": "Rows per page:",
         "page": "Page",
