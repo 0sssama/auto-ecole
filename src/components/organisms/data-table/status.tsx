@@ -22,24 +22,29 @@ const DataTableStatus: React.FC<DataTableStatusComponentProps> = ({ status }) =>
     else status.delete.status(item);
   };
 
-  const items = ['Active', 'Undeposited', 'Rejected', 'Finished'];
+  const items = [
+    { status: t('Status.active'), value: 'Active' },
+    { status: t('Status.rejected'), value: 'Rejected' },
+    { status: t('Status.finished'), value: 'Finished' },
+    { status: t('Status.undeposited'), value: 'Undeposited' },
+  ];
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="p-3">
           <PlusCircle className="mr-2 h-4 w-4" />
-          {t('status')}
+          {t('filter')}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <DropdownMenuCheckboxItem
-            key={item}
+            key={index}
             className="capitalize"
-            checked={status.get.status.includes(item)}
-            onCheckedChange={(value) => handleCheckChange(value, item)}
+            checked={status.get.status.includes(item.value)}
+            onCheckedChange={(value) => handleCheckChange(value, item.value)}
           >
-            {item}
+            {item.status}
           </DropdownMenuCheckboxItem>
         ))}
       </DropdownMenuContent>

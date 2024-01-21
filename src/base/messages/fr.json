@@ -63,6 +63,13 @@
       "no-data": "Nous avons rien trouvé ! :/",
       "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
       "search": "Rechercher...",
+      "filter": "Statut du dossier",
+      "Status": {
+        "undeposited": "Non déposé",
+        "active": "En cours",
+        "rejected": "Rejeté",
+        "finished": "Validé"
+      },
       "reset": "Réinitialiser",
       "Pagination": {
         "rows-per-page": "Lignes par page:",

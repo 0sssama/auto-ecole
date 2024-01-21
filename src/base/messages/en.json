@@ -64,7 +64,13 @@
       "no-data": "No results found",
       "search": "Search...",
       "reset": "Reset",
-      "status": "License File Status",
+      "filter": "License File Status",
+      "Status": {
+        "active": "Active",
+        "rejected": "Rejected",
+        "finished": "Finished",
+        "undeposited": "Undeposited"
+      },
       "Pagination": {
         "rows-per-page": "Rows per page:",
         "page": "Page",
