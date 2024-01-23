@@ -1,6 +1,6 @@
 import type { Prisma, LicenseFileStatus, Category } from '@prisma/client';
 
-import type { TableFilters, TableStatus } from '@/components/organisms/data-table/types';
+import type { TableFilters } from '@/components/organisms/data-table/types';
 import type { Student } from '@/components/sections/students/list-table/schema';
 
 const searchFilters = (search: TableFilters['get']['search']): Prisma.StudentWhereInput[] => {
@@ -53,15 +53,12 @@ export const getWhereObjFromFilters = (filters: TableFilters['get']): Prisma.Stu
   return { OR: output };
 };
 
-export const getWhereObjFromFiltersAndStatus = (
-  filters: TableFilters['get'],
-  status: TableStatus['get'],
-): Prisma.StudentWhereInput => {
+export const getWhereObjFromFiltersAndStatus = (filters: TableFilters['get']): Prisma.StudentWhereInput => {
   let output: Prisma.StudentWhereInput['AND'] = [];
 
   if (filters.search) output = [...output, { OR: searchFilters(filters.search) }];
-  if (status.status.length > 0) {
-    const licenseFileStatuses = licenseFilesFilter(status.status);
+  if (filters.licenseFileStatus.length > 0) {
+    const licenseFileStatuses = licenseFilesFilter(filters.licenseFileStatus);
     output = [...output, { licenseFiles: { some: { status: { in: licenseFileStatuses } } } }];
   }
   return { AND: output };

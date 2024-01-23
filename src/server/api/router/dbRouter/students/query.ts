@@ -23,6 +23,7 @@ export const queryRouter = createTRPCRouter({
       const filtersObj = input.searchQuery
         ? getWhereObjFromFilters({
             search: input.searchQuery,
+            licenseFileStatus: [],
           })
         : {};
 
@@ -55,16 +56,14 @@ export const queryRouter = createTRPCRouter({
       z.object({
         pageIndex: z.number().default(0),
         pageSize: z.number().default(10),
-        status: z.object({
-          status: z.array(z.string()),
-        }),
         filters: z.object({
           search: z.string(),
+          licenseFileStatus: z.array(z.string()),
         }),
       }),
     )
     .query(async ({ input, ctx }) => {
-      const filtersObj = getWhereObjFromFiltersAndStatus(input.filters, input.status);
+      const filtersObj = getWhereObjFromFiltersAndStatus(input.filters);
 
       const [students, totalStudents] = await Promise.all([
         ctx.prisma.student.findMany({

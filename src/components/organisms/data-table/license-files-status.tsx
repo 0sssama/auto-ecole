@@ -11,15 +11,15 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import type { DataTableStatusComponentProps } from './types';
+import type { DataTableStatusComponentType } from './types';
 
-const DataTableStatus: React.FC<DataTableStatusComponentProps> = ({ status }) => {
+const DataTableStatus: DataTableStatusComponentType = ({ filters }) => {
   const t = useTranslations('Dashboard.Tables');
-  if (status === undefined) return null;
+  if (filters.get.licenseFileStatus === undefined) return null;
 
   const handleCheckChange = (isChecked: boolean, item: string) => {
-    if (isChecked) status.set.status(item);
-    else status.delete.status(item);
+    if (isChecked) filters.set.licenseFileStatus(item);
+    else filters.helpers.deleteLicenseFilesStatus(item);
   };
 
   const items = [
@@ -41,7 +41,7 @@ const DataTableStatus: React.FC<DataTableStatusComponentProps> = ({ status }) =>
           <DropdownMenuCheckboxItem
             key={index}
             className="capitalize"
-            checked={status.get.status.includes(item.value)}
+            checked={filters.get.licenseFileStatus.includes(item.value)}
             onCheckedChange={(value) => handleCheckChange(value, item.value)}
           >
             {item.status}

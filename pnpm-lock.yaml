@@ -6,13 +6,13 @@ settings:
 
 dependencies:
   '@clerk/nextjs':
-    specifier: ^4.29.3
+    specifier: ^4.27.2
     version: 4.29.3(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
   '@hookform/resolvers':
-    specifier: ^3.3.4
+    specifier: ^3.3.2
     version: 3.3.4(react-hook-form@7.49.3)
   '@prisma/client':
-    specifier: ^5.8.0
+    specifier: ^5.3.1
     version: 5.8.0(prisma@5.8.0)
   '@radix-ui/react-avatar':
     specifier: ^1.0.4
@@ -51,28 +51,28 @@ dependencies:
     specifier: ^0.6.1
     version: 0.6.1(typescript@5.3.3)(zod@3.22.4)
   '@tanstack/react-query':
-    specifier: ^4.36.1
+    specifier: ^4.35.3
     version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-table':
-    specifier: ^8.11.6
+    specifier: ^8.10.7
     version: 8.11.6(react-dom@18.2.0)(react@18.2.0)
   '@trpc/client':
-    specifier: ^10.45.0
+    specifier: ^10.38.4
     version: 10.45.0(@trpc/server@10.45.0)
   '@trpc/react-query':
-    specifier: ^10.45.0
+    specifier: ^10.38.4
     version: 10.45.0(@tanstack/react-query@4.36.1)(@trpc/client@10.45.0)(@trpc/server@10.45.0)(react-dom@18.2.0)(react@18.2.0)
   '@trpc/server':
-    specifier: ^10.45.0
+    specifier: ^10.38.4
     version: 10.45.0
   '@uploadthing/react':
-    specifier: ^6.1.0
+    specifier: ^6.0.2
     version: 6.1.0(next@14.0.4)(react@18.2.0)(uploadthing@6.1.1)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
   clsx:
-    specifier: ^2.1.0
+    specifier: ^2.0.0
     version: 2.1.0
   cmdk:
     specifier: ^0.2.0
@@ -81,7 +81,7 @@ dependencies:
     specifier: ^2.30.0
     version: 2.30.0
   framer-motion:
-    specifier: ^10.18.0
+    specifier: ^10.16.4
     version: 10.18.0(react-dom@18.2.0)(react@18.2.0)
   js-cookie:
     specifier: ^3.0.5
@@ -96,10 +96,10 @@ dependencies:
     specifier: ^2.1.35
     version: 2.1.35
   next:
-    specifier: ^14.0.4
+    specifier: ^14.0.3
     version: 14.0.4(react-dom@18.2.0)(react@18.2.0)
   next-intl:
-    specifier: ^3.4.2
+    specifier: ^3.2.0
     version: 3.4.2(next@14.0.4)(react@18.2.0)
   next-nprogress-bar:
     specifier: ^2.1.2
@@ -111,25 +111,25 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0
   react-day-picker:
-    specifier: ^8.10.0
+    specifier: ^8.9.1
     version: 8.10.0(date-fns@2.30.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-hook-form:
-    specifier: ^7.49.3
+    specifier: ^7.47.0
     version: 7.49.3(react@18.2.0)
   recoil:
     specifier: ^0.7.7
     version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
   sharp:
-    specifier: ^0.33.2
+    specifier: ^0.33.0
     version: 0.33.2
   sonner:
-    specifier: ^1.3.1
+    specifier: ^1.0.3
     version: 1.3.1(react-dom@18.2.0)(react@18.2.0)
   superjson:
-    specifier: ^1.13.3
+    specifier: ^1.13.1
     version: 1.13.3
   tailwind-merge:
     specifier: ^1.14.0
@@ -138,10 +138,10 @@ dependencies:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.3.3)
   typescript:
-    specifier: ^5.3.3
+    specifier: '*'
     version: 5.3.3
   uploadthing:
-    specifier: ^6.1.1
+    specifier: ^6.0.3
     version: 6.1.1
   zod:
     specifier: ^3.22.4
@@ -158,7 +158,7 @@ devDependencies:
     specifier: ^8.3.1
     version: 8.3.1
   '@trivago/prettier-plugin-sort-imports':
-    specifier: ^4.3.0
+    specifier: ^4.2.0
     version: 4.3.0(prettier@3.1.1)
   '@types/js-cookie':
     specifier: ^3.0.6
@@ -173,7 +173,7 @@ devDependencies:
     specifier: 20.6.3
     version: 20.6.3
   '@types/react':
-    specifier: ^18.2.47
+    specifier: ^18.2.39
     version: 18.2.47
   '@types/react-dom':
     specifier: 18.2.7
@@ -188,7 +188,7 @@ devDependencies:
     specifier: 10.4.16
     version: 10.4.16(postcss@8.4.33)
   eslint:
-    specifier: ^8.56.0
+    specifier: '8'
     version: 8.56.0
   eslint-config-next:
     specifier: 14.0.4
@@ -197,7 +197,7 @@ devDependencies:
     specifier: 9.1.0
     version: 9.1.0(eslint@8.56.0)
   eslint-config-standard-with-typescript:
-    specifier: ^39.1.1
+    specifier: ^39.0.0
     version: 39.1.1(@typescript-eslint/eslint-plugin@6.16.0)(eslint-plugin-import@2.29.1)(eslint-plugin-n@16.6.2)(eslint-plugin-promise@6.1.1)(eslint@8.56.0)(typescript@5.3.3)
   eslint-plugin-filenames-simple:
     specifier: 0.9.0
@@ -209,13 +209,13 @@ devDependencies:
     specifier: 6.8.0
     version: 6.8.0(eslint@8.56.0)
   eslint-plugin-n:
-    specifier: ^16.6.2
+    specifier: '^15.0.0 || ^16.0.0 '
     version: 16.6.2(eslint@8.56.0)
   eslint-plugin-prettier:
     specifier: 5.1.2
     version: 5.1.2(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.1.1)
   eslint-plugin-promise:
-    specifier: ^6.1.1
+    specifier: ^6.0.0
     version: 6.1.1(eslint@8.56.0)
   eslint-plugin-react:
     specifier: 7.33.2
@@ -242,10 +242,10 @@ devDependencies:
     specifier: ^14.0.1
     version: 14.0.1
   ngrok:
-    specifier: 5.0.0-beta.2
+    specifier: ^5.0.0-beta.2
     version: 5.0.0-beta.2
   postcss:
-    specifier: ^8.4.33
+    specifier: '8'
     version: 8.4.33
   prettier:
     specifier: 3.1.1
@@ -254,7 +254,7 @@ devDependencies:
     specifier: 0.5.9
     version: 0.5.9(@trivago/prettier-plugin-sort-imports@4.3.0)(prettier@3.1.1)
   prisma:
-    specifier: ^5.8.0
+    specifier: ^5.3.1
     version: 5.8.0
   tailwindcss:
     specifier: 3.3.3
@@ -283,7 +283,7 @@ packages:
     resolution: {integrity: sha512-oLcVCTeIFadUoArDTwpluncplrYBmTCCZZgXCbgNGvOBBiSDDK3eWO4b/+eOTli5tKv1lg+a5/NAXg+nTcei1w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.23.6
       jsesc: 2.5.2
       source-map: 0.5.7
     dev: true
@@ -349,7 +349,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.23.6
     dev: true
 
   /@babel/runtime@7.23.8:
@@ -1040,7 +1040,7 @@ packages:
     resolution: {integrity: sha512-coUfuoMeIB7B8/NMekxaDzLhaYmp0HZNPEjYRm9goRou8UZIC3z21s0sL9AWoCw4EG876QyO3kYrc61WNF9B/w==}
     engines: {node: '>=8.0.0'}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.2
     dev: false
 
   /@peculiar/webcrypto@1.4.1:
@@ -1050,7 +1050,7 @@ packages:
       '@peculiar/asn1-schema': 2.3.8
       '@peculiar/json-schema': 1.1.12
       pvtsutils: 1.3.5
-      tslib: 2.4.1
+      tslib: 2.6.2
       webcrypto-core: 1.7.7
     dev: false
 
@@ -3359,7 +3359,7 @@ packages:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.2
     dev: false
 
   /eastasianwidth@0.2.0:
@@ -4899,7 +4899,7 @@ packages:
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.2
     dev: false
 
   /lowercase-keys@2.0.0:
@@ -5132,7 +5132,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.4.1
+      tslib: 2.6.2
     dev: false
 
   /node-fetch-native@1.0.1:
@@ -6050,7 +6050,7 @@ packages:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.2
     dev: false
 
   /snakecase-keys@3.2.1:
@@ -6628,7 +6628,7 @@ packages:
       '@peculiar/json-schema': 1.1.12
       asn1js: 3.0.5
       pvtsutils: 1.3.5
-      tslib: 2.4.1
+      tslib: 2.6.2
     dev: false
 
   /webidl-conversions@3.0.1:

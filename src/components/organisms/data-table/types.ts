@@ -6,9 +6,6 @@ export interface DataTableColumnHeaderProps<TData, TValue> extends HTMLAttribute
   title: string;
 }
 
-export interface DataTableStatusComponentProps {
-  status?: TableStatus;
-}
 export type TablePagination = {
   get: {
     pageIndex: number;
@@ -32,30 +29,20 @@ export type TablePagination = {
 export type TableFilters = {
   get: {
     search: string;
+    licenseFileStatus: string[];
   };
   set: {
     search: (search: string) => void;
+    licenseFileStatus: (licenseFileStatus: string) => void;
   };
   helpers: {
     resetSearch: () => void;
+    deleteLicenseFilesStatus: (status: string) => void;
+    resetLicenseFileStatus: () => void;
     resetAll: () => void;
   };
 };
 
-export type TableStatus = {
-  get: {
-    status: string[];
-  };
-  set: {
-    status: (status: string) => void;
-  };
-  delete: {
-    status: (status: string) => void;
-  };
-  helpers: {
-    resetAll: () => void;
-  };
-};
 export type Paginated<TData> = {
   data: TData[];
   pageCount: number;
@@ -67,7 +54,6 @@ export type TableProps<TData, TValue> = {
   error: string | undefined;
   isLoading: boolean;
   pagination: TablePagination;
-  status?: TableStatus;
   filters: TableFilters;
   filtersAllowed?: {
     [filterName in keyof TableFilters['get']]?: boolean;
@@ -93,4 +79,10 @@ export type DataTableToolbarProps = {
   };
 };
 
+export type DataTableStatusComponentProps = {
+  filters: TableFilters;
+};
+
 export type DataTableToolbarComponentType = FC<DataTableToolbarProps>;
+
+export type DataTableStatusComponentType = FC<DataTableStatusComponentProps>;

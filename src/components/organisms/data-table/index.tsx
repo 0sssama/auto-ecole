@@ -20,14 +20,13 @@ import { Spinner } from '@/components/atoms';
 import DataTablePagination from './pagination';
 import DataTableToolbar from './toolbar';
 import type { TableProps } from './types';
-import DataTableStatus from './status';
+import DataTableStatus from './license-files-status';
 
 function DataTable<TData, TValue>({
   data,
   columns,
   pagination,
   filters,
-  status,
   error,
   isLoading,
   filtersAllowed,
@@ -60,7 +59,12 @@ function DataTable<TData, TValue>({
     // when filters are changed, reset page to 0
     pagination.set.pageIndex(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.get, status?.get]);
+  }, [filters.get.search]);
+
+  useEffect(() => {
+    pagination.set.pageIndex(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters.get.licenseFileStatus]);
 
   useEffect(() => {
     if (!data) return;
@@ -73,7 +77,7 @@ function DataTable<TData, TValue>({
     <div className="w-full max-w-[calc(100vw-3rem)] space-y-4">
       <div className="flex flex-row gap-1">
         <DataTableToolbar filters={filters} filtersAllowed={filtersAllowed} />
-        <DataTableStatus status={status ?? undefined} />
+        <DataTableStatus filters={filters} />
       </div>
       <div className="overflow-x-auto rounded-md border">
         <Table>
