@@ -17,6 +17,7 @@ export const queryRouter = createTRPCRouter({
         pageSize: z.number().default(10),
         filters: z.object({
           search: z.string(),
+          licenseFileStatus: z.array(z.string()),
         }),
       }),
     )
@@ -100,6 +101,7 @@ export const queryRouter = createTRPCRouter({
         pageSize: z.number().default(10),
         filters: z.object({
           search: z.string(),
+          licenseFileStatus: z.array(z.string()),
         }),
       }),
     )
@@ -177,6 +179,7 @@ export const queryRouter = createTRPCRouter({
         pageSize: z.number().default(10),
         filters: z.object({
           search: z.string(),
+          licenseFileStatus: z.array(z.string()),
         }),
       }),
     )
@@ -254,6 +257,7 @@ export const queryRouter = createTRPCRouter({
         pageSize: z.number().default(10),
         filters: z.object({
           search: z.string(),
+          licenseFileStatus: z.array(z.string()),
         }),
       }),
     )

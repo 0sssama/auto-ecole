@@ -29,12 +29,16 @@ export type TablePagination = {
 export type TableFilters = {
   get: {
     search: string;
+    licenseFileStatus: string[];
   };
   set: {
     search: (search: string) => void;
+    licenseFileStatus: (licenseFileStatus: string) => void;
   };
   helpers: {
     resetSearch: () => void;
+    deleteLicenseFilesStatus: (status: string) => void;
+    resetLicenseFileStatus: () => void;
     resetAll: () => void;
   };
 };
@@ -50,7 +54,6 @@ export type TableProps<TData, TValue> = {
   error: string | undefined;
   isLoading: boolean;
   pagination: TablePagination;
-
   filters: TableFilters;
   filtersAllowed?: {
     [filterName in keyof TableFilters['get']]?: boolean;
@@ -76,4 +79,10 @@ export type DataTableToolbarProps = {
   };
 };
 
+export type DataTableStatusComponentProps = {
+  filters: TableFilters;
+};
+
 export type DataTableToolbarComponentType = FC<DataTableToolbarProps>;
+
+export type DataTableStatusComponentType = FC<DataTableStatusComponentProps>;

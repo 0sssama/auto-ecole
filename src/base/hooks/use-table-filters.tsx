@@ -8,15 +8,24 @@ export const useTableFilters = (initialState?: TableFilters['get']): TableFilter
   const [filters, setFilters] = useState(
     initialState ?? {
       search: '',
+      licenseFileStatus: [],
     },
   );
 
   return {
-    get: filters,
+    get: {
+      search: filters.search,
+      licenseFileStatus: filters.licenseFileStatus,
+    },
+
     set: {
       search: (value) =>
         setFilters((prev) => {
           return { ...prev, search: value };
+        }),
+      licenseFileStatus: (value) =>
+        setFilters((prev) => {
+          return { ...prev, licenseFileStatus: [...prev.licenseFileStatus, value] };
         }),
     },
     helpers: {
@@ -24,7 +33,19 @@ export const useTableFilters = (initialState?: TableFilters['get']): TableFilter
         setFilters((prev) => {
           return { ...prev, search: '' };
         }),
-      resetAll: () => setFilters({ search: '' }),
+      deleteLicenseFilesStatus: (value: string) => {
+        setFilters((prev) => {
+          return { ...prev, licenseFileStatus: prev.licenseFileStatus.filter((item) => item !== value) };
+        });
+      },
+      resetAll: () => {
+        setFilters({ search: '', licenseFileStatus: [] });
+      },
+      resetLicenseFileStatus: () => {
+        setFilters((prev) => {
+          return { ...prev, licenseFileStatus: [] };
+        });
+      },
     },
   };
 };

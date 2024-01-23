@@ -18,6 +18,7 @@ export const queryRouter = createTRPCRouter({
       const filtersObj = input.searchQuery
         ? getWhereObjFromFilters({
             search: input.searchQuery,
+            licenseFileStatus: [],
           })
         : {};
 
@@ -54,6 +55,7 @@ export const queryRouter = createTRPCRouter({
         pageSize: z.number().default(10),
         filters: z.object({
           search: z.string(),
+          licenseFileStatus: z.array(z.string()),
         }),
       }),
     )
